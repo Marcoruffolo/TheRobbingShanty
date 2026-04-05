@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
+
 /// Centraliza todo el input del jugador usando el New Input System.
 /// Usa ReadValue y WasPressedThisFrame directamente sobre el InputActionAsset,
 /// lo que es más confiable que Send Messages para detectar estados.
@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 /// Setup:
 /// - Asigná el archivo .inputactions en el campo "Input Actions Asset"
 /// - El componente PlayerInput del mismo GO puede quedar en Behavior: Invoke Unity Events
-/// </summary>
+
 public class PlayerInputHandler : MonoBehaviour
 {
     public static PlayerInputHandler Instance { get; private set; }
