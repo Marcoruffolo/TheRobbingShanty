@@ -13578,7 +13578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dccda7afec8e9242b565a630689e126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
-  mouseSensitivity: 4.91
+  mouseSensitivity: 1
   musicVolume: 0.75
   sfxVolume: 1
 --- !u!1660057539 &9223372036854775807
