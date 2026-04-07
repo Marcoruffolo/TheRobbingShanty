@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 294372942}
   - component: {fileID: 294372941}
   - component: {fileID: 294372943}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13125,6 +13125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship Robbing SHanty demo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 541834773338f9d45830d70f74562617, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 541834773338f9d45830d70f74562617, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -13156,7 +13160,7 @@ GameObject:
   - component: {fileID: 1093783787}
   - component: {fileID: 1093783786}
   - component: {fileID: 1093783785}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShipCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13568,7 +13572,7 @@ GameObject:
   - component: {fileID: 1703513258}
   - component: {fileID: 1703513260}
   - component: {fileID: 1703513259}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: SteeringWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14170,7 +14174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2014991756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SteeringWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,9 +1,5 @@
 using UnityEngine;
 
-
-/// Maneja el movimiento del jugador en primera persona.
-/// Lee input SOLO desde PlayerInputHandler, nunca directamente.
-/// Requiere CharacterController en el mismo GameObject.
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // ORDEN CRÍTICO: ground check primero, luego jump, luego gravity
         CheckGround();
         HandleMovement();
         HandleJump();
@@ -60,58 +57,59 @@ public class PlayerMovement : MonoBehaviour
 
     private void RequestJump()
     {
+        // Solo registrar el pedido si estamos en el suelo en este momento
         if (_isGrounded)
             _jumpRequested = true;
     }
 
-    // Ground Check 
     private void CheckGround()
     {
         _isGrounded = Physics.CheckSphere(
             groundCheck.position,
             groundRadius,
-            groundMask
+            groundMask,
+            QueryTriggerInteraction.Ignore   // ← ignora triggers, evita falsos positivos
         );
 
         if (_isGrounded && _velocity.y < 0f)
             _velocity.y = -2f;
     }
 
-    // Movimiento horizontal 
     private void HandleMovement()
     {
         if (_input == null) return;
 
         float speed = _input.SprintHeld ? sprintSpeed : walkSpeed;
-
         Vector2 input = _input.MoveInput;
         Vector3 move = transform.right * input.x + transform.forward * input.y;
 
         _controller.Move(move * speed * Time.deltaTime);
     }
 
-    // Salto 
     private void HandleJump()
     {
-        if (_jumpRequested)
+        if (_jumpRequested && _isGrounded)  // doble check: evento + estado actual
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             _jumpRequested = false;
         }
+        else if (!_isGrounded)
+        {
+            // Limpiar el pedido si llegó tarde (cayó del borde mientras presionaba)
+            _jumpRequested = false;
+        }
     }
 
-    // Gravedad 
     private void ApplyGravity()
     {
         _velocity.y += gravity * Time.deltaTime;
         _controller.Move(_velocity * Time.deltaTime);
     }
 
-    // Gizmos 
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
-        Gizmos.color = Color.green;
+        Gizmos.color = _isGrounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
     }
 }
