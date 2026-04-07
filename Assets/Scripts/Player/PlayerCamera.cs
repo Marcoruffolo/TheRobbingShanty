@@ -31,10 +31,10 @@ public class PlayerCamera : MonoBehaviour
         _playerBody = transform.parent;
 
         if (_input == null)
-            Debug.LogError("[PlayerCamera] No se encontró PlayerInputHandler.");
+            //Debug.LogError("[PlayerCamera] No se encontró PlayerInputHandler.");
 
         if (_playerBody == null)
-            Debug.LogError("[PlayerCamera] La cámara debe ser hija del GameObject del jugador.");
+            //Debug.LogError("[PlayerCamera] La cámara debe ser hija del GameObject del jugador.");
 
         if (GameSettings.Instance != null)
         {
