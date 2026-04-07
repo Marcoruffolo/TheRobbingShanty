@@ -64,43 +64,23 @@ public class PlayerInputHandler : MonoBehaviour
     {
         inputActions.Enable();
 
-        _jumpAction.performed += OnJumpPerformed;
-        _interactAction.performed += OnInteractPerformed;
-        _attackAction.performed += OnAttackPerformed;
-        _parryAction.performed += OnParryPerformed;
-        _pauseAction.performed += OnPausePerformed;
-
-        Debug.Log("[Input] Actions habilitadas, interact action: " + _interactAction.name);
+        _jumpAction.performed += _ => OnJump?.Invoke();
+        _interactAction.performed += _ => OnInteract?.Invoke();
+        _attackAction.performed += _ => OnAttack?.Invoke();
+        _parryAction.performed += _ => OnParry?.Invoke();
+        _pauseAction.performed += _ => OnPauseToggle?.Invoke();
     }
 
     private void OnDisable()
     {
         inputActions.Disable();
 
-        _jumpAction.performed -= OnJumpPerformed;
-        _interactAction.performed -= OnInteractPerformed;
-        _attackAction.performed -= OnAttackPerformed;
-        _parryAction.performed -= OnParryPerformed;
-        _pauseAction.performed -= OnPausePerformed;
+        _jumpAction.performed -= _ => OnJump?.Invoke();
+        _interactAction.performed -= _ => OnInteract?.Invoke();
+        _attackAction.performed -= _ => OnAttack?.Invoke();
+        _parryAction.performed -= _ => OnParry?.Invoke();
+        _pauseAction.performed -= _ => OnPauseToggle?.Invoke();
     }
-
-    private void OnJumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        => OnJump?.Invoke();
-
-    private void OnInteractPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-    {
-        Debug.Log("[Input] Interact disparado");
-        OnInteract?.Invoke();
-    }
-
-    private void OnAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        => OnAttack?.Invoke();
-
-    private void OnParryPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        => OnParry?.Invoke();
-
-    private void OnPausePerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        => OnPauseToggle?.Invoke();
 
     private void Update()
     {
