@@ -29,12 +29,12 @@ public class PlayerCamera : MonoBehaviour
     {
         _input      = PlayerInputHandler.Instance;
         _playerBody = transform.parent;
-
+        Debug.Log("[PlayerCamera] Start ejecutado en: " + gameObject.name);
         if (_input == null)
-            //Debug.LogError("[PlayerCamera] No se encontró PlayerInputHandler.");
+            Debug.LogError("[PlayerCamera] No se encontró PlayerInputHandler.");
 
         if (_playerBody == null)
-            //Debug.LogError("[PlayerCamera] La cámara debe ser hija del GameObject del jugador.");
+            Debug.LogError("[PlayerCamera] La cámara debe ser hija del GameObject del jugador.");
 
         if (GameSettings.Instance != null)
         {
@@ -53,26 +53,14 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        if (_input == null) return;
+        float mouseX = Input.GetAxis("Mouse X") * _sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * _sensitivity;
 
-        Vector2 rawLook = _input.LookInput * _sensitivity;
+        _xRotation -= mouseY;
+        _xRotation = Mathf.Clamp(_xRotation, minVerticalAngle, maxVerticalAngle);
 
-        if (smoothTime > 0f)
-        {
-            _currentLook = Vector2.SmoothDamp(
-                _currentLook, rawLook, ref _lookVelocity, smoothTime
-            );
-        }
-        else
-        {
-            _currentLook = rawLook;
-        }
-
-        _xRotation -= _currentLook.y;
-        _xRotation  = Mathf.Clamp(_xRotation, minVerticalAngle, maxVerticalAngle);
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-
-        _playerBody.Rotate(Vector3.up * _currentLook.x);
+        _playerBody.Rotate(Vector3.up * mouseX);
     }
 
     public static void LockCursor(bool locked)
