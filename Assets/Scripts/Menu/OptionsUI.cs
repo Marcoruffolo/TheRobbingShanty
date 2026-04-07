@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
+
 /// Controla el panel de opciones (sensibilidad, música, efectos).
 /// Funciona tanto en el menú principal como en el menú de pausa.
 /// Asigná los sliders y textos desde el Inspector.
-/// </summary>
+
 public class OptionsUI : MonoBehaviour
 {
     [Header("Sensibilidad")]
