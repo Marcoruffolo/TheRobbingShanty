@@ -1,10 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-// Maneja el estado de pausa del juego.
-// Se comunica con la UI a través de eventos, no con referencias directas.
-
 public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance { get; private set; }
@@ -13,7 +9,7 @@ public class PauseManager : MonoBehaviour
 
     public event System.Action<bool> OnPauseChanged;
 
-    [Header("Nombre de la escena del menú principal")]
+    [Header("Main Menu Scene")]
     [SerializeField] private string mainMenuSceneName = "MainMenu";
 
     private void Awake()
@@ -23,6 +19,7 @@ public class PauseManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 
@@ -40,23 +37,36 @@ public class PauseManager : MonoBehaviour
 
     public void TogglePause()
     {
-        if (IsPaused) Resume();
-        else          Pause();
+        if (IsPaused)
+            Resume();
+        else
+            Pause();
     }
 
     public void Pause()
     {
-        IsPaused         = true;
-        Time.timeScale   = 0f;
+        if (IsPaused)
+            return;
+
+        IsPaused = true;
+        Time.timeScale = 0f;
         PlayerCamera.LockCursor(false);
         OnPauseChanged?.Invoke(true);
     }
 
     public void Resume()
     {
-        IsPaused         = false;
-        Time.timeScale   = 1f;
-        PlayerCamera.LockCursor(true);
+        if (!IsPaused)
+            return;
+
+        IsPaused = false;
+        Time.timeScale = 1f;
+
+        if (CameraModeController.Instance != null)
+            CameraModeController.Instance.RestoreGameplayState();
+        else
+            PlayerCamera.LockCursor(true);
+
         OnPauseChanged?.Invoke(false);
     }
 

@@ -1,75 +1,106 @@
 using UnityEngine;
 
-/// <summary>
-/// Objeto interactuable: el timón del barco.
-/// Al interactuar cambia al modo de navegación en tercera persona.
-/// Al volver a interactuar (o presionar E de nuevo) devuelve el control al jugador.
-/// 
-/// Implementa IInteractable — el jugador no sabe que es un timón,
-/// solo llama a Interact().
-/// </summary>
 public class SteeringWheel : MonoBehaviour, IInteractable
 {
-    [Header("Referencias")]
-    [SerializeField] private ShipController   shipController;
-    [SerializeField] private ShipCameraController shipCamera;
-    [SerializeField] private GameObject       playerObject;   // el GO del jugador
+    [Header("Positions")]
+    [SerializeField] private Transform steeringPosition;
+    [SerializeField] private Transform exitPosition;
 
-    [Header("Posición del jugador al tomar el timón")]
-    [SerializeField] private Transform        steeringPosition; // Transform vacío frente al timón
+    private bool _releaseInputSubscribed;
 
-    private bool _isControlling = false;
+    public string InteractionPrompt
+    {
+        get
+        {
+            if (CameraModeController.Instance != null && CameraModeController.Instance.IsShipControlActive)
+                return "Leave helm";
 
-    // ── IInteractable ─────────────────────────────────────────────
-    public string InteractionPrompt => _isControlling ? "Soltar timón" : "Tomar timón";
+            return "Take helm";
+        }
+    }
 
     public void Interact()
     {
-        if (_isControlling)
-            ReleaseWheel();
-        else
-            TakeWheel();
-    }
+        CameraModeController controller = CameraModeController.Instance;
 
-    // ─────────────────────────────────────────────────────────────
-    private void TakeWheel()
-    {
-        _isControlling = true;
-
-        // Mover y bloquear al jugador en la posición del timón
-        if (steeringPosition != null && playerObject != null)
+        if (controller == null)
         {
-            playerObject.transform.position = steeringPosition.position;
-            playerObject.transform.rotation = steeringPosition.rotation;
+            Debug.LogError("[SteeringWheel] No CameraModeController instance found.");
+            return;
         }
 
-        // Desactivar movimiento del jugador y activar control del barco
-        PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
-        if (playerMovement != null) playerMovement.enabled = false;
+        if (controller.IsShipControlActive)
+        {
+            ExitShipControl();
+            return;
+        }
 
-        PlayerCamera playerCamera = playerObject.GetComponentInChildren<PlayerCamera>();
-        if (playerCamera != null) playerCamera.enabled = false;
-
-        shipController.StartControlling();
-        shipCamera.Activate();
-
-        PlayerCamera.LockCursor(false);
+        EnterShipControl();
     }
 
-    private void ReleaseWheel()
+    private void OnDisable()
     {
-        _isControlling = false;
+        UnsubscribeFromReleaseInput();
+    }
 
-        // Reactivar movimiento del jugador
-        PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
-        if (playerMovement != null) playerMovement.enabled = true;
+    private void OnDestroy()
+    {
+        UnsubscribeFromReleaseInput();
+    }
 
-        PlayerCamera playerCamera = playerObject.GetComponentInChildren<PlayerCamera>();
-        if (playerCamera != null) playerCamera.enabled = true;
+    private void EnterShipControl()
+    {
+        if (steeringPosition == null)
+        {
+            Debug.LogError("[SteeringWheel] Missing steeringPosition reference.");
+            return;
+        }
 
-        shipController.StopControlling();
-        shipCamera.Deactivate();
+        Transform safeExitPosition = exitPosition != null ? exitPosition : steeringPosition;
 
-        PlayerCamera.LockCursor(true);
+        CameraModeController.Instance.EnterShipControl(steeringPosition, safeExitPosition);
+        SubscribeToReleaseInput();
+    }
+
+    private void ExitShipControl()
+    {
+        CameraModeController.Instance.ExitShipControl();
+        UnsubscribeFromReleaseInput();
+    }
+
+    private void HandleReleaseInput()
+    {
+        CameraModeController controller = CameraModeController.Instance;
+
+        if (controller == null || !controller.IsShipControlActive)
+            return;
+
+        ExitShipControl();
+    }
+
+    private void SubscribeToReleaseInput()
+    {
+        if (_releaseInputSubscribed)
+            return;
+
+        if (PlayerInputHandler.Instance == null)
+        {
+            Debug.LogError("[SteeringWheel] No PlayerInputHandler instance found.");
+            return;
+        }
+
+        PlayerInputHandler.Instance.OnInteract += HandleReleaseInput;
+        _releaseInputSubscribed = true;
+    }
+
+    private void UnsubscribeFromReleaseInput()
+    {
+        if (!_releaseInputSubscribed)
+            return;
+
+        if (PlayerInputHandler.Instance != null)
+            PlayerInputHandler.Instance.OnInteract -= HandleReleaseInput;
+
+        _releaseInputSubscribed = false;
     }
 }

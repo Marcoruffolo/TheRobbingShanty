@@ -1,45 +1,59 @@
 using UnityEngine;
 
-/// Controla la cámara en primera persona.
-/// La sensibilidad se lee desde GameSettings, se actualiza automáticamente
-/// cuando el jugador la cambia en opciones sin necesidad de reiniciar.
-/// 
-/// Setup en la escena:
-/// - Este script va en el GameObject de la CÁMARA (hijo del jugador)
-/// - El jugador rota en Y (horizontal), la cámara rota en X (vertical)
-
 public class PlayerCamera : MonoBehaviour
 {
-    [Header("Límites de rotación vertical")]
-    [SerializeField] private float minVerticalAngle = -80f;
-    [SerializeField] private float maxVerticalAngle =  80f;
+    [Header("References")]
+    [SerializeField] private Transform playerBody;
 
-    [Header("Suavizado (0 = sin suavizado)")]
+    [Header("Vertical Rotation Limits")]
+    [SerializeField] private float minVerticalAngle = -80f;
+    [SerializeField] private float maxVerticalAngle = 80f;
+
+    [Header("Look Settings")]
     [SerializeField] private float smoothTime = 0.05f;
+    [SerializeField] private float lookInputMultiplier = 0.05f;
 
     private PlayerInputHandler _input;
-    private Transform          _playerBody; // el padre (jugador) rota horizontal
-    private float              _xRotation;  // rotación vertical acumulada
-    private float              _sensitivity;
+    private float _xRotation;
+    private float _sensitivity;
 
     private Vector2 _currentLook;
     private Vector2 _lookVelocity;
 
+    private void Awake()
+    {
+        if (playerBody == null && transform.parent != null)
+            playerBody = transform.parent;
+    }
+
     private void Start()
     {
-        _input      = PlayerInputHandler.Instance;
-        _playerBody = transform.parent;
-        Debug.Log("[PlayerCamera] Start ejecutado en: " + gameObject.name);
-        if (_input == null)
-            Debug.LogError("[PlayerCamera] No se encontró PlayerInputHandler.");
+        _input = PlayerInputHandler.Instance;
 
-        if (_playerBody == null)
-            Debug.LogError("[PlayerCamera] La cámara debe ser hija del GameObject del jugador.");
+        if (_input == null)
+        {
+            Debug.LogError("[PlayerCamera] No PlayerInputHandler instance found.");
+            enabled = false;
+            return;
+        }
+
+        if (playerBody == null)
+        {
+            Debug.LogError("[PlayerCamera] Missing playerBody reference.");
+            enabled = false;
+            return;
+        }
+
+        _xRotation = NormalizeAngle(transform.localEulerAngles.x);
 
         if (GameSettings.Instance != null)
         {
             _sensitivity = GameSettings.Instance.mouseSensitivity;
             GameSettings.Instance.OnSensitivityChanged += OnSensitivityChanged;
+        }
+        else
+        {
+            _sensitivity = 2f;
         }
 
         LockCursor(true);
@@ -53,24 +67,48 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * _sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * _sensitivity;
+        if (PauseManager.Instance != null && PauseManager.Instance.IsPaused)
+            return;
 
-        _xRotation -= mouseY;
+        Vector2 targetLook = _input.LookInput * (_sensitivity * lookInputMultiplier);
+
+        if (smoothTime > 0f)
+        {
+            _currentLook = Vector2.SmoothDamp(
+                _currentLook,
+                targetLook,
+                ref _lookVelocity,
+                smoothTime
+            );
+        }
+        else
+        {
+            _currentLook = targetLook;
+        }
+
+        _xRotation -= _currentLook.y;
         _xRotation = Mathf.Clamp(_xRotation, minVerticalAngle, maxVerticalAngle);
 
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-        _playerBody.Rotate(Vector3.up * mouseX);
+        playerBody.Rotate(Vector3.up * _currentLook.x);
     }
 
     public static void LockCursor(bool locked)
     {
         Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible   = !locked;
+        Cursor.visible = !locked;
     }
 
     private void OnSensitivityChanged(float newValue)
     {
         _sensitivity = newValue;
+    }
+
+    private static float NormalizeAngle(float angle)
+    {
+        if (angle > 180f)
+            angle -= 360f;
+
+        return angle;
     }
 }

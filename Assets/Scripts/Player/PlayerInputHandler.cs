@@ -1,15 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-/// Centraliza todo el input del jugador usando el New Input System.
-/// Usa ReadValue y WasPressedThisFrame directamente sobre el InputActionAsset,
-/// lo que es más confiable que Send Messages para detectar estados.
-///
-/// Setup:
-/// - Asigná el archivo .inputactions en el campo "Input Actions Asset"
-/// - El componente PlayerInput del mismo GO puede quedar en Behavior: Invoke Unity Events
-
 public class PlayerInputHandler : MonoBehaviour
 {
     public static PlayerInputHandler Instance { get; private set; }
@@ -17,7 +8,6 @@ public class PlayerInputHandler : MonoBehaviour
     [Header("Input Actions Asset")]
     [SerializeField] private InputActionAsset inputActions;
 
-    // Referencias a las actions 
     private InputAction _moveAction;
     private InputAction _lookAction;
     private InputAction _jumpAction;
@@ -27,12 +17,10 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _parryAction;
     private InputAction _pauseAction;
 
-    // Valores públicos leídos cada frame 
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
     public bool SprintHeld { get; private set; }
 
-    // Eventos para acciones puntuales 
     public event System.Action OnJump;
     public event System.Action OnInteract;
     public event System.Action OnAttack;
@@ -46,40 +34,58 @@ public class PlayerInputHandler : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
-        var map = inputActions.FindActionMap("Player", throwIfNotFound: true);
+        if (inputActions == null)
+        {
+            Debug.LogError("[PlayerInputHandler] Missing InputActionAsset reference.");
+            enabled = false;
+            return;
+        }
 
-        _moveAction = map.FindAction("Move", throwIfNotFound: true);
-        _lookAction = map.FindAction("Look", throwIfNotFound: true);
-        _jumpAction = map.FindAction("JumpAction", throwIfNotFound: true);
-        _sprintAction = map.FindAction("Sprint", throwIfNotFound: true);
-        _interactAction = map.FindAction("InteractAction", throwIfNotFound: true);
-        _attackAction = map.FindAction("AttackAction", throwIfNotFound: true);
-        _parryAction = map.FindAction("ParryAction", throwIfNotFound: true);
-        _pauseAction = map.FindAction("Pause", throwIfNotFound: true);
+        InputActionMap map = inputActions.FindActionMap("Player", true);
+
+        _moveAction = map.FindAction("Move", true);
+        _lookAction = map.FindAction("Look", true);
+        _jumpAction = map.FindAction("JumpAction", true);
+        _sprintAction = map.FindAction("Sprint", true);
+        _interactAction = map.FindAction("InteractAction", true);
+        _attackAction = map.FindAction("AttackAction", true);
+        _parryAction = map.FindAction("ParryAction", true);
+        _pauseAction = map.FindAction("Pause", true);
     }
 
     private void OnEnable()
     {
+        if (inputActions == null)
+            return;
+
         inputActions.Enable();
 
-        _jumpAction.performed += _ => OnJump?.Invoke();
-        _interactAction.performed += _ => OnInteract?.Invoke();
-        _attackAction.performed += _ => OnAttack?.Invoke();
-        _parryAction.performed += _ => OnParry?.Invoke();
-        _pauseAction.performed += _ => OnPauseToggle?.Invoke();
+        _jumpAction.performed += HandleJumpPerformed;
+        _interactAction.performed += HandleInteractPerformed;
+        _attackAction.performed += HandleAttackPerformed;
+        _parryAction.performed += HandleParryPerformed;
+        _pauseAction.performed += HandlePausePerformed;
     }
 
     private void OnDisable()
     {
+        if (inputActions == null)
+            return;
+
+        _jumpAction.performed -= HandleJumpPerformed;
+        _interactAction.performed -= HandleInteractPerformed;
+        _attackAction.performed -= HandleAttackPerformed;
+        _parryAction.performed -= HandleParryPerformed;
+        _pauseAction.performed -= HandlePausePerformed;
+
         inputActions.Disable();
 
-        _jumpAction.performed -= _ => OnJump?.Invoke();
-        _interactAction.performed -= _ => OnInteract?.Invoke();
-        _attackAction.performed -= _ => OnAttack?.Invoke();
-        _parryAction.performed -= _ => OnParry?.Invoke();
-        _pauseAction.performed -= _ => OnPauseToggle?.Invoke();
+        MoveInput = Vector2.zero;
+        LookInput = Vector2.zero;
+        SprintHeld = false;
     }
 
     private void Update()
@@ -87,5 +93,30 @@ public class PlayerInputHandler : MonoBehaviour
         MoveInput = _moveAction.ReadValue<Vector2>();
         LookInput = _lookAction.ReadValue<Vector2>();
         SprintHeld = _sprintAction.IsPressed();
+    }
+
+    private void HandleJumpPerformed(InputAction.CallbackContext context)
+    {
+        OnJump?.Invoke();
+    }
+
+    private void HandleInteractPerformed(InputAction.CallbackContext context)
+    {
+        OnInteract?.Invoke();
+    }
+
+    private void HandleAttackPerformed(InputAction.CallbackContext context)
+    {
+        OnAttack?.Invoke();
+    }
+
+    private void HandleParryPerformed(InputAction.CallbackContext context)
+    {
+        OnParry?.Invoke();
+    }
+
+    private void HandlePausePerformed(InputAction.CallbackContext context)
+    {
+        OnPauseToggle?.Invoke();
     }
 }

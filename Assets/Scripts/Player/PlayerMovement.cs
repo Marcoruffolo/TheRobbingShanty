@@ -3,12 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Velocidades")]
+    [Header("Movement Speeds")]
     [SerializeField] private float walkSpeed = 4f;
     [SerializeField] private float sprintSpeed = 7f;
     [SerializeField] private float jumpHeight = 1.2f;
 
-    [Header("Gravedad")]
+    [Header("Gravity")]
     [SerializeField] private float gravity = -19.62f;
 
     [Header("Ground Check")]
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_input == null)
         {
-            Debug.LogError("[PlayerMovement] No se encontró PlayerInputHandler.");
+            Debug.LogError("[PlayerMovement] No PlayerInputHandler instance found.");
             return;
         }
 
@@ -48,16 +48,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // ORDEN CRÍTICO: ground check primero, luego jump, luego gravity
         CheckGround();
         HandleMovement();
         HandleJump();
         ApplyGravity();
     }
 
+    public void ResetMotionState()
+    {
+        _velocity = Vector3.zero;
+        _isGrounded = false;
+        _jumpRequested = false;
+    }
+
+    public void TeleportTo(Vector3 position, Quaternion rotation)
+    {
+        ResetMotionState();
+
+        bool controllerWasEnabled = _controller.enabled;
+        _controller.enabled = false;
+
+        transform.SetPositionAndRotation(position, rotation);
+
+        _controller.enabled = controllerWasEnabled;
+    }
+
     private void RequestJump()
     {
-        // Solo registrar el pedido si estamos en el suelo en este momento
         if (_isGrounded)
             _jumpRequested = true;
     }
@@ -68,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             groundCheck.position,
             groundRadius,
             groundMask,
-            QueryTriggerInteraction.Ignore   // ← ignora triggers, evita falsos positivos
+            QueryTriggerInteraction.Ignore
         );
 
         if (_isGrounded && _velocity.y < 0f)
@@ -77,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (_input == null) return;
+        if (_input == null)
+            return;
 
         float speed = _input.SprintHeld ? sprintSpeed : walkSpeed;
         Vector2 input = _input.MoveInput;
@@ -88,14 +106,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if (_jumpRequested && _isGrounded)  // doble check: evento + estado actual
+        if (_jumpRequested && _isGrounded)
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             _jumpRequested = false;
         }
         else if (!_isGrounded)
         {
-            // Limpiar el pedido si llegó tarde (cayó del borde mientras presionaba)
             _jumpRequested = false;
         }
     }
@@ -108,7 +125,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (groundCheck == null) return;
+        if (groundCheck == null)
+            return;
+
         Gizmos.color = _isGrounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
     }
