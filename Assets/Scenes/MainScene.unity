@@ -911,7 +911,7 @@ Transform:
   m_GameObject: {fileID: 572869257}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 120.8573, y: 120.8573, z: 120.8573}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13221,8 +13221,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721679709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.42, z: -1}
+  m_LocalRotation: {x: 0.20972094, y: 0, z: 0, w: 0.9777613}
+  m_LocalPosition: {x: 0, y: 24.9, z: -35.300003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13370,7 +13370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db551c5ac4a6f4741bd41fafb826a566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
-  mainMenuSceneName: MainMenu
+  mainMenuSceneName:
+    _sceneAsset: {fileID: 102900000, guid: 83e0bb890ba637b4fbf6c3f32c91bf4d, type: 3}
+    _sceneName: MainMenu
 --- !u!1001 &1071401315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13657,6 +13659,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1006458475082123002, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32
@@ -14185,7 +14191,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 40
+    FieldOfView: 60
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -14302,7 +14308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345bd864ae858134ebe69199dd7ab7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: CastleIsland
+  sceneName:
+    _sceneAsset: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
+    _sceneName: CastleIsland
   islandName: Castle Island
 --- !u!1 &1818392146
 GameObject:

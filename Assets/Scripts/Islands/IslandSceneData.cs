@@ -7,7 +7,7 @@ using UnityEngine;
 public class IslandSceneData : MonoBehaviour
 {
     [Tooltip("Nombre exacto de la escena a cargar (debe estar en Build Settings)")]
-    public string sceneName;
+    public SceneField sceneName;
 
     [Tooltip("Nombre visible en el prompt (opcional, ej: 'Castle')")]
     public string islandName;

@@ -8,9 +8,8 @@ public class PauseManager : MonoBehaviour
     public bool IsPaused { get; private set; }
 
     public event System.Action<bool> OnPauseChanged;
-
-    [Header("Main Menu Scene")]
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    
+    [SerializeField] private SceneField mainMenuSceneName;
 
     private void Awake()
     {
