@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
+
 /// Controla el menú de pausa.
 /// Se muestra/oculta automáticamente escuchando a PauseManager.
 /// Asigná los botones y paneles desde el Inspector.
-/// </summary>
 public class PauseMenuUI : MonoBehaviour
 {
     [Header("Root del menú de pausa")]
@@ -44,7 +43,6 @@ public class PauseMenuUI : MonoBehaviour
             PauseManager.Instance.OnPauseChanged -= OnPauseChanged;
     }
 
-    // ── Evento de pausa ───────────────────────────────────────────
 
     private void OnPauseChanged(bool isPaused)
     {
@@ -52,7 +50,6 @@ public class PauseMenuUI : MonoBehaviour
         if (isPaused) ShowPausePanel();
     }
 
-    // ── Botones ───────────────────────────────────────────────────
 
     private void OnResume()
     {
@@ -74,8 +71,6 @@ public class PauseMenuUI : MonoBehaviour
     {
         ShowPausePanel();
     }
-
-    // ── Navegación ────────────────────────────────────────────────
 
     private void ShowPausePanel()
     {

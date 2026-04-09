@@ -1,13 +1,12 @@
 using UnityEngine;
 using TMPro;
 
-/// <summary>
+
 /// Detecta objetos interactuables en frente del jugador con un raycast.
 /// Muestra el prompt en pantalla y llama a Interact() cuando se presiona E.
 /// 
 /// Setup: agregá este script a la Main Camera del jugador.
 /// Asigná el TxtPrompt desde el Inspector (un Text TMP en el HUD).
-/// </summary>
 public class InteractionDetector : MonoBehaviour
 {
     [Header("Detección")]
@@ -40,7 +39,7 @@ public class InteractionDetector : MonoBehaviour
         DetectInteractable();
     }
 
-    // ── Detección ─────────────────────────────────────────────────
+    // Detección
     private void DetectInteractable()
     {
         Ray ray = new Ray(transform.position, transform.forward);
@@ -61,13 +60,13 @@ public class InteractionDetector : MonoBehaviour
         HidePrompt();
     }
 
-    // ── Interacción ───────────────────────────────────────────────
+    // Interacción 
     private void TryInteract()
     {
         _currentInteractable?.Interact();
     }
 
-    // ── HUD ───────────────────────────────────────────────────────
+    // HUD 
     private void ShowPrompt(string text)
     {
         if (txtPrompt == null) return;
@@ -81,7 +80,6 @@ public class InteractionDetector : MonoBehaviour
         txtPrompt.gameObject.SetActive(false);
     }
 
-    // ── Gizmo ─────────────────────────────────────────────────────
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

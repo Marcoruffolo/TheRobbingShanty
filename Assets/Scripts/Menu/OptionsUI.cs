@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
+
 /// Controla el panel de opciones (sensibilidad, música, efectos).
 /// Funciona tanto en el menú principal como en el menú de pausa.
 /// Asigná los sliders y textos desde el Inspector.
-/// </summary>
+
 public class OptionsUI : MonoBehaviour
 {
     [Header("Sensibilidad")]
@@ -27,7 +27,6 @@ public class OptionsUI : MonoBehaviour
     // Callback para cuando se aprieta Volver (lo asigna el padre)
     public System.Action OnBack;
 
-    // ─────────────────────────────────────────────────────────────
     private void OnEnable()
     {
         // Cargar valores actuales cada vez que se abre el panel
@@ -44,7 +43,7 @@ public class OptionsUI : MonoBehaviour
         btnCancel.onClick.AddListener(OnBackPressed);
     }
 
-    // ── Cargar valores desde GameSettings ────────────────────────
+    // Cargar valores desde GameSettings
 
     private void LoadCurrentValues()
     {
@@ -57,7 +56,7 @@ public class OptionsUI : MonoBehaviour
         UpdateLabels();
     }
 
-    // ── Callbacks de sliders ──────────────────────────────────────
+    // Callbacks de sliders
 
     private void OnSensitivityChanged(float value)
     {
@@ -84,7 +83,6 @@ public class OptionsUI : MonoBehaviour
         OnSFXChanged(sliderSFX.value);
     }
 
-    // ── Botones ───────────────────────────────────────────────────
 
     private void OnSave()
     {

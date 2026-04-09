@@ -1,12 +1,12 @@
 using UnityEngine;
 
-/// <summary>
+
 /// Cámara en tercera persona que sigue al barco desde atrás.
 /// Se activa solo cuando el jugador toma el timón.
 /// 
 /// Setup: este script va en un GameObject de cámara separado (no la cámara del jugador).
-/// Asignalo como hijo del barco o como objeto independiente con referencia al barco.
-/// </summary>
+/// Asignar como hijo del barco o como objeto independiente con referencia al barco.
+
 public class ShipCameraController : MonoBehaviour
 {
     [Header("Target")]
@@ -19,7 +19,6 @@ public class ShipCameraController : MonoBehaviour
 
     private Camera _camera;
 
-    // ─────────────────────────────────────────────────────────────
     private void Awake()
     {
         _camera = GetComponent<Camera>();
@@ -44,7 +43,6 @@ public class ShipCameraController : MonoBehaviour
         transform.LookAt(shipTransform.position + Vector3.up * 2f);
     }
 
-    // ── API pública ───────────────────────────────────────────────
     public void Activate()
     {
         _camera.enabled = true;
