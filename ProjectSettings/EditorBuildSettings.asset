@@ -15,6 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Islands/CastleIsland.unity
     guid: 459d38e452bd89b4eae4473359af0d2a
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: c629d75f2d01c8744bc407d46601e59c, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 35c7439e39ab7fc4eaf0c7912adc9166, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 981b3f9e1bf689b4c9f8e3d45478d5fd, type: 2}
   m_UseUCBPForAssetBundles: 0
