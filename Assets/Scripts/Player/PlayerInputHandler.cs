@@ -107,6 +107,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void HandleAttackPerformed(InputAction.CallbackContext context)
     {
+        Debug.Log("[Input] Attack performed");
         OnAttack?.Invoke();
     }
 
