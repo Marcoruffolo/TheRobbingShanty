@@ -45,12 +45,9 @@ public class PlayerCombat : MonoBehaviour
         _lastAttackTime = Time.time;
         _isAttacking = true;
 
-        Debug.Log("[PlayerCombat] HandleAttack llamado");
         Debug.Log($"[PlayerCombat] swordAnimator: {swordAnimator}");
 
         swordAnimator.SetTrigger("Attack");
-
-        Debug.Log("[PlayerCombat] Trigger enviado");
     }
     public void OnHitFrame()
     {

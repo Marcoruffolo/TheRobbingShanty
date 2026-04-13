@@ -2,20 +2,10 @@ using UnityEngine;
 
 public class EnemyAnimationBridge : MonoBehaviour
 {
-    private EnemyAI _enemyAI;
+    private EnemyBase _enemy;
 
-    private void Awake()
-    {
-        _enemyAI = GetComponentInParent<EnemyAI>();
-    }
+    private void Awake() => _enemy = GetComponentInParent<EnemyBase>();
 
-    public void OnHitFrame()
-    {
-        _enemyAI.OnHitFrame();
-    }
-
-    public void OnAttackEnd()
-    {
-        _enemyAI.OnAttackEnd();
-    }
+    public void OnHitFrame() => _enemy.OnHitFrame();
+    public void OnAttackEnd() => _enemy.OnAttackEnd();
 }
