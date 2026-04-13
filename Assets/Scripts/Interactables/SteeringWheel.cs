@@ -72,9 +72,8 @@ public class SteeringWheel : MonoBehaviour, IInteractable
     {
         CameraModeController controller = CameraModeController.Instance;
 
-        if (controller == null || !controller.IsShipControlActive)
+        if (controller == null || !controller.IsShipControlActive || IslandDetector.IsTransitionAvailable)
             return;
-
         ExitShipControl();
     }
 

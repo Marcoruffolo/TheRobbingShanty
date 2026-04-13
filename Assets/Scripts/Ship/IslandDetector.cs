@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Detecta cuando el barco se acerca a una isla.
@@ -7,6 +6,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class IslandDetector : MonoBehaviour
 {
+    public static bool IsTransitionAvailable { get; private set; }
+
     [Header("Input")]
     [SerializeField] private KeyCode interactKey = KeyCode.E;
 
@@ -16,14 +17,26 @@ public class IslandDetector : MonoBehaviour
     // Evento para que el HUD muestre/oculte el prompt
     public static event System.Action<bool, string> OnIslandProximityChanged;
 
+    private void OnDisable()
+    {
+        ClearCurrentIslandState();
+    }
+
+    private void OnDestroy()
+    {
+        ClearCurrentIslandState();
+    }
+
     private void Update()
     {
-        if (!_isNearIsland) return;
+        if (!_isNearIsland || _currentIsland == null)
+            return;
+
+        if (SceneLoader.Instance != null && SceneLoader.Instance.IsLoading)
+            return;
 
         if (Input.GetKeyDown(interactKey))
-        {
             LoadCurrentIsland();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +53,7 @@ public class IslandDetector : MonoBehaviour
 
         _currentIsland = islandData;
         _isNearIsland = true;
+        IsTransitionAvailable = true;
 
         string promptText = string.IsNullOrEmpty(islandData.islandName)
             ? "[E] Enter"
@@ -52,17 +66,32 @@ public class IslandDetector : MonoBehaviour
     {
         if (!other.CompareTag("Island")) return;
 
-        _currentIsland = null;
-        _isNearIsland = false;
-
-        OnIslandProximityChanged?.Invoke(false, string.Empty);
+        ClearCurrentIslandState();
     }
 
     private void LoadCurrentIsland() //carga escena
     {
         if (_currentIsland == null) return;
 
+        if (SceneLoader.Instance == null)
+        {
+            Debug.LogError("[IslandDetector] No SceneLoader instance found.");
+            return;
+        }
+
+        string targetSceneName = _currentIsland.sceneName;
+
+        if (!SceneLoader.Instance.TryLoadScene(targetSceneName))
+            return;
+
+        ClearCurrentIslandState();
+    }
+    private void ClearCurrentIslandState()
+    {
+        _currentIsland = null;
+        _isNearIsland = false;
+        IsTransitionAvailable = false;
+
         OnIslandProximityChanged?.Invoke(false, string.Empty);
-        SceneManager.LoadScene(_currentIsland.sceneName);
     }
 }
