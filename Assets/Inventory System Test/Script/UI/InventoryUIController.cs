@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InventoryUIController : MonoBehaviour
 {
     public DynamicInventoryDisplay inventoryPanel;
+
     
     private void Awake() 
     {
@@ -24,12 +25,14 @@ public class InventoryUIController : MonoBehaviour
 
     private void DisplayInventory(InventorySystem invToDisplay) 
     {
+        PlayerCamera.LockCursor(false);
         inventoryPanel.gameObject.SetActive(true);
         inventoryPanel.RefreshDynamicInventory(invToDisplay);
     }
 
     private void CloseInventory() 
     {
+        PlayerCamera.LockCursor(true);
         inventoryPanel.gameObject.SetActive(false);
     }
 
