@@ -1,12 +1,14 @@
-
-/// Interfaz que implementa cualquier objeto interactuable del juego.
-/// El jugador nunca sabe qué objeto es, solo llama a Interact().
+using UnityEngine;
+using UnityEngine.Events;
 
 public interface IInteractable
 {
-    /// Texto que se muestra en el HUD cuando el jugador apunta al objeto.
+
     string InteractionPrompt { get; }
 
-    /// Se llama cuando el jugador presiona E.
+    UnityAction<IInteractable> OnInteractionComplete { get; set; }
+
+    void Interact(Interactor interactor, out bool interactSuccessful);
     void Interact();
+    void EndInteraction();
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SteeringWheel : MonoBehaviour, IInteractable
 {
@@ -14,9 +15,16 @@ public class SteeringWheel : MonoBehaviour, IInteractable
         {
             if (CameraModeController.Instance != null && CameraModeController.Instance.IsShipControlActive)
                 return "Leave helm";
-
             return "Take helm";
         }
+    }
+
+    public UnityAction<IInteractable> OnInteractionComplete { get; set; }
+
+    public void Interact(Interactor interactor, out bool interactSuccessful)
+    {
+        Interact();
+        interactSuccessful = true;
     }
 
     public void Interact()
@@ -38,15 +46,10 @@ public class SteeringWheel : MonoBehaviour, IInteractable
         EnterShipControl();
     }
 
-    private void OnDisable()
-    {
-        UnsubscribeFromReleaseInput();
-    }
+    public void EndInteraction() { }
 
-    private void OnDestroy()
-    {
-        UnsubscribeFromReleaseInput();
-    }
+    private void OnDisable() => UnsubscribeFromReleaseInput();
+    private void OnDestroy() => UnsubscribeFromReleaseInput();
 
     private void EnterShipControl()
     {
@@ -57,7 +60,6 @@ public class SteeringWheel : MonoBehaviour, IInteractable
         }
 
         Transform safeExitPosition = exitPosition != null ? exitPosition : steeringPosition;
-
         CameraModeController.Instance.EnterShipControl(steeringPosition, safeExitPosition);
         SubscribeToReleaseInput();
     }
@@ -74,13 +76,13 @@ public class SteeringWheel : MonoBehaviour, IInteractable
 
         if (controller == null || !controller.IsShipControlActive || IslandDetector.IsTransitionAvailable)
             return;
+
         ExitShipControl();
     }
 
     private void SubscribeToReleaseInput()
     {
-        if (_releaseInputSubscribed)
-            return;
+        if (_releaseInputSubscribed) return;
 
         if (PlayerInputHandler.Instance == null)
         {
@@ -94,8 +96,7 @@ public class SteeringWheel : MonoBehaviour, IInteractable
 
     private void UnsubscribeFromReleaseInput()
     {
-        if (!_releaseInputSubscribed)
-            return;
+        if (!_releaseInputSubscribed) return;
 
         if (PlayerInputHandler.Instance != null)
             PlayerInputHandler.Instance.OnInteract -= HandleReleaseInput;
