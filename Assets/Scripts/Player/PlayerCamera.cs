@@ -20,6 +20,8 @@ public class PlayerCamera : MonoBehaviour
     private Vector2 _currentLook;
     private Vector2 _lookVelocity;
 
+    public bool IsLocked { get; set; }
+
     private void Awake()
     {
         if (playerBody == null && transform.parent != null)
@@ -69,6 +71,7 @@ public class PlayerCamera : MonoBehaviour
     {
         if (PauseManager.Instance != null && PauseManager.Instance.IsPaused)
             return;
+        if (IsLocked) return;
 
         Vector2 targetLook = _input.LookInput * (_sensitivity * lookInputMultiplier);
 

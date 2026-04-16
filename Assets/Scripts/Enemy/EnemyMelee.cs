@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMelee : EnemyBase
@@ -38,6 +39,7 @@ public class EnemyMelee : EnemyBase
 
     private void UpdateIdle()
     {
+        if (Animator == null) return;
         Animator.SetFloat(HashSpeed, 0f);
         if (Fov.CanSeePlayer) EnterChase();
     }
