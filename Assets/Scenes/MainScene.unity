@@ -15783,6 +15783,69 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2007916584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007916587}
+  - component: {fileID: 2007916586}
+  - component: {fileID: 2007916585}
+  m_Layer: 0
+  m_Name: IslandSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2007916585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007916584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7689c66a5e1a2254b8d909e004321282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
+  showLabels: 1
+--- !u!114 &2007916586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007916584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82660ae2ccb39b744a1e36d85685980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
+  overworldIslandPrefab: {fileID: 2447275031990153535, guid: 54c9fa079133b9948bff49ac1456bfcb, type: 3}
+  proceduralIslandMaterial: {fileID: 2100000, guid: 749255555248ad94e93fa9dc6c152fdd, type: 2}
+  manualIslandMaterial: {fileID: 2100000, guid: 77f12375888261b4e98b0fd22d9befcd, type: 2}
+--- !u!4 &2007916587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007916584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5768614, y: 5.3744044, z: -1.6609621}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2010695564
 GameObject:
   m_ObjectHideFlags: 0
@@ -16108,3 +16171,4 @@ SceneRoots:
   - {fileID: 721679713}
   - {fileID: 2010695566}
   - {fileID: 1287926830}
+  - {fileID: 2007916587}
