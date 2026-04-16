@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.InputSystem;
 
 public class Telescope : MonoBehaviour, IInteractable
 {
@@ -10,12 +11,16 @@ public class Telescope : MonoBehaviour, IInteractable
 
     [Header("Zoom")]
     [SerializeField] private SOVariableFloat TelescopeZoom;
+    [SerializeField] private float zoomMin = 5f;
+    [SerializeField] private float zoomMax = 60f;
+    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private InputActionReference scrollAction;
 
     [Header("HUD")]
     [SerializeField] private GameObject telescopeOverlay;
 
     private bool _isActive;
-
+    private float _currentFov;
     public string InteractionPrompt => _isActive ? "Soltar catalejo" : "Usar catalejo";
     public UnityEngine.Events.UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
@@ -42,17 +47,45 @@ public class Telescope : MonoBehaviour, IInteractable
     {
         telescopeCam = GetComponentInChildren<TelescopeCamera>();
         ValidateReferences();
+        _currentFov = TelescopeZoom.Value;
         InitVCam();
-
         SetOverlayActive(false);
         SetRenderCamActive(false);
     }
 
+    private void ApplyFov(float fov)
+    {
+        if (telescopeVCam == null) return;
+        var lens = telescopeVCam.Lens;
+        lens.FieldOfView = fov;
+        telescopeVCam.Lens = lens;
+    }
+    private void OnEnable()
+    {
+        scrollAction.action.performed += OnScroll;
+    }
+
     private void OnDisable()
     {
+        scrollAction.action.performed -= OnScroll;
         if (_isActive)
             SetTelescopeActive(false);
     }
+
+    private void OnScroll(InputAction.CallbackContext ctx)
+    {
+        if (!_isActive) return;
+
+        float scroll = ctx.ReadValue<Vector2>().y;
+        float normalizedScroll = scroll / 120f;
+
+        _currentFov -= normalizedScroll * zoomSpeed;
+        _currentFov = Mathf.Clamp(_currentFov, zoomMin, zoomMax);
+
+        ApplyFov(_currentFov);
+        TelescopeZoom.Value = _currentFov;
+    }
+
 
     private void ValidateReferences()
     {

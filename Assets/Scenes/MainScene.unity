@@ -14090,6 +14090,10 @@ MonoBehaviour:
   telescopeRenderCam: {fileID: 1881025587}
   telescopeCam: {fileID: 1169830485}
   TelescopeZoom: {fileID: 11400000, guid: 200b39e8e08596646958f030ae07a5e2, type: 2}
+  zoomMin: 5
+  zoomMax: 60
+  zoomSpeed: 100
+  scrollAction: {fileID: 8302747107548240572, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   telescopeOverlay: {fileID: 1357591440}
 --- !u!1 &1169830481
 GameObject:
@@ -14149,7 +14153,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 15
+    FieldOfView: 45
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -14986,7 +14990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768658248}
   m_Layer: 6
-  m_Name: Telescopio
+  m_Name: Telescope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15539,7 +15543,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 15
+  field of view: 45
   orthographic: 0
   orthographic size: 10
   m_Depth: -2
@@ -15800,7 +15804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2007916585
 MonoBehaviour:
   m_ObjectHideFlags: 0
