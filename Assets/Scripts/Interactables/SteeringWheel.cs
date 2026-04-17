@@ -13,8 +13,15 @@ public class SteeringWheel : MonoBehaviour, IInteractable
     {
         get
         {
-            if (CameraModeController.Instance != null && CameraModeController.Instance.IsShipControlActive)
-                return "Leave helm";
+            if (CameraModeController.Instance != null)
+            {
+                if (CameraModeController.Instance.IsTransitionInProgress)
+                    return "Boarding helm...";
+
+                if (CameraModeController.Instance.IsShipControlActive)
+                    return "Leave helm";
+            }
+
             return "Take helm";
         }
     }
@@ -36,6 +43,9 @@ public class SteeringWheel : MonoBehaviour, IInteractable
             Debug.LogError("[SteeringWheel] No CameraModeController instance found.");
             return;
         }
+
+        if (controller.IsTransitionInProgress)
+            return;
 
         if (controller.IsShipControlActive)
         {
