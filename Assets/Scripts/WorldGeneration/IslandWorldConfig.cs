@@ -4,35 +4,6 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "IslandWorldConfig", menuName = "TRS/Island World Config")]
 public class IslandWorldConfig : ScriptableObject
 {
-    [Header("Océano")]
-    public Vector2 worldSize = new Vector2(5000f, 5000f);
-    public Vector2 worldOrigin = Vector2.zero;
-
-    [Header("Seed")]
-    [Tooltip("0 = aleatorio cada partida. Valor fijo = mundo siempre igual.")]
-    public int globalSeed = 0;
-
-    [Header("Islas Procedurales")]
-    [Range(1, 300)] public int targetIslandCount = 40;
-    [Tooltip("Cuántos intentos hace antes de rendirse si no encuentra posición válida")]
-    public int maxPlacementAttempts = 1000;
-    [Tooltip("Distancia mínima entre el BORDE de dos islas")]
-    public float minDistanceBetweenIslands = 150f;
-
-    [Header("Tamaños — Radio visual en el overworld")]
-    public IslandSizeRange tinyRange = new IslandSizeRange(20, 40);
-    public IslandSizeRange smallRange = new IslandSizeRange(40, 80);
-    public IslandSizeRange mediumRange = new IslandSizeRange(80, 140);
-    public IslandSizeRange largeRange = new IslandSizeRange(140, 200);
-    public IslandSizeRange hugeRange = new IslandSizeRange(200, 300);
-
-    [Header("Distribución de tamaños (pesos relativos)")]
-    [Range(0, 100)] public int weightTiny = 20;
-    [Range(0, 100)] public int weightSmall = 35;
-    [Range(0, 100)] public int weightMedium = 30;
-    [Range(0, 100)] public int weightLarge = 12;
-    [Range(0, 100)] public int weightHuge = 3;
-
     [Header("Zonas PROHIBIDAS — nunca se generan islas aquí")]
     public List<ForbiddenZoneRect> forbiddenRects = new();
     public List<ForbiddenZoneCircle> forbiddenCircles = new();

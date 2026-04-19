@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80cb10be7bdfc04e9a817c0ce6f812f, type: 3}
   m_Name: RadiusSmallMax
   m_EditorClassIdentifier: 
-  value: 80
+  value: 40
   InitialValue: 0
   DebugLogEnabled: 0
   ResetOn: 00000000

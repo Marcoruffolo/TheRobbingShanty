@@ -3,11 +3,19 @@
 public class IslandWorldGizmos : MonoBehaviour
 {
     [SerializeField] private IslandWorldConfig config;
+    [SerializeField] private SOVariableFloat worldSizeX;
+    [SerializeField] private SOVariableFloat worldSizeY;
+    [SerializeField] private SOVariableFloat worldOriginX;
+    [SerializeField] private SOVariableFloat worldOriginY;
     [SerializeField] private bool showLabels = true;
+
+    private Vector2 WorldSize => new(worldSizeX.Value, worldSizeY.Value);
+    private Vector2 WorldOrigin => new(worldOriginX.Value, worldOriginY.Value);
 
     private void OnDrawGizmos()
     {
-        if (config == null) return;
+        if (config == null || worldSizeX == null || worldSizeY == null
+            || worldOriginX == null || worldOriginY == null) return;
 
         DrawWorldBounds();
         DrawForbiddenZones();
@@ -18,7 +26,7 @@ public class IslandWorldGizmos : MonoBehaviour
     private void DrawWorldBounds()
     {
         Gizmos.color = Color.white;
-        DrawWireRect(config.worldOrigin, config.worldSize);
+        DrawWireRect(WorldOrigin, WorldSize);
     }
 
     private void DrawForbiddenZones()
@@ -33,18 +41,17 @@ public class IslandWorldGizmos : MonoBehaviour
 #if UNITY_EDITOR
             if (showLabels)
                 UnityEditor.Handles.Label(
-                    new Vector3(fr.rect.center.x, 0f, fr.rect.center.y),
-                    $"✗ {fr.label}");
+                    new Vector3(fr.rect.center.x, 0f, fr.rect.center.y), $"✗ {fr.label}");
 #endif
         }
+
         foreach (var fc in config.forbiddenCircles)
         {
-            Vector3 center = new Vector3(fc.center.x, 0f, fc.center.y);
+            Vector3 c = new(fc.center.x, 0f, fc.center.y);
             Gizmos.color = new Color(1f, 0.15f, 0.15f, 0.9f);
-            Gizmos.DrawWireSphere(center, fc.radius);
+            Gizmos.DrawWireSphere(c, fc.radius);
 #if UNITY_EDITOR
-            if (showLabels)
-                UnityEditor.Handles.Label(center, $"✗ {fc.label}");
+            if (showLabels) UnityEditor.Handles.Label(c, $"✗ {fc.label}");
 #endif
         }
     }
@@ -61,18 +68,17 @@ public class IslandWorldGizmos : MonoBehaviour
 #if UNITY_EDITOR
             if (showLabels)
                 UnityEditor.Handles.Label(
-                    new Vector3(ar.rect.center.x, 0f, ar.rect.center.y),
-                    $"✓ {ar.label}");
+                    new Vector3(ar.rect.center.x, 0f, ar.rect.center.y), $"✓ {ar.label}");
 #endif
         }
+
         foreach (var ac in config.allowedCircles)
         {
-            Vector3 center = new Vector3(ac.center.x, 0f, ac.center.y);
+            Vector3 c = new(ac.center.x, 0f, ac.center.y);
             Gizmos.color = new Color(0.15f, 1f, 0.15f, 0.9f);
-            Gizmos.DrawWireSphere(center, ac.radius);
+            Gizmos.DrawWireSphere(c, ac.radius);
 #if UNITY_EDITOR
-            if (showLabels)
-                UnityEditor.Handles.Label(center, $"✓ {ac.label}");
+            if (showLabels) UnityEditor.Handles.Label(c, $"✓ {ac.label}");
 #endif
         }
     }
@@ -81,13 +87,11 @@ public class IslandWorldGizmos : MonoBehaviour
     {
         foreach (var mi in config.manualIslands)
         {
-            Vector3 pos = new Vector3(mi.positionXZ.x, 0f, mi.positionXZ.y);
+            Vector3 pos = new(mi.positionXZ.x, 0f, mi.positionXZ.y);
             float radius = GetApproxRadius(mi.size);
-
             Gizmos.color = new Color(1f, 0.85f, 0f, 0.9f);
             Gizmos.DrawWireSphere(pos, radius);
-            Gizmos.DrawSphere(pos, 8f); // punto central
-
+            Gizmos.DrawSphere(pos, 8f);
 #if UNITY_EDITOR
             if (showLabels)
                 UnityEditor.Handles.Label(pos + Vector3.up * 5f,
@@ -98,17 +102,16 @@ public class IslandWorldGizmos : MonoBehaviour
 
     private void DrawWireRect(Vector2 origin, Vector2 size)
     {
-        Vector3 a = new Vector3(origin.x, 0f, origin.y);
-        Vector3 b = new Vector3(origin.x + size.x, 0f, origin.y);
-        Vector3 c = new Vector3(origin.x + size.x, 0f, origin.y + size.y);
-        Vector3 d = new Vector3(origin.x, 0f, origin.y + size.y);
+        Vector3 a = new(origin.x, 0f, origin.y);
+        Vector3 b = new(origin.x + size.x, 0f, origin.y);
+        Vector3 c = new(origin.x + size.x, 0f, origin.y + size.y);
+        Vector3 d = new(origin.x, 0f, origin.y + size.y);
         Gizmos.DrawLine(a, b); Gizmos.DrawLine(b, c);
         Gizmos.DrawLine(c, d); Gizmos.DrawLine(d, a);
     }
 
     private void DrawSolidRect(Rect r)
     {
-        // Simulamos fill con líneas densas (Gizmos no tiene fill nativo en XZ)
         int lines = 20;
         for (int i = 0; i <= lines; i++)
         {

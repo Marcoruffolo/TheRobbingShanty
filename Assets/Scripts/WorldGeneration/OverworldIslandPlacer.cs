@@ -5,19 +5,61 @@ public class OverworldIslandPlacer : MonoBehaviour
 {
     public static OverworldIslandPlacer Instance { get; private set; }
 
-    [Header("Configuración")]
+    [Header("Config estructural")]
     [SerializeField] private IslandWorldConfig config;
     [SerializeField] private GameObject overworldIslandPrefab;
 
-    [Header("Materiales (opcional)")]
+    [Header("Materiales")]
     [SerializeField] private Material proceduralIslandMaterial;
     [SerializeField] private Material manualIslandMaterial;
+
+    [Header("SOAP — Mundo")]
+    [SerializeField] private SOVariableInt globalSeed;
+    [SerializeField] private SOVariableInt targetIslandCount;
+    [SerializeField] private SOVariableFloat minIslandDistance;
+    [SerializeField] private SOVariableFloat worldSizeX;
+    [SerializeField] private SOVariableFloat worldSizeY;
+    [SerializeField] private SOVariableFloat worldOriginX;
+    [SerializeField] private SOVariableFloat worldOriginY;
+
+    [Header("SOAP — Pesos de tamaño")]
+    [SerializeField] private SOVariableInt weightTiny;
+    [SerializeField] private SOVariableInt weightSmall;
+    [SerializeField] private SOVariableInt weightMedium;
+    [SerializeField] private SOVariableInt weightLarge;
+    [SerializeField] private SOVariableInt weightHuge;
+
+    [Header("SOAP — Radios por categoría")]
+    [SerializeField] private SOVariableFloat radiusTinyMin;
+    [SerializeField] private SOVariableFloat radiusTinyMax;
+    [SerializeField] private SOVariableFloat radiusSmallMin;
+    [SerializeField] private SOVariableFloat radiusSmallMax;
+    [SerializeField] private SOVariableFloat radiusMediumMin;
+    [SerializeField] private SOVariableFloat radiusMediumMax;
+    [SerializeField] private SOVariableFloat radiusLargeMin;
+    [SerializeField] private SOVariableFloat radiusLargeMax;
+    [SerializeField] private SOVariableFloat radiusHugeMin;
+    [SerializeField] private SOVariableFloat radiusHugeMax;
+
+    private Vector2 WorldSize => new(worldSizeX.Value, worldSizeY.Value);
+    private Vector2 WorldOrigin => new(worldOriginX.Value, worldOriginY.Value);
+
+    private IslandSizeRange GetSizeRange(IslandSizeCategory cat) => cat switch
+    {
+        IslandSizeCategory.Tiny => new IslandSizeRange(radiusTinyMin.Value, radiusTinyMax.Value),
+        IslandSizeCategory.Small => new IslandSizeRange(radiusSmallMin.Value, radiusSmallMax.Value),
+        IslandSizeCategory.Medium => new IslandSizeRange(radiusMediumMin.Value, radiusMediumMax.Value),
+        IslandSizeCategory.Large => new IslandSizeRange(radiusLargeMin.Value, radiusLargeMax.Value),
+        IslandSizeCategory.Huge => new IslandSizeRange(radiusHugeMin.Value, radiusHugeMax.Value),
+        _ => new IslandSizeRange(radiusSmallMin.Value, radiusSmallMax.Value)
+    };
 
     private readonly List<IslandInstanceData> _allInstances = new();
     public IReadOnlyList<IslandInstanceData> AllInstances => _allInstances;
 
     private System.Random _rng;
     private int _resolvedSeed;
+
 
     private void Awake()
     {
@@ -27,20 +69,22 @@ public class OverworldIslandPlacer : MonoBehaviour
 
     private void Start() => GenerateWorld();
 
+
     public void GenerateWorld()
     {
         ClearAll();
 
-        _resolvedSeed = config.globalSeed == 0
+        _resolvedSeed = globalSeed.Value == 0
             ? Random.Range(1, int.MaxValue)
-            : config.globalSeed;
+            : globalSeed.Value;
         _rng = new System.Random(_resolvedSeed);
 
         PlaceManualIslands();
         PlaceProceduralIslands();
 
-        Debug.Log($"[OverworldPlacer] {_allInstances.Count} islas generadas. Seed: {_resolvedSeed}");
+        Debug.Log($"[OverworldPlacer] {_allInstances.Count} islas. Seed: {_resolvedSeed}");
     }
+
     private void PlaceManualIslands()
     {
         foreach (var entry in config.manualIslands)
@@ -49,61 +93,48 @@ public class OverworldIslandPlacer : MonoBehaviour
                 ? entry.seedOverride
                 : Mathf.Abs((_resolvedSeed.ToString() + entry.instanceId).GetHashCode());
 
-            float radius = GetRadiusMidpoint(entry.size);
+            var range = GetSizeRange(entry.size);
+            float radius = (range.radiusMin + range.radiusMax) * 0.5f;
 
             var inst = CreateInstanceData(
-                entry.instanceId,
-                entry.displayName,
+                entry.instanceId, entry.displayName,
                 new Vector3(entry.positionXZ.x, 0f, entry.positionXZ.y),
-                radius,
-                seed,
-                entry.size,
-                isManual: true
+                radius, seed, entry.size, isManual: true
             );
 
             SpawnVisual(inst, manualIslandMaterial);
             _allInstances.Add(inst);
         }
 
-        Debug.Log($"[OverworldPlacer] {config.manualIslands.Count} islas manuales colocadas.");
+        Debug.Log($"[OverworldPlacer] {config.manualIslands.Count} islas manuales.");
     }
 
     private void PlaceProceduralIslands()
     {
         var occupied = BuildOccupiedList();
-
         int placed = 0;
         int attempts = 0;
+        int maxAttempts = targetIslandCount.Value * 25;
 
-        while (placed < config.targetIslandCount && attempts < config.maxPlacementAttempts)
+        while (placed < targetIslandCount.Value && attempts < maxAttempts)
         {
             attempts++;
 
-            Vector2 candidatePos = SampleCandidatePosition();
+            Vector2 pos = SampleCandidatePosition();
             IslandSizeCategory size = GetWeightedRandomSize();
-            IslandSizeRange range = GetSizeRange(size);
-            float radius = Mathf.Lerp(
-                                                  range.radiusMin,
-                                                  range.radiusMax,
-                                                  (float)_rng.NextDouble()
-                                              );
+            var range = GetSizeRange(size);
+            float radius = Mathf.Lerp(range.radiusMin, range.radiusMax,
+                                                   (float)_rng.NextDouble());
 
-            if (!IsPositionValid(candidatePos, radius, occupied))
-                continue;
+            if (!IsPositionValid(pos, radius, occupied)) continue;
 
-            occupied.Add((candidatePos, radius));
-
-            int islandSeed = _rng.Next(1, int.MaxValue);
-            string id = $"proc_{placed:000}";
+            occupied.Add((pos, radius));
 
             var inst = CreateInstanceData(
-                id,
-                $"Isla {placed + 1}",
-                new Vector3(candidatePos.x, 0f, candidatePos.y),
-                radius,
-                islandSeed,
-                size,
-                isManual: false
+                $"proc_{placed:000}", $"Isla {placed + 1}",
+                new Vector3(pos.x, 0f, pos.y),
+                radius, _rng.Next(1, int.MaxValue),
+                size, isManual: false
             );
 
             SpawnVisual(inst, proceduralIslandMaterial);
@@ -111,26 +142,19 @@ public class OverworldIslandPlacer : MonoBehaviour
             placed++;
         }
 
-        Debug.Log($"[OverworldPlacer] {placed}/{config.targetIslandCount} islas procedurales " +
+        Debug.Log($"[OverworldPlacer] {placed}/{targetIslandCount.Value} procedurales " +
                   $"en {attempts} intentos.");
     }
 
     private Vector2 SampleCandidatePosition()
     {
-        bool hasAllowedZones = config.allowedRects.Count > 0
-                            || config.allowedCircles.Count > 0;
-
-        return hasAllowedZones
-            ? SampleFromAllowedZones()
-            : SampleFromWholeWorld();
+        bool hasAllowed = config.allowedRects.Count > 0 || config.allowedCircles.Count > 0;
+        return hasAllowed ? SampleFromAllowedZones() : SampleFromWholeWorld();
     }
 
-    private Vector2 SampleFromWholeWorld()
-    {
-        float x = (float)_rng.NextDouble() * config.worldSize.x + config.worldOrigin.x;
-        float z = (float)_rng.NextDouble() * config.worldSize.y + config.worldOrigin.y;
-        return new Vector2(x, z);
-    }
+    private Vector2 SampleFromWholeWorld() =>
+        new((float)_rng.NextDouble() * WorldSize.x + WorldOrigin.x,
+            (float)_rng.NextDouble() * WorldSize.y + WorldOrigin.y);
 
     private Vector2 SampleFromAllowedZones()
     {
@@ -138,31 +162,25 @@ public class OverworldIslandPlacer : MonoBehaviour
 
         foreach (var r in config.allowedRects)
             zones.Add((() => SampleRect(r.rect), r.rect.width * r.rect.height));
-
         foreach (var c in config.allowedCircles)
-            zones.Add((() => SampleCircle(c.center, c.radius),
-                       Mathf.PI * c.radius * c.radius));
+            zones.Add((() => SampleCircle(c.center, c.radius), Mathf.PI * c.radius * c.radius));
 
-        float totalArea = 0f;
-        foreach (var z in zones) totalArea += z.area;
+        float total = 0f;
+        foreach (var z in zones) total += z.area;
 
-        float rand = (float)_rng.NextDouble() * totalArea;
+        float rand = (float)_rng.NextDouble() * total;
         float cumulative = 0f;
-
         foreach (var (sampler, area) in zones)
         {
             cumulative += area;
             if (rand <= cumulative) return sampler();
         }
-
         return zones[0].sampler();
     }
 
     private Vector2 SampleRect(Rect r) =>
-        new Vector2(
-            (float)(_rng.NextDouble() * r.width + r.x),
-            (float)(_rng.NextDouble() * r.height + r.y)
-        );
+        new((float)(_rng.NextDouble() * r.width + r.x),
+            (float)(_rng.NextDouble() * r.height + r.y));
 
     private Vector2 SampleCircle(Vector2 center, float radius)
     {
@@ -173,26 +191,25 @@ public class OverworldIslandPlacer : MonoBehaviour
             if (Vector2.Distance(new Vector2(x, y), center) <= radius)
                 return new Vector2(x, y);
         }
-        return center; 
+        return center;
     }
 
     private bool IsPositionValid(Vector2 pos, float radius,
                                   List<(Vector2 pos, float radius)> occupied)
     {
-        float ox = config.worldOrigin.x, oz = config.worldOrigin.y;
-        if (pos.x < ox || pos.x > ox + config.worldSize.x ||
-            pos.y < oz || pos.y > oz + config.worldSize.y)
+        // 1. Dentro del mundo
+        if (pos.x < WorldOrigin.x || pos.x > WorldOrigin.x + WorldSize.x ||
+            pos.y < WorldOrigin.y || pos.y > WorldOrigin.y + WorldSize.y)
             return false;
 
+        // 2. Fuera de zonas prohibidas
         foreach (var fr in config.forbiddenRects)
             if (fr.rect.Contains(pos)) return false;
-
         foreach (var fc in config.forbiddenCircles)
             if (Vector2.Distance(pos, fc.center) < fc.radius + radius) return false;
 
-        bool hasAllowedZones = config.allowedRects.Count > 0
-                            || config.allowedCircles.Count > 0;
-        if (hasAllowedZones)
+        bool hasAllowed = config.allowedRects.Count > 0 || config.allowedCircles.Count > 0;
+        if (hasAllowed)
         {
             bool inside = false;
             foreach (var ar in config.allowedRects)
@@ -203,18 +220,18 @@ public class OverworldIslandPlacer : MonoBehaviour
             if (!inside) return false;
         }
 
+        // 4. Separación mínima entre islas
         foreach (var (oPos, oRadius) in occupied)
-        {
-            float minDist = radius + oRadius + config.minDistanceBetweenIslands;
-            if (Vector2.Distance(pos, oPos) < minDist) return false;
-        }
+            if (Vector2.Distance(pos, oPos) < radius + oRadius + minIslandDistance.Value)
+                return false;
 
         return true;
     }
+
     private List<(Vector2 pos, float radius)> BuildOccupiedList()
     {
         var list = new List<(Vector2, float)>();
-        foreach (var inst in _allInstances) // en este punto solo hay manuales
+        foreach (var inst in _allInstances)
             list.Add((new Vector2(inst.overworldPosition.x, inst.overworldPosition.z),
                       inst.overworldRadius));
         return list;
@@ -222,34 +239,18 @@ public class OverworldIslandPlacer : MonoBehaviour
 
     private IslandSizeCategory GetWeightedRandomSize()
     {
-        int total = config.weightTiny + config.weightSmall + config.weightMedium
-                  + config.weightLarge + config.weightHuge;
+        int total = weightTiny.Value + weightSmall.Value + weightMedium.Value
+                  + weightLarge.Value + weightHuge.Value;
         int r = _rng.Next(total);
 
-        if (r < config.weightTiny) return IslandSizeCategory.Tiny;
-        r -= config.weightTiny;
-        if (r < config.weightSmall) return IslandSizeCategory.Small;
-        r -= config.weightSmall;
-        if (r < config.weightMedium) return IslandSizeCategory.Medium;
-        r -= config.weightMedium;
-        if (r < config.weightLarge) return IslandSizeCategory.Large;
+        if (r < weightTiny.Value) return IslandSizeCategory.Tiny;
+        r -= weightTiny.Value;
+        if (r < weightSmall.Value) return IslandSizeCategory.Small;
+        r -= weightSmall.Value;
+        if (r < weightMedium.Value) return IslandSizeCategory.Medium;
+        r -= weightMedium.Value;
+        if (r < weightLarge.Value) return IslandSizeCategory.Large;
         return IslandSizeCategory.Huge;
-    }
-
-    private IslandSizeRange GetSizeRange(IslandSizeCategory cat) => cat switch
-    {
-        IslandSizeCategory.Tiny => config.tinyRange,
-        IslandSizeCategory.Small => config.smallRange,
-        IslandSizeCategory.Medium => config.mediumRange,
-        IslandSizeCategory.Large => config.largeRange,
-        IslandSizeCategory.Huge => config.hugeRange,
-        _ => config.smallRange
-    };
-
-    private float GetRadiusMidpoint(IslandSizeCategory cat)
-    {
-        var r = GetSizeRange(cat);
-        return (r.radiusMin + r.radiusMax) * 0.5f;
     }
 
     private IslandInstanceData CreateInstanceData(
@@ -279,12 +280,27 @@ public class OverworldIslandPlacer : MonoBehaviour
 
     private void ClearAll()
     {
-        foreach (Transform child in transform)
-            Destroy(child.gameObject);
-
-        foreach (var inst in _allInstances)
-            if (inst != null) Destroy(inst);
-
+        foreach (Transform child in transform) Destroy(child.gameObject);
+        foreach (var inst in _allInstances) if (inst) Destroy(inst);
         _allInstances.Clear();
     }
+
+
+#if UNITY_EDITOR
+    [UnityEditor.CustomEditor(typeof(OverworldIslandPlacer))]
+    public class OverworldIslandPlacerEditor : UnityEditor.Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            var placer = (OverworldIslandPlacer)target;
+            GUILayout.Space(10);
+            if (GUILayout.Button("▶  Regenerar Mundo", GUILayout.Height(32)))
+            {
+                if (Application.isPlaying) placer.GenerateWorld();
+                else Debug.LogWarning("Entrá en Play Mode primero.");
+            }
+        }
+    }
+#endif
 }

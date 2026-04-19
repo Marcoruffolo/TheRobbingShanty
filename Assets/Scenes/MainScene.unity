@@ -13597,7 +13597,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -13623,8 +13623,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721679709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20972094, y: 0, z: 0, w: 0.9777613}
-  m_LocalPosition: {x: 0, y: 6.8, z: 4.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.42, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14189,7 +14189,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 45
+    FieldOfView: 35
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -15731,7 +15731,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 45
+  field of view: 35
   orthographic: 0
   orthographic size: 10
   m_Depth: -2
@@ -15992,7 +15992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2007916585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16006,6 +16006,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
+  worldSizeX: {fileID: 11400000, guid: 87af1cf7274c89d40842b7b1d57476c9, type: 2}
+  worldSizeY: {fileID: 11400000, guid: 8932e279837ea1b429427ebccc7d5809, type: 2}
+  worldOriginX: {fileID: 11400000, guid: db12e4bb40232c34db5211c899c1fb2e, type: 2}
+  worldOriginY: {fileID: 11400000, guid: d3953cb7183788f4890b565c840ce3e9, type: 2}
   showLabels: 1
 --- !u!114 &2007916586
 MonoBehaviour:
@@ -16020,9 +16024,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
-  overworldIslandPrefab: {fileID: 2447275031990153535, guid: 54c9fa079133b9948bff49ac1456bfcb, type: 3}
+  overworldIslandPrefab: {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
   proceduralIslandMaterial: {fileID: 2100000, guid: 749255555248ad94e93fa9dc6c152fdd, type: 2}
   manualIslandMaterial: {fileID: 2100000, guid: 77f12375888261b4e98b0fd22d9befcd, type: 2}
+  globalSeed: {fileID: 11400000, guid: c8695c8e28133a44287f71a4ef8cf486, type: 2}
+  targetIslandCount: {fileID: 11400000, guid: 4d8c0c8b5d3a9e1459e375e11aae512e, type: 2}
+  minIslandDistance: {fileID: 11400000, guid: 885db0b352be05840bc4a83f77f6a5de, type: 2}
+  worldSizeX: {fileID: 11400000, guid: 87af1cf7274c89d40842b7b1d57476c9, type: 2}
+  worldSizeY: {fileID: 11400000, guid: 8932e279837ea1b429427ebccc7d5809, type: 2}
+  worldOriginX: {fileID: 11400000, guid: db12e4bb40232c34db5211c899c1fb2e, type: 2}
+  worldOriginY: {fileID: 11400000, guid: d3953cb7183788f4890b565c840ce3e9, type: 2}
+  weightTiny: {fileID: 11400000, guid: c0d5ba6fd57644049bd6ffb4c74d811a, type: 2}
+  weightSmall: {fileID: 11400000, guid: 145c0f1a85778fd43b9af9b38c88fb14, type: 2}
+  weightMedium: {fileID: 11400000, guid: a7277b1cb2ea2434b91bbaa56d598530, type: 2}
+  weightLarge: {fileID: 11400000, guid: e54205be3cb8956488e3fff97569bbd1, type: 2}
+  weightHuge: {fileID: 11400000, guid: 4a92757291b711a408fc49ae80c3b32c, type: 2}
+  radiusTinyMin: {fileID: 11400000, guid: 262d2b9d60be62c44a3967f24e4b33cb, type: 2}
+  radiusTinyMax: {fileID: 11400000, guid: 0d8da60d3d2642a49b6ffd9801947cca, type: 2}
+  radiusSmallMin: {fileID: 11400000, guid: 3f1a4e3f0db7fb74b9efe3ba255a0345, type: 2}
+  radiusSmallMax: {fileID: 11400000, guid: 4a84add1f3b4fe94f89c36932a8f5f17, type: 2}
+  radiusMediumMin: {fileID: 11400000, guid: f1351e31860dc554686c99de3a9637fd, type: 2}
+  radiusMediumMax: {fileID: 11400000, guid: bff72fe9e3a629049898c0fea3ffa3ca, type: 2}
+  radiusLargeMin: {fileID: 11400000, guid: cc67df707bd775542afc8abfbfb2fa9d, type: 2}
+  radiusLargeMax: {fileID: 11400000, guid: 128de26e38991ad4492a3289a370f562, type: 2}
+  radiusHugeMin: {fileID: 11400000, guid: be8f0f96e29b9d34cad8f66ebf56f864, type: 2}
+  radiusHugeMax: {fileID: 11400000, guid: 98a2b2c9bd899b7409baa9bb8ec3913c, type: 2}
 --- !u!4 &2007916587
 Transform:
   m_ObjectHideFlags: 0
