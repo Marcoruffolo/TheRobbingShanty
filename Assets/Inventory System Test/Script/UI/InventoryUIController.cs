@@ -3,37 +3,56 @@ using UnityEngine.InputSystem;
 
 public class InventoryUIController : MonoBehaviour
 {
-    public DynamicInventoryDisplay inventoryPanel;
+    public DynamicInventoryDisplay chestPanel;
+    public DynamicInventoryDisplay playerBackpackPanel;
 
     
     private void Awake() 
     {
-        inventoryPanel.gameObject.SetActive(false);    
+        chestPanel.gameObject.SetActive(false);
+        playerBackpackPanel.gameObject.SetActive(false);  
     }
 
     private void OnEnable() 
     {
         InventoryHolder.OnDynamicInventoryDisplayRequested += DisplayInventory;
+        PlayerInventoryHolder.OnPlayerBackpackDisplayRequested += DisplayPlayerBackpack;
         InventoryHolder.OnDynamicInventoryCloseRequested += CloseInventory;
+        PlayerInventoryHolder.OnPlayerBackpackCloseRequested += ClosePlayerBackpack;
     }
 
     private void OnDisable() 
     {
         InventoryHolder.OnDynamicInventoryDisplayRequested -= DisplayInventory;
+        PlayerInventoryHolder.OnPlayerBackpackDisplayRequested -= DisplayPlayerBackpack;
         InventoryHolder.OnDynamicInventoryCloseRequested -= CloseInventory;
+        PlayerInventoryHolder.OnPlayerBackpackCloseRequested -= ClosePlayerBackpack;
     }
 
     private void DisplayInventory(InventorySystem invToDisplay) 
     {
         PlayerCamera.LockCursor(false);
-        inventoryPanel.gameObject.SetActive(true);
-        inventoryPanel.RefreshDynamicInventory(invToDisplay);
+        chestPanel.gameObject.SetActive(true);
+        chestPanel.RefreshDynamicInventory(invToDisplay);
+    }
+
+    private void DisplayPlayerBackpack(InventorySystem invToDisplay) 
+    {
+        PlayerCamera.LockCursor(false);
+        playerBackpackPanel.gameObject.SetActive(true);
+        playerBackpackPanel.RefreshDynamicInventory(invToDisplay);
     }
 
     private void CloseInventory() 
     {
         PlayerCamera.LockCursor(true);
-        inventoryPanel.gameObject.SetActive(false);
+        chestPanel.gameObject.SetActive(false);
+    }
+
+    private void ClosePlayerBackpack() 
+    {
+        PlayerCamera.LockCursor(true);
+        playerBackpackPanel.gameObject.SetActive(false);
     }
 
         

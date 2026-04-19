@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInventoryHolder : InventoryHolder
@@ -8,6 +9,8 @@ public class PlayerInventoryHolder : InventoryHolder
     bool inventoryOpen = false;
     public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
 
+    public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
+    public static UnityAction OnPlayerBackpackCloseRequested;
     private int selectedHotbarIndex = 0;
     private GameObject currentHandItemInstance;
     private InventoryItemData lastHandItemData;
@@ -43,12 +46,12 @@ public class PlayerInventoryHolder : InventoryHolder
     {
         if (Keyboard.current.tabKey.wasPressedThisFrame && !inventoryOpen)
         {
-            OnDynamicInventoryDisplayRequested?.Invoke(secondaryInventorySystem);
+            OnPlayerBackpackDisplayRequested?.Invoke(secondaryInventorySystem);
             inventoryOpen = true;
         }
         else if (Keyboard.current.tabKey.wasPressedThisFrame && inventoryOpen)
         {
-            OnDynamicInventoryCloseRequested?.Invoke();
+            OnPlayerBackpackCloseRequested?.Invoke();
             inventoryOpen = false;
         }
 

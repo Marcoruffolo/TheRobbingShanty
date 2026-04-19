@@ -10,6 +10,7 @@ public class InventoryHolder : MonoBehaviour
     public InventorySystem PrimaryInventorySystem => primaryInventorySystem;
 
     public static UnityAction<InventorySystem> OnDynamicInventoryDisplayRequested;
+    
     public static UnityAction OnDynamicInventoryCloseRequested;
 
     protected virtual void Awake() {
