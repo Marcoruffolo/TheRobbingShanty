@@ -18,6 +18,8 @@ public abstract class InventoryDisplay : MonoBehaviour
 
     public abstract void AssignSlot(InventorySystem invToDisplay);
 
+    public virtual void SlotRightClicked(InventorySlot_UI clickedUISlot) { }
+
     protected virtual void UpdateSlot(InventorySlot updatedSlot)
     {
         foreach (var slot in SlotDictionary)

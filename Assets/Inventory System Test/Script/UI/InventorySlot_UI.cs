@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class InventorySlot_UI : MonoBehaviour
+public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image itemSprite;
     [SerializeField] private TextMeshProUGUI itemCount;
@@ -64,5 +65,13 @@ public class InventorySlot_UI : MonoBehaviour
     public void OnUISlotClick()
     {
         ParentDisplay.SlotClicked(this);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            ParentDisplay.SlotRightClicked(this);
+        }
     }
 }

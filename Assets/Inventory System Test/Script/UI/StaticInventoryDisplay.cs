@@ -31,4 +31,22 @@ public class StaticInventoryDisplay : InventoryDisplay
             slots[i].Init(inventorySystem.InventorySlots[i]);
         }
     }
+
+    public override void SlotRightClicked(InventorySlot_UI clickedUISlot)
+    {
+        if (clickedUISlot.AssignedInventorySlot.ItemData == null) return;
+ 
+        var playerHolder = inventoryHolder as PlayerInventoryHolder;
+        if (playerHolder == null) return;
+ 
+        var itemData = clickedUISlot.AssignedInventorySlot.ItemData;
+        int amount = clickedUISlot.AssignedInventorySlot.StackSize;
+ 
+        if (playerHolder.SecondaryInventorySystem.AddToInventory(itemData, amount))
+        {
+            clickedUISlot.AssignedInventorySlot.ClearSlot();
+            clickedUISlot.UpdateUISlot();
+            inventorySystem.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+        }
+    }
 }
