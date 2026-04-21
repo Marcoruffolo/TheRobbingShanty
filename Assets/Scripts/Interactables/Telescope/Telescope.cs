@@ -62,12 +62,13 @@ public class Telescope : MonoBehaviour, IInteractable
         telescopeVCam.Lens = lens;
     }
     private void OnEnable()
-    {
+    {      
         scrollAction.action.performed += OnScroll;
     }
 
     private void OnDisable()
     {
+        _telescopefullscreen.SetActive(false);
         scrollAction.action.performed -= OnScroll;
         if (_isActive)
             SetTelescopeActive(false);
@@ -110,6 +111,7 @@ public class Telescope : MonoBehaviour, IInteractable
         _isActive = active;
         telescopeCam.IsActive = active;
 
+        telescopeVCam.gameObject.SetActive(active);
         SetRenderCamActive(active);
         SetOverlayActive(active);
 

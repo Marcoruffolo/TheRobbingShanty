@@ -11,6 +11,7 @@ public class ChestInventory : InventoryHolder, IInteractable
     {
         OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem);
         interactSuccessful = true;
+        BlockPlayerMovement.Instance?.ImmobilizePlayer();           
     }
 
     public void Interact()
@@ -22,5 +23,6 @@ public class ChestInventory : InventoryHolder, IInteractable
     {
         OnDynamicInventoryCloseRequested?.Invoke();
         OnInteractionComplete?.Invoke(this);
+        BlockPlayerMovement.Instance?.FreePlayer();
     }
 }
