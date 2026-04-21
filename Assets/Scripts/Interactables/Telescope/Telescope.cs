@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
+using Unity.VisualScripting;
 
 public class Telescope : MonoBehaviour, IInteractable
 {
@@ -16,8 +18,7 @@ public class Telescope : MonoBehaviour, IInteractable
     [SerializeField] private float zoomSpeed = 5f;
     [SerializeField] private InputActionReference scrollAction;
 
-    [Header("HUD")]
-    [SerializeField] private GameObject telescopeOverlay;
+    public ScriptableRendererFeature _telescopefullscreen;
 
     private bool _isActive;
     private float _currentFov;
@@ -28,7 +29,7 @@ public class Telescope : MonoBehaviour, IInteractable
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
-        interactSuccessful = true; 
+        interactSuccessful = true;
         SetTelescopeActive(!_isActive);
 
         if (_isActive)
@@ -93,8 +94,6 @@ public class Telescope : MonoBehaviour, IInteractable
             Debug.LogError("[Telescope] Falta asignar telescopeVCam.", this);
         if (telescopeRenderCam == null)
             Debug.LogError("[Telescope] Falta asignar telescopeRenderCam.", this);
-        if (telescopeOverlay == null)
-            Debug.LogWarning("[Telescope] No hay telescopeOverlay asignado.", this);
     }
 
     private void InitVCam()
@@ -124,7 +123,6 @@ public class Telescope : MonoBehaviour, IInteractable
 
     private void SetOverlayActive(bool active)
     {
-        if (telescopeOverlay != null)
-            telescopeOverlay.SetActive(active);
+        _telescopefullscreen.SetActive(active);
     }
 }

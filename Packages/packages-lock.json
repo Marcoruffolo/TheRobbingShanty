@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.coffee.softmask-for-ugui": {
-      "version": "https://github.com/mob-sakai/SoftMaskForUGUI.git?path=Packages/src",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      },
-      "hash": "9a7535a3fad66ebec5458a8b22f6ad023c960fd3"
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -329,13 +320,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.veriorpies.parrelsync": {
-      "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "610157ad762084380380148ba8ce14e266a6da97"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
