@@ -47,8 +47,5 @@ public class BlockPlayerMovement : MonoBehaviour
     {
         if (blockMovement && _movement != null) _movement.enabled = state;
         if (blockCamera && _camera != null) _camera.IsLocked = !state;
-
-        if (blockMovement && _movement != null) _movement.enabled = state;
-        if (blockCamera && _camera != null) _camera.IsLocked = !state;
     }
 }
