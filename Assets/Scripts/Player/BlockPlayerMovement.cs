@@ -10,7 +10,7 @@ public class BlockPlayerMovement : MonoBehaviour
 
     private PlayerMovement _movement;
     private PlayerCamera _camera;
-    private CinemachineCamera _vcam;  // ← tipo correcto
+    private CinemachineCamera _vcam;  
 
     public bool IsImmobilized { get; private set; }
 
