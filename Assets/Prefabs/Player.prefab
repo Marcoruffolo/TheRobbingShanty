@@ -483,7 +483,7 @@ MonoBehaviour:
   inventorySize: 10
   primaryInventorySystem:
     inventorySlots: []
-  secondaryInventorySize: 50
+  secondaryInventorySize: 48
   secondaryInventorySystem:
     inventorySlots: []
   handItemSpawnPoint: {fileID: 4009908901269508315}
