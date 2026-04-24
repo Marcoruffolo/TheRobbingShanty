@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Unity.Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Collider))]
 public class TelescopeInteractable : MonoBehaviour, IInteractable
@@ -27,8 +28,9 @@ public class TelescopeInteractable : MonoBehaviour, IInteractable
     [SerializeField] private float zoomStep = 2f;
     [SerializeField] private float zoomSmoothing = 8f;
 
-    [Header("HUD")]
-    [SerializeField] private GameObject telescopeHUD;
+    //[Header("HUD")]
+    //[SerializeField] private GameObject telescopeHUD;
+    [SerializeField] ScriptableRendererFeature _telescopeEffect;
 
     private bool _isInUse;
     private float _targetFOV;
@@ -45,10 +47,11 @@ public class TelescopeInteractable : MonoBehaviour, IInteractable
                 Debug.LogWarning("[Telescope] CinemachinePanTilt no encontrado en telescopeCam.");
         }
 
-        if (telescopeHUD != null) telescopeHUD.SetActive(false);
+        //if (telescopeHUD != null) telescopeHUD.SetActive(false);
 
         _targetFOV = defaultFOV;
         _currentFOV = defaultFOV;
+        _telescopeEffect.SetActive(false);
     }
 
     private void Start()
@@ -107,7 +110,9 @@ public class TelescopeInteractable : MonoBehaviour, IInteractable
 
         if (telescopeCam != null) telescopeCam.gameObject.SetActive(true);
 
-        if (telescopeHUD != null) telescopeHUD.SetActive(true);
+        //if (telescopeHUD != null) telescopeHUD.SetActive(true);
+        _telescopeEffect.SetActive(true);
+        
 
         if (BlockPlayerMovement.Instance != null)
             BlockPlayerMovement.Instance.ImmobilizePlayer();
@@ -121,7 +126,8 @@ public class TelescopeInteractable : MonoBehaviour, IInteractable
         _isInUse = false;
 
         if (telescopeCam != null) telescopeCam.gameObject.SetActive(false);
-        if (telescopeHUD != null) telescopeHUD.SetActive(false);
+        //if (telescopeHUD != null) telescopeHUD.SetActive(false);
+        _telescopeEffect.SetActive(false);
 
         if (BlockPlayerMovement.Instance != null)
             BlockPlayerMovement.Instance.FreePlayer();
