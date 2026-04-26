@@ -13850,6 +13850,11 @@ PrefabInstance:
       addedObject: {fileID: 1769074321}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
+--- !u!1 &1271584351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5629026779674674756, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
+  m_PrefabInstance: {fileID: 1211840298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1287926828
 GameObject:
   m_ObjectHideFlags: 0
@@ -15243,9 +15248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
-  overworldIslandPrefab: {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
-  proceduralIslandMaterial: {fileID: 2100000, guid: 749255555248ad94e93fa9dc6c152fdd, type: 2}
-  manualIslandMaterial: {fileID: 2100000, guid: 77f12375888261b4e98b0fd22d9befcd, type: 2}
+  overworldIslandPrefabs:
+  - {fileID: 1271584351}
+  - {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
   globalSeed: {fileID: 11400000, guid: c8695c8e28133a44287f71a4ef8cf486, type: 2}
   targetIslandCount: {fileID: 11400000, guid: 4d8c0c8b5d3a9e1459e375e11aae512e, type: 2}
   minIslandDistance: {fileID: 11400000, guid: 885db0b352be05840bc4a83f77f6a5de, type: 2}
