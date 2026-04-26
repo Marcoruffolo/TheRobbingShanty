@@ -13798,6 +13798,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2301630860196176183, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
+      propertyPath: islandName
+      value: Castle Island
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301630860196176183, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
+      propertyPath: sceneName._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
     - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32
@@ -13844,10 +13852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1769074321}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
 --- !u!1 &1271584351 stripped
@@ -13905,11 +13910,63 @@ Transform:
   - {fileID: 108050655}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1401900399 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-  m_PrefabInstance: {fileID: 1211840298}
-  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1408038939
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 111.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191887718797877908, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629026779674674756, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+      propertyPath: m_Name
+      value: JungleIslandLowPoly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
 --- !u!1 &1540079952
 GameObject:
   m_ObjectHideFlags: 0
@@ -14226,76 +14283,6 @@ Transform:
   - {fileID: 1846544448}
   m_Father: {fileID: 1165939332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1769074320
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1769074321}
-  - component: {fileID: 1769074322}
-  - component: {fileID: 1769074323}
-  m_Layer: 0
-  m_Name: IslandTrigger
-  m_TagString: Island
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1769074321
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769074320}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1401900399}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1769074322
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769074320}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 26.745344, y: 1, z: 21.740128}
-  m_Center: {x: 1.319356, y: 0, z: -0.08819246}
---- !u!114 &1769074323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769074320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 345bd864ae858134ebe69199dd7ab7bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName:
-    _sceneAsset: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
-    _sceneName: CastleIsland
-  islandName: Castle Island
 --- !u!1 &1791643687
 GameObject:
   m_ObjectHideFlags: 0
@@ -14845,67 +14832,6 @@ MonoBehaviour:
       m_Data: []
   m_Knots:
     m_KnotsLink: []
---- !u!1001 &1915080472
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -66
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629026779674674756, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_Name
-      value: CastleIslandLowPoly (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629026779674674756, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
 --- !u!43 &1948288898
 Mesh:
   m_ObjectHideFlags: 0
@@ -15366,67 +15292,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2011623540
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629026779674674756, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_Name
-      value: CastleIslandLowPoly (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5629026779674674756, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
 --- !u!1 &2014991755
 GameObject:
   m_ObjectHideFlags: 0
@@ -15568,8 +15433,7 @@ SceneRoots:
   - {fileID: 52221548}
   - {fileID: 294372939}
   - {fileID: 1211840298}
-  - {fileID: 1915080472}
-  - {fileID: 2011623540}
+  - {fileID: 1408038939}
   - {fileID: 1818392150}
   - {fileID: 721679713}
   - {fileID: 2010695566}

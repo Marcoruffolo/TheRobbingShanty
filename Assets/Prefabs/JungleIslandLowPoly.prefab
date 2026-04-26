@@ -1,75 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4044760854738173848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 484663882832338541}
-  - component: {fileID: 8952182861893031105}
-  - component: {fileID: 2301630860196176183}
-  m_Layer: 0
-  m_Name: IslandTrigger
-  m_TagString: Island
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &484663882832338541
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044760854738173848}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4191887718797877908}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8952182861893031105
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044760854738173848}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 26.745344, y: 1, z: 21.740128}
-  m_Center: {x: 1.319356, y: 0, z: -0.08819246}
---- !u!114 &2301630860196176183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044760854738173848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 345bd864ae858134ebe69199dd7ab7bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName:
-    _sceneAsset: {fileID: 0}
-    _sceneName: CastleIsland
-  islandName: None
 --- !u!1 &5629026779674674756
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +11,7 @@ GameObject:
   - component: {fileID: 4191887718797877908}
   - component: {fileID: 1006458475082123002}
   m_Layer: 0
-  m_Name: CastleIslandLowPoly
+  m_Name: JungleIslandLowPoly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,8 +30,8 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5029814979771067907}
-  - {fileID: 484663882832338541}
+  - {fileID: 2495521873670548301}
+  - {fileID: 1544655415868746929}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1006458475082123002
@@ -127,7 +57,77 @@ CapsuleCollider:
   m_Height: 17.395374
   m_Direction: 1
   m_Center: {x: 0, y: -1.4425888, z: 0}
---- !u!1001 &4776005206411053544
+--- !u!1 &7663994301381244266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2495521873670548301}
+  - component: {fileID: 3199359046591873497}
+  - component: {fileID: 3888967865955497370}
+  m_Layer: 0
+  m_Name: IslandTrigger
+  m_TagString: Island
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2495521873670548301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663994301381244266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4191887718797877908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3199359046591873497
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663994301381244266}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 19.706425, y: 1, z: 22.89513}
+  m_Center: {x: 0.4056697, y: 0, z: 0.4893093}
+--- !u!114 &3888967865955497370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663994301381244266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345bd864ae858134ebe69199dd7ab7bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName:
+    _sceneAsset: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
+    _sceneName: CastleIsland
+  islandName: Jungle Island
+--- !u!1001 &1361510507500014426
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -135,69 +135,69 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4191887718797877908}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalScale.x
       value: 600
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalScale.y
       value: 600
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalScale.z
       value: 600
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000023841858
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.88
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.000000057601163
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.000000057601163
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 84d0498535666b441aac51bf7274327f, type: 3}
+    - target: {fileID: 919132149155446097, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
       propertyPath: m_Name
-      value: CAstleIslandLowPoly
+      value: IslandJungleLowPoly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84d0498535666b441aac51bf7274327f, type: 3}
---- !u!4 &5029814979771067907 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
+--- !u!4 &1544655415868746929 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 84d0498535666b441aac51bf7274327f, type: 3}
-  m_PrefabInstance: {fileID: 4776005206411053544}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f8592c5e0c83cc4d8331c774f50480d, type: 3}
+  m_PrefabInstance: {fileID: 1361510507500014426}
   m_PrefabAsset: {fileID: 0}
