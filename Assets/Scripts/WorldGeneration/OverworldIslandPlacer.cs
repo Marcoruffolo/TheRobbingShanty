@@ -7,11 +7,7 @@ public class OverworldIslandPlacer : MonoBehaviour
 
     [Header("Config estructural")]
     [SerializeField] private IslandWorldConfig config;
-    [SerializeField] private GameObject overworldIslandPrefab;
-
-    [Header("Materiales")]
-    [SerializeField] private Material proceduralIslandMaterial;
-    [SerializeField] private Material manualIslandMaterial;
+    [SerializeField] private List<GameObject> overworldIslandPrefabs;
 
     [Header("SOAP — Mundo")]
     [SerializeField] private SOVariableInt globalSeed;
@@ -102,7 +98,7 @@ public class OverworldIslandPlacer : MonoBehaviour
                 radius, seed, entry.size, isManual: true
             );
 
-            SpawnVisual(inst, manualIslandMaterial);
+            SpawnVisual(inst);
             _allInstances.Add(inst);
         }
 
@@ -137,7 +133,7 @@ public class OverworldIslandPlacer : MonoBehaviour
                 size, isManual: false
             );
 
-            SpawnVisual(inst, proceduralIslandMaterial);
+            SpawnVisual(inst);
             _allInstances.Add(inst);
             placed++;
         }
@@ -268,14 +264,18 @@ public class OverworldIslandPlacer : MonoBehaviour
         return inst;
     }
 
-    private void SpawnVisual(IslandInstanceData inst, Material mat)
+    private void SpawnVisual(IslandInstanceData inst)
     {
-        var go = Instantiate(overworldIslandPrefab,
-                             inst.overworldPosition,
-                             Quaternion.identity,
-                             transform);
+        if (overworldIslandPrefabs == null || overworldIslandPrefabs.Count == 0)
+        {
+            Debug.LogError("[OverworldPlacer] No hay prefabs de isla asignados.");
+            return;
+        }
+
+        var prefab = overworldIslandPrefabs[_rng.Next(overworldIslandPrefabs.Count)];
+        var go = Instantiate(prefab, inst.overworldPosition, Quaternion.identity, transform);
         go.name = $"OW_{inst.instanceId}";
-        go.GetComponent<OverworldIslandVisual>().Initialize(inst, mat);
+        go.GetComponent<OverworldIslandVisual>()?.Initialize(inst);
     }
 
     private void ClearAll()
