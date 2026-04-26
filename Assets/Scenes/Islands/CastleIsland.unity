@@ -10492,7 +10492,7 @@ MonoBehaviour:
   _spawnPoints:
   - {fileID: 1353080895}
   - {fileID: 569846909}
-  amount: 1
+  amount: 2
 --- !u!1 &1588603869
 GameObject:
   m_ObjectHideFlags: 0
