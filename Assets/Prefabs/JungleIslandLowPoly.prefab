@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName:
-    _sceneAsset: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
-    _sceneName: CastleIsland
-  islandName: Jungle Island
+    _sceneAsset: {fileID: 102900000, guid: 1fa5a72194ffc6b4db98a94e90ede8b5, type: 3}
+    _sceneName: RuinsIsland
+  islandName: Jungle Ruins Island
 --- !u!1001 &1361510507500014426
 PrefabInstance:
   m_ObjectHideFlags: 0

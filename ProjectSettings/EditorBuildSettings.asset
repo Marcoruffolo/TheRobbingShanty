@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Islands/CastleIsland.unity
     guid: 459d38e452bd89b4eae4473359af0d2a
+  - enabled: 1
+    path: Assets/Scenes/Islands/RuinsIsland.unity
+    guid: 1fa5a72194ffc6b4db98a94e90ede8b5
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 35c7439e39ab7fc4eaf0c7912adc9166, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
