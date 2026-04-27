@@ -14,7 +14,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -83,6 +83,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
+    - _Alpha: 0.73
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -97,12 +98,13 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamLevel: 25
+    - _FoamLevel: 6.17
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _NoiseScale: 250
+    - _NormalStrenght: 0.75
     - _OcclusionStrenght: 0.753
     - _OcclusionStrength: 1
     - _Parallax: 0.005
