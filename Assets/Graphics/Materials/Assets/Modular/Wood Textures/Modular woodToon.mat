@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CastleToon
+  m_Name: Modular woodToon
   m_Shader: {fileID: -6465566751694194690, guid: 80fecced38fe07a439c26da4345e0a26, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -25,11 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _1st_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: b6a9e5ec6147a19449677547306bf343, type: 3}
+        m_Texture: {fileID: 2800000, guid: e551a78a336181a4d8a34c9aaa84d385, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _2nd_ShadeMap:
-        m_Texture: {fileID: 2800000, guid: b6a9e5ec6147a19449677547306bf343, type: 3}
+        m_Texture: {fileID: 2800000, guid: e551a78a336181a4d8a34c9aaa84d385, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b6a9e5ec6147a19449677547306bf343, type: 3}
+        m_Texture: {fileID: 2800000, guid: e551a78a336181a4d8a34c9aaa84d385, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -65,11 +65,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicTex:
-        m_Texture: {fileID: 2800000, guid: 2147695732ab328468ac51efe77617f5, type: 3}
+        m_Texture: {fileID: 2800000, guid: a5843aeb0eb3b8d4ea143c3e76a5d456, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 007a86f8d5e20cb428c64c9f82a12659, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf98d539748116f498ee6f2a616f2ff4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -98,12 +98,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _1st_Shading: 0.503
-    - _1st_Shading_Feather: 0.171
-    - _1st_Shading_Step: 0.259
-    - _2nd_Shading: 0.24
-    - _2nd_Shading_Feather: 0.465
-    - _2nd_Shading_Step: 0.216
+    - _1st_Shading_Feather: 0.5
+    - _1st_Shading_Step: 0.5
+    - _2nd_Shading_Feather: 0.5
+    - _2nd_Shading_Step: 0.5
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -123,13 +121,13 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalStrength: 0.08
+    - _NormalStrength: 0.01
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Size: 0.06
+    - _Size: 0.34
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -139,8 +137,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _1st_ShadeMap_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
-    - _2nd_ShadeMap_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
+    - _1st_ShadeMap_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 0}
+    - _2nd_ShadeMap_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -148,7 +146,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &1032420065542985458
+--- !u!114 &864980797600236510
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
