@@ -10565,11 +10565,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55efddb1859d8ab43afdddf3d7c26e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 8647522228250082122, guid: 0b646ca9c56bd8f43ad8d42f86a9d0fa, type: 3}
+  _objectPrefab: {fileID: 4568512523534562660, guid: 5f75af6048c9a1648b7fa05355d55564, type: 3}
   _spawnPoints:
   - {fileID: 1353080895}
   - {fileID: 569846909}
-  amount: 1
+  amount: 2
 --- !u!1 &1588426224
 GameObject:
   m_ObjectHideFlags: 0
