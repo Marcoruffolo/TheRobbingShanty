@@ -366,7 +366,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 307071601}
-  - {fileID: 1791643688}
   m_Father: {fileID: 1287926830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -448,6 +447,8 @@ GameObject:
   - component: {fileID: 150036802}
   - component: {fileID: 150036804}
   - component: {fileID: 150036803}
+  - component: {fileID: 150036806}
+  - component: {fileID: 150036805}
   m_Layer: 5
   m_Name: InteractionTxt
   m_TagString: Untagged
@@ -573,6 +574,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150036801}
   m_CullTransparentMesh: 1
+--- !u!114 &150036805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150036801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210d403d3eeaff14e922530f7ee93322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150036803}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &150036806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150036801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d729f46bfa25e4148ab1b4578239bd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableType: 2
+  prefix: '[E] '
+  suffix: 
+  floatVar: {fileID: 0}
+  intVar: {fileID: 0}
+  stringVar: {fileID: 11400000, guid: 41e8be058e771fa419a0d81c2d797dca, type: 2}
+  decimalAmount: 2
 --- !u!1 &244949742
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +780,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1791643688}
   m_Father: {fileID: 108050655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13344,7 +13393,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -13370,8 +13419,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721679709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20972097, y: 0, z: 0, w: 0.9777613}
-  m_LocalPosition: {x: 0, y: 6.8, z: 4.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.981629, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13425,7 +13474,8 @@ MonoBehaviour:
   interactionMask:
     serializedVersion: 2
     m_Bits: 64
-  txtPrompt: {fileID: 150036803}
+  ActivateText: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
+  interactText: {fileID: 11400000, guid: 41e8be058e771fa419a0d81c2d797dca, type: 2}
 --- !u!114 &802389467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5868025442548028042, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
@@ -14380,12 +14430,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791643687}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 108050655}
+  m_Father: {fileID: 307071601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15251,6 +15301,7 @@ MonoBehaviour:
   overworldIslandPrefabs:
   - {fileID: 1271584351}
   - {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
+  - {fileID: 5629026779674674756, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
   globalSeed: {fileID: 11400000, guid: c8695c8e28133a44287f71a4ef8cf486, type: 2}
   targetIslandCount: {fileID: 11400000, guid: 4d8c0c8b5d3a9e1459e375e11aae512e, type: 2}
   minIslandDistance: {fileID: 11400000, guid: 885db0b352be05840bc4a83f77f6a5de, type: 2}

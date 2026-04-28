@@ -14,7 +14,8 @@ public class InteractionDetector : MonoBehaviour
     [SerializeField] private LayerMask interactionMask;
 
     [Header("HUD")]
-    [SerializeField] private TMP_Text txtPrompt;
+    [SerializeField] BoolGameEvent ActivateText;
+    [SerializeField] SOVariableString interactText;
 
     private IInteractable _currentInteractable;
 
@@ -24,8 +25,7 @@ public class InteractionDetector : MonoBehaviour
         if (PlayerInputHandler.Instance != null)
             PlayerInputHandler.Instance.OnInteract += TryInteract;
 
-        if (txtPrompt != null)
-            txtPrompt.gameObject.SetActive(false);
+        ActivateText.Raise(false);
     }
 
     private void OnDestroy()
@@ -69,15 +69,13 @@ public class InteractionDetector : MonoBehaviour
     // HUD 
     private void ShowPrompt(string text)
     {
-        if (txtPrompt == null) return;
-        txtPrompt.gameObject.SetActive(true);
-        txtPrompt.text = $"[E] {text}";
+        ActivateText.Raise(true);
+        interactText.Value = text;
     }
 
     private void HidePrompt()
     {
-        if (txtPrompt == null) return;
-        txtPrompt.gameObject.SetActive(false);
+        ActivateText.Raise(false);
     }
 
     private void OnDrawGizmosSelected()
