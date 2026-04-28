@@ -13920,14 +13920,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2301630860196176183, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: islandName
-      value: Castle Island
-      objectReference: {fileID: 0}
-    - target: {fileID: 2301630860196176183, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
-      propertyPath: sceneName._sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
     - target: {fileID: 4191887718797877908, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -32
@@ -15300,8 +15292,8 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
   overworldIslandPrefabs:
   - {fileID: 1271584351}
-  - {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
   - {fileID: 5629026779674674756, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+  - {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
   globalSeed: {fileID: 11400000, guid: c8695c8e28133a44287f71a4ef8cf486, type: 2}
   targetIslandCount: {fileID: 11400000, guid: 4d8c0c8b5d3a9e1459e375e11aae512e, type: 2}
   minIslandDistance: {fileID: 11400000, guid: 885db0b352be05840bc4a83f77f6a5de, type: 2}

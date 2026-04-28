@@ -67,9 +67,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName:
-    _sceneAsset: {fileID: 0}
+    _sceneAsset: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
     _sceneName: CastleIsland
-  islandName: None
+  islandName: Castle Island
 --- !u!1 &5629026779674674756
 GameObject:
   m_ObjectHideFlags: 0

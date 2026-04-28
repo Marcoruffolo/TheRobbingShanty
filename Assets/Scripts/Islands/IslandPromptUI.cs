@@ -21,6 +21,6 @@ public class IslandPromptUI : MonoBehaviour
     private void HandleProximityChange(bool isNear, string promptText)
     {
         islandPromptText.text = promptText;
-        islandPromptText.gameObject.SetActive(isNear);
+        islandPromptText.enabled = isNear;
     }
 }
