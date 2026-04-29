@@ -31838,7 +31838,8 @@ PrefabInstance:
       value: Ruins Asset Model v1 test 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: 9bf0b92fa0368cf45bff1169702b03e7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf0b92fa0368cf45bff1169702b03e7, type: 3}
