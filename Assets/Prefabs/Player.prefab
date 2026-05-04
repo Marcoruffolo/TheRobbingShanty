@@ -486,6 +486,7 @@ MonoBehaviour:
   secondaryInventorySize: 48
   secondaryInventorySystem:
     inventorySlots: []
+  inventorySaveData: {fileID: 11400000, guid: 8c952c355d565b0479ef2d6c1ce808b5, type: 2}
   handItemSpawnPoint: {fileID: 4009908901269508315}
   dropPoint: {fileID: 5795909489191037030}
 --- !u!114 &3676928054269745652
@@ -535,6 +536,8 @@ MonoBehaviour:
   InteractableLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  showPromptEvent: {fileID: 0}
+  promptText: {fileID: 0}
 --- !u!114 &8890360678620570636
 MonoBehaviour:
   m_ObjectHideFlags: 0

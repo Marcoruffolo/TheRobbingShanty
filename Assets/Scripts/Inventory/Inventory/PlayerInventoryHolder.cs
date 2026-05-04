@@ -6,6 +6,7 @@ public class PlayerInventoryHolder : InventoryHolder
 {
     [SerializeField] protected int secondaryInventorySize;
     [SerializeField] protected InventorySystem secondaryInventorySystem;
+    [SerializeField] private SOInventorySaveData inventorySaveData;
     bool inventoryOpen = false;
     public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
 
@@ -25,13 +26,14 @@ public class PlayerInventoryHolder : InventoryHolder
     {
         base.Awake();
         secondaryInventorySystem = new InventorySystem(secondaryInventorySize);
-
+        inventorySaveData?.Restore(primaryInventorySystem, secondaryInventorySystem);
         primaryInventorySystem.OnInventorySlotChanged += OnPrimarySlotChanged;
     }
 
     private void OnDestroy()
     {
         primaryInventorySystem.OnInventorySlotChanged -= OnPrimarySlotChanged;
+        inventorySaveData?.Save(primaryInventorySystem, secondaryInventorySystem);
     }
 
     private void OnPrimarySlotChanged(InventorySlot changedSlot)
