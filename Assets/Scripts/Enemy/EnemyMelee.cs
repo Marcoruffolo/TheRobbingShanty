@@ -16,7 +16,7 @@ public class EnemyMelee : EnemyBase
     private PlayerHealth _playerHealth;
     private State _state = State.Idle;
     private float _nextAttackTime;
-    private bool _isAttacking;
+
 
     protected override void Start()
     {
@@ -58,7 +58,9 @@ public class EnemyMelee : EnemyBase
 
     private void UpdateAttack()
     {
-        if (_isAttacking) return;
+        var info = Animator.GetCurrentAnimatorStateInfo(0);
+        if (info.IsTag("Attack") && info.normalizedTime < 1f) return;
+
         float dist = Vector3.Distance(transform.position, Fov.PlayerTransform.position);
         if (dist > attackRange * 1.2f) { _state = State.Chase; return; }
         FacePlayer();
@@ -80,9 +82,9 @@ public class EnemyMelee : EnemyBase
 
     private void DoAttack()
     {
-        _isAttacking = true;
         FacePlayer();
         Animator.SetTrigger(HashAttack);
+        ScheduleNextAttack();
     }
 
     public override void OnHitFrame()
@@ -92,11 +94,8 @@ public class EnemyMelee : EnemyBase
             _playerHealth.TakeDamage(enemyDamage.Value);
     }
 
-    public override void OnAttackEnd()
-    {
-        _isAttacking = false;
-        ScheduleNextAttack();
-    }
+    public override void OnAttackEnd() { }
+ 
 
     private void FacePlayer()
     {
