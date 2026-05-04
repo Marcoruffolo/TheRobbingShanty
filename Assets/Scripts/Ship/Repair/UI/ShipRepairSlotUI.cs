@@ -13,7 +13,7 @@ public class ShipRepairSlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color insufficientColor = Color.red;
 
     public RepairRequirement Requirement { get; private set; }
-    public bool IsFulfilled => Requirement.Deposited >= Requirement.requiredAmount;
+    public bool IsFulfilled => Requirement != null && Requirement.Deposited >= Requirement.requiredAmount;
 
     public UnityAction<ShipRepairSlotUI> OnItemDeposited;
 
@@ -28,6 +28,7 @@ public class ShipRepairSlotUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (Requirement == null) return;
         if (eventData.button != PointerEventData.InputButton.Left) return;
         if (IsFulfilled) return;
         if (_mouseItemData.AssignedInventorySlot.ItemData != Requirement.itemData) return;
