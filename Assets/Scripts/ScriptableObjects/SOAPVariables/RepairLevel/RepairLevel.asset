@@ -15,7 +15,7 @@ MonoBehaviour:
   value: 2
   InitialValue: 1
   DebugLogEnabled: 0
-  ResetOn: 
+  ResetOn: 02000000
   IsClamped: 0
   Min: 0
   Max: 0
