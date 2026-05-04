@@ -21,6 +21,12 @@ public class Interactor : MonoBehaviour
         playerInventory = GetComponentInParent<PlayerInventoryHolder>();
     }
 
+    public void RequestEndInteraction()
+    {
+        if (IsInteracting && currentInteractable != null)
+            EndInteraction(currentInteractable);
+    }
+
     private void Update()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
