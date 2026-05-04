@@ -9,6 +9,7 @@ public class ShipRepairUI : MonoBehaviour
     [SerializeField] private MouseItemData mouseItemData;
 
     public static UnityAction OnCloseRequested;
+    public static UnityAction OnRepairCompleted;
 
     private ShipRepairData _repairData;
 
@@ -63,6 +64,7 @@ public class ShipRepairUI : MonoBehaviour
         foreach (var slot in slots)
             if (slot.gameObject.activeSelf && !slot.IsFulfilled) return;
 
+        OnRepairCompleted?.Invoke();
         OnCloseRequested?.Invoke();
     }
 }

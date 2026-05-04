@@ -4,6 +4,8 @@ using UnityEngine.Events;
 public class ShipRepairInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private ShipRepairData repairData;
+    [SerializeField] private SOVariableInt shipRepairLevel;
+    [SerializeField] private int repairLevel = 2;
 
     public string InteractionPrompt => "Repair Ship";
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
@@ -13,15 +15,31 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
 
     private Interactor _interactor;
 
-    private void OnEnable()  => ShipRepairUI.OnCloseRequested += HandleCloseRequested;
-    private void OnDisable() => ShipRepairUI.OnCloseRequested -= HandleCloseRequested;
+    private void OnEnable()
+    {
+        ShipRepairUI.OnCloseRequested += HandleCloseRequested;
+        ShipRepairUI.OnRepairCompleted += HandleRepairCompleted;
+    }
+
+    private void OnDisable()
+    {
+        ShipRepairUI.OnCloseRequested -= HandleCloseRequested;
+        ShipRepairUI.OnRepairCompleted -= HandleRepairCompleted;
+    }
 
     private void HandleCloseRequested() => _interactor?.RequestEndInteraction();
 
+    private void HandleRepairCompleted() => shipRepairLevel?.Add(1);
+
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
+        if (shipRepairLevel != null && shipRepairLevel.Value >= repairLevel)
+        {
+            interactSuccessful = false;
+            return;
+        }
+
         _interactor = interactor;
-        Debug.Log($"[ShipRepair] Interact called. repairData={repairData}, listeners={OnRepairUIOpened?.GetInvocationList().Length ?? 0}");
         PlayerCamera.LockCursor(false);
         BlockPlayerMovement.Instance?.ImmobilizePlayer();
         OnRepairUIOpened?.Invoke(repairData);
