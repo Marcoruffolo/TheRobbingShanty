@@ -7,13 +7,18 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
     [SerializeField] private SOVariableInt shipRepairLevel;
     [SerializeField] private int repairLevel = 2;
 
-    public string InteractionPrompt => "Repair Ship";
+    [Header("Prompts")]
+    [SerializeField] private string repairPrompt = "Repair Ship";
+    [SerializeField] private string helmPrompt = "Take Wheel";
+
+    public string InteractionPrompt => IsRepaired ? helmPrompt : repairPrompt;
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
     public static UnityAction<ShipRepairData> OnRepairUIOpened;
     public static UnityAction OnRepairUIClosed;
 
     private Interactor _interactor;
+    private bool IsRepaired => shipRepairLevel != null && shipRepairLevel.Value >= repairLevel;
 
     private void OnEnable()
     {
@@ -28,12 +33,11 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
     }
 
     private void HandleCloseRequested() => _interactor?.RequestEndInteraction();
-
     private void HandleRepairCompleted() => shipRepairLevel?.Add(1);
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
-        if (shipRepairLevel != null && shipRepairLevel.Value >= repairLevel)
+        if (IsRepaired)
         {
             interactSuccessful = false;
             return;

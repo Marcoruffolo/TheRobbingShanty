@@ -322,9 +322,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6840463158165156368, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 11400000, guid: 41e8be058e771fa419a0d81c2d797dca, type: 2}
+    - target: {fileID: 6840463158165156368, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 721679712}
+    - target: {fileID: 6840463158165156368, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: showPromptEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
     - target: {fileID: 9169416703968480330, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: m_Name
       value: Player
@@ -13470,12 +13478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c10cc4cca6714409c93a7244c1ea99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 3
-  interactionMask:
-    serializedVersion: 2
-    m_Bits: 64
-  ActivateText: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
-  interactText: {fileID: 11400000, guid: 41e8be058e771fa419a0d81c2d797dca, type: 2}
 --- !u!114 &802389467 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5868025442548028042, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
@@ -13838,6 +13840,7 @@ GameObject:
   - component: {fileID: 1165939332}
   - component: {fileID: 1165939333}
   - component: {fileID: 1165939336}
+  - component: {fileID: 1165939337}
   m_Layer: 6
   m_Name: Telescope
   m_TagString: Untagged
@@ -13894,7 +13897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b4563edf5cab746ba6c5fc42795045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InteractionPrompt>k__BackingField: Usar telescopio
   telescopeCam: {fileID: 1846544449}
   panSpeed: 10
   tiltSpeed: 10
@@ -13908,6 +13910,19 @@ MonoBehaviour:
   zoomStep: 2
   zoomSmoothing: 8
   _telescopeEffect: {fileID: -633401951756102604, guid: e2bb46a51e19a254084461ac62f3a5a8, type: 2}
+--- !u!114 &1165939337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165939331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33af8f0e47b6c64a9140f07b121ca60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Use Telescope
 --- !u!1001 &1211840298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14275,6 +14290,7 @@ GameObject:
   - component: {fileID: 1703513258}
   - component: {fileID: 1703513260}
   - component: {fileID: 1703513259}
+  - component: {fileID: 1703513261}
   m_Layer: 6
   m_Name: SteeringWheelCollider
   m_TagString: Untagged
@@ -14332,6 +14348,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.23301315
   m_Center: {x: 0, y: 0, z: -0.26698685}
+--- !u!114 &1703513261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703513257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33af8f0e47b6c64a9140f07b121ca60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Take Wheel
 --- !u!1 &1738977057
 GameObject:
   m_ObjectHideFlags: 0

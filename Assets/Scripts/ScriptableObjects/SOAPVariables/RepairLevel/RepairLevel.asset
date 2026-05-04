@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5cee92db79d0047a925549af12819b, type: 3}
   m_Name: RepairLevel
   m_EditorClassIdentifier: 
-  value: 0
-  InitialValue: 0
+  value: 2
+  InitialValue: 1
   DebugLogEnabled: 0
-  ResetOn: 00000000
+  ResetOn: 
   IsClamped: 0
   Min: 0
   Max: 0

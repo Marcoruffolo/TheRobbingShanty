@@ -3,72 +3,105 @@ using UnityEngine.InputSystem;
 
 public class Interactor : MonoBehaviour
 {
-    [Header("Raycast Settings")]
+    [Header("Raycast")]
     [SerializeField] private Camera playerCamera;
-    public float InteractionRange = 3f;
-    public LayerMask InteractableLayerMask;
+    [SerializeField] public float InteractionRange = 3f;
+    [SerializeField] public LayerMask InteractableLayerMask;
+
+    [Header("HUD (opcional)")]
+    [SerializeField] private BoolGameEvent showPromptEvent;
+    [SerializeField] private SOVariableString promptText;
 
     public bool IsInteracting { get; private set; }
 
-    private IInteractable currentInteractable;
-    private PlayerInventoryHolder playerInventory;
+    private IInteractable _currentInteractable;
+    private RaycastHit _hit;
+    private bool _hitSomething;
+    private PlayerInventoryHolder _playerInventory;
 
     private void Awake()
     {
-        if (playerCamera == null)
-            playerCamera = Camera.main;
-
-        playerInventory = GetComponentInParent<PlayerInventoryHolder>();
+        if (playerCamera == null) playerCamera = Camera.main;
+        _playerInventory = GetComponentInParent<PlayerInventoryHolder>();
     }
 
     public void RequestEndInteraction()
     {
-        if (IsInteracting && currentInteractable != null)
-            EndInteraction(currentInteractable);
+        if (IsInteracting && _currentInteractable != null)
+            EndInteraction(_currentInteractable);
     }
 
     private void Update()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        bool hitSomething = Physics.Raycast(ray, out RaycastHit hit, InteractionRange, InteractableLayerMask);
+        _hitSomething = Physics.Raycast(ray, out _hit, InteractionRange, InteractableLayerMask);
+
+        UpdatePrompt();
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            if (hitSomething)
-            {
-                // Try pick up Item first
-                var item = hit.collider.GetComponent<Item>();
-                if (item != null)
-                {
-                    item.PickUpItem(playerInventory);
-                    return;
-                }
+            HandleInput();
+    }
 
-                // Then try IInteractable (e.g. chests)
-                IInteractable lookingAt = hit.collider.GetComponent<IInteractable>();
-                if (!IsInteracting && lookingAt != null)
-                {
-                    StartInteraction(lookingAt);
-                }
-                else if (IsInteracting && currentInteractable != null)
-                {
-                    EndInteraction(currentInteractable);
-                }
-            }
-            else if (IsInteracting && currentInteractable != null)
+    private void UpdatePrompt()
+    {
+        if (IsInteracting) return;
+
+        if (_hitSomething)
+        {
+            var label = _hit.collider.GetComponent<InteractionLabel>();
+            if (label != null)
             {
-                // Pressed E while not looking at anything — close active interaction
-                EndInteraction(currentInteractable);
+                SetPrompt(label.Prompt, true);
+                return;
             }
+
+            var interactable = _hit.collider.GetComponent<IInteractable>();
+            if (interactable != null && !string.IsNullOrEmpty(interactable.InteractionPrompt))
+            {
+                SetPrompt(interactable.InteractionPrompt, true);
+                return;
+            }
+
+            var item = _hit.collider.GetComponent<Item>();
+            if (item != null)
+            {
+                SetPrompt($"[E] Recoger {item.ItemData.DisplayName}", true);
+                return;
+            }
+        }
+
+        SetPrompt("", false);
+    }
+
+    private void HandleInput()
+    {
+        if (_hitSomething)
+        {
+            var item = _hit.collider.GetComponent<Item>();
+            if (item != null)
+            {
+                item.PickUpItem(_playerInventory);
+                return;
+            }
+
+            var lookingAt = _hit.collider.GetComponent<IInteractable>();
+            if (!IsInteracting && lookingAt != null)
+                StartInteraction(lookingAt);
+            else if (IsInteracting && _currentInteractable != null)
+                EndInteraction(_currentInteractable);
+        }
+        else if (IsInteracting && _currentInteractable != null)
+        {
+            EndInteraction(_currentInteractable);
         }
     }
 
     private void StartInteraction(IInteractable interactable)
     {
-        interactable.Interact(this, out bool interactSuccessful);
-        if (interactSuccessful)
+        interactable.Interact(this, out bool success);
+        if (success)
         {
-            currentInteractable = interactable;
+            _currentInteractable = interactable;
             IsInteracting = true;
         }
     }
@@ -76,8 +109,14 @@ public class Interactor : MonoBehaviour
     private void EndInteraction(IInteractable interactable)
     {
         interactable.EndInteraction();
-        currentInteractable = null;
+        _currentInteractable = null;
         IsInteracting = false;
+    }
+
+    private void SetPrompt(string text, bool visible)
+    {
+        if (promptText != null) promptText.Value = text;
+        showPromptEvent?.Raise(visible);
     }
 
     private void OnDrawGizmos()

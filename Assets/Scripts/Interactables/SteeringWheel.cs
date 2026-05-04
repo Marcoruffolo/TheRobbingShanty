@@ -9,22 +9,7 @@ public class SteeringWheel : MonoBehaviour, IInteractable
 
     private bool _releaseInputSubscribed;
 
-    public string InteractionPrompt
-    {
-        get
-        {
-            if (CameraModeController.Instance != null)
-            {
-                if (CameraModeController.Instance.IsTransitionInProgress)
-                    return "Boarding helm...";
-
-                if (CameraModeController.Instance.IsShipControlActive)
-                    return "Leave helm";
-            }
-
-            return "Take helm";
-        }
-    }
+    public string InteractionPrompt => string.Empty;
 
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 

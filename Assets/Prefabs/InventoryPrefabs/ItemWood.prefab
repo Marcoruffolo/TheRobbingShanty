@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 201223035859026016}
   - component: {fileID: 6074749189541993866}
   - component: {fileID: 714930842133333855}
+  - component: {fileID: 7713565144737847595}
   m_Layer: 6
   m_Name: ItemWood
   m_TagString: Untagged
@@ -98,6 +99,19 @@ CapsuleCollider:
   m_Height: 0.60959923
   m_Direction: 0
   m_Center: {x: 0, y: 0.000000044703484, z: 0}
+--- !u!114 &7713565144737847595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324178293175583250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33af8f0e47b6c64a9140f07b121ca60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Pick Up
 --- !u!1001 &6128975679824348376
 PrefabInstance:
   m_ObjectHideFlags: 0

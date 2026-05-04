@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Collider))]
 public class TelescopeInteractable : MonoBehaviour, IInteractable
 {
-    [field: SerializeField] public string InteractionPrompt { get; private set; } = "Usar telescopio";
+    public string InteractionPrompt => string.Empty;
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
     [Header("Cinemachine")]

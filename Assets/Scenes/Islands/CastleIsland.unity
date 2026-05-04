@@ -208,7 +208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &10557253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26782,6 +26782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repairData: {fileID: 11400000, guid: 4c110c3fa40d16f4b8e81b04bc4e0999, type: 2}
+  shipRepairLevel: {fileID: 11400000, guid: 80cfd777f25a176438065bed44d88f48, type: 2}
+  repairLevel: 2
+  repairPrompt: Repair Ship
+  helmPrompt: Take Wheel
 --- !u!135 &1909646638
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -30867,9 +30871,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6840463158165156368, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 11400000, guid: 41e8be058e771fa419a0d81c2d797dca, type: 2}
+    - target: {fileID: 6840463158165156368, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 637097333}
+    - target: {fileID: 6840463158165156368, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: showPromptEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
     - target: {fileID: 9169416703968480330, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: m_Name
       value: Player
