@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a5fefce3800c1540a6d1dced0e6b6d5, type: 3}
-  m_Name: ShipRepairData
+  m_Name: ShipRepairCastle
   m_EditorClassIdentifier: 
   requirements:
   - itemData: {fileID: 11400000, guid: db41f0daf280dcd46985ce82a6d470c3, type: 2}

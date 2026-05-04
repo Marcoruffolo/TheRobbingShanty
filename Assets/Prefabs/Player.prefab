@@ -536,8 +536,8 @@ MonoBehaviour:
   InteractableLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  showPromptEvent: {fileID: 0}
-  promptText: {fileID: 0}
+  showPromptEvent: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
+  promptText: {fileID: 11400000, guid: 41e8be058e771fa419a0d81c2d797dca, type: 2}
 --- !u!114 &8890360678620570636
 MonoBehaviour:
   m_ObjectHideFlags: 0
