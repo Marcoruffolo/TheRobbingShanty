@@ -8,7 +8,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] public float InteractionRange = 3f;
     [SerializeField] public LayerMask InteractableLayerMask;
 
-    [Header("HUD (opcional)")]
+    [Header("HUD")]
     [SerializeField] private BoolGameEvent showPromptEvent;
     [SerializeField] private SOVariableString promptText;
 

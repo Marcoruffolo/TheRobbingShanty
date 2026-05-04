@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ShipRepairInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private ShipRepairData repairData;
     [SerializeField] private SOVariableInt shipRepairLevel;
     [SerializeField] private int repairLevel = 2;
+    [SerializeField] private SceneField mainScene;
 
     [Header("Prompts")]
     [SerializeField] private string repairPrompt = "Repair Ship";
@@ -33,13 +35,27 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
     }
 
     private void HandleCloseRequested() => _interactor?.RequestEndInteraction();
-    private void HandleRepairCompleted() => shipRepairLevel?.Add(1);
+    private void LoadMainScene()
+    {
+        if (SceneLoader.Instance != null)
+            SceneLoader.Instance.TryLoadScene(mainScene);
+        else
+            SceneManager.LoadScene(mainScene.SceneName);
+    }
+
+    private void HandleRepairCompleted()
+    {
+        shipRepairLevel?.Add(1);
+        if (IsRepaired)
+            LoadMainScene();
+    }
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
         if (IsRepaired)
         {
-            interactSuccessful = false;
+            LoadMainScene();
+            interactSuccessful = true;
             return;
         }
 
