@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesa (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3459193194213827910, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -455,6 +459,10 @@ PrefabInstance:
     - target: {fileID: 6700812680179689958, guid: 7b930e8595d68ab4495fb93020376070, type: 3}
       propertyPath: m_Name
       value: Lantern (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700812680179689958, guid: 7b930e8595d68ab4495fb93020376070, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1058,6 +1066,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesa2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aa626e77ae7efd944b0743f324b5b34a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1287,6 +1299,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e295cfeaac3c52940a5f3c254c7aed4d, type: 3}
       propertyPath: m_Name
       value: ShieldBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e295cfeaac3c52940a5f3c254c7aed4d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1608,6 +1624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1671,6 +1691,10 @@ PrefabInstance:
     - target: {fileID: 1237811466904778082, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237811466904778082, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1341189014401353197, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2222,7 +2246,7 @@ Transform:
   m_GameObject: {fileID: 211479355}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -24.457424, y: -13.304905, z: 34.97473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2273,7 +2297,7 @@ Transform:
   - {fileID: 1588603870}
   - {fileID: 439858948}
   - {fileID: 1354142683}
-  m_Father: {fileID: 965954231}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &211702669
 GameObject:
@@ -2792,6 +2816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lantern
       objectReference: {fileID: 0}
+    - target: {fileID: 6700812680179689958, guid: 7b930e8595d68ab4495fb93020376070, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3129,6 +3157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesa
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3459193194213827910, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3297,6 +3329,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 45a6ee716c1a28d46b42e15bce6594d2, type: 3}
       propertyPath: m_Name
       value: ShieldRed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 45a6ee716c1a28d46b42e15bce6594d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4452,6 +4488,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 45a6ee716c1a28d46b42e15bce6594d2, type: 3}
       propertyPath: m_Name
       value: ShieldRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 45a6ee716c1a28d46b42e15bce6594d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6324,7 +6364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: aa626e77ae7efd944b0743f324b5b34a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6648,7 +6688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f0b424936eec634daeeadf32439187f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7195,6 +7235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 72a01894dd94fc540bd7f6c8be6c6c67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7232,12 +7276,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 211479356}
   - {fileID: 667638305}
   - {fileID: 1560227587}
   - {fileID: 1603501625}
   - {fileID: 449367043}
-  - {fileID: 1656753245}
   m_Father: {fileID: 1160253447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966278846
@@ -8053,6 +8095,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 26f75b75545e0f940a1d875074690cc2, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26f75b75545e0f940a1d875074690cc2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 945454400225530728, guid: 26f75b75545e0f940a1d875074690cc2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -9109,7 +9155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1160253447
 Transform:
   m_ObjectHideFlags: 0
@@ -11809,6 +11855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldPurple
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c41bcd4c46ecb7c48bc80ae873f5bc43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13221,8 +13271,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656753244}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.457424, y: -13.304905, z: 34.97473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13234,7 +13284,7 @@ Transform:
   - {fileID: 1988043078}
   - {fileID: 2123123644}
   - {fileID: 1425474325}
-  m_Father: {fileID: 965954231}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1662802556
 GameObject:
@@ -30464,6 +30514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armor
       objectReference: {fileID: 0}
+    - target: {fileID: 160700180413545141, guid: cfc6ed044979082459dfec50a09f0145, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 377390311610232716, guid: cfc6ed044979082459dfec50a09f0145, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.61
@@ -37249,6 +37303,8 @@ SceneRoots:
   - {fileID: 1701547338}
   - {fileID: 338660692}
   - {fileID: 38319586}
+  - {fileID: 211479356}
+  - {fileID: 1656753245}
   - {fileID: 1160253447}
   - {fileID: 1725468678}
   - {fileID: 706742782}
