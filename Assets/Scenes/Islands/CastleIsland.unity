@@ -4751,11 +4751,11 @@ Transform:
   m_GameObject: {fileID: 620958470}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.34, y: 21.46, z: -59.16}
+  m_LocalPosition: {x: 17.882576, y: 8.155094, z: -24.185268}
   m_LocalScale: {x: 5.4729114, y: 3.0914, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1396057774}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &620958472
 BoxCollider:
@@ -6688,7 +6688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f0b424936eec634daeeadf32439187f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11186,8 +11186,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 620958471}
+  m_Children: []
   m_Father: {fileID: 121922098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1399306027 stripped
@@ -37305,6 +37304,7 @@ SceneRoots:
   - {fileID: 38319586}
   - {fileID: 211479356}
   - {fileID: 1656753245}
+  - {fileID: 620958471}
   - {fileID: 1160253447}
   - {fileID: 1725468678}
   - {fileID: 706742782}
