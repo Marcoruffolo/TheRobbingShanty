@@ -71,6 +71,9 @@ MonoBehaviour:
   inventorySize: 42
   primaryInventorySystem:
     inventorySlots: []
+  lootTable: {fileID: 11400000, guid: 276574b30ca61f143a4277561e56ee03, type: 2}
+  minSlotsToFill: 1
+  maxSlotsToFill: 3
 --- !u!114 &9189889771078464585
 MonoBehaviour:
   m_ObjectHideFlags: 0
