@@ -33,6 +33,9 @@ public class ShipRepairUI : MonoBehaviour
     private void Open(ShipRepairData data)
     {
         _repairData = data;
+        foreach (var req in _repairData.requirements)
+            req.Deposited = 0;
+
         panel.SetActive(true);
 
         for (int i = 0; i < slots.Count; i++)
