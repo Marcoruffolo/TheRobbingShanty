@@ -7,6 +7,8 @@ public class CameraModeController : MonoBehaviour
 {
     public static CameraModeController Instance { get; private set; }
 
+    public static event System.Action<bool> OnShipControlChanged;
+
     public bool IsShipControlActive { get; private set; }
 
     [Header("Player References")]
@@ -94,6 +96,7 @@ public class CameraModeController : MonoBehaviour
 
         IsShipControlActive = true;
         ApplyShipMode();
+        OnShipControlChanged?.Invoke(true);
     }
 
     public void ExitShipControl()
@@ -118,6 +121,7 @@ public class CameraModeController : MonoBehaviour
 
         IsShipControlActive = false;
         ApplyPlayerMode();
+        OnShipControlChanged?.Invoke(false);
     }
 
     public void ToggleShipControl(Transform steeringPosition)
@@ -185,6 +189,7 @@ public class CameraModeController : MonoBehaviour
 
         IsShipControlActive = true;
         ApplyShipMode();
+        OnShipControlChanged?.Invoke(true);
     }
 
     private IEnumerator ExitShipControlRoutine(Transform releasePoint)
@@ -204,6 +209,7 @@ public class CameraModeController : MonoBehaviour
 
         IsShipControlActive = false;
         ApplyPlayerMode();
+        OnShipControlChanged?.Invoke(false);
     }
 
     private void AttachPlayerToSteeringPoint()

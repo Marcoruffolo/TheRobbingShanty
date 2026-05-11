@@ -15,6 +15,7 @@ public class Interactor : MonoBehaviour
     public bool IsInteracting { get; private set; }
 
     private IInteractable _currentInteractable;
+    private InteractionLabel _currentLabel;
     private RaycastHit _hit;
     private bool _hitSomething;
     private PlayerInventoryHolder _playerInventory;
@@ -23,6 +24,14 @@ public class Interactor : MonoBehaviour
     {
         if (playerCamera == null) playerCamera = Camera.main;
         _playerInventory = GetComponentInParent<PlayerInventoryHolder>();
+    }
+
+    private void OnEnable()  => CameraModeController.OnShipControlChanged += HandleShipControlChanged;
+    private void OnDisable() => CameraModeController.OnShipControlChanged -= HandleShipControlChanged;
+
+    private void HandleShipControlChanged(bool shipActive)
+    {
+        if (shipActive) SetPrompt("", false);
     }
 
     public void RequestEndInteraction()
@@ -49,7 +58,7 @@ public class Interactor : MonoBehaviour
         if (_hitSomething)
         {
             var label = _hit.collider.GetComponent<InteractionLabel>();
-            if (label != null)
+            if (label != null && label.IsVisible)
             {
                 SetPrompt(label.Prompt, true);
                 return;
@@ -99,16 +108,25 @@ public class Interactor : MonoBehaviour
     private void StartInteraction(IInteractable interactable)
     {
         interactable.Interact(this, out bool success);
-        if (success)
+        if (!success) return;
+
+        _currentInteractable = interactable;
+        IsInteracting = true;
+        SetPrompt("", false);
+
+        if (interactable is MonoBehaviour mb)
         {
-            _currentInteractable = interactable;
-            IsInteracting = true;
+            _currentLabel = mb.GetComponent<InteractionLabel>();
+            _currentLabel?.SetInUse(true);
         }
     }
 
     private void EndInteraction(IInteractable interactable)
     {
         interactable.EndInteraction();
+
+        _currentLabel?.SetInUse(false);
+        _currentLabel = null;
         _currentInteractable = null;
         IsInteracting = false;
     }

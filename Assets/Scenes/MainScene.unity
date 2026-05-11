@@ -14567,6 +14567,50 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8b97959d43c087346812a6f9f93ee1be, type: 2}
+    - target: {fileID: 6928692066184602748, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928692066184602748, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[1].id
+      value: active
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928692066184602748, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[0].prompt
+      value: Take Wheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928692066184602748, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[1].prompt
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928692066184602748, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[0].visible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928692066184602748, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[1].visible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924320379226895245, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924320379226895245, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[1].id
+      value: active
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924320379226895245, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[0].prompt
+      value: Watch telescope
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924320379226895245, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[1].prompt
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924320379226895245, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: states.Array.data[1].visible
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
