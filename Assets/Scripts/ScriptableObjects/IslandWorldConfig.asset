@@ -20,6 +20,9 @@ MonoBehaviour:
   - label: RuinsIsland
     center: {x: 108.1, y: 69.7}
     radius: 100
+  - label: Ship
+    center: {x: -2.3, y: -51.8}
+    radius: 100
   allowedRects: []
   allowedCircles: []
   manualIslands: []
