@@ -27107,7 +27107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repairData: {fileID: 11400000, guid: 4c110c3fa40d16f4b8e81b04bc4e0999, type: 2}
   shipRepairLevel: {fileID: 11400000, guid: 80cfd777f25a176438065bed44d88f48, type: 2}
-  repairLevel: 2
   mainScene:
     _sceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
     _sceneName: MainScene
