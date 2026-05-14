@@ -72,6 +72,7 @@ public class PlayerCamera : MonoBehaviour
         if (PauseManager.Instance != null && PauseManager.Instance.IsPaused)
             return;
         if (IsLocked) return;
+        if (Cursor.lockState != CursorLockMode.Locked) return;
 
         Vector2 targetLook = _input.LookInput * (_sensitivity * lookInputMultiplier);
 

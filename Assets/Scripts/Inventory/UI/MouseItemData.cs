@@ -43,11 +43,12 @@ public class MouseItemData : MonoBehaviour
 
         if (itemData.itemPrefab != null && playerDropPoint != null)
         {
+            Vector3 basePos = playerDropPoint.position + playerDropPoint.forward * 0.5f;
             for (int i = 0; i < amount; i++)
             {
                 Vector3 offset = Random.insideUnitSphere * 0.2f;
                 offset.y = 0f;
-                Instantiate(itemData.itemPrefab, playerDropPoint.position + offset, Quaternion.identity);
+                Instantiate(itemData.itemPrefab, basePos + offset, playerDropPoint.rotation);
             }
         }
         else if (itemData.itemPrefab != null)
