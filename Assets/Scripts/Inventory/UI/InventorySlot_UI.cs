@@ -10,7 +10,9 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private InventorySlot assignedInventorySlot;
 
     private Button button;
-    private float _lastClickTime;
+
+    private static InventorySlot_UI _lastClickedSlot;
+    private static float _lastClickTime;
     private const float DoubleClickThreshold = 0.3f;
 
     public InventorySlot AssignedInventorySlot => assignedInventorySlot;
@@ -79,7 +81,8 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
         float now = Time.unscaledTime;
-        bool isDoubleClick = (now - _lastClickTime) <= DoubleClickThreshold;
+        bool isDoubleClick = (_lastClickedSlot == this) && (now - _lastClickTime) <= DoubleClickThreshold;
+        _lastClickedSlot = this;
         _lastClickTime = now;
 
         if (isDoubleClick && RepairDepositRouter.HasActiveHandler)
