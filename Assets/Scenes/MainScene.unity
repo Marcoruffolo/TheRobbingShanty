@@ -365,6 +365,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aab1914406b06644b6b7b68adeea178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &52221550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5577473639541180888, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+  m_PrefabInstance: {fileID: 52221548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &108050654
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +840,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7243996135236938899, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 52221549}
     - target: {fileID: 7266899308225286800, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -963,6 +972,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8334666456325688049, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: playerDropPoint
+      value: 
+      objectReference: {fileID: 52221550}
+    - target: {fileID: 8633294669695249625, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 52221549}
     - target: {fileID: 8991576363474965235, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

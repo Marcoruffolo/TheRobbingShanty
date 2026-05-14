@@ -92,7 +92,7 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
                 ? mouseItem.AssignedInventorySlot
                 : assignedInventorySlot;
 
-            if (depositSource?.ItemData != null && RepairDepositRouter.TryDeposit(depositSource))
+            if (depositSource?.ItemData != null && RepairDepositRouter.TryDeposit(depositSource, ParentDisplay.InventorySystem))
             {
                 if (depositSource == mouseItem?.AssignedInventorySlot)
                 {
