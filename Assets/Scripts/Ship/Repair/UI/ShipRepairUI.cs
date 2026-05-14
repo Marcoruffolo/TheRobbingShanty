@@ -7,6 +7,7 @@ public class ShipRepairUI : MonoBehaviour, IItemDepositHandler
     [SerializeField] private GameObject panel;
     [SerializeField] private List<ShipRepairSlotUI> slots;
     [SerializeField] private MouseItemData mouseItemData;
+    [SerializeField] private PlayerInventoryHolder playerInventory;
 
     public static UnityAction OnCloseRequested;
     public static UnityAction OnRepairCompleted;
@@ -99,7 +100,17 @@ public class ShipRepairUI : MonoBehaviour, IItemDepositHandler
         foreach (var slot in slots)
             if (slot.gameObject.activeSelf && !slot.IsFulfilled) return;
 
+        ReturnMouseItemToInventory();
         OnRepairCompleted?.Invoke();
         OnCloseRequested?.Invoke();
+    }
+
+    private void ReturnMouseItemToInventory()
+    {
+        var slot = mouseItemData.AssignedInventorySlot;
+        if (slot.ItemData == null) return;
+
+        if (playerInventory.AddToInventory(slot.ItemData, slot.StackSize))
+            mouseItemData.ClearSlot();
     }
 }

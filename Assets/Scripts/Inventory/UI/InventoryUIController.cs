@@ -13,20 +13,22 @@ public class InventoryUIController : MonoBehaviour
         playerBackpackPanel.gameObject.SetActive(false);  
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
         InventoryHolder.OnDynamicInventoryDisplayRequested += DisplayInventory;
         PlayerInventoryHolder.OnPlayerBackpackDisplayRequested += DisplayPlayerBackpack;
         InventoryHolder.OnDynamicInventoryCloseRequested += CloseInventory;
         PlayerInventoryHolder.OnPlayerBackpackCloseRequested += ClosePlayerBackpack;
+        ShipRepairUI.OnRepairCompleted += CloseAllPanels;
     }
 
-    private void OnDisable() 
+    private void OnDisable()
     {
         InventoryHolder.OnDynamicInventoryDisplayRequested -= DisplayInventory;
         PlayerInventoryHolder.OnPlayerBackpackDisplayRequested -= DisplayPlayerBackpack;
         InventoryHolder.OnDynamicInventoryCloseRequested -= CloseInventory;
         PlayerInventoryHolder.OnPlayerBackpackCloseRequested -= ClosePlayerBackpack;
+        ShipRepairUI.OnRepairCompleted -= CloseAllPanels;
     }
 
     private void DisplayInventory(InventorySystem invToDisplay) 
@@ -49,9 +51,15 @@ public class InventoryUIController : MonoBehaviour
         chestPanel.gameObject.SetActive(false);
     }
 
-    private void ClosePlayerBackpack() 
+    private void ClosePlayerBackpack()
     {
         PlayerCamera.LockCursor(true);
+        playerBackpackPanel.gameObject.SetActive(false);
+    }
+
+    private void CloseAllPanels()
+    {
+        chestPanel.gameObject.SetActive(false);
         playerBackpackPanel.gameObject.SetActive(false);
     }
 

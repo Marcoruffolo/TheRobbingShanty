@@ -1908,6 +1908,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7243996135236938899, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 110885837}
     - target: {fileID: 7266899308225286800, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
