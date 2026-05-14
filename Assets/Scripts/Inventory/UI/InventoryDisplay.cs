@@ -10,6 +10,7 @@ public abstract class InventoryDisplay : MonoBehaviour
     protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
     public InventorySystem InventorySystem => inventorySystem;
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
+    public MouseItemData MouseItem => mouseInventoryItem;
 
     protected virtual void Start() 
     {

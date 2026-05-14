@@ -45,6 +45,8 @@ public class ShipRepairSlotUI : MonoBehaviour, IPointerClickHandler
         OnItemDeposited?.Invoke(this);
     }
 
+    public void Refresh() => RefreshDisplay();
+
     private void RefreshDisplay()
     {
         if (Requirement.itemData.Icon != null)

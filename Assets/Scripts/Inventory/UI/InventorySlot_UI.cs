@@ -10,6 +10,8 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private InventorySlot assignedInventorySlot;
 
     private Button button;
+    private float _lastClickTime;
+    private const float DoubleClickThreshold = 0.3f;
 
     public InventorySlot AssignedInventorySlot => assignedInventorySlot;
     public InventoryDisplay ParentDisplay { get; private set; }
@@ -19,7 +21,6 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
         ClearSlot();
 
         button = GetComponent<Button>();
-        button?.onClick.AddListener(OnUISlotClick);
 
         ParentDisplay = transform.parent.GetComponent<InventoryDisplay>();
     }
@@ -72,6 +73,40 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             ParentDisplay.SlotRightClicked(this);
+            return;
         }
+
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        float now = Time.unscaledTime;
+        bool isDoubleClick = (now - _lastClickTime) <= DoubleClickThreshold;
+        _lastClickTime = now;
+
+        if (isDoubleClick && RepairDepositRouter.HasActiveHandler)
+        {
+            MouseItemData mouseItem = ParentDisplay.MouseItem;
+            InventorySlot depositSource = mouseItem?.AssignedInventorySlot.ItemData != null
+                ? mouseItem.AssignedInventorySlot
+                : assignedInventorySlot;
+
+            if (depositSource?.ItemData != null && RepairDepositRouter.TryDeposit(depositSource))
+            {
+                if (depositSource == mouseItem?.AssignedInventorySlot)
+                {
+                    if (depositSource.StackSize <= 0)
+                        mouseItem.ClearSlot();
+                    else
+                        mouseItem.itemCount.text = depositSource.StackSize.ToString();
+                }
+                else
+                {
+                    UpdateUISlot();
+                    ParentDisplay.InventorySystem?.OnInventorySlotChanged?.Invoke(assignedInventorySlot);
+                }
+                return;
+            }
+        }
+
+        ParentDisplay.SlotClicked(this);
     }
 }

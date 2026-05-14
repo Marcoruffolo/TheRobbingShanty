@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ShipRepairUI : MonoBehaviour
+public class ShipRepairUI : MonoBehaviour, IItemDepositHandler
 {
     [SerializeField] private GameObject panel;
     [SerializeField] private List<ShipRepairSlotUI> slots;
@@ -33,10 +33,8 @@ public class ShipRepairUI : MonoBehaviour
     private void Open(ShipRepairData data)
     {
         _repairData = data;
-        foreach (var req in _repairData.requirements)
-            req.Deposited = 0;
-
         panel.SetActive(true);
+        RepairDepositRouter.Register(this);
 
         for (int i = 0; i < slots.Count; i++)
         {
@@ -58,8 +56,42 @@ public class ShipRepairUI : MonoBehaviour
         foreach (var slot in slots)
             slot.OnItemDeposited -= CheckRepairComplete;
 
+        RepairDepositRouter.Unregister();
         panel.SetActive(false);
         _repairData = null;
+    }
+
+    public bool TryDeposit(InventorySlot sourceSlot)
+    {
+        if (_repairData == null || sourceSlot?.ItemData == null) return false;
+
+        foreach (var req in _repairData.requirements)
+        {
+            if (req.itemData != sourceSlot.ItemData) continue;
+            if (req.Deposited >= req.requiredAmount) continue;
+
+            int toDeposit = Mathf.Min(sourceSlot.StackSize, req.requiredAmount - req.Deposited);
+            if (toDeposit <= 0) continue;
+
+            sourceSlot.RemoveFromStack(toDeposit);
+            if (sourceSlot.StackSize <= 0) sourceSlot.ClearSlot();
+
+            req.Deposited += toDeposit;
+
+            foreach (var slotUI in slots)
+            {
+                if (slotUI.gameObject.activeSelf && slotUI.Requirement == req)
+                {
+                    slotUI.Refresh();
+                    break;
+                }
+            }
+
+            CheckRepairComplete(null);
+            return true;
+        }
+
+        return false;
     }
 
     private void CheckRepairComplete(ShipRepairSlotUI _)
