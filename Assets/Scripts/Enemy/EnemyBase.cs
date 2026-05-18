@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    [Header("SOAP — Base")]
+    [Header("SOAP - Base")]
     [SerializeField] protected SOVariableFloat enemyHealth;
     [SerializeField] protected SOVariableFloat enemySpeed;
     [SerializeField] protected VoidGameEvent onEnemyDeath;
@@ -12,6 +12,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected EnemyFOV Fov;
     protected Animator Animator;
     protected bool IsDead;
+
+    private float _currentHealth;
 
     protected static readonly int HashSpeed = Animator.StringToHash("Speed");
     protected static readonly int HashAttack = Animator.StringToHash("Attack");
@@ -25,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        enemyHealth.Value = 100f;
+        _currentHealth = enemyHealth.Value;
         Agent.speed = enemySpeed.Value;
         IsDead = false;
     }
@@ -33,9 +35,9 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(float amount)
     {
         if (IsDead) return;
-        enemyHealth.Value = Mathf.Max(0f, enemyHealth.Value - amount);
-        Debug.Log($"[{gameObject.name}] HP: {enemyHealth.Value}");
-        if (enemyHealth.Value <= 0f) Die();
+        _currentHealth = Mathf.Max(0f, _currentHealth - amount);
+        Debug.Log($"[{gameObject.name}] HP: {_currentHealth}");
+        if (_currentHealth <= 0f) Die();
     }
 
     protected virtual void Die()

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: {fileID: 11400000, guid: ff1203a43b4144d4b958028efadeac16, type: 2}
-  radius: 0.5
+  radius: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256

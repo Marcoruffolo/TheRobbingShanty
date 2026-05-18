@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SwordHitbox : MonoBehaviour
 {
-    [Header("SOAP — Variables")]
+    [Header("SOAP - Variables")]
     [SerializeField] private SOVariableFloat playerDamage;
 
     [Header("Config")]
@@ -16,7 +16,6 @@ public class SwordHitbox : MonoBehaviour
     {
         _isActive = true;
         _hitThisSwing = false;
-        Debug.Log("[SwordHitbox] Activado");
     }
 
     public void DisableHitbox()
@@ -37,7 +36,7 @@ public class SwordHitbox : MonoBehaviour
 
             _hitThisSwing = true;
             enemy.TakeDamage(playerDamage.Value);
-            Debug.Log($"[SwordHitbox] Golpeó a {hit.name}");
+            Debug.Log($"[SwordHitbox] Golpeo a {hit.name} - daño: {playerDamage.Value}");
             break;
         }
     }
