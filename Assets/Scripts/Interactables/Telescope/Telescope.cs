@@ -132,9 +132,6 @@ public class TelescopeInteractable : MonoBehaviour, IInteractable
         if (BlockPlayerMovement.Instance != null)
             BlockPlayerMovement.Instance.FreePlayer();
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
         OnInteractionComplete?.Invoke(this);
     }
 
