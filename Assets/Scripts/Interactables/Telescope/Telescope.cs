@@ -117,8 +117,6 @@ public class TelescopeInteractable : MonoBehaviour, IInteractable
         if (BlockPlayerMovement.Instance != null)
             BlockPlayerMovement.Instance.ImmobilizePlayer();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void ExitTelescope()
