@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 8431497034569320935}
   - component: {fileID: 9040572170611413141}
   - component: {fileID: 2987352054511106232}
-  m_Layer: 0
+  - component: {fileID: 7660505463786774846}
+  - component: {fileID: 5033546303085318735}
+  m_Layer: 6
   m_Name: Cuchillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,6 +84,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7660505463786774846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911744085340127295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df40131f47967d74c988bd8eccc44501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemData: {fileID: 11400000, guid: 2b7d939d9e1fda842a57dfcce24c8dfe, type: 2}
+--- !u!114 &5033546303085318735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911744085340127295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33af8f0e47b6c64a9140f07b121ca60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Pick Up
 --- !u!1001 &215994727234487331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +161,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1209fc65098379d46be05881ae9b78c7, type: 3}
       propertyPath: m_Name
       value: Cuchillo model asset test 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1209fc65098379d46be05881ae9b78c7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
