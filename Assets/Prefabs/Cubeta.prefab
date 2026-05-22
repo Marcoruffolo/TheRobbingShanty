@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubeta model asset test 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: d1094495ae35f0544a7dbc6f090b3e16, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
