@@ -13443,7 +13443,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -13469,8 +13469,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721679709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.148, z: -52.3}
+  m_LocalRotation: {x: 0.20972097, y: 0, z: 0, w: 0.9777613}
+  m_LocalPosition: {x: 0, y: 7.48, z: -41.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14442,10 +14442,26 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4533998339177268183, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f1e1551c6b9a244484c8283755a554f, type: 2}
     - target: {fileID: 5120782932140037600, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 6301753146467745137, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f1e1551c6b9a244484c8283755a554f, type: 2}
+    - target: {fileID: 7625373095749573952, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f1e1551c6b9a244484c8283755a554f, type: 2}
+    - target: {fileID: 8745043348907213973, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f1e1551c6b9a244484c8283755a554f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
