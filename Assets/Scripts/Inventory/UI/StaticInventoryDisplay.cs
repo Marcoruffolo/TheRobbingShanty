@@ -6,7 +6,7 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private InventoryHolder inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
 
-    protected override void Start() 
+    protected override void Start()
     {
         base.Start();
 
@@ -19,6 +19,7 @@ public class StaticInventoryDisplay : InventoryDisplay
 
         AssignSlot(inventorySystem);
     }
+
     public override void AssignSlot(InventorySystem invToDisplay)
     {
         slotDictionary = new Dictionary<InventorySlot_UI, InventorySlot>();
@@ -35,13 +36,37 @@ public class StaticInventoryDisplay : InventoryDisplay
     public override void SlotRightClicked(InventorySlot_UI clickedUISlot)
     {
         if (clickedUISlot.AssignedInventorySlot.ItemData == null) return;
- 
-        var playerHolder = inventoryHolder as PlayerInventoryHolder;
-        if (playerHolder == null) return;
- 
+
+        if (RepairDepositRouter.IsDepositMode)
+        {
+            if (RepairDepositRouter.TryDeposit(clickedUISlot.AssignedInventorySlot, inventorySystem))
+            {
+                clickedUISlot.UpdateUISlot();
+                inventorySystem.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+            }
+            return;
+        }
+
+        var playerHolder = PlayerInventoryHolder.Instance;
+
+        if (RepairDepositRouter.HasActiveHandler)
+        {
+            if (playerHolder != null && !playerHolder.IsBackpackOpen)
+            {
+                if (RepairDepositRouter.TryDeposit(clickedUISlot.AssignedInventorySlot, inventorySystem))
+                {
+                    clickedUISlot.UpdateUISlot();
+                    inventorySystem.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+                }
+            }
+            return;
+        }
+
+        if (playerHolder == null || !playerHolder.IsBackpackOpen) return;
+
         var itemData = clickedUISlot.AssignedInventorySlot.ItemData;
         int amount = clickedUISlot.AssignedInventorySlot.StackSize;
- 
+
         if (playerHolder.SecondaryInventorySystem.AddToInventory(itemData, amount))
         {
             clickedUISlot.AssignedInventorySlot.ClearSlot();

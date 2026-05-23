@@ -13,6 +13,7 @@ public static class RepairDepositRouter
     private static IItemDepositHandler _activeHandler;
 
     public static bool HasActiveHandler => _activeHandler != null;
+    public static bool IsDepositMode => _activeHandler != null && !(_activeHandler is IBidirectionalDepositHandler);
 
     public static void Register(IItemDepositHandler handler) => _activeHandler = handler;
     public static void Unregister() => _activeHandler = null;

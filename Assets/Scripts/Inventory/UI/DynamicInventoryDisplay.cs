@@ -45,7 +45,35 @@ public class DynamicInventoryDisplay : InventoryDisplay
         if (slotDictionary != null) slotDictionary.Clear();
     }
 
-    private void OnDisable() 
+    public override void SlotRightClicked(InventorySlot_UI clickedUISlot)
+    {
+        if (clickedUISlot.AssignedInventorySlot.ItemData == null) return;
+
+        if (RepairDepositRouter.HasActiveHandler)
+        {
+            if (RepairDepositRouter.TryDeposit(clickedUISlot.AssignedInventorySlot, inventorySystem))
+            {
+                clickedUISlot.UpdateUISlot();
+                inventorySystem?.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+            }
+            return;
+        }
+
+        var playerHolder = PlayerInventoryHolder.Instance;
+        if (playerHolder == null) return;
+
+        var itemData = clickedUISlot.AssignedInventorySlot.ItemData;
+        int amount = clickedUISlot.AssignedInventorySlot.StackSize;
+
+        if (playerHolder.PrimaryInventorySystem.AddToInventory(itemData, amount))
+        {
+            clickedUISlot.AssignedInventorySlot.ClearSlot();
+            clickedUISlot.UpdateUISlot();
+            inventorySystem?.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+        }
+    }
+
+    private void OnDisable()
     {
         if(inventorySystem != null) inventorySystem.OnInventorySlotChanged -= UpdateSlot;
     }

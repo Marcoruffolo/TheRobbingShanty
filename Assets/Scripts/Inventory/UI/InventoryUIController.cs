@@ -66,7 +66,7 @@ public class InventoryUIController : MonoBehaviour, IBidirectionalDepositHandler
         if (sourceSystem == chestInv)
         {
             if (playerInventory == null) return false;
-            if (!playerInventory.AddToInventory(sourceSlot.ItemData, sourceSlot.StackSize)) return false;
+            if (!playerInventory.SecondaryInventorySystem.AddToInventory(sourceSlot.ItemData, sourceSlot.StackSize)) return false;
         }
         else
         {

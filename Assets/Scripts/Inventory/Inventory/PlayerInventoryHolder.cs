@@ -7,8 +7,10 @@ public class PlayerInventoryHolder : InventoryHolder
     [SerializeField] protected int secondaryInventorySize;
     [SerializeField] protected InventorySystem secondaryInventorySystem;
     [SerializeField] private SOInventorySaveData inventorySaveData;
-    bool inventoryOpen = false;
+    public bool IsBackpackOpen { get; private set; }
     public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
+
+    public static PlayerInventoryHolder Instance { get; private set; }
 
     public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
     public static UnityAction OnPlayerBackpackCloseRequested;
@@ -24,6 +26,7 @@ public class PlayerInventoryHolder : InventoryHolder
 
     protected override void Awake()
     {
+        Instance = this;
         base.Awake();
         secondaryInventorySystem = new InventorySystem(secondaryInventorySize);
         inventorySaveData?.Restore(primaryInventorySystem, secondaryInventorySystem);
@@ -46,15 +49,15 @@ public class PlayerInventoryHolder : InventoryHolder
 
     void Update()
     {
-        if (Keyboard.current.tabKey.wasPressedThisFrame && !inventoryOpen)
+        if (Keyboard.current.tabKey.wasPressedThisFrame && !IsBackpackOpen)
         {
             OnPlayerBackpackDisplayRequested?.Invoke(secondaryInventorySystem);
-            inventoryOpen = true;
+            IsBackpackOpen = true;
         }
-        else if (Keyboard.current.tabKey.wasPressedThisFrame && inventoryOpen)
+        else if (Keyboard.current.tabKey.wasPressedThisFrame && IsBackpackOpen)
         {
             OnPlayerBackpackCloseRequested?.Invoke();
-            inventoryOpen = false;
+            IsBackpackOpen = false;
         }
 
         HandleHotbarInput();
