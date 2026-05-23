@@ -19,6 +19,12 @@ public class ShipRepairUI : MonoBehaviour, IItemDepositHandler
         panel.SetActive(false);
     }
 
+    private void Start()
+    {
+        if (playerInventory == null)
+            playerInventory = PlayerInventoryHolder.Instance;
+    }
+
     private void OnEnable()
     {
         ShipRepairInteractable.OnRepairUIOpened += Open;

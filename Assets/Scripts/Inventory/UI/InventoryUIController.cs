@@ -8,10 +8,16 @@ public class InventoryUIController : MonoBehaviour, IBidirectionalDepositHandler
     [SerializeField] private PlayerInventoryHolder playerInventory;
 
     
-    private void Awake() 
+    private void Awake()
     {
         chestPanel.gameObject.SetActive(false);
-        playerBackpackPanel.gameObject.SetActive(false);  
+        playerBackpackPanel.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (playerInventory == null)
+            playerInventory = PlayerInventoryHolder.Instance;
     }
 
     private void OnEnable()
@@ -50,8 +56,9 @@ public class InventoryUIController : MonoBehaviour, IBidirectionalDepositHandler
     private void CloseInventory()
     {
         RepairDepositRouter.Unregister();
-        PlayerCamera.LockCursor(true);
         chestPanel.gameObject.SetActive(false);
+        if (!playerBackpackPanel.gameObject.activeSelf)
+            PlayerCamera.LockCursor(true);
     }
 
     public bool TryDeposit(InventorySlot sourceSlot) => TryDeposit(sourceSlot, null);
@@ -66,7 +73,10 @@ public class InventoryUIController : MonoBehaviour, IBidirectionalDepositHandler
         if (sourceSystem == chestInv)
         {
             if (playerInventory == null) return false;
-            if (!playerInventory.SecondaryInventorySystem.AddToInventory(sourceSlot.ItemData, sourceSlot.StackSize)) return false;
+            var target = playerInventory.IsBackpackOpen
+                ? playerInventory.SecondaryInventorySystem
+                : playerInventory.PrimaryInventorySystem;
+            if (!target.AddToInventory(sourceSlot.ItemData, sourceSlot.StackSize)) return false;
         }
         else
         {
@@ -79,8 +89,9 @@ public class InventoryUIController : MonoBehaviour, IBidirectionalDepositHandler
 
     private void ClosePlayerBackpack()
     {
-        PlayerCamera.LockCursor(true);
         playerBackpackPanel.gameObject.SetActive(false);
+        if (!chestPanel.gameObject.activeSelf && !RepairDepositRouter.HasActiveHandler)
+            PlayerCamera.LockCursor(true);
     }
 
     private void CloseAllPanels()

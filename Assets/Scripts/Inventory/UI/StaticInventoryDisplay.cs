@@ -10,6 +10,9 @@ public class StaticInventoryDisplay : InventoryDisplay
     {
         base.Start();
 
+        if (inventoryHolder == null)
+            inventoryHolder = PlayerInventoryHolder.Instance;
+
         if (inventoryHolder != null)
         {
             inventorySystem = inventoryHolder.PrimaryInventorySystem;
@@ -35,25 +38,19 @@ public class StaticInventoryDisplay : InventoryDisplay
 
     public override void SlotRightClicked(InventorySlot_UI clickedUISlot)
     {
-        if (clickedUISlot.AssignedInventorySlot.ItemData == null) return;
+        var mouseSlot = MouseItem?.AssignedInventorySlot;
+        bool usingMouse = mouseSlot?.ItemData != null;
+        var source = usingMouse ? mouseSlot : clickedUISlot.AssignedInventorySlot;
 
-        if (RepairDepositRouter.IsDepositMode)
-        {
-            if (RepairDepositRouter.TryDeposit(clickedUISlot.AssignedInventorySlot, inventorySystem))
-            {
-                clickedUISlot.UpdateUISlot();
-                inventorySystem.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
-            }
-            return;
-        }
-
-        var playerHolder = PlayerInventoryHolder.Instance;
+        if (source.ItemData == null) return;
 
         if (RepairDepositRouter.HasActiveHandler)
         {
-            if (playerHolder != null && !playerHolder.IsBackpackOpen)
+            if (RepairDepositRouter.TryDeposit(source, inventorySystem))
             {
-                if (RepairDepositRouter.TryDeposit(clickedUISlot.AssignedInventorySlot, inventorySystem))
+                if (usingMouse)
+                    MouseItem.ClearSlot();
+                else
                 {
                     clickedUISlot.UpdateUISlot();
                     inventorySystem.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
@@ -62,6 +59,9 @@ public class StaticInventoryDisplay : InventoryDisplay
             return;
         }
 
+        if (usingMouse) return;
+
+        var playerHolder = PlayerInventoryHolder.Instance;
         if (playerHolder == null || !playerHolder.IsBackpackOpen) return;
 
         var itemData = clickedUISlot.AssignedInventorySlot.ItemData;

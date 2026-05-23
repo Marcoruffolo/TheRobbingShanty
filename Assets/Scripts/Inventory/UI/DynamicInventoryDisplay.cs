@@ -5,7 +5,8 @@ using UnityEngine;
 public class DynamicInventoryDisplay : InventoryDisplay
 {
     [SerializeField] protected InventorySlot_UI slotPrefab;
-    protected override void Start() 
+
+    protected override void Start()
     {
         base.Start();
     }
@@ -35,29 +36,30 @@ public class DynamicInventoryDisplay : InventoryDisplay
         }
     }
 
-    private void ClearSlots()
-    {
-        foreach (var item in transform.Cast<Transform>())
-        {
-            Destroy(item.gameObject);
-        }
-
-        if (slotDictionary != null) slotDictionary.Clear();
-    }
-
     public override void SlotRightClicked(InventorySlot_UI clickedUISlot)
     {
-        if (clickedUISlot.AssignedInventorySlot.ItemData == null) return;
+        var mouseSlot = MouseItem?.AssignedInventorySlot;
+        bool usingMouse = mouseSlot?.ItemData != null;
+        var source = usingMouse ? mouseSlot : clickedUISlot.AssignedInventorySlot;
+
+        if (source.ItemData == null) return;
 
         if (RepairDepositRouter.HasActiveHandler)
         {
-            if (RepairDepositRouter.TryDeposit(clickedUISlot.AssignedInventorySlot, inventorySystem))
+            if (RepairDepositRouter.TryDeposit(source, inventorySystem))
             {
-                clickedUISlot.UpdateUISlot();
-                inventorySystem?.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+                if (usingMouse)
+                    MouseItem.ClearSlot();
+                else
+                {
+                    clickedUISlot.UpdateUISlot();
+                    inventorySystem?.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
+                }
             }
             return;
         }
+
+        if (usingMouse) return;
 
         var playerHolder = PlayerInventoryHolder.Instance;
         if (playerHolder == null) return;
@@ -71,6 +73,16 @@ public class DynamicInventoryDisplay : InventoryDisplay
             clickedUISlot.UpdateUISlot();
             inventorySystem?.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
         }
+    }
+
+    private void ClearSlots()
+    {
+        foreach (var item in transform.Cast<Transform>())
+        {
+            Destroy(item.gameObject);
+        }
+
+        if (slotDictionary != null) slotDictionary.Clear();
     }
 
     private void OnDisable()
