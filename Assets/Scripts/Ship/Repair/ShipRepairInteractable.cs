@@ -28,16 +28,18 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
     {
         ShipRepairUI.OnCloseRequested += HandleCloseRequested;
         ShipRepairUI.OnRepairCompleted += HandleRepairCompleted;
+        ShipRepairUI.OnReturnWithoutRepair += HandleReturnWithoutRepair;
     }
 
     private void OnDisable()
     {
         ShipRepairUI.OnCloseRequested -= HandleCloseRequested;
         ShipRepairUI.OnRepairCompleted -= HandleRepairCompleted;
+        ShipRepairUI.OnReturnWithoutRepair -= HandleReturnWithoutRepair;
     }
 
     private void HandleCloseRequested() => _interactor?.RequestEndInteraction();
-
+    private void HandleReturnWithoutRepair() => LoadMainScene();
     private void HandleRepairCompleted()
     {
         _repairedShips.Add(repairData.name);
