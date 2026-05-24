@@ -44,7 +44,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         IsDead = true;
         onEnemyDeath.Raise();
-        Destroy(gameObject, 1.5f);
+        //Destroy(gameObject, 10f);
     }
 
     public abstract void OnHitFrame();

@@ -226,6 +226,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5387208305959634254}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7816127424666931413}
     - targetCorrespondingSourceObject: {fileID: -8381929382957166312, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6321348211283323897}
@@ -1180,6 +1183,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7816127424666931413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072821102067579324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f05d4cb53e971f4d827aa231f0ff9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6dfd5aae631aa454083ff0f7913f2649, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4715233313032665468}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3705198658625987550 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6670173467792300237, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
@@ -1281,6 +1312,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!95 &4715233313032665468 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+  m_PrefabInstance: {fileID: 1154410375348143341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4766863774112907699 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3305071179189238434, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
