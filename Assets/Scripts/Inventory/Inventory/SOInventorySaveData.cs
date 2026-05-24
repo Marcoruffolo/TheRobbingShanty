@@ -46,6 +46,12 @@ public class SOInventorySaveData : ScriptableObject
         }
     }
 
+    //para que no se guarde nada al cerrar el juego y porque me esta rompiendo las pelotas
+    public void OnDisable()
+    {
+        Clear();
+    }
+
     public void Clear()
     {
         primarySlots.Clear();
