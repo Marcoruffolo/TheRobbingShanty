@@ -9,8 +9,13 @@ public class ShipRepairUI : MonoBehaviour, IItemDepositHandler
     [SerializeField] private MouseItemData mouseItemData;
     [SerializeField] private PlayerInventoryHolder playerInventory;
 
+    [SerializeField] private SOVariableFloat durability;
+    [SerializeField] private float unrepairedPenalty;
+
     public static UnityAction OnCloseRequested;
     public static UnityAction OnRepairCompleted;
+
+    public static UnityAction OnReturnWithoutRepair;
 
     private ShipRepairData _repairData;
 
@@ -118,5 +123,13 @@ public class ShipRepairUI : MonoBehaviour, IItemDepositHandler
 
         if (playerInventory.AddToInventory(slot.ItemData, slot.StackSize))
             mouseItemData.ClearSlot();
+    }
+
+    public void ReturnWithoutRepair()
+    {
+        ReturnMouseItemToInventory();
+        durability?.Add(-unrepairedPenalty);
+        OnCloseRequested?.Invoke();
+        OnReturnWithoutRepair?.Invoke();
     }
 }
