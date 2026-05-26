@@ -43,8 +43,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         IsDead = true;
-        onEnemyDeath.Raise();
-        //Destroy(gameObject, 10f);
+        GetComponent<EnemyRagdoll>()?.Activate();
     }
 
     public abstract void OnHitFrame();

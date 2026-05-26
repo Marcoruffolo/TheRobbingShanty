@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     Animator animator;
     AudioSource audioSource;
+    PlayerInputHandler inputHandler;
 
     void Awake()
     {
@@ -15,19 +14,29 @@ public class PlayerCombat : MonoBehaviour
 
     void Start()
     {
-        PlayerInputHandler.Instance.OnAttack += Attack;
+        inputHandler = PlayerInputHandler.Instance;
+        if (inputHandler == null)
+        {
+            Debug.LogError("[PlayerCombat] PlayerInputHandler instance not found.");
+            return;
+        }
+        inputHandler.OnAttack += Attack;
     }
 
     void OnDestroy()
     {
-        if (PlayerInputHandler.Instance != null)
-            PlayerInputHandler.Instance.OnAttack -= Attack;
+        if (inputHandler != null)
+            inputHandler.OnAttack -= Attack;
     }
 
     void Update()
     {
         SetAnimations();
     }
+
+    // ---------- //
+    // ANIMATIONS //
+    // ---------- //
 
     public const string IDLE = "Idle";
     public const string ATTACK1 = "Attack 1";
@@ -48,12 +57,15 @@ public class PlayerCombat : MonoBehaviour
             ChangeAnimationState(IDLE);
     }
 
+    // ------------------- //
+    // ATTACKING BEHAVIOUR //
+    // ------------------- //
+
     [Header("Attacking")]
     public float attackDistance = 3f;
     public float attackDelay = 0.4f;
     public float attackSpeed = 1f;
     public int attackDamage = 1;
-    public LayerMask attackLayer;
 
     public AudioClip swordSwing;
     public AudioClip hitSound;
@@ -72,8 +84,11 @@ public class PlayerCombat : MonoBehaviour
         Invoke(nameof(ResetAttack), attackSpeed);
         Invoke(nameof(AttackRaycast), attackDelay);
 
-        audioSource.pitch = Random.Range(0.9f, 1.1f);
-        audioSource.PlayOneShot(swordSwing);
+        if (swordSwing != null)
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(swordSwing);
+        }
 
         if (attackCount == 0)
         {
@@ -96,18 +111,18 @@ public class PlayerCombat : MonoBehaviour
     void AttackRaycast()
     {
         Camera cam = Camera.main;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance))
         {
-            HitTarget(hit.point);
-
-            if (hit.transform.TryGetComponent<Actor>(out Actor T))
-                T.TakeDamage(attackDamage);
+            EnemyBase enemy = hit.transform.GetComponentInParent<EnemyBase>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+                if (hitSound != null)
+                {
+                    audioSource.pitch = 1f;
+                    audioSource.PlayOneShot(hitSound);
+                }
+            }
         }
-    }
-
-    void HitTarget(Vector3 pos)
-    {
-        audioSource.pitch = 1;
-        audioSource.PlayOneShot(hitSound);
     }
 }

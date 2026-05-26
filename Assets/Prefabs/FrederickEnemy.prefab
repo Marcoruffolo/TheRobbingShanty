@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5052205658852905871}
   - component: {fileID: 4862074429155669697}
   - component: {fileID: 2322084229238753198}
+  - component: {fileID: 5453310496894564905}
   m_Layer: 8
   m_Name: FrederickEnemy
   m_TagString: Untagged
@@ -33,7 +34,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1697843194376200966}
-  - {fileID: 7560357443889246332}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &5052205658852905871
@@ -97,61 +97,18 @@ MonoBehaviour:
   attackRange: 1.8
   cooldownMin: 0.5
   cooldownMax: 0.5
---- !u!1 &5667059876614371265
-GameObject:
+--- !u!114 &5453310496894564905
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7560357443889246332}
-  - component: {fileID: 3170115558078149121}
-  m_Layer: 10
-  m_Name: EnemyCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7560357443889246332
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5667059876614371265}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.901, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6598208764159314552}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &3170115558078149121
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5667059876614371265}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_GameObject: {fileID: 4568512523534562660}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465fc7979119bc3438a8ecb856451d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1154410375348143341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,6 +156,34 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005944036578798356, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005944036578798356, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005944036578798356, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005944036578798356, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005944036578798356, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -8005944036578798356, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -972767680366453685, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 21596307981032549, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
       propertyPath: m_Layer
@@ -1165,9 +1150,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.72629
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.033211086, z: 0}
 --- !u!114 &7816127424666931413
 MonoBehaviour:
   m_ObjectHideFlags: 0
