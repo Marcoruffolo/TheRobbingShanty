@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 
 /// Controla el panel de opciones (sensibilidad, música, efectos).
@@ -14,11 +15,17 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TMP_Text valueSensitivity;
 
     [Header("Audio")]
+    [SerializeField] private Slider sliderGeneral;
+    [SerializeField] private TMP_Text valueGeneral;
+    [SerializeField] private AudioMixerGroup GeneralMixer;
+
     [SerializeField] private Slider sliderMusic;
     [SerializeField] private TMP_Text valueMusic;
+    [SerializeField] private AudioMixerGroup MusicMixer;
 
     [SerializeField] private Slider sliderSFX;
     [SerializeField] private TMP_Text valueSFX;
+    [SerializeField] private AudioMixerGroup SFXMixer;
 
     [Header("Botones")]
     [SerializeField] private Button btnSave;
@@ -64,6 +71,12 @@ public class OptionsUI : MonoBehaviour
             valueSensitivity.text = value.ToString("F1");
     }
 
+    private void OnGeneralChanged(float value)
+    {
+        if (valueGeneral != null)
+            valueGeneral.text = Mathf.RoundToInt(value * 100) + "%";
+    }
+
     private void OnMusicChanged(float value)
     {
         if (valueMusic != null)
@@ -81,6 +94,7 @@ public class OptionsUI : MonoBehaviour
         OnSensitivityChanged(sliderSensitivity.value);
         OnMusicChanged(sliderMusic.value);
         OnSFXChanged(sliderSFX.value);
+        OnGeneralChanged(sliderGeneral.value);
     }
 
 

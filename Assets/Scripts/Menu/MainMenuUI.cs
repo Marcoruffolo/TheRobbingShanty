@@ -21,7 +21,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private OptionsUI optionsUI;
 
     [Header("Nombre de la escena de juego")]
-    [SerializeField] private string gameSceneName = "Game";
+    [SerializeField] private SceneField gameScene;
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnPlay()
     {
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(gameScene);
     }
 
     private void OnOptions()
