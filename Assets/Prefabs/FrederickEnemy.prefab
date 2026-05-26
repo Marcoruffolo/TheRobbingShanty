@@ -94,7 +94,8 @@ MonoBehaviour:
   enemySpeed: {fileID: 11400000, guid: e6249e0f70d1f96459a2d80cd035f3cb, type: 2}
   onEnemyDeath: {fileID: 11400000, guid: 6dfd5aae631aa454083ff0f7913f2649, type: 2}
   enemyDamage: {fileID: 11400000, guid: 236c706fcfb9b314fbfb5f645353923e, type: 2}
-  attackRange: 1.8
+  attackRange: 2
+  keepDistance: 2
   cooldownMin: 0.5
   cooldownMax: 0.5
 --- !u!114 &5453310496894564905

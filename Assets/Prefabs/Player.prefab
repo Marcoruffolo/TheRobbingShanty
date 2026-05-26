@@ -1254,9 +1254,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 83.295
       objectReference: {fileID: 0}
+    - target: {fileID: -4780072770720950627, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4780072770720950627, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1182ed61ddeb1b44aae88d1bfadfb2f9, type: 2}
+    - target: {fileID: -3901992563441801604, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1260204188717088156, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1260204188717088156, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1182ed61ddeb1b44aae88d1bfadfb2f9, type: 2}
     - target: {fileID: 919132149155446097, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901893356585517859, guid: fd1fe86974e01f246bc6ba4f7a293b6c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

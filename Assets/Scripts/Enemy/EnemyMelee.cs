@@ -5,11 +5,12 @@ public class EnemyMelee : EnemyBase
 {
     private enum State { Idle, Chase, Attack }
 
-    [Header("SOAP — Melee")]
+    [Header("SOAP ï¿½ Melee")]
     [SerializeField] private SOVariableFloat enemyDamage;
 
     [Header("Config")]
     [SerializeField] private float attackRange = 1.8f;
+    [SerializeField] private float keepDistance = 3f;
     [SerializeField] private float cooldownMin = 0.3f;
     [SerializeField] private float cooldownMax = 0.8f;
 
@@ -23,6 +24,7 @@ public class EnemyMelee : EnemyBase
         base.Start();
         var player = GameObject.FindWithTag("Player");
         _playerHealth = player.GetComponent<PlayerHealth>();
+        Agent.stoppingDistance = keepDistance;
         ScheduleNextAttack();
     }
 
