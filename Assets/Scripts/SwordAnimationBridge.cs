@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class SwordAnimationBridge : MonoBehaviour
 {
@@ -23,4 +23,4 @@ public class SwordAnimationBridge : MonoBehaviour
         Debug.Log("[Bridge] Evento Fin Ataque recibido");
         _playerCombat?.OnAttackEnd();
     }
-}
+}*/

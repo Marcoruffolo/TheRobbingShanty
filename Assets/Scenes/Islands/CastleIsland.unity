@@ -1836,6 +1836,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6393823112069788494, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393823112069788494, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393823112069788494, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393823112069788494, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393823112069788494, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6611266527357631156, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -31424,6 +31444,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 211702671}
     m_Modifications:
+    - target: {fileID: 1751680382702768553, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 5334228485563152753, guid: 0134bdc80242c974b88f68d7bb298ed9, type: 3}
     - target: {fileID: 5577473639541180888, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.8281708
@@ -31480,7 +31504,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

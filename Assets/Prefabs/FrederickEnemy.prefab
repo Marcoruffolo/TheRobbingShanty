@@ -95,8 +95,8 @@ MonoBehaviour:
   onEnemyDeath: {fileID: 11400000, guid: 6dfd5aae631aa454083ff0f7913f2649, type: 2}
   enemyDamage: {fileID: 11400000, guid: 236c706fcfb9b314fbfb5f645353923e, type: 2}
   attackRange: 1.8
-  cooldownMin: 0.3
-  cooldownMax: 0.8
+  cooldownMin: 0.5
+  cooldownMax: 0.5
 --- !u!1 &5667059876614371265
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,9 +220,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8765265320631104054}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5387208305959634254}
@@ -1148,18 +1145,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b6d3483c9394104bad0a1aca6a1be2f, type: 3}
   m_PrefabInstance: {fileID: 1154410375348143341}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8765265320631104054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072821102067579324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4cceafa8b46ee4b88dcebdbeb5b3b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &5387208305959634254
 CapsuleCollider:
   m_ObjectHideFlags: 0

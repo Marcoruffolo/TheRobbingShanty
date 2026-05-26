@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class SwordCombat : MonoBehaviour
 {
     [Header("SOAP — Events")]
     [SerializeField] private VoidGameEvent onPlayerAttack;
