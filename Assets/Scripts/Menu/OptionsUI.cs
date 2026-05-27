@@ -3,11 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
 
-
-/// Controla el panel de opciones (sensibilidad, música, efectos).
-/// Funciona tanto en el menú principal como en el menú de pausa.
-/// Asigná los sliders y textos desde el Inspector.
-
 public class OptionsUI : MonoBehaviour
 {
     [Header("Sensibilidad")]
@@ -15,17 +10,16 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TMP_Text valueSensitivity;
 
     [Header("Audio")]
+    [SerializeField] private AudioMixer audioMixer;
+
     [SerializeField] private Slider sliderGeneral;
     [SerializeField] private TMP_Text valueGeneral;
-    [SerializeField] private AudioMixerGroup GeneralMixer;
 
     [SerializeField] private Slider sliderMusic;
     [SerializeField] private TMP_Text valueMusic;
-    [SerializeField] private AudioMixerGroup MusicMixer;
 
     [SerializeField] private Slider sliderSFX;
     [SerializeField] private TMP_Text valueSFX;
-    [SerializeField] private AudioMixerGroup SFXMixer;
 
     [Header("Botones")]
     [SerializeField] private Button btnSave;
@@ -43,6 +37,7 @@ public class OptionsUI : MonoBehaviour
     private void Start()
     {
         sliderSensitivity.onValueChanged.AddListener(OnSensitivityChanged);
+        sliderGeneral.onValueChanged.AddListener(OnGeneralChanged);
         sliderMusic.onValueChanged.AddListener(OnMusicChanged);
         sliderSFX.onValueChanged.AddListener(OnSFXChanged);
 
@@ -57,8 +52,9 @@ public class OptionsUI : MonoBehaviour
         if (GameSettings.Instance == null) return;
 
         sliderSensitivity.value = GameSettings.Instance.mouseSensitivity;
-        sliderMusic.value       = GameSettings.Instance.musicVolume;
-        sliderSFX.value         = GameSettings.Instance.sfxVolume;
+        sliderGeneral.value   = GameSettings.Instance.generalVolume;
+        sliderMusic.value     = GameSettings.Instance.musicVolume;
+        sliderSFX.value       = GameSettings.Instance.sfxVolume;
 
         UpdateLabels();
     }
@@ -74,19 +70,30 @@ public class OptionsUI : MonoBehaviour
     private void OnGeneralChanged(float value)
     {
         if (valueGeneral != null)
-            valueGeneral.text = Mathf.RoundToInt(value * 100) + "%";
+            valueGeneral.text = Mathf.RoundToInt(value + 80) + "%";
+            
+        audioMixer.SetFloat("General", value);
     }
 
     private void OnMusicChanged(float value)
     {
         if (valueMusic != null)
-            valueMusic.text = Mathf.RoundToInt(value * 100) + "%";
+            valueMusic.text = Mathf.RoundToInt(value + 80) + "%";
+            
+        audioMixer.SetFloat("Music", value);
     }
 
     private void OnSFXChanged(float value)
     {
         if (valueSFX != null)
-            valueSFX.text = Mathf.RoundToInt(value * 100) + "%";
+            valueSFX.text = Mathf.RoundToInt(value + 80) + "%";
+            
+        audioMixer.SetFloat("SFX", value);
+    }
+
+    public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
     }
 
     private void UpdateLabels()
@@ -113,4 +120,5 @@ public class OptionsUI : MonoBehaviour
     {
         OnBack?.Invoke();
     }
+
 }
