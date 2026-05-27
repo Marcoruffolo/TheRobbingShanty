@@ -113,10 +113,10 @@ public class PlayerCombat : MonoBehaviour
         Camera cam = Camera.main;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance))
         {
-            EnemyBase enemy = hit.transform.GetComponentInParent<EnemyBase>();
-            if (enemy != null)
+            IDamagable target = hit.transform.GetComponentInParent<IDamagable>();
+            if (target != null)
             {
-                enemy.TakeDamage(attackDamage);
+                target.TakeDamage(attackDamage);
                 if (hitSound != null)
                 {
                     audioSource.pitch = 1f;

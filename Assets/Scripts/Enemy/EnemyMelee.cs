@@ -5,7 +5,7 @@ public class EnemyMelee : EnemyBase
 {
     private enum State { Idle, Chase, Attack }
 
-    [Header("SOAP � Melee")]
+    [Header("SOAP Melee")]
     [SerializeField] private SOVariableFloat enemyDamage;
 
     [Header("Config")]

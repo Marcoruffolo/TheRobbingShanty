@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour, IDamagable
 {
     [Header("SOAP - Base")]
     [SerializeField] protected SOVariableFloat enemyHealth;
@@ -32,10 +32,10 @@ public abstract class EnemyBase : MonoBehaviour
         IsDead = false;
     }
 
-    public virtual void TakeDamage(float amount)
+    public void TakeDamage(float damage)
     {
         if (IsDead) return;
-        _currentHealth = Mathf.Max(0f, _currentHealth - amount);
+        _currentHealth = Mathf.Max(0f, _currentHealth - damage);
         Debug.Log($"[{gameObject.name}] HP: {_currentHealth}");
         if (_currentHealth <= 0f) Die();
     }
