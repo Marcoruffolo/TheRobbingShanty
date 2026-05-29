@@ -34,10 +34,6 @@ public class PlayerCombat : MonoBehaviour
         SetAnimations();
     }
 
-    // ---------- //
-    // ANIMATIONS //
-    // ---------- //
-
     public const string IDLE = "Idle";
     public const string ATTACK1 = "Attack 1";
     public const string ATTACK2 = "Attack 2";
@@ -56,10 +52,6 @@ public class PlayerCombat : MonoBehaviour
         if (!attacking)
             ChangeAnimationState(IDLE);
     }
-
-    // ------------------- //
-    // ATTACKING BEHAVIOUR //
-    // ------------------- //
 
     [Header("Attacking")]
     public float attackDistance = 3f;
