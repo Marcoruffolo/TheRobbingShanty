@@ -43,7 +43,14 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        _hitSomething = Physics.Raycast(ray, out _hit, InteractionRange, InteractableLayerMask);
+        _hitSomething = Physics.Raycast(
+            ray,
+            out _hit,
+            InteractionRange,
+            InteractableLayerMask,
+            QueryTriggerInteraction.Collide
+        );
+
 
         UpdatePrompt();
 
