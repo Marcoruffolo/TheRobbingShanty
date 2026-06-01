@@ -352,7 +352,7 @@ MonoBehaviour:
   groundRadius: 0.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2056
 --- !u!114 &1448063415218573401
 MonoBehaviour:
   m_ObjectHideFlags: 0
