@@ -14,6 +14,7 @@ public class ObjectProceduralGeneration : MonoBehaviour
     }
 
     [SerializeField] private PrefabEntry[] _entries;
+    [SerializeField] private float _exclusionRadius = 0.5f;
 
     void Start()
     {
@@ -51,7 +52,7 @@ public class ObjectProceduralGeneration : MonoBehaviour
                 Transform spawnPoint = entry.spawnPoints
                     .Where(p => p != null
                         && !usedByThisEntry.Contains(p.position)
-                        && !occupied.Any(o => o.position == p.position && o.priority > entry.priority))
+                        && !occupied.Any(o => Vector3.Distance(o.position, p.position) < _exclusionRadius && o.priority > entry.priority))
                     .OrderBy(_ => Random.value)
                     .FirstOrDefault();
 

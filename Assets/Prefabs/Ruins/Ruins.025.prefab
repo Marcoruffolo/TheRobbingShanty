@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8564005925047343359}
   - component: {fileID: 7733716256826547013}
   - component: {fileID: 6096538063189652765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ruins.025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
