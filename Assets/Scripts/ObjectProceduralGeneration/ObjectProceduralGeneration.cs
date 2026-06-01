@@ -44,10 +44,14 @@ public class ObjectProceduralGeneration : MonoBehaviour
                 continue;
             }
 
+            List<Vector3> usedByThisEntry = new List<Vector3>();
+
             for (int i = 0; i < count; i++)
             {
                 Transform spawnPoint = entry.spawnPoints
-                    .Where(p => p != null && !occupied.Any(o => o.position == p.position && o.priority > entry.priority))
+                    .Where(p => p != null
+                        && !usedByThisEntry.Contains(p.position)
+                        && !occupied.Any(o => o.position == p.position && o.priority > entry.priority))
                     .OrderBy(_ => Random.value)
                     .FirstOrDefault();
 
@@ -58,6 +62,7 @@ public class ObjectProceduralGeneration : MonoBehaviour
                 }
 
                 Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
+                usedByThisEntry.Add(spawnPoint.position);
                 occupied.Add((spawnPoint.position, entry.priority));
             }
         }
