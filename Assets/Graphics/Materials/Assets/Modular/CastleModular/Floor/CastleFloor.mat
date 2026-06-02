@@ -118,7 +118,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eb2e81486641dbd4fb9cf4cec49531c7, type: 3}
+        m_Texture: {fileID: 2800000, guid: ac1fa5c00c55da5449329c9ccf03ab4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -134,7 +134,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicTex:
-        m_Texture: {fileID: 2800000, guid: 8736e90455a29be4e8585c5087aa2a8e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 361036aa155778d4cae699ae79bca52f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -150,7 +150,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 71a00292f79ec6f4eb0ed7a6bb53e479, type: 3}
+        m_Texture: {fileID: 2800000, guid: a8860b2b5bbda5445a2dd293d5400923, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -410,7 +410,7 @@ Material:
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0
     - _Size: 0.06
-    - _Smoothness: 0.5
+    - _Smoothness: 0.503
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0
