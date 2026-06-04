@@ -547,6 +547,10 @@ MonoBehaviour:
   attackDelay: 0.4
   attackSpeed: 1
   attackDamage: 15
+  hitRadius: 0.4
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 320
   swordSwing: {fileID: 8300000, guid: 7923190c5e80b4d4d9396acc5d0b48cf, type: 3}
   hitSound: {fileID: 8300000, guid: 11245d3945c564b45a1bafad5ecb70e5, type: 3}
 --- !u!114 &2271225838413399132

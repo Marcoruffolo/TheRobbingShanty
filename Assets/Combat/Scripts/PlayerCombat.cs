@@ -5,11 +5,13 @@ public class PlayerCombat : MonoBehaviour
     Animator animator;
     AudioSource audioSource;
     PlayerInputHandler inputHandler;
+    Camera _cam;
 
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();
+        _cam = Camera.main;
     }
 
     void Start()
@@ -58,6 +60,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackDelay = 0.4f;
     public float attackSpeed = 1f;
     public int attackDamage = 1;
+    [SerializeField] private float hitRadius = 0.4f;
 
     public AudioClip swordSwing;
     public AudioClip hitSound;
@@ -102,8 +105,8 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackRaycast()
     {
-        Camera cam = Camera.main;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance))
+        if (Physics.SphereCast(_cam.transform.position, hitRadius, _cam.transform.forward,
+                               out RaycastHit hit, attackDistance))
         {
             IDamagable target = hit.transform.GetComponentInParent<IDamagable>();
             if (target != null)
