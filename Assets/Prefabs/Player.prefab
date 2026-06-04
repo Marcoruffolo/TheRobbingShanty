@@ -543,14 +543,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526ed24552cf0d04684295be1f2c8308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordItemData: {fileID: 11400000, guid: c1494f61c25aa054087c5a1e89b099e9, type: 2}
+  swordModel: {fileID: 8518906873989091010}
   attackDistance: 2
   attackDelay: 0.4
   attackSpeed: 1
   attackDamage: 15
   hitRadius: 0.4
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 320
   swordSwing: {fileID: 8300000, guid: 7923190c5e80b4d4d9396acc5d0b48cf, type: 3}
   hitSound: {fileID: 8300000, guid: 11245d3945c564b45a1bafad5ecb70e5, type: 3}
 --- !u!114 &2271225838413399132
@@ -1307,6 +1306,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
+--- !u!1 &8518906873989091010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
+  m_PrefabInstance: {fileID: 8860926255077127059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9039546913278432376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}

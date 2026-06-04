@@ -14,6 +14,7 @@ public class PlayerInventoryHolder : InventoryHolder
 
     public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
     public static UnityAction OnPlayerBackpackCloseRequested;
+    public static UnityAction<InventoryItemData> OnHotbarSelectionChanged;
     private int selectedHotbarIndex = 0;
     private GameObject currentHandItemInstance;
     private InventoryItemData lastHandItemData;
@@ -98,7 +99,6 @@ public class PlayerInventoryHolder : InventoryHolder
 
     private void UpdateHandItem()
     {
-        // Destroy previous hand item
         if (currentHandItemInstance != null)
         {
             Destroy(currentHandItemInstance);
@@ -109,9 +109,9 @@ public class PlayerInventoryHolder : InventoryHolder
         lastHandItemData = slot.ItemData;
 
         if (slot.ItemData != null && slot.ItemData.handItemPrefab != null && handItemSpawnPoint != null)
-        {
             currentHandItemInstance = Instantiate(slot.ItemData.handItemPrefab, handItemSpawnPoint.position, handItemSpawnPoint.rotation, handItemSpawnPoint);
-        }
+
+        OnHotbarSelectionChanged?.Invoke(slot.ItemData);
     }
 
     private void DropHotbarItem()
