@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public abstract class EnemyBase : MonoBehaviour, IDamagable
 {
@@ -8,10 +9,12 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
     [SerializeField] protected SOVariableFloat enemySpeed;
     [SerializeField] protected VoidGameEvent onEnemyDeath;
 
+    public UnityAction OnDeath;
+    public bool IsDead { get; private set; }
+
     protected NavMeshAgent Agent;
     protected EnemyFOV Fov;
     protected Animator Animator;
-    protected bool IsDead;
 
     private float _currentHealth;
 
@@ -29,7 +32,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
     {
         _currentHealth = enemyHealth.Value;
         Agent.speed = enemySpeed.Value;
-        IsDead = false;
     }
 
     public void TakeDamage(float damage)
@@ -44,6 +46,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
     {
         IsDead = true;
         GetComponent<EnemyRagdoll>()?.Activate();
+        OnDeath?.Invoke();
     }
 
     public abstract void OnHitFrame();

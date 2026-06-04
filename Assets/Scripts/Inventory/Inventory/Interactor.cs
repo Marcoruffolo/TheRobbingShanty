@@ -71,7 +71,7 @@ public class Interactor : MonoBehaviour
                 return;
             }
 
-            var interactable = _hit.collider.GetComponent<IInteractable>();
+            var interactable = _hit.collider.GetComponentInParent<IInteractable>();
             if (interactable != null && !string.IsNullOrEmpty(interactable.InteractionPrompt))
             {
                 SetPrompt(interactable.InteractionPrompt, true);
@@ -100,7 +100,7 @@ public class Interactor : MonoBehaviour
                 return;
             }
 
-            var lookingAt = _hit.collider.GetComponent<IInteractable>();
+            var lookingAt = _hit.collider.GetComponentInParent<IInteractable>();
             if (!IsInteracting && lookingAt != null)
                 StartInteraction(lookingAt);
             else if (IsInteracting && _currentInteractable != null)

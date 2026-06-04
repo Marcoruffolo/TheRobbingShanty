@@ -34,16 +34,5 @@ public class ChestInventory : InventoryHolder, IInteractable
         BlockPlayerMovement.Instance?.FreePlayer();
     }
 
-    private void GenerateLoot()
-    {
-        foreach (var entry in lootTable.entries)
-        {
-            if (entry.item == null) continue;
-            if (Random.value <= entry.probability)
-            {
-                int amount = Random.Range(entry.minAmount, entry.maxAmount + 1);
-                primaryInventorySystem.AddToInventory(entry.item, amount);
-            }
-        }
-    }
+    private void GenerateLoot() => LootGenerator.Generate(lootTable, primaryInventorySystem);
 }
