@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("SOAP — Variables")]
+    [Header("SOAP - Variables")]
     [SerializeField] private SOVariableFloat playerHealth;
+    [SerializeField] private SOVariableFloat maxHealth;
 
-    [Header("SOAP — Events")]
+    [Header("SOAP - Events")]
     [SerializeField] private VoidGameEvent onPlayerDeath;
 
     private bool _isDead;
 
     private void Start()
     {
-        playerHealth.Value = 100f;
+        playerHealth.Value = maxHealth.Value;
         _isDead = false;
     }
 
@@ -21,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
         if (_isDead) return;
 
         playerHealth.Value = Mathf.Max(0f, playerHealth.Value - amount);
-        Debug.Log($"[PlayerHealth] HP: {playerHealth.Value}");
 
         if (playerHealth.Value <= 0f)
             Die();
@@ -31,6 +31,5 @@ public class PlayerHealth : MonoBehaviour
     {
         _isDead = true;
         onPlayerDeath.Raise();
-        Debug.Log("[PlayerHealth] Player muerto");
     }
 }

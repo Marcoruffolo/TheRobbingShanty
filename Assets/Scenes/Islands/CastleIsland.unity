@@ -1801,6 +1801,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5974188208951285323, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 5974188208951285323, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 6340250942129065107, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -36840,6 +36848,10 @@ PrefabInstance:
       propertyPath: hitEffect
       value: 
       objectReference: {fileID: 5334228485563152753, guid: 0134bdc80242c974b88f68d7bb298ed9, type: 3}
+    - target: {fileID: 1751680382702768553, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: swordItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: c1494f61c25aa054087c5a1e89b099e9, type: 2}
     - target: {fileID: 1825198212579687629, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000006519258

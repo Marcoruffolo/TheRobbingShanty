@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMelee : EnemyBase
@@ -11,6 +10,7 @@ public class EnemyMelee : EnemyBase
     [Header("Config")]
     [SerializeField] private float attackRange = 1.8f;
     [SerializeField] private float keepDistance = 3f;
+    [SerializeField] private float attackDelay = 0.4f;
     [SerializeField] private float cooldownMin = 0.3f;
     [SerializeField] private float cooldownMax = 0.8f;
 
@@ -18,12 +18,13 @@ public class EnemyMelee : EnemyBase
     private State _state = State.Idle;
     private float _nextAttackTime;
 
-
     protected override void Start()
     {
         base.Start();
         var player = GameObject.FindWithTag("Player");
+        if (player == null) { Debug.LogError("[EnemyMelee] No GameObject with tag 'Player' found."); return; }
         _playerHealth = player.GetComponent<PlayerHealth>();
+        if (_playerHealth == null) Debug.LogError("[EnemyMelee] PlayerHealth not found on Player.");
         Agent.stoppingDistance = keepDistance;
         ScheduleNextAttack();
     }
@@ -33,7 +34,7 @@ public class EnemyMelee : EnemyBase
         if (IsDead) return;
         switch (_state)
         {
-            case State.Idle: UpdateIdle(); break;
+            case State.Idle:  UpdateIdle();  break;
             case State.Chase: UpdateChase(); break;
             case State.Attack: UpdateAttack(); break;
         }
@@ -86,18 +87,20 @@ public class EnemyMelee : EnemyBase
     {
         FacePlayer();
         Animator.SetTrigger(HashAttack);
+        Invoke(nameof(TryDealDamage), attackDelay);
         ScheduleNextAttack();
     }
 
-    public override void OnHitFrame()
+    private void TryDealDamage()
     {
+        if (IsDead || _playerHealth == null) return;
         float dist = Vector3.Distance(transform.position, Fov.PlayerTransform.position);
         if (dist <= attackRange)
             _playerHealth.TakeDamage(enemyDamage.Value);
     }
 
+    public override void OnHitFrame()  { }
     public override void OnAttackEnd() { }
- 
 
     private void FacePlayer()
     {

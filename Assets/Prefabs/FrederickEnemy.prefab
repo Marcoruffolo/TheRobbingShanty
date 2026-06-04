@@ -98,6 +98,7 @@ MonoBehaviour:
   enemyDamage: {fileID: 11400000, guid: 236c706fcfb9b314fbfb5f645353923e, type: 2}
   attackRange: 2
   keepDistance: 2
+  attackDelay: 0.4
   cooldownMin: 0.5
   cooldownMax: 0.5
 --- !u!114 &5453310496894564905
