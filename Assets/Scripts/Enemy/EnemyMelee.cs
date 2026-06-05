@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyMelee : EnemyBase
 {
-    private enum State { Idle, Chase, Attack }
+    private enum State { Idle, Chase, Attack, Recovery }
 
     [Header("SOAP Melee")]
     [SerializeField] private SOVariableFloat enemyDamage;
@@ -17,7 +18,9 @@ public class EnemyMelee : EnemyBase
     private PlayerHealth _playerHealth;
     private State _state = State.Idle;
     private float _nextAttackTime;
-
+    private Coroutine _recoveryCoroutine;
+    private const string IdleStatePath = "Base Layer.Idle";
+    private static readonly int HashIdleState = Animator.StringToHash(IdleStatePath);
     protected override void Start()
     {
         base.Start();
@@ -49,18 +52,22 @@ public class EnemyMelee : EnemyBase
 
     private void UpdateChase()
     {
-        if (!Agent.isOnNavMesh) return;
+        if (!Agent.enabled || !Agent.isOnNavMesh) return;
         if (!Fov.CanSeePlayer) { Agent.ResetPath(); _state = State.Idle; return; }
+        if (Fov.PlayerTransform == null) return;
 
         float dist = Vector3.Distance(transform.position, Fov.PlayerTransform.position);
         if (dist <= attackRange) { EnterAttack(); return; }
 
+        Agent.isStopped = false;
         Agent.SetDestination(Fov.PlayerTransform.position);
         Animator.SetFloat(HashSpeed, Agent.velocity.magnitude);
     }
 
     private void UpdateAttack()
     {
+        if (Fov.PlayerTransform == null) return;
+
         var info = Animator.GetCurrentAnimatorStateInfo(0);
         if (info.IsTag("Attack") && info.normalizedTime < 1f) return;
 
@@ -72,13 +79,18 @@ public class EnemyMelee : EnemyBase
 
     private void EnterChase()
     {
+        if (!Agent.enabled || !Agent.isOnNavMesh || Fov.PlayerTransform == null) return;
+
         _state = State.Chase;
+        Agent.isStopped = false;
         Agent.SetDestination(Fov.PlayerTransform.position);
     }
 
     private void EnterAttack()
     {
-        Agent.ResetPath();
+        if (!Agent.enabled || !Agent.isOnNavMesh) return;
+
+        StopAgent();
         Animator.SetFloat(HashSpeed, 0f);
         _state = State.Attack;
     }
@@ -93,7 +105,7 @@ public class EnemyMelee : EnemyBase
 
     private void TryDealDamage()
     {
-        if (IsDead || _playerHealth == null) return;
+        if (IsDead || IsControlLocked || _playerHealth == null || Fov.PlayerTransform == null) return;
         float dist = Vector3.Distance(transform.position, Fov.PlayerTransform.position);
         if (dist <= attackRange)
             _playerHealth.TakeDamage(enemyDamage.Value);
@@ -104,6 +116,7 @@ public class EnemyMelee : EnemyBase
 
     private void FacePlayer()
     {
+        if (Fov.PlayerTransform == null) return;
         Vector3 dir = (Fov.PlayerTransform.position - transform.position).normalized;
         dir.y = 0f;
         if (dir != Vector3.zero)
@@ -113,5 +126,71 @@ public class EnemyMelee : EnemyBase
     private void ScheduleNextAttack()
     {
         _nextAttackTime = Time.time + Random.Range(cooldownMin, cooldownMax);
+    }
+
+    private void StopAgent()
+    {
+        if (!Agent.enabled || !Agent.isOnNavMesh) return;
+
+        Agent.isStopped = true;
+        Agent.ResetPath();
+    }
+
+
+    public override void BeginKnockbackRecovery(float duration)
+    {
+        if (IsDead) return;
+
+        if (_recoveryCoroutine != null)
+            StopCoroutine(_recoveryCoroutine);
+
+        CancelInvoke(nameof(TryDealDamage));
+        ScheduleNextAttack();
+
+        _state = State.Recovery;
+        SetControlLocked(true);
+        StopAgent();
+
+        if (Animator != null)
+        {
+            Animator.ResetTrigger(HashAttack);
+            Animator.SetFloat(HashSpeed, 0f);
+
+            if (Animator.HasState(0, HashIdleState))
+                Animator.CrossFade(HashIdleState, 0.05f, 0, 0f);
+        }
+
+        _recoveryCoroutine = StartCoroutine(KnockbackRecovery(duration));
+    }
+
+    public override void EndKnockbackRecovery()
+    {
+        if (_recoveryCoroutine != null)
+        {
+            StopCoroutine(_recoveryCoroutine);
+            _recoveryCoroutine = null;
+        }
+
+        if (_state == State.Recovery)
+            FinishRecovery();
+    }
+
+    private IEnumerator KnockbackRecovery(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _recoveryCoroutine = null;
+        FinishRecovery();
+    }
+
+    private void FinishRecovery()
+    {
+        if (IsDead) return;
+
+        SetControlLocked(false);
+
+        if (Agent.enabled && Agent.isOnNavMesh)
+            Agent.isStopped = false;
+
+        _state = Fov.CanSeePlayer && Fov.PlayerTransform != null ? State.Chase : State.Idle;
     }
 }

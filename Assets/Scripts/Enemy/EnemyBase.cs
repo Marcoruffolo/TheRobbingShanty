@@ -11,6 +11,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
 
     public UnityAction OnDeath;
     public bool IsDead { get; private set; }
+    public bool IsControlLocked { get; private set; }
 
     protected NavMeshAgent Agent;
     protected EnemyFOV Fov;
@@ -40,6 +41,36 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
         Debug.Log($"[{gameObject.name}] HP: {_currentHealth}");
         if (_currentHealth <= 0f) Die();
+    }
+
+    public void SetControlLocked(bool locked)
+    {
+        if (IsDead && locked) return;
+
+        IsControlLocked = locked;
+
+        if (Agent != null && Agent.enabled && Agent.isOnNavMesh)
+        {
+            Agent.isStopped = locked;
+
+            if (locked)
+                Agent.ResetPath();
+        }
+
+        if (!locked) return;
+
+        if (Animator != null)
+            Animator.SetFloat(HashSpeed, 0f);
+    }
+
+    public virtual void BeginKnockbackRecovery(float duration)
+    {
+        SetControlLocked(true);
+    }
+
+    public virtual void EndKnockbackRecovery()
+    {
+        SetControlLocked(false);
     }
 
     protected virtual void Die()

@@ -88,6 +88,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "PushAction",
+                    "type": "Button",
+                    "id": "1fa2851f-a921-4e35-8cfb-164318973825",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "177a1883-d088-4fe2-b549-c31c508deac7",
@@ -436,6 +445,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Touch",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "057f3df4-3009-4286-98ac-d36a5b935fa7",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PushAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

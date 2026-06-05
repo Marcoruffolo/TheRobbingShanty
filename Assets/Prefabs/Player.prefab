@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 8890360678620570636}
   - component: {fileID: 8144362803780424024}
   - component: {fileID: 1751680382702768553}
+  - component: {fileID: -1506587485181970043}
   - component: {fileID: 2271225838413399132}
   - component: {fileID: 8646056921273827266}
   m_Layer: 7
@@ -554,6 +555,28 @@ MonoBehaviour:
   hitRadius: 0.4
   swordSwing: {fileID: 8300000, guid: 7923190c5e80b4d4d9396acc5d0b48cf, type: 3}
   hitSound: {fileID: 8300000, guid: 11245d3945c564b45a1bafad5ecb70e5, type: 3}
+--- !u!114 &-1506587485181970043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e11114942c3e540a39d68dce0a5491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackConfig: {fileID: 11400000, guid: 2710649f3e0c01245b4baf6620ece840, type: 2}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1280
+  range: 2.5
+  coneAngle: 70
+  originOffset: {x: 0, y: 1, z: 0}
+  useCameraForward: 1
+  maxTargets: 16
+  cooldown: 1
 --- !u!114 &2271225838413399132
 MonoBehaviour:
   m_ObjectHideFlags: 0

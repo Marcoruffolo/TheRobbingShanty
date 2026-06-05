@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,6 +7,7 @@ public class EnemyRagdoll : MonoBehaviour
     private Animator _animator;
     private NavMeshAgent _agent;
     private Rigidbody[] _bodies;
+    private Rigidbody _rootRigidbody;
     private Collider _mainCollider;
     private SkinnedMeshRenderer[] _meshes;
 
@@ -14,6 +16,7 @@ public class EnemyRagdoll : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _mainCollider = GetComponent<Collider>();
+        _rootRigidbody = GetComponent<Rigidbody>();
         _bodies = GetComponentsInChildren<Rigidbody>();
         _meshes = GetComponentsInChildren<SkinnedMeshRenderer>();
 
@@ -36,5 +39,21 @@ public class EnemyRagdoll : MonoBehaviour
     {
         foreach (var rb in _bodies)
             rb.isKinematic = kinematic;
+    }
+
+    private Rigidbody[] GetRagdollBodies()
+    {
+        Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
+        if (_rootRigidbody == null)
+            return bodies;
+
+        List<Rigidbody> ragdollBodies = new List<Rigidbody>(bodies.Length);
+        foreach (var body in bodies)
+        {
+            if (body != _rootRigidbody)
+                ragdollBodies.Add(body);
+        }
+
+        return ragdollBodies.ToArray();
     }
 }

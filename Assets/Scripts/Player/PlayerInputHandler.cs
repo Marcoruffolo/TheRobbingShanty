@@ -15,6 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _interactAction;
     private InputAction _attackAction;
     private InputAction _parryAction;
+    private InputAction _pushAction;
     private InputAction _pauseAction;
 
     public Vector2 MoveInput { get; private set; }
@@ -25,6 +26,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event System.Action OnInteract;
     public event System.Action OnAttack;
     public event System.Action OnParry;
+    public event System.Action OnPush;
     public event System.Action OnPauseToggle;
 
     private void Awake()
@@ -53,6 +55,7 @@ public class PlayerInputHandler : MonoBehaviour
         _interactAction = map.FindAction("InteractAction", true);
         _attackAction = map.FindAction("AttackAction", true);
         _parryAction = map.FindAction("ParryAction", true);
+        _pushAction = map.FindAction("PushAction", true);
         _pauseAction = map.FindAction("Pause", true);
     }
 
@@ -67,6 +70,7 @@ public class PlayerInputHandler : MonoBehaviour
         _interactAction.performed += HandleInteractPerformed;
         _attackAction.performed += HandleAttackPerformed;
         _parryAction.performed += HandleParryPerformed;
+        _pushAction.performed += HandlePushPerformed;
         _pauseAction.performed += HandlePausePerformed;
     }
 
@@ -79,6 +83,7 @@ public class PlayerInputHandler : MonoBehaviour
         _interactAction.performed -= HandleInteractPerformed;
         _attackAction.performed -= HandleAttackPerformed;
         _parryAction.performed -= HandleParryPerformed;
+        _pushAction.performed -= HandlePushPerformed;
         _pauseAction.performed -= HandlePausePerformed;
 
         inputActions.Disable();
@@ -114,6 +119,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void HandleParryPerformed(InputAction.CallbackContext context)
     {
         OnParry?.Invoke();
+    }
+    private void HandlePushPerformed(InputAction.CallbackContext context)
+    {
+        OnPush?.Invoke();
     }
 
     private void HandlePausePerformed(InputAction.CallbackContext context)
