@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: -1506587485181970043}
   - component: {fileID: 2271225838413399132}
   - component: {fileID: 8646056921273827266}
+  - component: {fileID: 7796678354078315352}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -724,6 +725,27 @@ MonoBehaviour:
   maxHealth: {fileID: 11400000, guid: d3a53f2111a0fc64fad4d62ff4a783a6, type: 2}
   bloodEffectPrefab: {fileID: 1240942612945472678, guid: ae8d36fc948349a4ea83caebfb7786e4, type: 3}
   onPlayerDeath: {fileID: 11400000, guid: 89ef3984e7a853043877469d69f58017, type: 2}
+--- !u!114 &7796678354078315352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2de81b14641ff44383c1d7f1d7b3082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 664069461053244312}
+  playerMovement: {fileID: 8684437939148701514}
+  input: {fileID: 1448063415218573401}
+  dashDistance: 4
+  dashDuration: 0.18
+  useCameraForward: 1
+  allowAllDirections: 1
+  allowAirDash: 0
+  cooldown: 1
 --- !u!1001 &3340636109574979334
 PrefabInstance:
   m_ObjectHideFlags: 0

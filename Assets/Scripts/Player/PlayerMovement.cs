@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private bool _isGrounded;
     private bool _jumpRequested;
 
+    public bool IsGrounded => _isGrounded;
+    public bool IsDashLocked { get; private set; }
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -62,6 +65,11 @@ public class PlayerMovement : MonoBehaviour
         _jumpRequested = false;
     }
 
+    public void SetDashLocked(bool locked)
+    {
+        IsDashLocked = locked;
+    }
+
     public void TeleportTo(Vector3 position, Quaternion rotation)
     {
         ResetMotionState();
@@ -95,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (_input == null)
+        if (_input == null || IsDashLocked)
             return;
 
         float speed = _input.SprintHeld ? sprintSpeed : walkSpeed;

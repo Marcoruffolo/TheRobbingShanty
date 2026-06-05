@@ -16,6 +16,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _attackAction;
     private InputAction _parryAction;
     private InputAction _pushAction;
+    private InputAction _dashAction;
     private InputAction _pauseAction;
 
     public Vector2 MoveInput { get; private set; }
@@ -27,6 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event System.Action OnAttack;
     public event System.Action OnParry;
     public event System.Action OnPush;
+    public event System.Action OnDash;
     public event System.Action OnPauseToggle;
 
     private void Awake()
@@ -56,6 +58,7 @@ public class PlayerInputHandler : MonoBehaviour
         _attackAction = map.FindAction("AttackAction", true);
         _parryAction = map.FindAction("ParryAction", true);
         _pushAction = map.FindAction("PushAction", true);
+        _dashAction = map.FindAction("DashAction", true);
         _pauseAction = map.FindAction("Pause", true);
     }
 
@@ -71,6 +74,7 @@ public class PlayerInputHandler : MonoBehaviour
         _attackAction.performed += HandleAttackPerformed;
         _parryAction.performed += HandleParryPerformed;
         _pushAction.performed += HandlePushPerformed;
+        _dashAction.performed += HandleDashPerformed;
         _pauseAction.performed += HandlePausePerformed;
     }
 
@@ -84,6 +88,7 @@ public class PlayerInputHandler : MonoBehaviour
         _attackAction.performed -= HandleAttackPerformed;
         _parryAction.performed -= HandleParryPerformed;
         _pushAction.performed -= HandlePushPerformed;
+        _dashAction.performed -= HandleDashPerformed;
         _pauseAction.performed -= HandlePausePerformed;
 
         inputActions.Disable();
@@ -124,7 +129,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         OnPush?.Invoke();
     }
-
+    private void HandleDashPerformed(InputAction.CallbackContext context)
+    {
+        OnDash?.Invoke();
+    }
     private void HandlePausePerformed(InputAction.CallbackContext context)
     {
         OnPauseToggle?.Invoke();

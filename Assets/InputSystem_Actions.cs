@@ -183,6 +183,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""DashAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""572b0905-5f06-4d88-b0b2-4cd953f50e10"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""177a1883-d088-4fe2-b549-c31c508deac7"",
@@ -542,6 +551,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""PushAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efb83a3f-0b1f-434c-97e4-1b61ae3dc425"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""DashAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1159,6 +1179,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_AttackAction = m_Player.FindAction("AttackAction", throwIfNotFound: true);
         m_Player_ParryAction = m_Player.FindAction("ParryAction", throwIfNotFound: true);
         m_Player_PushAction = m_Player.FindAction("PushAction", throwIfNotFound: true);
+        m_Player_DashAction = m_Player.FindAction("DashAction", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1264,6 +1285,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AttackAction;
     private readonly InputAction m_Player_ParryAction;
     private readonly InputAction m_Player_PushAction;
+    private readonly InputAction m_Player_DashAction;
     private readonly InputAction m_Player_Pause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -1316,6 +1338,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/PushAction".
         /// </summary>
         public InputAction @PushAction => m_Wrapper.m_Player_PushAction;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/DashAction".
+        /// </summary>
+        public InputAction @DashAction => m_Wrapper.m_Player_DashAction;
         /// <summary>
         /// Provides access to the underlying input action "Player/Pause".
         /// </summary>
@@ -1376,6 +1402,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PushAction.started += instance.OnPushAction;
             @PushAction.performed += instance.OnPushAction;
             @PushAction.canceled += instance.OnPushAction;
+            @DashAction.started += instance.OnDashAction;
+            @DashAction.performed += instance.OnDashAction;
+            @DashAction.canceled += instance.OnDashAction;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1420,6 +1449,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PushAction.started -= instance.OnPushAction;
             @PushAction.performed -= instance.OnPushAction;
             @PushAction.canceled -= instance.OnPushAction;
+            @DashAction.started -= instance.OnDashAction;
+            @DashAction.performed -= instance.OnDashAction;
+            @DashAction.canceled -= instance.OnDashAction;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -1804,6 +1836,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPushAction(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DashAction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDashAction(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
