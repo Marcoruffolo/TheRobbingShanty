@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private SOVariableFloat playerHealth;
     [SerializeField] private SOVariableFloat maxHealth;
 
+    [SerializeField] GameObject bloodEffectPrefab;
+
     [Header("SOAP - Events")]
     [SerializeField] private VoidGameEvent onPlayerDeath;
 
@@ -22,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
         if (_isDead) return;
 
         playerHealth.Value = Mathf.Max(0f, playerHealth.Value - amount);
+        GameObject bloodEffect = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
+        Destroy(bloodEffect, 2f);
 
         if (playerHealth.Value <= 0f)
             Die();

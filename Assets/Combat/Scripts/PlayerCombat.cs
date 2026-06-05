@@ -13,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage = 1;
     [SerializeField] private float hitRadius = 0.4f;
 
+    [SerializeField] GameObject hitEffectPrefab;
     public AudioClip swordSwing;
     public AudioClip hitSound;
 
@@ -121,6 +122,8 @@ public class PlayerCombat : MonoBehaviour
                 target.TakeDamage(attackDamage);
                 if (hitSound != null)
                 {
+                    GameObject hitEffect = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    Destroy(hitEffect, 0.5f);
                     audioSource.pitch = 1f;
                     audioSource.PlayOneShot(hitSound);
                 }
