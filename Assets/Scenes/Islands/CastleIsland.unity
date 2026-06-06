@@ -32587,9 +32587,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
   mouseSensitivity: 1
-  generalVolume: 1
-  musicVolume: 0.75
-  sfxVolume: 1
 --- !u!1 &1885857752
 GameObject:
   m_ObjectHideFlags: 0

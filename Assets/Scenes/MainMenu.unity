@@ -3178,9 +3178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
   mouseSensitivity: 1
-  generalVolume: 0.6
-  musicVolume: 0
-  sfxVolume: 0
 --- !u!4 &742907997
 Transform:
   m_ObjectHideFlags: 0
@@ -6302,7 +6299,7 @@ GameObject:
   - component: {fileID: 1335259717}
   - component: {fileID: 1335259716}
   m_Layer: 5
-  m_Name: UIMenu
+  m_Name: UIMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

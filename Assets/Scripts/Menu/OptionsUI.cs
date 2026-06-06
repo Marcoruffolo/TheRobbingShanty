@@ -31,7 +31,7 @@ public class OptionsUI : MonoBehaviour
     private void OnEnable()
     {
         // Cargar valores actuales cada vez que se abre el panel
-        //LoadCurrentValues();
+        LoadCurrentValues();
     }
 
     private void Start()
@@ -44,21 +44,17 @@ public class OptionsUI : MonoBehaviour
         btnCancel.onClick.AddListener(OnBackPressed);
     }
 
-    // Cargar valores desde GameSettings
-
     private void LoadCurrentValues()
     {
         if (GameSettings.Instance == null) return;
 
         sliderSensitivity.value = GameSettings.Instance.mouseSensitivity;
-        sliderGeneral.value   = GameSettings.Instance.generalVolume;
-        sliderMusic.value     = GameSettings.Instance.musicVolume;
-        sliderSFX.value       = GameSettings.Instance.sfxVolume;
+        sliderGeneral.value   = audioMixer.GetFloat("General", out float generalValue) ? generalValue : 0f;
+        sliderMusic.value     = audioMixer.GetFloat("Music", out float musicValue) ? musicValue : 0f;
+        sliderSFX.value       = audioMixer.GetFloat("SFX", out float sfxValue) ? sfxValue : 0f;
 
         UpdateLabels();
     }
-
-    // Callbacks de sliders
 
     private void OnSensitivityChanged(float value)
     {
@@ -109,14 +105,11 @@ public class OptionsUI : MonoBehaviour
         if (GameSettings.Instance == null) return;
 
         GameSettings.Instance.SetSensitivity(sliderSensitivity.value);
-        GameSettings.Instance.SetMusicVolume(sliderMusic.value);
-        GameSettings.Instance.SetSFXVolume(sliderSFX.value);
-
-        OnBack?.Invoke();
     }
 
     private void OnBackPressed()
     {
+        OnSave();
         OnBack?.Invoke();
     }
 
