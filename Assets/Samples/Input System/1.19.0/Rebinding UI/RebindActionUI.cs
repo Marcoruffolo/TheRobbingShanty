@@ -95,7 +95,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         /// <seealso cref="rebindPrompt"/>
         /// <seealso cref="rebindOverlay"/>
-        public Text rebindInfo
+        public TMPro.TextMeshProUGUI rebindInfo
         {
             get => m_RebindInfo;
             set => m_RebindInfo = value;
@@ -505,7 +505,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         [Tooltip("Optional text label that will be updated with relevant information during rebinding.")]
         [SerializeField]
-        private Text m_RebindInfo;
+        private TMPro.TextMeshProUGUI m_RebindInfo;
 
         [Tooltip("Optional cancellation UI button for rebinding overlay.")]
         [SerializeField]

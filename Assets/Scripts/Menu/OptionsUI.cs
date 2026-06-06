@@ -22,16 +22,16 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TMP_Text valueSFX;
 
     [Header("Botones")]
-    [SerializeField] private Button btnSave;
     [SerializeField] private Button btnCancel;
 
     // Callback para cuando se aprieta Volver (lo asigna el padre)
     public System.Action OnBack;
 
+
     private void OnEnable()
     {
         // Cargar valores actuales cada vez que se abre el panel
-        LoadCurrentValues();
+        //LoadCurrentValues();
     }
 
     private void Start()
@@ -41,7 +41,6 @@ public class OptionsUI : MonoBehaviour
         sliderMusic.onValueChanged.AddListener(OnMusicChanged);
         sliderSFX.onValueChanged.AddListener(OnSFXChanged);
 
-        btnSave.onClick.AddListener(OnSave);
         btnCancel.onClick.AddListener(OnBackPressed);
     }
 
