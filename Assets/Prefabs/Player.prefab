@@ -390,7 +390,6 @@ GameObject:
   - component: {fileID: 8684437939148701514}
   - component: {fileID: 1448063415218573401}
   - component: {fileID: 6238204095887302757}
-  - component: {fileID: 5320557755599554177}
   - component: {fileID: 6840463158165156368}
   - component: {fileID: 8890360678620570636}
   - component: {fileID: 8144362803780424024}
@@ -504,22 +503,6 @@ MonoBehaviour:
   inventorySaveData: {fileID: 11400000, guid: 8c952c355d565b0479ef2d6c1ce808b5, type: 2}
   handItemSpawnPoint: {fileID: 4009908901269508315}
   dropPoint: {fileID: 5795909489191037030}
---- !u!114 &5320557755599554177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9169416703968480330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67bf8d2ce48ae524ca35d1a4fabcf58a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 11400000, guid: 79070a258b116a445b07d3b3a4cc3a4d, type: 2}
-  maxHealth: {fileID: 0}
-  bloodEffectPrefab: {fileID: 1240942612945472678, guid: ae8d36fc948349a4ea83caebfb7786e4, type: 3}
-  onPlayerDeath: {fileID: 11400000, guid: 89ef3984e7a853043877469d69f58017, type: 2}
 --- !u!114 &6840463158165156368
 MonoBehaviour:
   m_ObjectHideFlags: 0
