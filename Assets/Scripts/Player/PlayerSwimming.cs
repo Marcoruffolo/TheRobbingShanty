@@ -19,6 +19,8 @@ public class PlayerSwimming : MonoBehaviour
 
     public bool IsSwimming { get; private set; }
 
+    public static event System.Action<bool> OnSwimStateChanged;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -59,6 +61,12 @@ public class PlayerSwimming : MonoBehaviour
             return;
 
         StopSwimming();
+    }
+
+    public void ExitWater()
+    {
+        if (IsSwimming)
+            StopSwimming();
     }
 
     private bool CanStartSwimming()
@@ -105,6 +113,8 @@ public class PlayerSwimming : MonoBehaviour
 
         playerMovement.ResetMotionState();
         playerMovement.enabled = false;
+
+        OnSwimStateChanged?.Invoke(true);
     }
 
     private void StopSwimming()
@@ -114,5 +124,7 @@ public class PlayerSwimming : MonoBehaviour
 
         playerMovement.ResetMotionState();
         playerMovement.enabled = true;
+
+        OnSwimStateChanged?.Invoke(false);
     }
 }

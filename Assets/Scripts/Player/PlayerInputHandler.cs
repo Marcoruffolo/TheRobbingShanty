@@ -18,6 +18,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _pushAction;
     private InputAction _dashAction;
     private InputAction _pauseAction;
+    private InputAction _teleportAction;
 
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
@@ -31,6 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event System.Action OnPush;
     public event System.Action OnDash;
     public event System.Action OnPauseToggle;
+    public event System.Action OnTeleport;
 
     private void Awake()
     {
@@ -61,6 +63,7 @@ public class PlayerInputHandler : MonoBehaviour
         _pushAction = map.FindAction("PushAction", true);
         _dashAction = map.FindAction("DashAction", true);
         _pauseAction = map.FindAction("Pause", true);
+        _teleportAction = map.FindAction("Teleport", true);
     }
 
     private void OnEnable()
@@ -77,6 +80,7 @@ public class PlayerInputHandler : MonoBehaviour
         _pushAction.performed += HandlePushPerformed;
         _dashAction.performed += HandleDashPerformed;
         _pauseAction.performed += HandlePausePerformed;
+        _teleportAction.performed += HandleTeleportPerformed;
     }
 
     private void OnDisable()
@@ -91,6 +95,7 @@ public class PlayerInputHandler : MonoBehaviour
         _pushAction.performed -= HandlePushPerformed;
         _dashAction.performed -= HandleDashPerformed;
         _pauseAction.performed -= HandlePausePerformed;
+        _teleportAction.performed -= HandleTeleportPerformed;
 
         inputActions.Disable();
 
@@ -139,5 +144,9 @@ public class PlayerInputHandler : MonoBehaviour
     private void HandlePausePerformed(InputAction.CallbackContext context)
     {
         OnPauseToggle?.Invoke();
+    }
+    private void HandleTeleportPerformed(InputAction.CallbackContext context)
+    {
+        OnTeleport?.Invoke();
     }
 }

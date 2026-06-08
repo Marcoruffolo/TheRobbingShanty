@@ -18,6 +18,7 @@ public class Interactor : MonoBehaviour
     private InteractionLabel _currentLabel;
     private RaycastHit _hit;
     private bool _hitSomething;
+    private bool _promptSuspended;
     private PlayerInventoryHolder _playerInventory;
 
     private void Awake()
@@ -26,12 +27,26 @@ public class Interactor : MonoBehaviour
         _playerInventory = GetComponentInParent<PlayerInventoryHolder>();
     }
 
-    private void OnEnable()  => CameraModeController.OnShipControlChanged += HandleShipControlChanged;
-    private void OnDisable() => CameraModeController.OnShipControlChanged -= HandleShipControlChanged;
+    private void OnEnable()
+    {
+        CameraModeController.OnShipControlChanged += HandleShipControlChanged;
+        PlayerSwimming.OnSwimStateChanged += HandleSwimStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        CameraModeController.OnShipControlChanged -= HandleShipControlChanged;
+        PlayerSwimming.OnSwimStateChanged -= HandleSwimStateChanged;
+    }
 
     private void HandleShipControlChanged(bool shipActive)
     {
         if (shipActive) SetPrompt("", false);
+    }
+
+    private void HandleSwimStateChanged(bool isSwimming)
+    {
+        _promptSuspended = isSwimming;
     }
 
     public void RequestEndInteraction()
@@ -60,7 +75,7 @@ public class Interactor : MonoBehaviour
 
     private void UpdatePrompt()
     {
-        if (IsInteracting) return;
+        if (IsInteracting || _promptSuspended) return;
 
         if (_hitSomething)
         {

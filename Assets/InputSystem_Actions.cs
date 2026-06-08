@@ -192,6 +192,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf64d711-4868-417e-b881-17928ab5f20b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""177a1883-d088-4fe2-b549-c31c508deac7"",
@@ -562,6 +571,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""DashAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26e81d39-cc4c-44f5-b877-10a129e180c6"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Teleport"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1180,6 +1200,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_ParryAction = m_Player.FindAction("ParryAction", throwIfNotFound: true);
         m_Player_PushAction = m_Player.FindAction("PushAction", throwIfNotFound: true);
         m_Player_DashAction = m_Player.FindAction("DashAction", throwIfNotFound: true);
+        m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1286,6 +1307,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ParryAction;
     private readonly InputAction m_Player_PushAction;
     private readonly InputAction m_Player_DashAction;
+    private readonly InputAction m_Player_Teleport;
     private readonly InputAction m_Player_Pause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -1342,6 +1364,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/DashAction".
         /// </summary>
         public InputAction @DashAction => m_Wrapper.m_Player_DashAction;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Teleport".
+        /// </summary>
+        public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
         /// <summary>
         /// Provides access to the underlying input action "Player/Pause".
         /// </summary>
@@ -1405,6 +1431,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @DashAction.started += instance.OnDashAction;
             @DashAction.performed += instance.OnDashAction;
             @DashAction.canceled += instance.OnDashAction;
+            @Teleport.started += instance.OnTeleport;
+            @Teleport.performed += instance.OnTeleport;
+            @Teleport.canceled += instance.OnTeleport;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1452,6 +1481,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @DashAction.started -= instance.OnDashAction;
             @DashAction.performed -= instance.OnDashAction;
             @DashAction.canceled -= instance.OnDashAction;
+            @Teleport.started -= instance.OnTeleport;
+            @Teleport.performed -= instance.OnTeleport;
+            @Teleport.canceled -= instance.OnTeleport;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -1843,6 +1875,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDashAction(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Teleport" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTeleport(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

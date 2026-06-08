@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 8646056921273827266}
   - component: {fileID: 7796678354078315352}
   - component: {fileID: 8819569243036130352}
+  - component: {fileID: 5743962765939132968}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -742,15 +743,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0d8fae7bf96eb4cb23b52c31d35f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  playerMovement: {fileID: 0}
-  input: {fileID: 0}
   swimSpeed: 3
-  ascendSpeed: 2.5
-  descendSpeed: 2.5
+  ascendSpeed: 3.5
+  descendSpeed: 3.5
   waterMask:
     serializedVersion: 2
-    m_Bits: 2064
+    m_Bits: 16
+--- !u!114 &5743962765939132968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bc08fa0a2ec4340a984f84ae9fdb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: {fileID: 0}
+  promptMessage: Teleport
+  showPromptEvent: {fileID: 11400000, guid: 26056f93b9c54ebea37b06f0d97808ba, type: 2}
+  promptText: {fileID: 11400000, guid: 57a8bc21638842de848f571eb82cfbbb, type: 2}
 --- !u!1001 &3340636109574979334
 PrefabInstance:
   m_ObjectHideFlags: 0

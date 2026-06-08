@@ -106,6 +106,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Teleport",
+                    "type": "Button",
+                    "id": "cf64d711-4868-417e-b881-17928ab5f20b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "177a1883-d088-4fe2-b549-c31c508deac7",
@@ -476,6 +485,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "DashAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26e81d39-cc4c-44f5-b877-10a129e180c6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Teleport",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
