@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 2271225838413399132}
   - component: {fileID: 8646056921273827266}
   - component: {fileID: 7796678354078315352}
+  - component: {fileID: 8819569243036130352}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -729,6 +730,27 @@ MonoBehaviour:
   allowAllDirections: 1
   allowAirDash: 0
   cooldown: 1
+--- !u!114 &8819569243036130352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0d8fae7bf96eb4cb23b52c31d35f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  playerMovement: {fileID: 0}
+  input: {fileID: 0}
+  swimSpeed: 3
+  ascendSpeed: 2.5
+  descendSpeed: 2.5
+  waterMask:
+    serializedVersion: 2
+    m_Bits: 2064
 --- !u!1001 &3340636109574979334
 PrefabInstance:
   m_ObjectHideFlags: 0

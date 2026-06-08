@@ -130,7 +130,9 @@ GameObject:
   - component: {fileID: 12149845}
   - component: {fileID: 12149847}
   - component: {fileID: 12149846}
-  m_Layer: 0
+  - component: {fileID: 12149849}
+  - component: {fileID: 12149848}
+  m_Layer: 4
   m_Name: UnderWater Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +192,48 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1186.4023, y: 204.94817, z: 1182.6013}
   m_Center: {x: 18.25879, y: -108.65705, z: -7.8258057}
+--- !u!114 &12149848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12149844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a6e64504454f44a86d2aaebba14a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaceHeight: -7.35
+  gizmoSize: {x: 600, y: 600}
+  gizmoColor: {r: 1, g: 0.33084714, b: 0, a: 0.35}
+--- !u!54 &12149849
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12149844}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &26123272
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +389,22 @@ PrefabInstance:
       propertyPath: showPromptEvent
       value: 
       objectReference: {fileID: 11400000, guid: e7c22ccfe82939141b77e70b70c3def8, type: 2}
+    - target: {fileID: 8819569243036130352, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819569243036130352, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: ascendSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819569243036130352, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: descendSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819569243036130352, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
+      propertyPath: waterMask.m_Bits
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 9169416703968480330, guid: 8bf0fc55a34bb304ab3524b418a301ae, type: 3}
       propertyPath: m_Name
       value: Player
@@ -499,7 +559,7 @@ GameObject:
   - component: {fileID: 572869259}
   - component: {fileID: 572869262}
   - component: {fileID: 572869263}
-  m_Layer: 3
+  m_Layer: 4
   m_Name: SeaPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13162,6 +13222,10 @@ PrefabInstance:
     - target: {fileID: 4556279673914076916, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5974188208951285323, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00048828125
       objectReference: {fileID: 0}
     - target: {fileID: 6340250942129065107, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
       propertyPath: m_AnchorMax.y

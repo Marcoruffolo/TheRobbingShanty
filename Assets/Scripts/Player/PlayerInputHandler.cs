@@ -22,6 +22,7 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
     public bool SprintHeld { get; private set; }
+    public bool JumpHeld { get; private set; }
 
     public event System.Action OnJump;
     public event System.Action OnInteract;
@@ -96,6 +97,7 @@ public class PlayerInputHandler : MonoBehaviour
         MoveInput = Vector2.zero;
         LookInput = Vector2.zero;
         SprintHeld = false;
+        JumpHeld = false;
     }
 
     private void Update()
@@ -103,6 +105,7 @@ public class PlayerInputHandler : MonoBehaviour
         MoveInput = _moveAction.ReadValue<Vector2>();
         LookInput = _lookAction.ReadValue<Vector2>();
         SprintHeld = _sprintAction.IsPressed();
+        JumpHeld = _jumpAction.IsPressed();
     }
 
     private void HandleJumpPerformed(InputAction.CallbackContext context)

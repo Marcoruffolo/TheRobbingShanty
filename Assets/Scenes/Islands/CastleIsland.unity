@@ -130,7 +130,9 @@ GameObject:
   - component: {fileID: 3874749}
   - component: {fileID: 3874751}
   - component: {fileID: 3874750}
-  m_Layer: 0
+  - component: {fileID: 3874753}
+  - component: {fileID: 3874752}
+  m_Layer: 4
   m_Name: UnderWater Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +192,48 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9.8621, y: 17.92858, z: 9.945217}
   m_Center: {x: 0, y: -8.966331, z: 0}
+--- !u!114 &3874752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a6e64504454f44a86d2aaebba14a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaceHeight: 0
+  gizmoSize: {x: 600, y: 600}
+  gizmoColor: {r: 1, g: 0.30295774, b: 0.14901961, a: 0.35}
+--- !u!54 &3874753
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874748}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4634046
 GameObject:
   m_ObjectHideFlags: 0
@@ -18996,7 +19040,7 @@ GameObject:
   - component: {fileID: 1701547337}
   - component: {fileID: 1701547336}
   - component: {fileID: 1701547334}
-  m_Layer: 3
+  m_Layer: 4
   m_Name: SeaPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
