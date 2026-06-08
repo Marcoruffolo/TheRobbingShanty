@@ -1,39 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-/// Controla el menú de pausa.
-/// Se muestra/oculta automáticamente escuchando a PauseManager.
-/// Asigná los botones y paneles desde el Inspector.
 public class PauseMenuUI : MonoBehaviour
 {
     [Header("Root del menú de pausa")]
     [SerializeField] private GameObject pauseRoot;
 
+    [Header("Botones")]
+    [SerializeField] private Button btnPlay;
+    [SerializeField] private Button btnOptions;
+    [SerializeField] private Button btnQuit;
+
     [Header("Paneles")]
-    [SerializeField] private GameObject panelPause;
+    [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelOptions;
 
-    [Header("Botones — Panel Pausa")]
-    [SerializeField] private Button btnResume;
-    [SerializeField] private Button btnOptions;
-    [SerializeField] private Button btnMainMenu;
-
-    [Header("Botones — Panel Opciones")]
-    [SerializeField] private Button btnOptionsBack;
+    [Header("Scripts")]
+    [SerializeField] private OptionsUI optionsUI;
 
     private void Start()
     {
-        // Suscribirse al evento de pausa
         if (PauseManager.Instance != null)
             PauseManager.Instance.OnPauseChanged += OnPauseChanged;
 
-        btnResume.onClick.AddListener(OnResume);
+        btnPlay.onClick.AddListener(OnPlay);
         btnOptions.onClick.AddListener(OnOptions);
-        btnMainMenu.onClick.AddListener(OnMainMenu);
-        btnOptionsBack.onClick.AddListener(OnOptionsBack);
+        btnQuit.onClick.AddListener(OnQuit);
 
-        // Empezar oculto
+        if (optionsUI != null)
+            optionsUI.OnBack = ShowMain;
+
         pauseRoot.SetActive(false);
     }
 
@@ -47,34 +43,29 @@ public class PauseMenuUI : MonoBehaviour
     private void OnPauseChanged(bool isPaused)
     {
         pauseRoot.SetActive(isPaused);
-        if (isPaused) ShowPausePanel();
+        if (isPaused) ShowMain();
     }
 
 
-    private void OnResume()
+    private void OnPlay()
     {
         PauseManager.Instance.Resume();
     }
 
     private void OnOptions()
     {
-        panelPause.SetActive(false);
+        panelMain.SetActive(false);
         panelOptions.SetActive(true);
     }
 
-    private void OnMainMenu()
+    private void OnQuit()
     {
         PauseManager.Instance.GoToMainMenu();
     }
 
-    private void OnOptionsBack()
+    private void ShowMain()
     {
-        ShowPausePanel();
-    }
-
-    private void ShowPausePanel()
-    {
-        panelPause.SetActive(true);
+        panelMain.SetActive(true);
         panelOptions.SetActive(false);
     }
 }
