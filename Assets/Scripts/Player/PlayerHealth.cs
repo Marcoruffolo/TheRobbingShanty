@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private SOVariableFloat maxHealth;
 
     [SerializeField] GameObject bloodEffectPrefab;
+    [SerializeField] ScriptableRendererFeature rendererFeature;
+    [SerializeField] Material _fullscreenDamage;
 
     [Header("SOAP - Events")]
     [SerializeField] private VoidGameEvent onPlayerDeath;
