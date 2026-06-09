@@ -48,7 +48,8 @@ MonoBehaviour:
   - {fileID: 7310792311840965861}
   - {fileID: 6496638944587728887}
   - {fileID: -633401951756102604}
-  m_RendererFeatureMap: e504f095df267565f7c71e0eb3b2285a34d489e147b435f7
+  - {fileID: 4951952143308557470}
+  m_RendererFeatureMap: e504f095df267565f7c71e0eb3b2285a34d489e147b435f79e0ca4de3cdeb844
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -74,6 +75,26 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 1
   m_IntermediateTextureMode: 0
+--- !u!114 &4951952143308557470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: Damage
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  injectionPoint: 550
+  fetchColorBuffer: 1
+  requirements: -1
+  passMaterial: {fileID: 2100000, guid: 9f57fd9ab9d8c2c4082d6e338fd00390, type: 2}
+  passIndex: 0
+  bindDepthStencilAttachment: 1
+  m_Version: 1
 --- !u!114 &6496638944587728887
 MonoBehaviour:
   m_ObjectHideFlags: 0
