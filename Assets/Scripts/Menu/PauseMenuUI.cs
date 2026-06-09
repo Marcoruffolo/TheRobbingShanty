@@ -3,19 +3,17 @@ using UnityEngine.UI;
 
 public class PauseMenuUI : MonoBehaviour
 {
-    [Header("Root del menú de pausa")]
     [SerializeField] private GameObject pauseRoot;
 
-    [Header("Botones")]
     [SerializeField] private Button btnPlay;
     [SerializeField] private Button btnOptions;
     [SerializeField] private Button btnQuit;
+    [SerializeField] private Button btnQuitGame;
 
-    [Header("Paneles")]
     [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelOptions;
+    [SerializeField] private GameObject panelRebind;
 
-    [Header("Scripts")]
     [SerializeField] private OptionsUI optionsUI;
 
     private void Start()
@@ -26,7 +24,7 @@ public class PauseMenuUI : MonoBehaviour
         btnPlay.onClick.AddListener(OnPlay);
         btnOptions.onClick.AddListener(OnOptions);
         btnQuit.onClick.AddListener(OnQuit);
-
+        btnQuitGame.onClick.AddListener(OnQuitGame);
         if (optionsUI != null)
             optionsUI.OnBack = ShowMain;
 
@@ -67,5 +65,11 @@ public class PauseMenuUI : MonoBehaviour
     {
         panelMain.SetActive(true);
         panelOptions.SetActive(false);
+        panelRebind.SetActive(false);
+    }
+
+    private void OnQuitGame()
+    {
+        Application.Quit();
     }
 }
