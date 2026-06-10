@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
         playerHealth.Value = Mathf.Max(0f, playerHealth.Value - amount);
         GameObject bloodEffect = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
-        Destroy(bloodEffect, 2f);
+        Destroy(bloodEffect, 6f);
 
         if (playerHealth.Value <= 0f)
             Die();
