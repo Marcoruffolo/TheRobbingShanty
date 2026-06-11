@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5696319812276141176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RocksGroup (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +93,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8434515782375628897, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7101481248564480533, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6866297411961593554, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -4244150076199159633, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -104,6 +116,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: m_Name
       value: Piedras (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2087295126861297577, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,6 +137,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e27c582e38eb40d4cbc1c2de1af1eb72, type: 2}
+    - target: {fileID: 4521961755122411372, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -191,6 +211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8434515782375628897, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -7111009390456653379, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.56
@@ -198,6 +222,14 @@ PrefabInstance:
     - target: {fileID: -7111009390456653379, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: m_LocalPosition.z
       value: -9.06
+      objectReference: {fileID: 0}
+    - target: {fileID: -7101481248564480533, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6866297411961593554, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4244150076199159633, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -210,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: m_Name
       value: Piedras (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2087295126861297577, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -227,6 +263,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e27c582e38eb40d4cbc1c2de1af1eb72, type: 2}
+    - target: {fileID: 4521961755122411372, guid: c78d1c0fe8ea47f4495a723b906d39d8, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

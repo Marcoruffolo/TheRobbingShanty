@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class EnemyFOV : MonoBehaviour
 {
+    private const string ObstacleTag = "Obstacle";
+
     [Header("Config")]
     [SerializeField] private float viewRadius = 10f;
     [SerializeField] private float viewAngle = 90f;
     [SerializeField] private LayerMask playerMask;
-    [SerializeField] private LayerMask obstacleMask;
 
     public bool CanSeePlayer { get; private set; }
     public Transform PlayerTransform { get; private set; }
@@ -28,12 +29,26 @@ public class EnemyFOV : MonoBehaviour
             float dist = Vector3.Distance(eyePos, playerEye);
 
             if (Vector3.Angle(transform.forward, dir) > viewAngle / 2f) continue;
-            if (Physics.Raycast(eyePos, dir, dist, obstacleMask)) continue;
+            if (IsObstructed(eyePos, dir, dist)) continue;
 
             CanSeePlayer = true;
             PlayerTransform = hit.transform;
             return;
         }
+    }
+
+    private bool IsObstructed(Vector3 origin, Vector3 dir, float distance)
+    {
+        int ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
+        int mask = ~(1 << gameObject.layer | 1 << ignoreRaycastLayer);
+
+        foreach (var hit in Physics.RaycastAll(origin, dir, distance, mask))
+        {
+            if (hit.collider.CompareTag(ObstacleTag))
+                return true;
+        }
+
+        return false;
     }
 
     private void OnDrawGizmosSelected()

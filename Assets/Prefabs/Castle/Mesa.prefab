@@ -52,13 +52,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7106045786397432231, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
       propertyPath: m_Name
       value: Mesa
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 3459193194213827910, guid: 46958bd9f14e80d45bd2f84c78709d94, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

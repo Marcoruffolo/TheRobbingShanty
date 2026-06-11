@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6466177934944296492}
   - component: {fileID: 7805135142152844302}
   - component: {fileID: 5305988066757127342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 7096114116038756454}
   - component: {fileID: 703698453049388025}
   - component: {fileID: 8248912635631588167}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 7941900182368476983}
   - component: {fileID: 5014957340544438931}
   - component: {fileID: 3053897087735020068}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface69
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,9 +336,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7625619258255053297}
-  m_Layer: 0
+  - component: {fileID: -1541781795069377872}
+  m_Layer: 9
   m_Name: Palmera2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,6 +375,22 @@ Transform:
   - {fileID: 5985726894564300857}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &-1541781795069377872
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551531251921517670}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 78.65, y: 417.5, z: 78.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -27.7, y: -23.7, z: 46.7}
+  m_TimeToStationary: 0.5
 --- !u!1 &1673690180305767207
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +403,7 @@ GameObject:
   - component: {fileID: 6872281565710655763}
   - component: {fileID: 1152665696768415374}
   - component: {fileID: 4480000158077237255}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface70
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +512,7 @@ GameObject:
   - component: {fileID: 4402720766786162443}
   - component: {fileID: 7674287437879014005}
   - component: {fileID: 5671323389030917721}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface61
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +621,7 @@ GameObject:
   - component: {fileID: 3381576525569351597}
   - component: {fileID: 3780159561253774908}
   - component: {fileID: 203085522364602356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface57
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +730,7 @@ GameObject:
   - component: {fileID: 6151053213888340370}
   - component: {fileID: 3201280204645813146}
   - component: {fileID: 2484836110130665194}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface55
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +839,7 @@ GameObject:
   - component: {fileID: 1388001355572643009}
   - component: {fileID: 4566176608360933469}
   - component: {fileID: 5303850570078783232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface49
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +948,7 @@ GameObject:
   - component: {fileID: 7703798000551822565}
   - component: {fileID: 2273236033573718545}
   - component: {fileID: 9121117753954172382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface45
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1057,7 @@ GameObject:
   - component: {fileID: 139398087869346934}
   - component: {fileID: 8499128886383005991}
   - component: {fileID: 7342977338004641717}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface67
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1166,7 @@ GameObject:
   - component: {fileID: 8063433339853761414}
   - component: {fileID: 6235086491212848766}
   - component: {fileID: 3110659319513107603}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface51
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1258,7 +1275,7 @@ GameObject:
   - component: {fileID: 8659549431749123132}
   - component: {fileID: 5940799282175571433}
   - component: {fileID: 3528852040686099556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface53
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1384,7 @@ GameObject:
   - component: {fileID: 8460823290155264451}
   - component: {fileID: 5745974936851140258}
   - component: {fileID: 6127275930986897389}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface63
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1493,7 @@ GameObject:
   - component: {fileID: 868732859698852501}
   - component: {fileID: 3822976768330797387}
   - component: {fileID: 6539929331710522692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface59
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1602,7 @@ GameObject:
   - component: {fileID: 5787826299816303697}
   - component: {fileID: 1123806959936235363}
   - component: {fileID: 1182028837689223934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface65
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1694,7 +1711,7 @@ GameObject:
   - component: {fileID: 8796247361999540265}
   - component: {fileID: 2307310225837670994}
   - component: {fileID: 1418732615394058699}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface41
   m_TagString: Untagged
   m_Icon: {fileID: 0}

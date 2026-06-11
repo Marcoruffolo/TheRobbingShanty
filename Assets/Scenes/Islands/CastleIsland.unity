@@ -8629,6 +8629,7 @@ MonoBehaviour:
     - {fileID: 1544942469}
     priority: 5
     amount: 2.5
+    blocksPathfinding: 1
   - prefab: {fileID: 3324178293175583250, guid: 5a6138d054c2c19488d8062188fb472b, type: 3}
     spawnPoints:
     - {fileID: 1100751453}
@@ -8639,6 +8640,7 @@ MonoBehaviour:
     - {fileID: 1252232253}
     priority: 4
     amount: 3.5
+    blocksPathfinding: 0
   - prefab: {fileID: 3324178293175583250, guid: bdce9752d766152478385a624bbfb190, type: 3}
     spawnPoints:
     - {fileID: 1982591783}
@@ -8649,12 +8651,14 @@ MonoBehaviour:
     - {fileID: 225352012}
     priority: 4
     amount: 3.5
+    blocksPathfinding: 0
   - prefab: {fileID: 4568512523534562660, guid: 5f75af6048c9a1648b7fa05355d55564, type: 3}
     spawnPoints:
     - {fileID: 1353080895}
     - {fileID: 569846909}
     priority: 5
     amount: 2
+    blocksPathfinding: 0
   _exclusionRadius: 0.5
 --- !u!114 &811590446
 MonoBehaviour:
@@ -8674,21 +8678,25 @@ MonoBehaviour:
     - {fileID: 2135499782}
     priority: 1
     amount: 1
+    blocksPathfinding: 1
   - prefab: {fileID: 1146478861325557536, guid: 876e0eb235f662e4c84ef7d18239ae50, type: 3}
     spawnPoints:
     - {fileID: 986172981}
     priority: 1
     amount: 1
+    blocksPathfinding: 1
   - prefab: {fileID: 7917386978900227245, guid: ec9e9e96d4953b04cbaab15c5a34b360, type: 3}
     spawnPoints:
     - {fileID: 1618891089}
     priority: 1
     amount: 1
+    blocksPathfinding: 1
   - prefab: {fileID: 7120141454805648527, guid: bd04d0acc786ef04bbd65d4324245507, type: 3}
     spawnPoints:
     - {fileID: 668403241}
     priority: 1
     amount: 1
+    blocksPathfinding: 1
   _exclusionRadius: 0.5
 --- !u!114 &811590447
 MonoBehaviour:
@@ -8710,18 +8718,21 @@ MonoBehaviour:
     - {fileID: 1058631685}
     priority: 1
     amount: 1.5
+    blocksPathfinding: 1
   - prefab: {fileID: 1551531251921517670, guid: b93692d725465394f801912590a1cbec, type: 3}
     spawnPoints:
     - {fileID: 768590200}
     - {fileID: 1668536458}
     priority: 1
     amount: 1.5
+    blocksPathfinding: 1
   - prefab: {fileID: 3000267703056740775, guid: 747f4c282fb2b0e4eae6e7992cbb6201, type: 3}
     spawnPoints:
     - {fileID: 425323668}
     - {fileID: 604852200}
     priority: 1
     amount: 1.5
+    blocksPathfinding: 1
   - prefab: {fileID: 241821308022152060, guid: 2336cd535d820684bb13813fe032ef26, type: 3}
     spawnPoints:
     - {fileID: 628875395}
@@ -8729,6 +8740,7 @@ MonoBehaviour:
     - {fileID: 727969048}
     priority: 1
     amount: 1.5
+    blocksPathfinding: 1
   _exclusionRadius: 0.5
 --- !u!114 &811590448
 MonoBehaviour:
@@ -8749,18 +8761,21 @@ MonoBehaviour:
     - {fileID: 1408374812}
     priority: 3
     amount: 0.5
+    blocksPathfinding: 1
   - prefab: {fileID: 1929575553735547992, guid: 17241e4eafa48324baef10a1eea6f105, type: 3}
     spawnPoints:
     - {fileID: 80118796}
     - {fileID: 1408374812}
     priority: 2
     amount: 0.5
+    blocksPathfinding: 1
   - prefab: {fileID: 671347204075814597, guid: 671d4e88e7056cd419a881bab2265f45, type: 3}
     spawnPoints:
     - {fileID: 80118796}
     - {fileID: 1408374812}
     priority: 1
     amount: 0.5
+    blocksPathfinding: 1
   _exclusionRadius: 0.5
 --- !u!114 &811590449
 MonoBehaviour:
@@ -8787,6 +8802,7 @@ MonoBehaviour:
     - {fileID: 1546784788}
     priority: 1
     amount: 1.5
+    blocksPathfinding: 1
   - prefab: {fileID: 5002162663013772536, guid: 77f6332d36d1e1b4ebf8f0934c56a46f, type: 3}
     spawnPoints:
     - {fileID: 2111623122}
@@ -8799,6 +8815,7 @@ MonoBehaviour:
     - {fileID: 1546784788}
     priority: 2
     amount: 1.5
+    blocksPathfinding: 1
   - prefab: {fileID: 464896817557570775, guid: 7492282c6a7b969448bbe46512329b24, type: 3}
     spawnPoints:
     - {fileID: 2111623122}
@@ -8811,6 +8828,7 @@ MonoBehaviour:
     - {fileID: 1546784788}
     priority: 3
     amount: 1.5
+    blocksPathfinding: 1
   - prefab: {fileID: 9135619138273742699, guid: 5e4d0706fbabe564196f33a835dae1bc, type: 3}
     spawnPoints:
     - {fileID: 2111623122}
@@ -8823,6 +8841,7 @@ MonoBehaviour:
     - {fileID: 1546784788}
     priority: 4
     amount: 1.5
+    blocksPathfinding: 1
   _exclusionRadius: 0.5
 --- !u!114 &811590450
 MonoBehaviour:
@@ -8881,6 +8900,7 @@ MonoBehaviour:
     - {fileID: 495091830}
     priority: 3
     amount: 9
+    blocksPathfinding: 1
   _exclusionRadius: 0.5
 --- !u!1001 &814280167
 PrefabInstance:
@@ -32465,7 +32485,7 @@ Transform:
   m_GameObject: {fileID: 1731801380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.112091504, z: -0, w: 0.99369794}
-  m_LocalPosition: {x: 8.70533, y: -6.54, z: 29.617403}
+  m_LocalPosition: {x: 8.70533, y: -6.91, z: 29.617403}
   m_LocalScale: {x: 3.6536813, y: 3.6536813, z: 3.6536813}
   m_ConstrainProportionsScale: 0
   m_Children: []

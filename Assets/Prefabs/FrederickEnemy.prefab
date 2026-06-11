@@ -80,9 +80,6 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 128
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 520
 --- !u!114 &2322084229238753198
 MonoBehaviour:
   m_ObjectHideFlags: 0
