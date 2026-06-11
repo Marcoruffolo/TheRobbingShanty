@@ -356,7 +356,7 @@ MonoBehaviour:
   groundRadius: 0.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 2568
+    m_Bits: 2056
 --- !u!114 &1448063415218573401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,8 +595,8 @@ MonoBehaviour:
   playerHealth: {fileID: 11400000, guid: 79070a258b116a445b07d3b3a4cc3a4d, type: 2}
   maxHealth: {fileID: 11400000, guid: d3a53f2111a0fc64fad4d62ff4a783a6, type: 2}
   bloodEffectPrefab: {fileID: 1240942612945472678, guid: ae8d36fc948349a4ea83caebfb7786e4, type: 3}
-  rendererFeature: {fileID: 0}
-  _fullscreenDamage: {fileID: 0}
+  rendererFeature: {fileID: 4951952143308557470, guid: e2bb46a51e19a254084461ac62f3a5a8, type: 2}
+  _fullscreenDamage: {fileID: 2100000, guid: 9f57fd9ab9d8c2c4082d6e338fd00390, type: 2}
   onPlayerDeath: {fileID: 11400000, guid: 89ef3984e7a853043877469d69f58017, type: 2}
 --- !u!114 &7796678354078315352
 MonoBehaviour:
