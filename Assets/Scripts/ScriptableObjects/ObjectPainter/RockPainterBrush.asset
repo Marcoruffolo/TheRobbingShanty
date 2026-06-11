@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a49e617a55d5cd42a41ee28c9309054, type: 3}
+  m_Name: RockPainterBrush
+  m_EditorClassIdentifier: 
+  variants:
+  - prefab: {fileID: 4356161341422864344, guid: 05ff8ec1253e7c44c81937d42a6392b7, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 2011580463347435244, guid: df45a3afac31c8e4283951139c5bee22, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 8818612269234030471, guid: cdb4c02db2cc235438538d3cabeba104, type: 3}
+    weight: 0.3
+  brushRadius: 10
+  instancesPerStamp: 3
+  minSpacing: 0.75
+  maxInstancesPerStroke: 250
+  dragStampInterval: 0.08
+  surfaceMask:
+    serializedVersion: 2
+    m_Bits: 8
+  projectionDistance: 30
+  surfaceOffset: 0
+  alignToSurface: 0
+  randomYaw: 1
+  minScale: 0.9
+  maxScale: 1.2
+  outputLayer: 0
+  receiveShadows: 1
+  shadowCasting: 1
+  createColliderProxies: 0
+  colliderProxyType: 2
+  colliderCenter: {x: 0, y: 1, z: 0}
+  colliderSize: {x: 1, y: 2, z: 1}
+  colliderIsTrigger: 0
