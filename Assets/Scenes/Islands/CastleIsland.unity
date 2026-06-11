@@ -325,6 +325,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4634046}
   m_Mesh: {fileID: -1984987933520197390, guid: 016bfc978cf1fc943be1ca4950343966, type: 3}
+--- !u!1 &11213889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11213890}
+  - component: {fileID: 11213891}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11213890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11213889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.123407125, y: 0.8392246, z: -0.21373636, w: 0.48455092}
+  m_LocalPosition: {x: 5.27, y: 15.06, z: -44.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 28.577, y: 119.998, z: 0}
+--- !u!114 &11213891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11213889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0.31164408, y: 1.4075155, z: 3.0699563}
+  m_Size: {x: 9.171126, y: 10.021118, z: 11.300902}
+  m_FadeFactor: 1
 --- !u!1001 &15950313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2609,6 +2665,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1588426225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &235836115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 235836116}
+  - component: {fileID: 235836117}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &235836116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235836115}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.1576304, y: 0.8488955, z: -0.20528471, w: -0.4608551}
+  m_LocalPosition: {x: 3.7, y: 7.39, z: 1.5999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 29.592, y: 235.627, z: -5.174}
+--- !u!114 &235836117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235836115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -3.6960788, y: 1.8346081, z: 3.9858918}
+  m_Size: {x: 14.396499, y: 7.370558, z: 14.172534}
+  m_FadeFactor: 1
 --- !u!1 &243293054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,6 +3409,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295264709}
   m_Mesh: {fileID: -1984987933520197390, guid: 016bfc978cf1fc943be1ca4950343966, type: 3}
+--- !u!1 &295673497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 295673498}
+  - component: {fileID: 295673499}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &295673498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295673497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.925555, y: 0.007823765, z: -0.12608093, w: 0.35691786}
+  m_LocalPosition: {x: -6.58, y: 12.05, z: -17.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 41.504, y: -162.291, z: -174.213}
+--- !u!114 &295673499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295673497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 2.4832718, y: 0.7258949, z: 5.330455}
+  m_Size: {x: 10.467701, y: 14.052334, z: 14.365158}
+  m_FadeFactor: 1
 --- !u!1 &307779360
 GameObject:
   m_ObjectHideFlags: 0
@@ -4883,7 +5051,7 @@ Transform:
   m_GameObject: {fileID: 444596543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08651425, y: 0.8327548, z: -0.13602327, w: 0.52965313}
-  m_LocalPosition: {x: -29.1, y: 41.94, z: -57}
+  m_LocalPosition: {x: -29.4, y: 41.94, z: -57.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4906,12 +5074,12 @@ MonoBehaviour:
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180
-  m_UVScale: {x: 0.79166657, y: 1}
-  m_UVBias: {x: 0.2083335, y: 0}
+  m_UVScale: {x: 0.99896747, y: 1}
+  m_UVBias: {x: 0.0010325266, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 4.400585, y: -2.379161, z: 3.8576393}
-  m_Size: {x: 14.483593, y: 23.079338, z: 39.99642}
+  m_Offset: {x: 1.148427, y: -2.379161, z: 3.8576393}
+  m_Size: {x: 15.564449, y: 23.079338, z: 39.99642}
   m_FadeFactor: 1
 --- !u!1 &449367042
 GameObject:
@@ -5023,6 +5191,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449367042}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &449589728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449589729}
+  - component: {fileID: 449589730}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &449589729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449589728}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.31883818, y: 0.54418063, z: -0.091664664, w: -0.77058893}
+  m_LocalPosition: {x: 4.13, y: 14.58, z: -28.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 36.239, y: 284.681, z: -14.778}
+--- !u!114 &449589730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449589728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0068908, y: 1.0078976}
+  m_UVBias: {x: -0.006891163, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -0.58963656, y: 0.3013687, z: 4.255229}
+  m_Size: {x: 6.825896, y: 9.067944, z: 8.078508}
+  m_FadeFactor: 1
 --- !u!1 &457047865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5368,6 +5592,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467543273}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &470195811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 470195812}
+  - component: {fileID: 470195813}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &470195812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470195811}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.12123887, y: 0.91379386, z: -0.22867063, w: -0.3130362}
+  m_LocalPosition: {x: -6.68, y: 7.39, z: -0.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 29.592, y: 216.452, z: -5.174}
+--- !u!114 &470195813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470195811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -3.6960788, y: 1.8346081, z: 3.9858918}
+  m_Size: {x: 14.396499, y: 7.370558, z: 14.172534}
+  m_FadeFactor: 1
 --- !u!1 &477995056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 26f75b75545e0f940a1d875074690cc2, type: 3}
@@ -5678,6 +5958,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5175276290982203419, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
   m_PrefabInstance: {fileID: 949036400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &514318648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 514318649}
+  - component: {fileID: 514318650}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &514318649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514318648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.91225475, y: -0.11574579, z: 0.20084845, w: 0.33771902}
+  m_LocalPosition: {x: -14.28, y: 15.68, z: -11.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 41.504, y: -202.639, z: -174.213}
+--- !u!114 &514318650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514318648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -1.0029197, y: 0.7258949, z: 3.2700076}
+  m_Size: {x: 11.104941, y: 14.052334, z: 10.244256}
+  m_FadeFactor: 1
 --- !u!1 &516859426
 GameObject:
   m_ObjectHideFlags: 0
@@ -5765,6 +6101,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 275740394}
   m_LocalEulerAnglesHint: {x: -6.193, y: -23.462, z: -13.958}
+--- !u!1 &530691958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530691959}
+  - component: {fileID: 530691960}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &530691959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530691958}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9999917, z: -0, w: -0.004080653}
+  m_LocalPosition: {x: 8.61, y: 11.05, z: -15.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.468, z: 0}
+--- !u!114 &530691960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530691958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -1.6785964, y: 1.3292198, z: 2.4155831}
+  m_Size: {x: 7.7739544, y: 7.351427, z: 7.471013}
+  m_FadeFactor: 1
 --- !u!1 &532573998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6000,6 +6392,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563152967}
   m_Mesh: {fileID: 8659943070623925175, guid: 016bfc978cf1fc943be1ca4950343966, type: 3}
+--- !u!1 &564429645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 564429646}
+  - component: {fileID: 564429647}
+  m_Layer: 0
+  m_Name: Moho Decal Projector (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &564429646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564429645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.6060868, y: -0.70605963, z: 0.35948086, w: -0.07008694}
+  m_LocalPosition: {x: -38.7, y: 9.55, z: -14.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1382977881}
+  m_LocalEulerAnglesHint: {x: 25.003, y: -216.158, z: -89.566}
+--- !u!114 &564429647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564429645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: da65f4f0650324c439cd6f1efc1316fb, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.2109638, y: 1}
+  m_UVBias: {x: -0.0013150703, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 4.5618267, y: -1.30933, z: 13.025757}
+  m_Size: {x: 18.641087, y: 19.872936, z: 28.691364}
+  m_FadeFactor: 1
 --- !u!1 &569846908
 GameObject:
   m_ObjectHideFlags: 0
@@ -6485,6 +6933,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8516742412513279420, guid: 17241e4eafa48324baef10a1eea6f105, type: 3}
   m_PrefabInstance: {fileID: 7374331234863064749}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &624020879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624020880}
+  - component: {fileID: 624020881}
+  m_Layer: 0
+  m_Name: Moho Decal Projector (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &624020880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624020879}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20505743, y: 0.013124411, z: -0.047391877, w: 0.97751385}
+  m_LocalPosition: {x: -8.75, y: 16.77, z: -52.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1382977881}
+  m_LocalEulerAnglesHint: {x: 23.712, y: 0.389, z: -5.47}
+--- !u!114 &624020881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624020879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: da65f4f0650324c439cd6f1efc1316fb, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0003854, y: 1}
+  m_UVBias: {x: -0.00038495145, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -2.7378392, y: -3.6187575, z: 2.8459659}
+  m_Size: {x: 10.81153, y: 7.0081134, z: 8.331779}
+  m_FadeFactor: 1
 --- !u!1 &628875394
 GameObject:
   m_ObjectHideFlags: 0
@@ -8505,6 +9009,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030569106295696273, guid: 08caf3ba33f1fc848a4f0ba611d852ca, type: 3}
   m_PrefabInstance: {fileID: 805390087}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &806987874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806987875}
+  - component: {fileID: 806987876}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &806987875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806987874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.74419075, y: 0.21509664, z: -0.46142057, w: 0.4324404}
+  m_LocalPosition: {x: -6.73, y: 11.69, z: -16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 57.366, y: -111.789, z: -171.584}
+--- !u!114 &806987876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806987874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -1.8545709, y: 0.7258949, z: 3.2700076}
+  m_Size: {x: 12.808244, y: 14.052334, z: 10.244256}
+  m_FadeFactor: 1
 --- !u!1 &811085036
 GameObject:
   m_ObjectHideFlags: 0
@@ -8959,6 +9519,62 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90d8ddf4b74e0e64fb14b6186851385a, type: 3}
+--- !u!1 &819980786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 819980787}
+  - component: {fileID: 819980788}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &819980787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819980786}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.020357134, y: 0.9629325, z: -0.25802067, w: 0.07597278}
+  m_LocalPosition: {x: -10.01, y: 7.39, z: 7.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 29.592, y: 169.61, z: -5.173}
+--- !u!114 &819980788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819980786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -3.6960788, y: 1.8346081, z: 3.9858918}
+  m_Size: {x: 14.396499, y: 7.370558, z: 14.172534}
+  m_FadeFactor: 1
 --- !u!1 &821408609
 GameObject:
   m_ObjectHideFlags: 0
@@ -10307,6 +10923,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -32.643, y: -218.729, z: 0}
+--- !u!1 &969075268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969075269}
+  - component: {fileID: 969075270}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969075269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969075268}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.79583025, z: -0, w: 0.6055199}
+  m_LocalPosition: {x: -15.22, y: 2.97, z: -5.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 105.467, z: 0}
+--- !u!114 &969075270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969075268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -6.219588, y: 1.5357943, z: 2.4155831}
+  m_Size: {x: 17.648243, y: 6.772932, z: 7.471013}
+  m_FadeFactor: 1
 --- !u!1 &972265381
 GameObject:
   m_ObjectHideFlags: 0
@@ -10714,6 +11386,62 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a2ba2c1b54f5914d824d9ac1418687d, type: 3}
+--- !u!1 &1015198467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015198468}
+  - component: {fileID: 1015198469}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1015198468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015198467}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.32403186, y: 0.7508921, z: -0.023277797, w: -0.5749979}
+  m_LocalPosition: {x: 6.02, y: 15.94, z: -32.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 24.054, y: 248.298, z: -30.238}
+--- !u!114 &1015198469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015198467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0068908, y: 1.0078976}
+  m_UVBias: {x: -0.006891163, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -0.39309812, y: 0.28720093, z: 5.5346723}
+  m_Size: {x: 9.787411, y: 9.096279, z: 10.637399}
+  m_FadeFactor: 1
 --- !u!1 &1017262443
 GameObject:
   m_ObjectHideFlags: 0
@@ -12947,6 +13675,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127608266}
   m_Mesh: {fileID: -2735251984287490357, guid: 016bfc978cf1fc943be1ca4950343966, type: 3}
+--- !u!1 &1134584041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134584042}
+  - component: {fileID: 1134584043}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134584042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134584041}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.99690205, z: -0, w: 0.07865287}
+  m_LocalPosition: {x: -11.3, y: 2.97, z: 7.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 170.978, z: 0}
+--- !u!114 &1134584043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134584041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -3.6960788, y: 1.412972, z: 1.8914766}
+  m_Size: {x: 14.396499, y: 6.5272875, z: 9.983704}
+  m_FadeFactor: 1
 --- !u!1 &1146149154
 GameObject:
   m_ObjectHideFlags: 0
@@ -13056,6 +13840,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146149154}
   m_Mesh: {fileID: -2735251984287490357, guid: 016bfc978cf1fc943be1ca4950343966, type: 3}
+--- !u!1 &1149560652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1149560653}
+  - component: {fileID: 1149560654}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1149560653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149560652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.38645002, z: -0, w: 0.92231035}
+  m_LocalPosition: {x: 20.255537, y: 15.64, z: -55.544163}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 45.468, z: 0}
+--- !u!114 &1149560654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149560652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.6995997, y: 1}
+  m_UVBias: {x: -0.025365721, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 1.0247297, y: -0.8147049, z: 2.4155831}
+  m_Size: {x: 7.216055, y: 10.293926, z: 7.471013}
+  m_FadeFactor: 1
 --- !u!1001 &1150863633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13206,6 +14046,62 @@ Transform:
   - {fileID: 243293055}
   m_Father: {fileID: 211479356}
   m_LocalEulerAnglesHint: {x: 0, y: -46.61, z: 0}
+--- !u!1 &1157435648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157435649}
+  - component: {fileID: 1157435650}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1157435649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157435648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.97114325, z: -0, w: 0.23849693}
+  m_LocalPosition: {x: -16.300001, y: 2.97, z: -7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 152.404, z: 0}
+--- !u!114 &1157435650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157435648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -3.824604, y: 1.5357943, z: 0.16795588}
+  m_Size: {x: 12.858276, y: 6.772932, z: 16.443077}
+  m_FadeFactor: 1
 --- !u!1 &1160253446
 GameObject:
   m_ObjectHideFlags: 0
@@ -13239,6 +14135,62 @@ Transform:
   - {fileID: 121922098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1160907904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160907905}
+  - component: {fileID: 1160907906}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160907905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160907904}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.2955433, y: 0.22778493, z: -0.0979333, w: -0.92259264}
+  m_LocalPosition: {x: 18.21, y: 6.17, z: -56.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 36.153, y: 333.33, z: 3.27}
+--- !u!114 &1160907906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160907904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -2.419116, y: 4.1717014, z: 6.520059}
+  m_Size: {x: 15.819557, y: 13.934414, z: 15.679965}
+  m_FadeFactor: 1
 --- !u!1001 &1162175069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14081,6 +15033,118 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1243581431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243581432}
+  - component: {fileID: 1243581433}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1243581432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243581431}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.38645002, z: -0, w: 0.92231035}
+  m_LocalPosition: {x: 8.930878, y: 12.33, z: -28.328379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 45.468, z: 0}
+--- !u!114 &1243581433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243581431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -2.2496839, y: 1.3292198, z: 2.0636861}
+  m_Size: {x: 8.581206, y: 9.321369, z: 6.767219}
+  m_FadeFactor: 1
+--- !u!1 &1243804862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243804863}
+  - component: {fileID: 1243804864}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1243804863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243804862}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9223114, z: -0, w: -0.3864476}
+  m_LocalPosition: {x: 29.1, y: 10.44, z: -14.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 225.467, z: 0}
+--- !u!114 &1243804864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243804862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -1.6785967, y: 1.3292198, z: 2.4155831}
+  m_Size: {x: 6.5493894, y: 6.006077, z: 7.471013}
+  m_FadeFactor: 1
 --- !u!1 &1245633691
 GameObject:
   m_ObjectHideFlags: 0
@@ -15963,6 +17027,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1519071260}
+  - {fileID: 624020880}
+  - {fileID: 2107678575}
   - {fileID: 2066103306}
   - {fileID: 1762281765}
   - {fileID: 1939421074}
@@ -15977,6 +17043,8 @@ Transform:
   - {fileID: 1413593569}
   - {fileID: 289851655}
   - {fileID: 1459530238}
+  - {fileID: 1552115108}
+  - {fileID: 564429646}
   m_Father: {fileID: 1905178182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1396057773
@@ -16010,6 +17078,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 121922098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1398020867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398020868}
+  - component: {fileID: 1398020869}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1398020868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398020867}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.1576304, y: 0.8488955, z: -0.20528471, w: -0.4608551}
+  m_LocalPosition: {x: 4.5, y: 7.39, z: -7.7999997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 29.592, y: 235.627, z: -5.174}
+--- !u!114 &1398020869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398020867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -3.6960788, y: -0.6944623, z: 3.9858918}
+  m_Size: {x: 14.396499, y: 12.428699, z: 14.172534}
+  m_FadeFactor: 1
 --- !u!1 &1401298363
 GameObject:
   m_ObjectHideFlags: 0
@@ -17498,12 +18622,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 981257808}
+  - {fileID: 11213890}
   - {fileID: 1875202287}
+  - {fileID: 1562346415}
   - {fileID: 1939250482}
+  - {fileID: 1015198468}
+  - {fileID: 449589729}
   - {fileID: 402839462}
+  - {fileID: 806987875}
+  - {fileID: 514318649}
+  - {fileID: 1589667106}
+  - {fileID: 295673498}
   - {fileID: 1898500795}
   - {fileID: 1752073250}
   - {fileID: 516859427}
+  - {fileID: 1679709008}
+  - {fileID: 1635030626}
   m_Father: {fileID: 1905178182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492912088 stripped
@@ -17897,13 +19031,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519071259}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.21048096, z: -0, w: 0.977598}
-  m_LocalPosition: {x: 9.63, y: 16.2, z: -26.84}
+  m_LocalRotation: {x: 0.20505743, y: 0.013124411, z: -0.047391877, w: 0.97751385}
+  m_LocalPosition: {x: -3.46, y: 16.34, z: -52.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1382977881}
-  m_LocalEulerAnglesHint: {x: 0, y: 24.301, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.712, y: 0.389, z: -5.47}
 --- !u!114 &1519071261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17921,12 +19055,12 @@ MonoBehaviour:
   m_FadeScale: 0.9
   m_StartAngleFade: 180
   m_EndAngleFade: 180
-  m_UVScale: {x: 0.79166657, y: 1}
-  m_UVBias: {x: 0.2083335, y: 0}
+  m_UVScale: {x: 1.0003854, y: 1}
+  m_UVBias: {x: -0.00038495145, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: -1.0217493, y: -2.379161, z: 2.4155831}
-  m_Size: {x: 7.37935, y: 9.487307, z: 7.471013}
+  m_Offset: {x: -2.7378392, y: -3.6187575, z: 2.8459659}
+  m_Size: {x: 10.81153, y: 7.0081134, z: 8.331779}
   m_FadeFactor: 1
 --- !u!1001 &1520189085
 PrefabInstance:
@@ -18620,6 +19754,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
   m_PrefabInstance: {fileID: 1549974912}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1552115107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552115108}
+  - component: {fileID: 1552115109}
+  m_Layer: 0
+  m_Name: Moho Decal Projector (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1552115108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552115107}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.6060868, y: -0.70605963, z: 0.35948086, w: -0.07008694}
+  m_LocalPosition: {x: -25.33, y: 11.33, z: -7.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1382977881}
+  m_LocalEulerAnglesHint: {x: 25.003, y: -216.158, z: -89.566}
+--- !u!114 &1552115109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552115107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: da65f4f0650324c439cd6f1efc1316fb, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.2109638, y: 1}
+  m_UVBias: {x: -0.0013150703, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 4.5618267, y: -1.30933, z: 13.025757}
+  m_Size: {x: 18.641087, y: 19.872936, z: 28.691364}
+  m_FadeFactor: 1
 --- !u!1 &1560227586
 GameObject:
   m_ObjectHideFlags: 0
@@ -18730,6 +19920,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560227586}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1562346414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562346415}
+  - component: {fileID: 1562346416}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1562346415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562346414}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3646126, y: 0.6079421, z: -0.42400315, w: -0.5636358}
+  m_LocalPosition: {x: -14, y: 12.76, z: -34.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 67.904, y: 269.227, z: 5.284}
+--- !u!114 &1562346416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562346414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -0.16481066, y: 0.16047001, z: 5.022907}
+  m_Size: {x: 10.398854, y: 7.7424707, z: 12.685658}
+  m_FadeFactor: 1
 --- !u!1 &1567187256
 GameObject:
   m_ObjectHideFlags: 0
@@ -18913,6 +20159,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588603869}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1589667105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589667106}
+  - component: {fileID: 1589667107}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1589667106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589667105}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.9033506, y: -0.12935804, z: 0.23771036, w: 0.3327431}
+  m_LocalPosition: {x: -4.16, y: 10.84, z: -17.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 41.504, y: -207.291, z: -174.213}
+--- !u!114 &1589667107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589667105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0.003914356, y: 0.7258949, z: 3.377572}
+  m_Size: {x: 11.011319, y: 14.052334, z: 10.459393}
+  m_FadeFactor: 1
 --- !u!1 &1603501624
 GameObject:
   m_ObjectHideFlags: 0
@@ -19172,6 +20474,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629562262}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1635030625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635030626}
+  - component: {fileID: 1635030627}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1635030626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635030625}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.10405408, y: 0.7642796, z: -0.13720582, w: -0.62146926}
+  m_LocalPosition: {x: 29.11, y: 11.24, z: -40.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 19.82, y: 258.354, z: 0.7}
+--- !u!114 &1635030627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635030625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -0.20253468, y: -3.0058737, z: 1.0592592}
+  m_Size: {x: 24.661123, y: 15.973749, z: 5.8227553}
+  m_FadeFactor: 1
 --- !u!1 &1636131864
 GameObject:
   m_ObjectHideFlags: 0
@@ -19970,6 +21328,62 @@ Transform:
   - {fileID: 604852200}
   m_Father: {fileID: 732042835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1679709007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679709008}
+  - component: {fileID: 1679709009}
+  m_Layer: 0
+  m_Name: Humedad Decal Projector (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679709008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679709007}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.39505324, y: 0.4354726, z: -0.14520435, w: -0.79574627}
+  m_LocalPosition: {x: 29.53, y: 11.56, z: -26.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1481630383}
+  m_LocalEulerAnglesHint: {x: 49.042, y: 298.08398, z: -9.925}
+--- !u!114 &1679709009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679709007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 9c3426f08c6cf7c49be9012adde1d19f, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -0.20253444, y: -0.22936797, z: 2.3071003}
+  m_Size: {x: 10.237114, y: 7.5083222, z: 8.318438}
+  m_FadeFactor: 1
 --- !u!1 &1698384927
 GameObject:
   m_ObjectHideFlags: 0
@@ -32544,8 +33958,8 @@ MonoBehaviour:
   m_UVBias: {x: -0.0253658, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: -0.49872875, y: 0.7258949, z: 11.904893}
-  m_Size: {x: 10.791872, y: 8.657872, z: 27.514029}
+  m_Offset: {x: 0.8699825, y: 0.7258949, z: 11.904893}
+  m_Size: {x: 8.054449, y: 8.657872, z: 27.514029}
   m_FadeFactor: 1
 --- !u!1 &1752142044
 GameObject:
@@ -33006,6 +34420,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
   m_PrefabInstance: {fileID: 1784350684}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1784658976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1784658977}
+  - component: {fileID: 1784658978}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1784658977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784658976}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9223114, z: -0, w: -0.3864476}
+  m_LocalPosition: {x: 25.95, y: 10.44, z: -10.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 225.467, z: 0}
+--- !u!114 &1784658978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784658976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -2.4191158, y: 3.856464, z: 2.4155831}
+  m_Size: {x: 5.0683513, y: 7.865424, z: 7.471013}
+  m_FadeFactor: 1
 --- !u!1 &1826701763
 GameObject:
   m_ObjectHideFlags: 0
@@ -33331,6 +34801,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833340219}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1846977056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1846977057}
+  - component: {fileID: 1846977058}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1846977057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846977056}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.25767827, y: 0.36684626, z: 0.03258042, w: -0.8932885}
+  m_LocalPosition: {x: 31.8, y: 5.77, z: -55.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 25.878, y: 311.66, z: -15.951}
+--- !u!114 &1846977058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846977056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -2.419116, y: 4.1717014, z: 6.520059}
+  m_Size: {x: 15.819557, y: 13.934414, z: 15.679965}
+  m_FadeFactor: 1
 --- !u!1 &1862468714
 GameObject:
   m_ObjectHideFlags: 0
@@ -33596,6 +35122,21 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1174115475}
+  - {fileID: 1243581432}
+  - {fileID: 1149560653}
+  - {fileID: 969075269}
+  - {fileID: 1134584042}
+  - {fileID: 819980787}
+  - {fileID: 470195812}
+  - {fileID: 235836116}
+  - {fileID: 1398020868}
+  - {fileID: 1157435649}
+  - {fileID: 530691959}
+  - {fileID: 1243804863}
+  - {fileID: 1784658977}
+  - {fileID: 1846977057}
+  - {fileID: 1160907905}
+  - {fileID: 2136727774}
   - {fileID: 170893102}
   - {fileID: 811085037}
   - {fileID: 1350522331}
@@ -34090,8 +35631,8 @@ MonoBehaviour:
   m_UVBias: {x: -0.0253658, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: -0.49872875, y: 0.7258949, z: 11.904893}
-  m_Size: {x: 10.791872, y: 8.657872, z: 27.514029}
+  m_Offset: {x: 0.4450822, y: 0.7258949, z: 11.904893}
+  m_Size: {x: 8.90425, y: 8.657872, z: 27.514029}
   m_FadeFactor: 1
 --- !u!1 &1901349025
 GameObject:
@@ -36738,8 +38279,8 @@ MonoBehaviour:
   m_UVBias: {x: -0.055523794, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: -6.698208, y: -0.9369011, z: 9.040094}
-  m_Size: {x: 39.150986, y: 25.183393, z: 38.097095}
+  m_Offset: {x: -6.698208, y: -0.9369011, z: 11.306241}
+  m_Size: {x: 39.150986, y: 25.183393, z: 33.5648}
   m_FadeFactor: 1
 --- !u!1 &2066103305
 GameObject:
@@ -36938,6 +38479,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088710012}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2107678574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107678575}
+  - component: {fileID: 2107678576}
+  m_Layer: 0
+  m_Name: Moho Decal Projector (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2107678575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107678574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20758446, y: -0.36195233, z: 0.03468754, w: 0.9081278}
+  m_LocalPosition: {x: -10.85, y: 13.82, z: -52.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1382977881}
+  m_LocalEulerAnglesHint: {x: 23.712, y: -44.61, z: -5.47}
+--- !u!114 &2107678576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107678574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: da65f4f0650324c439cd6f1efc1316fb, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0003854, y: 1}
+  m_UVBias: {x: -0.00038495145, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -1.4675465, y: -2.3931904, z: 7.426629}
+  m_Size: {x: 9.192957, y: 9.459248, z: 17.493109}
+  m_FadeFactor: 1
 --- !u!1001 &2108120764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37409,6 +39006,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 743695054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2136727773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2136727774}
+  - component: {fileID: 2136727775}
+  m_Layer: 0
+  m_Name: Humedad 2 Decal Projector (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2136727774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136727773}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.38645002, z: -0, w: 0.92231035}
+  m_LocalPosition: {x: 21.61, y: 9.11, z: -32.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1870714995}
+  m_LocalEulerAnglesHint: {x: 0, y: 45.468, z: 0}
+--- !u!114 &2136727775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136727773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 744d0d9973bdedc418792b5558f7e137, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1.0253655, y: 1}
+  m_UVBias: {x: -0.0253658, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -2.29032, y: 2.430698, z: 2.4155831}
+  m_Size: {x: 5.325943, y: 5.013892, z: 7.471013}
+  m_FadeFactor: 1
 --- !u!1 &2142368823
 GameObject:
   m_ObjectHideFlags: 0
