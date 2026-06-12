@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 6986414614147881941}
   - component: {fileID: 2361280948031423057}
   - component: {fileID: 4586513972108646778}
+  - component: {fileID: 6686090788781008063}
   m_Layer: 0
   m_Name: ArbolT2
   m_TagString: Untagged
@@ -196,3 +197,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6262645945478087712, guid: 099e471181cb7be4f8a01ea41cef2ccb, type: 3}
+--- !u!208 &6686090788781008063
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728823281960741040}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 74.05, y: 215.775, z: 67.744}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 40.7, y: -123.9, z: 0}
+  m_TimeToStationary: 0.5
