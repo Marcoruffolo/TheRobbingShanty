@@ -216,6 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4605315992965105556}
+  - component: {fileID: 2530781205952059714}
   m_Layer: 0
   m_Name: Libros
   m_TagString: Obstacle
@@ -239,6 +240,22 @@ Transform:
   - {fileID: 8679658839389872071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &2530781205952059714
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558871801692721390}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 63.85, y: 39.15, z: 54.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 322.3, y: -26.13, z: -445.2}
+  m_TimeToStationary: 0.5
 --- !u!1 &7827467924266786816
 GameObject:
   m_ObjectHideFlags: 0
