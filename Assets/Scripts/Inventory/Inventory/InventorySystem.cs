@@ -66,4 +66,29 @@ public class InventorySystem
     }
 
     public bool IsEmpty() => inventorySlots.All(s => s.ItemData == null);
+
+    public int GetItemCount(InventoryItemData item)
+    {
+        return inventorySlots.Where(s => s.ItemData == item).Sum(s => s.StackSize);
+    }
+
+    public bool RemoveItem(InventoryItemData item, int amount)
+    {
+        if (GetItemCount(item) < amount) return false;
+
+        foreach (var slot in inventorySlots.Where(s => s.ItemData == item))
+        {
+            if (amount <= 0) break;
+
+            int toRemove = Mathf.Min(slot.StackSize, amount);
+            slot.RemoveFromStack(toRemove);
+            amount -= toRemove;
+
+            if (slot.StackSize <= 0) slot.ClearSlot();
+
+            OnInventorySlotChanged?.Invoke(slot);
+        }
+
+        return true;
+    }
 }

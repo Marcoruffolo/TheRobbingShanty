@@ -5,6 +5,7 @@ public class PlayerCombat : MonoBehaviour
     [Header("Weapon")]
     [SerializeField] private InventoryItemData swordItemData;
     [SerializeField] private GameObject swordModel;
+    [SerializeField] private ItemUpgradeData swordDamageUpgrade;
 
     [Header("Attacking")]
     public float attackDistance = 3f;
@@ -111,6 +112,14 @@ public class PlayerCombat : MonoBehaviour
         readyToAttack = true;
     }
 
+    private float GetCurrentAttackDamage()
+    {
+        if (swordDamageUpgrade != null && ItemUpgradeManager.Instance != null)
+            return ItemUpgradeManager.Instance.GetCurrentValue(swordDamageUpgrade);
+
+        return attackDamage;
+    }
+
     void AttackRaycast()
     {
         if (Physics.SphereCast(_cam.transform.position, hitRadius, _cam.transform.forward,
@@ -119,7 +128,7 @@ public class PlayerCombat : MonoBehaviour
             IDamagable target = hit.transform.GetComponentInParent<IDamagable>();
             if (target != null)
             {
-                target.TakeDamage(attackDamage);
+                target.TakeDamage(GetCurrentAttackDamage());
                 if (hitSound != null)
                 {
                     GameObject hitEffect = Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
