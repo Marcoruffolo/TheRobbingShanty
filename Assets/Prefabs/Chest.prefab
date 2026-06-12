@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3812330566235011109}
   - component: {fileID: 3106208450177060664}
   - component: {fileID: 9189889771078464585}
+  - component: {fileID: 8946890362810039482}
   m_Layer: 6
   m_Name: Chest
   m_TagString: Untagged
@@ -72,8 +73,6 @@ MonoBehaviour:
   primaryInventorySystem:
     inventorySlots: []
   lootTable: {fileID: 11400000, guid: 276574b30ca61f143a4277561e56ee03, type: 2}
-  minSlotsToFill: 1
-  maxSlotsToFill: 3
 --- !u!114 &9189889771078464585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +86,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prompt: Open
+--- !u!208 &8946890362810039482
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990912825259680960}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.959341, y: 0.5, z: 0.5126425}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: -0.0632126}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6864165876397116878
 PrefabInstance:
   m_ObjectHideFlags: 0

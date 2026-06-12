@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3312511039470458213}
   - component: {fileID: 907367047488418517}
   - component: {fileID: 6691902821194503594}
+  - component: {fileID: 3065340712591587784}
   m_Layer: 0
   m_Name: Ruins.029
   m_TagString: Untagged
@@ -109,3 +110,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5211723007342180669, guid: a596dcf66cb66fb42949aa1162ea01b9, type: 3}
+--- !u!208 &3065340712591587784
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7401665932692514505}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0050000004, y: 0.010000001, z: 0.015000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: -0.006}
+  m_TimeToStationary: 0.5
