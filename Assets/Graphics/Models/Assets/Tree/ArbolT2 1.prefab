@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7344844787849023688}
   - component: {fileID: 4245742408780319559}
   - component: {fileID: 5176902272810491283}
+  - component: {fileID: 7606677876758436338}
   m_Layer: 0
   m_Name: ArbolT2 1
   m_TagString: Untagged
@@ -63717,3 +63718,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!208 &7606677876758436338
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802889271883103284}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 70.2, y: 294.45, z: 72.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 47.2, y: -55.3, z: -4.5}
+  m_TimeToStationary: 0.5
