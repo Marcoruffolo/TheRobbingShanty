@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c4919ae6d1e94448c1d70bb49af366, type: 3}
+  m_Name: EnergyDrink
+  m_EditorClassIdentifier: 
+  ID: 0
+  DisplayName: RunEnergy
+  Description: 
+  Icon: {fileID: 0}
+  maxStackSize: 16
+  itemPrefab: {fileID: 151084166275034650, guid: 3251e562b79eb784d974ed90309b329d, type: 3}
+  handItemPrefab: {fileID: 5403586227646100371, guid: 880d45851b75fe44ea1394b98e9b1e31, type: 3}
