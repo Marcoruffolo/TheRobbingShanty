@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7707619936439973508}
   - component: {fileID: 5666671629312353811}
   - component: {fileID: 1259682535649650102}
+  - component: {fileID: -6306513638042088663}
   m_Layer: 6
   m_Name: EnergyDrink
   m_TagString: Untagged
@@ -98,6 +99,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: af24795dcc20eab46ac26f87a7654273, type: 2}
+--- !u!114 &-6306513638042088663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151084166275034650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33af8f0e47b6c64a9140f07b121ca60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Pick Up
 --- !u!1001 &845631681529514333
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5639521207177770238}
   - component: {fileID: 3037895220982554357}
   - component: {fileID: 8449252592534185765}
+  - component: {fileID: 1412138446868633683}
   m_Layer: 6
   m_Name: ItemTotem
   m_TagString: Untagged
@@ -96,6 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 4c1f40c86539bd447a530bf49c5464fb, type: 2}
+--- !u!114 &1412138446868633683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512704319526743929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33af8f0e47b6c64a9140f07b121ca60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Pick Up
 --- !u!1001 &4602393407915424380
 PrefabInstance:
   m_ObjectHideFlags: 0
