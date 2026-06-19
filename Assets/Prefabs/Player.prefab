@@ -533,8 +533,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526ed24552cf0d04684295be1f2c8308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordItemData: {fileID: 11400000, guid: c1494f61c25aa054087c5a1e89b099e9, type: 2}
-  swordModel: {fileID: 8518906873989091010}
+  swordItemID: 1
+  swordModelPrefab: {fileID: 5403586227646100371, guid: 8dd7e7ab1871efd4d86eb1df5ec3d847, type: 3}
+  axeItemID: 2
+  axeModelPrefab: {fileID: 5403586227646100371, guid: cca3c10650d794943a74ce6809554fdd, type: 3}
+  swordDamageUpgrade: {fileID: 11400000, guid: a4f3ef7207cbc3b4cbe4bef0580d9695, type: 2}
+  weaponHandModel: {fileID: 8518906873989091010}
+  weaponSpawnPoint: {fileID: 9039546913278432376}
   attackDistance: 2
   attackDelay: 0.4
   attackSpeed: 1
@@ -597,6 +602,8 @@ MonoBehaviour:
   bloodEffectPrefab: {fileID: 1240942612945472678, guid: ae8d36fc948349a4ea83caebfb7786e4, type: 3}
   rendererFeature: {fileID: 4951952143308557470, guid: e2bb46a51e19a254084461ac62f3a5a8, type: 2}
   _fullscreenDamage: {fileID: 2100000, guid: 9f57fd9ab9d8c2c4082d6e338fd00390, type: 2}
+  fadeSpeed: 3
+  maxAlpha: 2
   onPlayerDeath: {fileID: 11400000, guid: 89ef3984e7a853043877469d69f58017, type: 2}
 --- !u!114 &7796678354078315352
 MonoBehaviour:
@@ -1365,7 +1372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
       propertyPath: m_Name
-      value: Sword
+      value: RightHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2358294406870074136, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
       propertyPath: m_CastShadows
@@ -1400,7 +1411,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -8700757021942931001, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
+    - {fileID: 5592028165464041713, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}

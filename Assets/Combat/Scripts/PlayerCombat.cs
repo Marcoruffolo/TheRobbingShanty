@@ -3,9 +3,15 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [Header("Weapon")]
-    [SerializeField] private InventoryItemData swordItemData;
-    [SerializeField] private GameObject swordModel;
+    [SerializeField] private int swordItemID;
+    [SerializeField] private GameObject swordModelPrefab;
+    [SerializeField] private int axeItemID;
+    [SerializeField] private GameObject axeModelPrefab;
     [SerializeField] private ItemUpgradeData swordDamageUpgrade;
+    [SerializeField] private GameObject weaponHandModel;
+    [SerializeField] private Transform weaponSpawnPoint;
+
+    private GameObject _currentWeaponModel;
 
     [Header("Attacking")]
     public float attackDistance = 3f;
@@ -37,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();
         _cam = Camera.main;
-        if (swordModel != null) swordModel.SetActive(false);
+        if (weaponHandModel != null) weaponHandModel.SetActive(false);
     }
 
     void Start()
@@ -66,8 +72,23 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnSelectionChanged(InventoryItemData selected)
     {
-        _swordEquipped = selected == swordItemData;
-        if (swordModel != null) swordModel.SetActive(_swordEquipped);
+        if (_currentWeaponModel != null)
+        {
+            Destroy(_currentWeaponModel);
+            _currentWeaponModel = null;
+        }
+
+        GameObject prefabToSpawn = null;
+        if (selected != null && selected.ID == swordItemID) prefabToSpawn = swordModelPrefab;
+        else if (selected != null && selected.ID == axeItemID) prefabToSpawn = axeModelPrefab;
+
+        bool weaponEquipped = prefabToSpawn != null;
+        if (weaponHandModel != null) weaponHandModel.SetActive(weaponEquipped);
+
+        if (weaponEquipped && weaponSpawnPoint != null)
+            _currentWeaponModel = Instantiate(prefabToSpawn, weaponSpawnPoint.position, weaponSpawnPoint.rotation, weaponSpawnPoint);
+
+        _swordEquipped = selected != null && selected.ID == swordItemID;
         if (!_swordEquipped) attacking = false;
     }
 
