@@ -10,6 +10,7 @@ public class ItemUpgradeStation : MonoBehaviour, IInteractable
     public string InteractionPrompt => interactionPrompt;
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
+    public static UnityAction OnCategoryUIOpened;
     public static UnityAction<List<ItemUpgradeData>> OnUpgradeUIOpened;
     public static UnityAction OnUpgradeUIClosed;
 
@@ -18,21 +19,26 @@ public class ItemUpgradeStation : MonoBehaviour, IInteractable
     private void OnEnable()
     {
         ItemUpgradeUI.OnCloseRequested += HandleCloseRequested;
+        UpgradeCategoryUI.OnCloseRequested += HandleCloseRequested;
+        UpgradeCategoryUI.OnWeaponUpgradesSelected += HandleWeaponUpgradesSelected;
     }
 
     private void OnDisable()
     {
         ItemUpgradeUI.OnCloseRequested -= HandleCloseRequested;
+        UpgradeCategoryUI.OnCloseRequested -= HandleCloseRequested;
+        UpgradeCategoryUI.OnWeaponUpgradesSelected -= HandleWeaponUpgradesSelected;
     }
 
     private void HandleCloseRequested() => _interactor?.RequestEndInteraction();
+    private void HandleWeaponUpgradesSelected() => OnUpgradeUIOpened?.Invoke(availableUpgrades);
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
         _interactor = interactor;
         PlayerCamera.LockCursor(false);
         BlockPlayerMovement.Instance?.ImmobilizePlayer();
-        OnUpgradeUIOpened?.Invoke(availableUpgrades);
+        OnCategoryUIOpened?.Invoke();
         interactSuccessful = true;
     }
 
