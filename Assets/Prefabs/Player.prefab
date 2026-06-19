@@ -540,10 +540,15 @@ MonoBehaviour:
   swordDamageUpgrade: {fileID: 11400000, guid: a4f3ef7207cbc3b4cbe4bef0580d9695, type: 2}
   weaponHandModel: {fileID: 8518906873989091010}
   weaponSpawnPoint: {fileID: 9039546913278432376}
+  swordStats:
+    attackSpeed: 1
+    attackDelay: 0.4
+    attackDamage: 10
+  axeStats:
+    attackSpeed: 1.4
+    attackDelay: 0.5
+    attackDamage: 20
   attackDistance: 2
-  attackDelay: 0.4
-  attackSpeed: 1
-  attackDamage: 15
   hitRadius: 0.4
   hitEffectPrefab: {fileID: 1240942612945472678, guid: b233834b8025ad54783972f315f932a9, type: 3}
   swordSwing: {fileID: 8300000, guid: 7923190c5e80b4d4d9396acc5d0b48cf, type: 3}

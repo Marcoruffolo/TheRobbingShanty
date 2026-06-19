@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c4919ae6d1e94448c1d70bb49af366, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 2
   DisplayName: Hacha
   Description: 
   Icon: {fileID: 0}
