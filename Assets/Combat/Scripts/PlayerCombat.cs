@@ -10,6 +10,8 @@ public class WeaponStats
     [Tooltip("Tiempo en segundos desde que empieza la animacion hasta que se aplica el golpe.")]
     public float attackDelay = 0.4f;
     public int attackDamage = 1;
+    [Tooltip("Multiplicador de velocidad de la animacion de ataque (1 = normal, menos = mas lenta).")]
+    public float animationSpeed = 1f;
 }
 
 public class PlayerCombat : MonoBehaviour
@@ -29,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private WeaponStats swordStats = new WeaponStats { attackSpeed = 1f, attackDelay = 0.4f, attackDamage = 1 };
 
     [Header("Axe Stats")]
-    [SerializeField] private WeaponStats axeStats = new WeaponStats { attackSpeed = 1.6f, attackDelay = 0.6f, attackDamage = 2 };
+    [SerializeField] private WeaponStats axeStats = new WeaponStats { attackSpeed = 1.6f, attackDelay = 0.6f, attackDamage = 2, animationSpeed = 0.6f };
 
     [Header("Attacking")]
     public float attackDistance = 3f;
@@ -122,6 +124,7 @@ public class PlayerCombat : MonoBehaviour
 
         readyToAttack = false;
         attacking = true;
+        animator.speed = CurrentWeaponStats.animationSpeed;
 
         Invoke(nameof(ResetAttack), CurrentWeaponStats.attackSpeed);
         Invoke(nameof(AttackRaycast), CurrentWeaponStats.attackDelay);
@@ -148,6 +151,7 @@ public class PlayerCombat : MonoBehaviour
     {
         attacking = false;
         readyToAttack = true;
+        animator.speed = 1f;
     }
 
     private float GetCurrentAttackDamage()
