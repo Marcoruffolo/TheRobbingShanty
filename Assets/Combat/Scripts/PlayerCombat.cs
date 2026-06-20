@@ -1,7 +1,5 @@
 using UnityEngine;
 
-public enum WeaponType { None, Sword, Axe }
-
 [System.Serializable]
 public class WeaponStats
 {
@@ -17,21 +15,11 @@ public class WeaponStats
 public class PlayerCombat : MonoBehaviour
 {
     [Header("Weapon")]
-    [SerializeField] private int swordItemID;
-    [SerializeField] private GameObject swordModelPrefab;
-    [SerializeField] private int axeItemID;
-    [SerializeField] private GameObject axeModelPrefab;
-    [SerializeField] private ItemUpgradeData swordDamageUpgrade;
     [SerializeField] private GameObject weaponHandModel;
     [SerializeField] private Transform weaponSpawnPoint;
 
     private GameObject _currentWeaponModel;
-
-    [Header("Sword Stats")]
-    [SerializeField] private WeaponStats swordStats = new WeaponStats { attackSpeed = 1f, attackDelay = 0.4f, attackDamage = 1 };
-
-    [Header("Axe Stats")]
-    [SerializeField] private WeaponStats axeStats = new WeaponStats { attackSpeed = 1.6f, attackDelay = 0.6f, attackDamage = 2, animationSpeed = 0.6f };
+    private WeaponItemData _currentWeapon;
 
     [Header("Attacking")]
     public float attackDistance = 3f;
@@ -53,9 +41,6 @@ public class PlayerCombat : MonoBehaviour
     private bool attacking;
     private bool readyToAttack = true;
     private int attackCount;
-    private WeaponType _currentWeapon = WeaponType.None;
-
-    private WeaponStats CurrentWeaponStats => _currentWeapon == WeaponType.Axe ? axeStats : swordStats;
 
     void Awake()
     {
@@ -85,7 +70,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (_currentWeapon == WeaponType.None) return;
+        if (_currentWeapon == null) return;
         if (!attacking) ChangeAnimationState(IDLE);
     }
 
@@ -97,16 +82,13 @@ public class PlayerCombat : MonoBehaviour
             _currentWeaponModel = null;
         }
 
-        GameObject prefabToSpawn = null;
-        if (selected != null && selected.ID == swordItemID) { prefabToSpawn = swordModelPrefab; _currentWeapon = WeaponType.Sword; }
-        else if (selected != null && selected.ID == axeItemID) { prefabToSpawn = axeModelPrefab; _currentWeapon = WeaponType.Axe; }
-        else { _currentWeapon = WeaponType.None; }
+        _currentWeapon = selected as WeaponItemData;
 
-        bool weaponEquipped = prefabToSpawn != null;
+        bool weaponEquipped = _currentWeapon != null;
         if (weaponHandModel != null) weaponHandModel.SetActive(weaponEquipped);
 
-        if (weaponEquipped && weaponSpawnPoint != null)
-            _currentWeaponModel = Instantiate(prefabToSpawn, weaponSpawnPoint.position, weaponSpawnPoint.rotation, weaponSpawnPoint);
+        if (weaponEquipped && _currentWeapon.handItemPrefab != null && weaponSpawnPoint != null)
+            _currentWeaponModel = Instantiate(_currentWeapon.handItemPrefab, weaponSpawnPoint.position, weaponSpawnPoint.rotation, weaponSpawnPoint);
 
         if (!weaponEquipped) attacking = false;
     }
@@ -120,14 +102,14 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack()
     {
-        if (_currentWeapon == WeaponType.None || !readyToAttack || attacking) return;
+        if (_currentWeapon == null || !readyToAttack || attacking) return;
 
         readyToAttack = false;
         attacking = true;
-        animator.speed = CurrentWeaponStats.animationSpeed;
+        animator.speed = _currentWeapon.stats.animationSpeed;
 
-        Invoke(nameof(ResetAttack), CurrentWeaponStats.attackSpeed);
-        Invoke(nameof(AttackRaycast), CurrentWeaponStats.attackDelay);
+        Invoke(nameof(ResetAttack), _currentWeapon.stats.attackSpeed);
+        Invoke(nameof(AttackRaycast), _currentWeapon.stats.attackDelay);
 
         if (swordSwing != null)
         {
@@ -156,14 +138,16 @@ public class PlayerCombat : MonoBehaviour
 
     private float GetCurrentAttackDamage()
     {
-        if (_currentWeapon == WeaponType.Sword && swordDamageUpgrade != null && ItemUpgradeManager.Instance != null)
-            return ItemUpgradeManager.Instance.GetCurrentValue(swordDamageUpgrade);
+        if (_currentWeapon.damageUpgrade != null && ItemUpgradeManager.Instance != null)
+            return ItemUpgradeManager.Instance.GetCurrentValue(_currentWeapon.damageUpgrade);
 
-        return CurrentWeaponStats.attackDamage;
+        return _currentWeapon.stats.attackDamage;
     }
 
     void AttackRaycast()
     {
+        if (_currentWeapon == null) return;
+
         if (Physics.SphereCast(_cam.transform.position, hitRadius, _cam.transform.forward,
                                out RaycastHit hit, attackDistance))
         {
