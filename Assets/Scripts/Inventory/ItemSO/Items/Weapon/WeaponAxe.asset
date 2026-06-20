@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02f0277adfb68fb41bea80f81648b57d, type: 3}
-  m_Name: WeaponKnife
+  m_Name: WeaponAxe
   m_EditorClassIdentifier: 
   ID: 0
-  DisplayName: 
+  DisplayName: Hacha
   Description: 
   Icon: {fileID: 0}
-  maxStackSize: 64
-  itemPrefab: {fileID: 0}
-  handItemPrefab: {fileID: 0}
+  maxStackSize: 1
+  itemPrefab: {fileID: 4454455190909108488, guid: dfc9ae9198c0a2646a8e6a11dce3b290, type: 3}
+  handItemPrefab: {fileID: 5403586227646100371, guid: cca3c10650d794943a74ce6809554fdd, type: 3}
   stats:
-    attackSpeed: 1
+    attackSpeed: 1.4
     attackDelay: 0.4
-    attackDamage: 1
-    animationSpeed: 1
+    attackDamage: 20
+    animationSpeed: 0.7
   damageUpgrade: {fileID: 0}
