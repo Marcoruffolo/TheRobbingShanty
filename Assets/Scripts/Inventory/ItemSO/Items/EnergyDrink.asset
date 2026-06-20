@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   DisplayName: RunEnergy
   Description: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: c9bfa24a79a332f4f94268b74d72a253, type: 3}
   maxStackSize: 16
   itemPrefab: {fileID: 151084166275034650, guid: 3251e562b79eb784d974ed90309b329d, type: 3}
   handItemPrefab: {fileID: 5403586227646100371, guid: 880d45851b75fe44ea1394b98e9b1e31, type: 3}

@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   DisplayName: Pistola
   Description: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 4d4d22168c117414396a69fbaa8a6ece, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 6639510309371332446, guid: 7e554edc82282e34ab6deeefc0ee5ee6, type: 3}
   handItemPrefab: {fileID: 0}

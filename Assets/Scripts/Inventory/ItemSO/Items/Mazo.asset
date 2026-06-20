@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   DisplayName: Mazo
   Description: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: f643c690ba9445b4188f961d89313c4e, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 7305295079813944697, guid: 5c20d34c589d1b94b9441c6fa2e2610e, type: 3}
   handItemPrefab: {fileID: 0}
