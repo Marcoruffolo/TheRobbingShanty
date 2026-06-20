@@ -15,8 +15,8 @@ MonoBehaviour:
   variants:
   - prefab: {fileID: 3048355025213103971, guid: 731dfe5b3f1af0649b0fbf4ba8e05024, type: 3}
     weight: 1
-  brushRadius: 4
-  instancesPerStamp: 3
+  brushRadius: 6
+  instancesPerStamp: 1
   minSpacing: 0.75
   maxInstancesPerStroke: 250
   dragStampInterval: 0.08
