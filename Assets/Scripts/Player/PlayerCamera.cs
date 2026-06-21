@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
@@ -13,6 +14,14 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float smoothTime = 0.05f;
     [SerializeField] private float lookInputMultiplier = 0.05f;
 
+    [Header("Zoom / Aim")]
+    [SerializeField] private CinemachineCamera vcam;
+    [SerializeField] private float aimFOV = 40f;
+    [SerializeField] private float zoomSpeed = 10f;
+
+    private float _baseFOV;
+    private bool _isAiming;
+
     private PlayerInputHandler _input;
     private float _xRotation;
     private float _sensitivity;
@@ -26,7 +35,12 @@ public class PlayerCamera : MonoBehaviour
     {
         if (playerBody == null && transform.parent != null)
             playerBody = transform.parent;
+
+        if (vcam == null) vcam = GetComponentInChildren<CinemachineCamera>();
+        if (vcam != null) _baseFOV = vcam.Lens.FieldOfView;
     }
+
+    public void SetAiming(bool aiming) => _isAiming = aiming;
 
     private void Start()
     {
@@ -69,6 +83,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
+        UpdateZoom();
+
         if (PauseManager.Instance != null && PauseManager.Instance.IsPaused)
             return;
         if (IsLocked) return;
@@ -95,6 +111,15 @@ public class PlayerCamera : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * _currentLook.x);
+    }
+
+    private void UpdateZoom()
+    {
+        if (vcam == null) return;
+        LensSettings lens = vcam.Lens;
+        float targetFOV = _isAiming ? aimFOV : _baseFOV;
+        lens.FieldOfView = Mathf.Lerp(lens.FieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+        vcam.Lens = lens;
     }
 
     public static void LockCursor(bool locked)

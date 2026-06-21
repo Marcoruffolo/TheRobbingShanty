@@ -263,6 +263,9 @@ MonoBehaviour:
   maxVerticalAngle: 80
   smoothTime: 0.05
   lookInputMultiplier: 0.05
+  vcam: {fileID: 0}
+  aimFOV: 40
+  zoomSpeed: 10
 --- !u!1 &9169416703968480330
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +355,7 @@ MonoBehaviour:
   walkSpeed: 4
   sprintSpeed: 7
   jumpHeight: 1.2
+  aimSpeedMultiplier: 0.7
   gravity: -19.62
   groundCheck: {fileID: 7912935108094571904}
   groundRadius: 0.3

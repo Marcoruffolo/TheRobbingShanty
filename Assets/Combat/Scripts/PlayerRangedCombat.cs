@@ -12,6 +12,8 @@ public class PlayerRangedCombat : MonoBehaviour
 
     private AudioSource _audioSource;
     private PlayerInputHandler _inputHandler;
+    private PlayerCamera _playerCamera;
+    private PlayerMovement _playerMovement;
     private Camera _cam;
 
     private bool _isReloading;
@@ -22,6 +24,8 @@ public class PlayerRangedCombat : MonoBehaviour
     void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _playerCamera = GetComponentInChildren<PlayerCamera>();
+        _playerMovement = GetComponent<PlayerMovement>();
         _cam = Camera.main;
         if (reloadProgress != null) reloadProgress.Value = 1f;
     }
@@ -47,6 +51,8 @@ public class PlayerRangedCombat : MonoBehaviour
     void Update()
     {
         IsAiming = _currentWeapon != null && _inputHandler != null && _inputHandler.AimHeld;
+        _playerCamera?.SetAiming(IsAiming);
+        _playerMovement?.SetAiming(IsAiming);
 
         if (!_isReloading) return;
 

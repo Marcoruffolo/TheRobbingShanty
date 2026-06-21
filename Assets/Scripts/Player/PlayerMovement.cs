@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed = 4f;
     [SerializeField] private float sprintSpeed = 7f;
     [SerializeField] private float jumpHeight = 1.2f;
+    [SerializeField] private float aimSpeedMultiplier = 0.5f;
 
     [Header("Gravity")]
     [SerializeField] private float gravity = -19.62f;
@@ -21,9 +22,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity;
     private bool _isGrounded;
     private bool _jumpRequested;
+    private bool _isAiming;
 
     public bool IsGrounded => _isGrounded;
     public bool IsDashLocked { get; private set; }
+
+    public void SetAiming(bool aiming) => _isAiming = aiming;
 
     private void Awake()
     {
@@ -106,7 +110,10 @@ public class PlayerMovement : MonoBehaviour
         if (_input == null || IsDashLocked)
             return;
 
-        float speed = _input.SprintHeld ? sprintSpeed : walkSpeed;
+        bool canSprint = _input.SprintHeld && !_isAiming;
+        float speed = canSprint ? sprintSpeed : walkSpeed;
+        if (_isAiming) speed *= aimSpeedMultiplier;
+
         Vector2 input = _input.MoveInput;
         Vector3 move = transform.right * input.x + transform.forward * input.y;
 
