@@ -90,7 +90,9 @@ public class PlayerRangedCombat : MonoBehaviour
         if (_currentWeapon == null || _bulletPool == null || _isReloading) return;
         if (!_bulletPool.TryGet(out Bullet bullet)) return;
 
-        bullet.Launch(_bulletPool, _cam.transform.position, _cam.transform.forward,
+        Vector3 origin = weaponSpawnPoint != null ? weaponSpawnPoint.position : _cam.transform.position;
+        Vector3 direction = GetAimDirection(origin);
+        bullet.Launch(_bulletPool, origin, direction,
             GetCurrentDamage(), _currentWeapon.bulletSpeed, _currentWeapon.maxDistance);
 
         if (fireSound != null) _audioSource.PlayOneShot(fireSound);
@@ -104,6 +106,15 @@ public class PlayerRangedCombat : MonoBehaviour
         _reloadTimer = 0f;
         if (reloadProgress != null) reloadProgress.Value = 0f;
         if (_currentWeapon.reloadSound != null) _audioSource.PlayOneShot(_currentWeapon.reloadSound);
+    }
+
+    private Vector3 GetAimDirection(Vector3 origin)
+    {
+        Vector3 aimPoint = Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, _currentWeapon.maxDistance)
+            ? hit.point
+            : _cam.transform.position + _cam.transform.forward * _currentWeapon.maxDistance;
+
+        return (aimPoint - origin).normalized;
     }
 
     private float GetCurrentDamage()
