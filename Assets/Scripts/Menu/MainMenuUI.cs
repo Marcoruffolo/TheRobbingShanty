@@ -23,6 +23,12 @@ public class MainMenuUI : MonoBehaviour
     [Header("Nombre de la escena de juego")]
     [SerializeField] private SceneField gameScene;
 
+
+    [SerializeField] private SOVariableInt installedNavigationCores;
+    [SerializeField] private SOVariableBool artifactIslandCompleted;
+    [SerializeField] private SOVariableBool artifactCoreClaimed;
+    [SerializeField] private SOInventorySaveData inventorySaveData;
+
     private void Start()
     {
         PlayerCamera.LockCursor(false);
@@ -41,6 +47,10 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnPlay()
     {
+        installedNavigationCores?.ResetValue();
+        artifactIslandCompleted?.ResetValue();
+        artifactCoreClaimed?.ResetValue();
+        inventorySaveData?.Clear();
         SceneManager.LoadScene(gameScene);
     }
 

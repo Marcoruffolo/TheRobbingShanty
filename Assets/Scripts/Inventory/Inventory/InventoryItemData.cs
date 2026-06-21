@@ -10,6 +10,7 @@ public class InventoryItemData : ScriptableObject
  
     public Sprite Icon;
     public int maxStackSize = 64;
+    public bool CanDrop = true;
 
     public GameObject itemPrefab;
     public GameObject handItemPrefab;

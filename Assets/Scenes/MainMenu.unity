@@ -1958,6 +1958,10 @@ MonoBehaviour:
   gameScene:
     _sceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
     _sceneName: MainScene
+  installedNavigationCores: {fileID: 11400000, guid: 3e2204f1a7d81c846ac33f2f8436d6b3, type: 2}
+  artifactIslandCompleted: {fileID: 11400000, guid: 9097b409c6c41b34caa8e7f38ab8f6cf, type: 2}
+  artifactCoreClaimed: {fileID: 11400000, guid: 56f72b382805de04fbfe841ba3c39c1d, type: 2}
+  inventorySaveData: {fileID: 11400000, guid: 8c952c355d565b0479ef2d6c1ce808b5, type: 2}
 --- !u!1 &528077853
 GameObject:
   m_ObjectHideFlags: 0

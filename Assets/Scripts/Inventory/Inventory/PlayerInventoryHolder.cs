@@ -129,7 +129,7 @@ public class PlayerInventoryHolder : InventoryHolder
 
     public void DropItem(InventoryItemData itemData, int amount = 1)
     {
-        if (itemData == null || itemData.itemPrefab == null) return;
+        if (itemData == null || itemData.itemPrefab == null || !itemData.CanDrop) return;
 
         Vector3 spawnPos = dropPoint != null ? dropPoint.position : transform.position + transform.forward * 1f;
         Quaternion spawnRot = dropPoint != null ? dropPoint.rotation : Quaternion.identity;
@@ -155,7 +155,27 @@ public class PlayerInventoryHolder : InventoryHolder
 
         return false;
     }
+    public int GetItemCount(InventoryItemData data)
+    {
+        return primaryInventorySystem.GetItemCount(data) + secondaryInventorySystem.GetItemCount(data);
+    }
 
+    public bool TryRemoveItem(InventoryItemData data, int amount)
+    {
+        if (data == null || amount <= 0 || GetItemCount(data) < amount) return false;
+
+        int fromPrimary = Mathf.Min(primaryInventorySystem.GetItemCount(data), amount);
+
+        if (fromPrimary > 0)
+            primaryInventorySystem.RemoveItem(data, fromPrimary);
+
+        int remaining = amount - fromPrimary;
+
+        if (remaining > 0)
+            secondaryInventorySystem.RemoveItem(data, remaining);
+
+        return true;
+    }
     public void ClearInventory()
     {
         foreach (var slot in primaryInventorySystem.InventorySlots)

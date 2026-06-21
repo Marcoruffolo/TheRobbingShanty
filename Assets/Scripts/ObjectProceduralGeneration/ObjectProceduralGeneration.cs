@@ -16,6 +16,12 @@ public class ObjectProceduralGeneration : MonoBehaviour
     [SerializeField] private PrefabEntry[] _entries;
     [SerializeField] private float _exclusionRadius = 0.5f;
 
+    private readonly List<GameObject> _spawnedObjects = new List<GameObject>();
+
+    public IReadOnlyList<GameObject> SpawnedObjects => _spawnedObjects;
+    public bool HasGenerated { get; private set; }
+    public event System.Action GenerationCompleted;
+
     void Start()
     {
         SpawnRandom();
@@ -23,7 +29,11 @@ public class ObjectProceduralGeneration : MonoBehaviour
 
     public void SpawnRandom()
     {
-        if (_entries == null || _entries.Length == 0) return;
+        _spawnedObjects.Clear();
+        if (_entries == null || _entries.Length == 0) 
+        {
+            CompleteGeneration();
+            return;}
 
         List<(Vector3 position, int priority)> occupied = new List<(Vector3, int)>();
 
@@ -62,10 +72,19 @@ public class ObjectProceduralGeneration : MonoBehaviour
                     break;
                 }
 
-                Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
+                GameObject spawnedObject = Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
+                _spawnedObjects.Add(spawnedObject);
                 usedByThisEntry.Add(spawnPoint.position);
                 occupied.Add((spawnPoint.position, entry.priority));
             }
         }
+
+        CompleteGeneration();
+    }
+
+    private void CompleteGeneration()
+    {
+        HasGenerated = true;
+        GenerationCompleted?.Invoke();
     }
 }
