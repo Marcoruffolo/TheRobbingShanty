@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     private float _damage;
     private Vector3 _startPosition;
     private float _elapsed;
+    private bool _hasHit;
 
     public void Launch(BulletPool owner, Vector3 origin, Vector3 direction, float damage, float speed, float maxDistance)
     {
@@ -22,6 +23,7 @@ public class Bullet : MonoBehaviour
         _maxDistance = maxDistance;
         _startPosition = origin;
         _elapsed = 0f;
+        _hasHit = false;
     }
 
     private void Update()
@@ -35,6 +37,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_hasHit) return;
+        _hasHit = true;
+
         IDamagable target = other.GetComponentInParent<IDamagable>();
         target?.TakeDamage(_damage);
         ReturnToPool();
