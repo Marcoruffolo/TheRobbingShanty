@@ -45,6 +45,7 @@ public class PlayerCombat : MonoBehaviour
     private bool attacking;
     private bool readyToAttack = true;
     private int attackCount;
+    private float readyTime;
 
     void Awake()
     {
@@ -108,6 +109,9 @@ public class PlayerCombat : MonoBehaviour
     {
         if (_currentWeapon == null || !readyToAttack || attacking) return;
 
+        if (attackCount != 0 && Time.time - readyTime > _currentWeapon.stats.comboDelay)
+            attackCount = 0;
+
         readyToAttack = false;
         attacking = true;
         animator.speed = _currentWeapon.stats.animationSpeed;
@@ -133,6 +137,7 @@ public class PlayerCombat : MonoBehaviour
     {
         attacking = false;
         readyToAttack = true;
+        readyTime = Time.time;
         animator.speed = 1f;
     }
 
