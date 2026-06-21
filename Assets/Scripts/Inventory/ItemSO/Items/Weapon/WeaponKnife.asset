@@ -21,7 +21,9 @@ MonoBehaviour:
   handItemPrefab: {fileID: 5403586227646100371, guid: 2d5a196630c4ce542a0a1664defe7186, type: 3}
   stats:
     attackSpeed: 1
+    comboDelay: 1
     attackDelay: 0.4
-    attackDamage: 1
+    attackDamage: 5
     animationSpeed: 1
-  damageUpgrade: {fileID: 0}
+    comboLength: 1
+  damageUpgrade: {fileID: 11400000, guid: affcc0b504aeb9340a084a84815ccdcf, type: 2}

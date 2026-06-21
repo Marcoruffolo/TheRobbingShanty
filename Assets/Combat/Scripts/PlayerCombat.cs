@@ -5,11 +5,14 @@ public class WeaponStats
 {
     [Tooltip("Tiempo en segundos entre el inicio de un ataque y poder volver a atacar.")]
     public float attackSpeed = 1f;
+    public float comboDelay = 0.3f;
     [Tooltip("Tiempo en segundos desde que empieza la animacion hasta que se aplica el golpe.")]
     public float attackDelay = 0.4f;
     public int attackDamage = 1;
     [Tooltip("Multiplicador de velocidad de la animacion de ataque (1 = normal, menos = mas lenta).")]
     public float animationSpeed = 1f;
+    [Range(1, 3)]
+    public int comboLength = 2;
 }
 
 public class PlayerCombat : MonoBehaviour
@@ -109,7 +112,11 @@ public class PlayerCombat : MonoBehaviour
         attacking = true;
         animator.speed = _currentWeapon.stats.animationSpeed;
 
-        Invoke(nameof(ResetAttack), _currentWeapon.stats.attackSpeed);
+        int nextStep = (attackCount + 1) % _currentWeapon.stats.comboLength;
+        bool isComboEnd = nextStep == 0;
+        float delay = isComboEnd ? _currentWeapon.stats.attackSpeed : _currentWeapon.stats.comboDelay;
+
+        Invoke(nameof(ResetAttack), delay);
         Invoke(nameof(AttackRaycast), _currentWeapon.stats.attackDelay);
 
         if (swordSwing != null)
@@ -118,16 +125,8 @@ public class PlayerCombat : MonoBehaviour
             audioSource.PlayOneShot(swordSwing);
         }
 
-        if (attackCount == 0)
-        {
-            ChangeAnimationState(ATTACK1);
-            attackCount++;
-        }
-        else
-        {
-            ChangeAnimationState(ATTACK2);
-            attackCount = 0;
-        }
+        ChangeAnimationState(attackCount % 2 == 0 ? ATTACK1 : ATTACK2);
+        attackCount = nextStep;
     }
 
     void ResetAttack()
