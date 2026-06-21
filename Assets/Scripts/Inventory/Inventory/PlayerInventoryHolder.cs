@@ -108,8 +108,8 @@ public class PlayerInventoryHolder : InventoryHolder
         var slot = primaryInventorySystem.InventorySlots[selectedHotbarIndex];
         lastHandItemData = slot.ItemData;
 
-        bool isWeapon = slot.ItemData is WeaponItemData;
-        if (!isWeapon && slot.ItemData != null && slot.ItemData.handItemPrefab != null && handItemSpawnPoint != null)
+        bool isCombatItem = slot.ItemData is EquippableWeaponData;
+        if (!isCombatItem && slot.ItemData != null && slot.ItemData.handItemPrefab != null && handItemSpawnPoint != null)
             currentHandItemInstance = Instantiate(slot.ItemData.handItemPrefab, handItemSpawnPoint.position, handItemSpawnPoint.rotation, handItemSpawnPoint);
 
         OnHotbarSelectionChanged?.Invoke(slot.ItemData);

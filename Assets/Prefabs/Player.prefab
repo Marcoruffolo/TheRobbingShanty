@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 7796678354078315352}
   - component: {fileID: 8819569243036130352}
   - component: {fileID: 5743962765939132968}
+  - component: {fileID: -2380343913677466159}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -652,6 +653,21 @@ MonoBehaviour:
   promptMessage: Teleport
   showPromptEvent: {fileID: 11400000, guid: 26056f93b9c54ebea37b06f0d97808ba, type: 2}
   promptText: {fileID: 11400000, guid: 57a8bc21638842de848f571eb82cfbbb, type: 2}
+--- !u!114 &-2380343913677466159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc019c79b67510140a7357c224d28c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSpawnPoint: {fileID: 9039546913278432376}
+  reloadProgress: {fileID: 11400000, guid: be7d15647be4f4745b3bc8ffc159bd15, type: 2}
+  fireSound: {fileID: 8300000, guid: 44d61f25df252ba41bb824a992324a0d, type: 3}
 --- !u!1001 &3340636109574979334
 PrefabInstance:
   m_ObjectHideFlags: 0

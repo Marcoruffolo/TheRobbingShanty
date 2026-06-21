@@ -122,6 +122,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AimAction",
+                    "type": "Button",
+                    "id": "595dabe5-09d6-4b64-8f76-5a669df8f26c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireAction",
+                    "type": "Button",
+                    "id": "7f0d57ba-162b-48ee-9ff3-4d03befdebf1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -496,6 +514,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bebcca72-f15e-4451-8992-cf58619b98db",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d92dd82-c5c0-4f3c-bfc7-39e3f3b1ce4f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

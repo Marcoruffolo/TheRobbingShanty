@@ -208,6 +208,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""595dabe5-09d6-4b64-8f76-5a669df8f26c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f0d57ba-162b-48ee-9ff3-4d03befdebf1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -582,6 +600,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bebcca72-f15e-4451-8992-cf58619b98db"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d92dd82-c5c0-4f3c-bfc7-39e3f3b1ce4f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1202,6 +1242,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_DashAction = m_Player.FindAction("DashAction", throwIfNotFound: true);
         m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_AimAction = m_Player.FindAction("AimAction", throwIfNotFound: true);
+        m_Player_FireAction = m_Player.FindAction("FireAction", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1309,6 +1351,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DashAction;
     private readonly InputAction m_Player_Teleport;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_AimAction;
+    private readonly InputAction m_Player_FireAction;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1372,6 +1416,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AimAction".
+        /// </summary>
+        public InputAction @AimAction => m_Wrapper.m_Player_AimAction;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/FireAction".
+        /// </summary>
+        public InputAction @FireAction => m_Wrapper.m_Player_FireAction;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1437,6 +1489,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @AimAction.started += instance.OnAimAction;
+            @AimAction.performed += instance.OnAimAction;
+            @AimAction.canceled += instance.OnAimAction;
+            @FireAction.started += instance.OnFireAction;
+            @FireAction.performed += instance.OnFireAction;
+            @FireAction.canceled += instance.OnFireAction;
         }
 
         /// <summary>
@@ -1487,6 +1545,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @AimAction.started -= instance.OnAimAction;
+            @AimAction.performed -= instance.OnAimAction;
+            @AimAction.canceled -= instance.OnAimAction;
+            @FireAction.started -= instance.OnFireAction;
+            @FireAction.performed -= instance.OnFireAction;
+            @FireAction.canceled -= instance.OnFireAction;
         }
 
         /// <summary>
@@ -1889,6 +1953,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AimAction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAimAction(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FireAction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFireAction(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

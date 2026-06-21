@@ -14,6 +14,8 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction _sprintAction;
     private InputAction _interactAction;
     private InputAction _attackAction;
+    private InputAction _aimAction;
+    private InputAction _fireAction;
     private InputAction _parryAction;
     private InputAction _pushAction;
     private InputAction _dashAction;
@@ -24,10 +26,12 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 LookInput { get; private set; }
     public bool SprintHeld { get; private set; }
     public bool JumpHeld { get; private set; }
+    public bool AimHeld { get; private set; }
 
     public event System.Action OnJump;
     public event System.Action OnInteract;
     public event System.Action OnAttack;
+    public event System.Action OnFire;
     public event System.Action OnParry;
     public event System.Action OnPush;
     public event System.Action OnDash;
@@ -59,6 +63,8 @@ public class PlayerInputHandler : MonoBehaviour
         _sprintAction = map.FindAction("Sprint", true);
         _interactAction = map.FindAction("InteractAction", true);
         _attackAction = map.FindAction("AttackAction", true);
+        _aimAction = map.FindAction("AimAction", true);
+        _fireAction = map.FindAction("FireAction", true);
         _parryAction = map.FindAction("ParryAction", true);
         _pushAction = map.FindAction("PushAction", true);
         _dashAction = map.FindAction("DashAction", true);
@@ -76,6 +82,7 @@ public class PlayerInputHandler : MonoBehaviour
         _jumpAction.performed += HandleJumpPerformed;
         _interactAction.performed += HandleInteractPerformed;
         _attackAction.performed += HandleAttackPerformed;
+        _fireAction.performed += HandleFirePerformed;
         _parryAction.performed += HandleParryPerformed;
         _pushAction.performed += HandlePushPerformed;
         _dashAction.performed += HandleDashPerformed;
@@ -91,6 +98,7 @@ public class PlayerInputHandler : MonoBehaviour
         _jumpAction.performed -= HandleJumpPerformed;
         _interactAction.performed -= HandleInteractPerformed;
         _attackAction.performed -= HandleAttackPerformed;
+        _fireAction.performed -= HandleFirePerformed;
         _parryAction.performed -= HandleParryPerformed;
         _pushAction.performed -= HandlePushPerformed;
         _dashAction.performed -= HandleDashPerformed;
@@ -103,6 +111,7 @@ public class PlayerInputHandler : MonoBehaviour
         LookInput = Vector2.zero;
         SprintHeld = false;
         JumpHeld = false;
+        AimHeld = false;
     }
 
     private void Update()
@@ -111,6 +120,7 @@ public class PlayerInputHandler : MonoBehaviour
         LookInput = _lookAction.ReadValue<Vector2>();
         SprintHeld = _sprintAction.IsPressed();
         JumpHeld = _jumpAction.IsPressed();
+        AimHeld = _aimAction.IsPressed();
     }
 
     private void HandleJumpPerformed(InputAction.CallbackContext context)
@@ -127,6 +137,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Debug.Log("[Input] Attack performed");
         OnAttack?.Invoke();
+    }
+
+    private void HandleFirePerformed(InputAction.CallbackContext context)
+    {
+        OnFire?.Invoke();
     }
 
     private void HandleParryPerformed(InputAction.CallbackContext context)

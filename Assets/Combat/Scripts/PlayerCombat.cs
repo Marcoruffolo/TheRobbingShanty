@@ -20,6 +20,7 @@ public class PlayerCombat : MonoBehaviour
 
     private GameObject _currentWeaponModel;
     private WeaponItemData _currentWeapon;
+    private bool _combatItemEquipped;
 
     [Header("Attacking")]
     public float attackDistance = 3f;
@@ -70,7 +71,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (_currentWeapon == null) return;
+        if (!_combatItemEquipped) return;
         if (!attacking) ChangeAnimationState(IDLE);
     }
 
@@ -83,14 +84,14 @@ public class PlayerCombat : MonoBehaviour
         }
 
         _currentWeapon = selected as WeaponItemData;
+        _combatItemEquipped = selected is EquippableWeaponData;
 
-        bool weaponEquipped = _currentWeapon != null;
-        if (weaponHandModel != null) weaponHandModel.SetActive(weaponEquipped);
+        if (weaponHandModel != null) weaponHandModel.SetActive(_combatItemEquipped);
 
-        if (weaponEquipped && _currentWeapon.handItemPrefab != null && weaponSpawnPoint != null)
+        if (_currentWeapon != null && _currentWeapon.handItemPrefab != null && weaponSpawnPoint != null)
             _currentWeaponModel = Instantiate(_currentWeapon.handItemPrefab, weaponSpawnPoint.position, weaponSpawnPoint.rotation, weaponSpawnPoint);
 
-        if (!weaponEquipped) attacking = false;
+        if (!_combatItemEquipped) attacking = false;
     }
 
     public void ChangeAnimationState(string newState)
