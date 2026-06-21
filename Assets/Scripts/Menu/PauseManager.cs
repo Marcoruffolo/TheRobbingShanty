@@ -36,6 +36,9 @@ public class PauseManager : MonoBehaviour
 
     public void TogglePause()
     {
+        if (Time.timeScale == 0f && !IsPaused)
+            return;
+
         if (IsPaused)
             Resume();
         else

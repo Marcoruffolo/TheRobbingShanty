@@ -156,5 +156,16 @@ public class PlayerInventoryHolder : InventoryHolder
         return false;
     }
 
+    public void ClearInventory()
+    {
+        foreach (var slot in primaryInventorySystem.InventorySlots)
+            slot.ClearSlot();
+
+        foreach (var slot in secondaryInventorySystem.InventorySlots)
+            slot.ClearSlot();
+    }
+
+
+
     public int SelectedHotbarIndex => selectedHotbarIndex;
 }

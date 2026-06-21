@@ -456,7 +456,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4967991247842802908, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
   m_PrefabInstance: {fileID: 3807392484554300234}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1053157339}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b6a2a2a8af60c44c9afb07b9e70aa62, type: 3}
@@ -13266,6 +13266,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aab1914406b06644b6b7b68adeea178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1053157339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5120782932140037600, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+  m_PrefabInstance: {fileID: 3807392484554300234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1053157344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053157339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d13f33f5f3fab44af46d8eef3e3266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: {fileID: 11400000, guid: f60d2b533dc76af4ba91432caf69485b, type: 2}
+  onPlayerDeath: {fileID: 11400000, guid: 89ef3984e7a853043877469d69f58017, type: 2}
+  sinkDuration: 2
+  sinkDistance: 3
+  sinkTilt: 15
 --- !u!1001 &1157662459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14813,6 +14835,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5120782932140037600, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1053157344}
     - targetCorrespondingSourceObject: {fileID: 7699454030019090973, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3807392484554300236}
