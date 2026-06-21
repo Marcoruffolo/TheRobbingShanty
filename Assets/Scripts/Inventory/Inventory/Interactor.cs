@@ -96,7 +96,7 @@ public class Interactor : MonoBehaviour
             var item = _hit.collider.GetComponent<Item>();
             if (item != null)
             {
-                SetPrompt($"[E] Recoger {item.ItemData.DisplayName}", true);
+                SetPrompt($" Recoger {item.ItemData.DisplayName}", true);
                 return;
             }
         }
