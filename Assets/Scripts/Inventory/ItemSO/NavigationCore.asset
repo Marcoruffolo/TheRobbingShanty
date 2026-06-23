@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 3
   DisplayName: "N\xFAcleo de navegaci\xF3n"
   Description: 
-  Icon: {fileID: 21300000, guid: 26be6df94a7980b42b9dda87f9ed4d7c, type: 3}
+  Icon: {fileID: 21300000, guid: e31e801c6679dc14983498fcc1c854a1, type: 3}
   maxStackSize: 1
   CanDrop: 1
   itemPrefab: {fileID: 467679198501035676, guid: efcd90fc339b54749a28e29b0c76fd94, type: 3}
