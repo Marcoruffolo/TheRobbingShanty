@@ -2487,7 +2487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dmg
+  m_text: Damage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94917fd8d4581b548b8eae0609bf528e, type: 2}
   m_sharedMaterial: {fileID: 7637556548537812907, guid: 94917fd8d4581b548b8eae0609bf528e, type: 2}
@@ -12720,6 +12720,9 @@ MonoBehaviour:
   panelOptions: {fileID: 7961258536656796219}
   panelRebind: {fileID: 3936261530811207450}
   optionsUI: {fileID: 5652621619401936738}
+  installedNavigationCores: {fileID: 0}
+  artifactIslandCompleted: {fileID: 0}
+  artifactCoreClaimed: {fileID: 0}
 --- !u!1 &4189914076191865664
 GameObject:
   m_ObjectHideFlags: 0
@@ -15673,6 +15676,9 @@ MonoBehaviour:
     _sceneAsset: {fileID: 102900000, guid: 83e0bb890ba637b4fbf6c3f32c91bf4d, type: 3}
     _sceneName: MainMenu
   durability: {fileID: 11400000, guid: f60d2b533dc76af4ba91432caf69485b, type: 2}
+  installedNavigationCores: {fileID: 0}
+  artifactIslandCompleted: {fileID: 0}
+  artifactCoreClaimed: {fileID: 0}
 --- !u!114 &4386795408490105727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20660,7 +20666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6801046216002850921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20676,9 +20682,9 @@ RectTransform:
   - {fileID: 4773106468744133427}
   m_Father: {fileID: 4160066786198001440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -568.3333}
   m_SizeDelta: {x: 800, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3751500448911825807

@@ -10,10 +10,8 @@ public class ZoneWallPlacer : MonoBehaviour
     [SerializeField] private GameObject wallBasePrefab;
     [SerializeField] private GameObject wallDoorPrefab;
 
-    [Header("Ancho real de los prefabs (en X), para mosaiquear la línea completa")]
     [SerializeField] private float wallSegmentWidth = 20f;
     [SerializeField] private float doorSegmentWidth = 20f;
-    [Tooltip("Restá esto al ancho de cada segmento para cerrar huecos chicos entre piezas (por bisel/margen del mesh)")]
     [SerializeField] private float segmentOverlap = 0f;
 
     private readonly List<GameObject> _spawned = new();
@@ -73,7 +71,6 @@ public class ZoneWallPlacer : MonoBehaviour
             foreach (var artifact in zoneArtifacts)
                 artifact.ArtifactActivated += gate.NotifyArtifactActivated;
         }
-        else Debug.LogWarning("[ZoneWallPlacer] El prefab de puerta no tiene ZoneGateController.");
 
         var leftWalls = TileWalls(wallBasePrefab, wallSegmentWidth, bandStart, doorCenterX - doorHalf,
                                    z, $"ZoneWall_Gate_{nextZone.biome}_Izq");
@@ -93,10 +90,8 @@ public class ZoneWallPlacer : MonoBehaviour
         float span = endX - startX;
         if (span <= 0f || segmentWidth <= 0f) return spawned;
 
-        // Cuántos segmentos hacen falta según el ancho REAL de la pieza (sin el overlap).
         int count = Mathf.Max(1, Mathf.CeilToInt(span / segmentWidth));
 
-        // Qué tan pegado va cada centro al siguiente (esto sí usa el overlap).
         float pitch = Mathf.Max(0.01f, segmentWidth - segmentOverlap);
 
         for (int i = 0; i < count; i++)

@@ -102,7 +102,6 @@ public class ArtifactIslandPlacer : MonoBehaviour
             x = zone.originX + (float)_rng.NextDouble() * zone.widthX;
         }
 
-        // Nunca pasarse del final de la zona: ahí empieza la siguiente, todavía bloqueada por su puerta.
         z = Mathf.Min(z, maxZ - 0.01f);
 
         return new Vector2(x, z);

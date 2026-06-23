@@ -42,9 +42,7 @@ public class RandomIslandPlacer : MonoBehaviour
     {
         ClearAll();
 
-        int seed = worldZoneSequence.globalSeed == 0
-            ? Random.Range(1, int.MaxValue)
-            : worldZoneSequence.globalSeed;
+        int seed = WorldRunSeed.Resolve(worldZoneSequence.globalSeed);
         _rng = new System.Random(seed);
         _zoneRanges = worldZoneSequence.ResolveRanges();
         _unusedPrefabsPerBiome = new Dictionary<ZoneBiome, List<GameObject>>();
@@ -73,8 +71,6 @@ public class RandomIslandPlacer : MonoBehaviour
             SpawnIsland(pos, zone.biome);
             placed++;
         }
-
-        Debug.Log($"[RandomIslandPlacer] {placed}/{worldZoneSequence.targetIslandCount} islas random en {attempts} intentos.");
     }
 
     private List<(Vector2 pos, float radius)> BuildOccupiedFromArtifacts(IReadOnlyList<List<ArtifactIslandController>> artifactsByZone)
