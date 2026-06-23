@@ -14,6 +14,15 @@ public class InventoryItemData : ScriptableObject
 
     public GameObject itemPrefab;
     public GameObject handItemPrefab;
+
+    public ItemType itemtype = ItemType.None;
  
 
+}
+
+public enum ItemType
+{
+    None,
+    Consumible,
+    Mejora
 }
