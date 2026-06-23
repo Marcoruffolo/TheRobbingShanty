@@ -27,7 +27,7 @@ public class IslandSizeRange
     { radiusMin = min; radiusMax = max; }
 }
 
-public enum IslandSizeCategory { Tiny, Small, Medium, Large, Huge }
+public enum IslandSizeCategory { Small, Medium, Large }
 
 [System.Serializable]
 public class ForbiddenZoneRect

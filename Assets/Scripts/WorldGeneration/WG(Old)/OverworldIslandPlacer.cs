@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class OverworldIslandPlacer : MonoBehaviour
@@ -7,54 +7,15 @@ public class OverworldIslandPlacer : MonoBehaviour
 
     [Header("Config estructural")]
     [SerializeField] private IslandWorldConfig config;
+    [SerializeField] private WorldZoneSequence worldZoneSequence;
     [SerializeField] private List<GameObject> overworldIslandPrefabs;
-
-    [Header("SOAP — Mundo")]
-    [SerializeField] private SOVariableInt globalSeed;
-    [SerializeField] private SOVariableInt targetIslandCount;
-    [SerializeField] private SOVariableFloat minIslandDistance;
-    [SerializeField] private SOVariableFloat worldSizeX;
-    [SerializeField] private SOVariableFloat worldSizeY;
-    [SerializeField] private SOVariableFloat worldOriginX;
-    [SerializeField] private SOVariableFloat worldOriginY;
-
-    [Header("SOAP — Pesos de tamaño")]
-    [SerializeField] private SOVariableInt weightTiny;
-    [SerializeField] private SOVariableInt weightSmall;
-    [SerializeField] private SOVariableInt weightMedium;
-    [SerializeField] private SOVariableInt weightLarge;
-    [SerializeField] private SOVariableInt weightHuge;
-
-    [Header("SOAP — Radios por categoría")]
-    [SerializeField] private SOVariableFloat radiusTinyMin;
-    [SerializeField] private SOVariableFloat radiusTinyMax;
-    [SerializeField] private SOVariableFloat radiusSmallMin;
-    [SerializeField] private SOVariableFloat radiusSmallMax;
-    [SerializeField] private SOVariableFloat radiusMediumMin;
-    [SerializeField] private SOVariableFloat radiusMediumMax;
-    [SerializeField] private SOVariableFloat radiusLargeMin;
-    [SerializeField] private SOVariableFloat radiusLargeMax;
-    [SerializeField] private SOVariableFloat radiusHugeMin;
-    [SerializeField] private SOVariableFloat radiusHugeMax;
-
-    private Vector2 WorldSize => new(worldSizeX.Value, worldSizeY.Value);
-    private Vector2 WorldOrigin => new(worldOriginX.Value, worldOriginY.Value);
-
-    private IslandSizeRange GetSizeRange(IslandSizeCategory cat) => cat switch
-    {
-        IslandSizeCategory.Tiny => new IslandSizeRange(radiusTinyMin.Value, radiusTinyMax.Value),
-        IslandSizeCategory.Small => new IslandSizeRange(radiusSmallMin.Value, radiusSmallMax.Value),
-        IslandSizeCategory.Medium => new IslandSizeRange(radiusMediumMin.Value, radiusMediumMax.Value),
-        IslandSizeCategory.Large => new IslandSizeRange(radiusLargeMin.Value, radiusLargeMax.Value),
-        IslandSizeCategory.Huge => new IslandSizeRange(radiusHugeMin.Value, radiusHugeMax.Value),
-        _ => new IslandSizeRange(radiusSmallMin.Value, radiusSmallMax.Value)
-    };
 
     private readonly List<IslandInstanceData> _allInstances = new();
     public IReadOnlyList<IslandInstanceData> AllInstances => _allInstances;
 
     private System.Random _rng;
     private int _resolvedSeed;
+    private IReadOnlyList<ZoneRange> _zoneRanges;
 
 
     private void Awake()
@@ -70,10 +31,11 @@ public class OverworldIslandPlacer : MonoBehaviour
     {
         ClearAll();
 
-        _resolvedSeed = globalSeed.Value == 0
+        _resolvedSeed = worldZoneSequence.globalSeed == 0
             ? Random.Range(1, int.MaxValue)
-            : globalSeed.Value;
+            : worldZoneSequence.globalSeed;
         _rng = new System.Random(_resolvedSeed);
+        _zoneRanges = worldZoneSequence.ResolveRanges();
 
         PlaceManualIslands();
         PlaceProceduralIslands();
@@ -89,7 +51,7 @@ public class OverworldIslandPlacer : MonoBehaviour
                 ? entry.seedOverride
                 : Mathf.Abs((_resolvedSeed.ToString() + entry.instanceId).GetHashCode());
 
-            var range = GetSizeRange(entry.size);
+            var range = worldZoneSequence.GetSizeRange(entry.size);
             float radius = (range.radiusMin + range.radiusMax) * 0.5f;
 
             var inst = CreateInstanceData(
@@ -110,15 +72,18 @@ public class OverworldIslandPlacer : MonoBehaviour
         var occupied = BuildOccupiedList();
         int placed = 0;
         int attempts = 0;
-        int maxAttempts = targetIslandCount.Value * 25;
+        int maxAttempts = worldZoneSequence.targetIslandCount * 25;
 
-        while (placed < targetIslandCount.Value && attempts < maxAttempts)
+        while (placed < worldZoneSequence.targetIslandCount && attempts < maxAttempts)
         {
             attempts++;
 
-            Vector2 pos = SampleCandidatePosition();
-            IslandSizeCategory size = GetWeightedRandomSize();
-            var range = GetSizeRange(size);
+            var candidate = SampleCandidatePosition();
+            if (candidate == null) continue;
+            var (pos, zone) = candidate.Value;
+
+            IslandSizeCategory size = zone.GetWeightedRandomSize(_rng);
+            var range = worldZoneSequence.GetSizeRange(size);
             float radius = Mathf.Lerp(range.radiusMin, range.radiusMax,
                                                    (float)_rng.NextDouble());
 
@@ -138,19 +103,51 @@ public class OverworldIslandPlacer : MonoBehaviour
             placed++;
         }
 
-        Debug.Log($"[OverworldPlacer] {placed}/{targetIslandCount.Value} procedurales " +
+        Debug.Log($"[OverworldPlacer] {placed}/{worldZoneSequence.targetIslandCount} procedurales " +
                   $"en {attempts} intentos.");
     }
 
-    private Vector2 SampleCandidatePosition()
+    private (Vector2 pos, ZoneDefinition zone)? SampleCandidatePosition()
     {
         bool hasAllowed = config.allowedRects.Count > 0 || config.allowedCircles.Count > 0;
-        return hasAllowed ? SampleFromAllowedZones() : SampleFromWholeWorld();
+        if (hasAllowed)
+        {
+            Vector2 pos = SampleFromAllowedZones();
+            ZoneDefinition zone = FindZoneAt(pos.y);
+            return zone != null ? (pos, zone) : null;
+        }
+        return SampleFromZoneBands();
     }
 
-    private Vector2 SampleFromWholeWorld() =>
-        new((float)_rng.NextDouble() * WorldSize.x + WorldOrigin.x,
-            (float)_rng.NextDouble() * WorldSize.y + WorldOrigin.y);
+    private (Vector2 pos, ZoneDefinition zone)? SampleFromZoneBands()
+    {
+        if (_zoneRanges.Count == 0) return null;
+
+        float totalArea = 0f;
+        foreach (var r in _zoneRanges) totalArea += (r.endZ - r.startZ) * r.definition.widthX;
+
+        float rand = (float)_rng.NextDouble() * totalArea;
+        float cumulative = 0f;
+        foreach (var r in _zoneRanges)
+        {
+            cumulative += (r.endZ - r.startZ) * r.definition.widthX;
+            if (rand > cumulative) continue;
+
+            float x = (float)(_rng.NextDouble() * r.definition.widthX + r.definition.originX);
+            float z = (float)(_rng.NextDouble() * (r.endZ - r.startZ) + r.startZ);
+            return (new Vector2(x, z), r.definition);
+        }
+
+        var last = _zoneRanges[^1];
+        return (new Vector2(last.definition.originX, last.startZ), last.definition);
+    }
+
+    private ZoneDefinition FindZoneAt(float z)
+    {
+        foreach (var r in _zoneRanges)
+            if (r.Contains(z)) return r.definition;
+        return null;
+    }
 
     private Vector2 SampleFromAllowedZones()
     {
@@ -193,12 +190,7 @@ public class OverworldIslandPlacer : MonoBehaviour
     private bool IsPositionValid(Vector2 pos, float radius,
                                   List<(Vector2 pos, float radius)> occupied)
     {
-        // 1. Dentro del mundo
-        if (pos.x < WorldOrigin.x || pos.x > WorldOrigin.x + WorldSize.x ||
-            pos.y < WorldOrigin.y || pos.y > WorldOrigin.y + WorldSize.y)
-            return false;
-
-        // 2. Fuera de zonas prohibidas
+        // 1. Fuera de zonas prohibidas
         foreach (var fr in config.forbiddenRects)
             if (fr.rect.Contains(pos)) return false;
         foreach (var fc in config.forbiddenCircles)
@@ -216,9 +208,9 @@ public class OverworldIslandPlacer : MonoBehaviour
             if (!inside) return false;
         }
 
-        // 4. Separación mínima entre islas
+        // 2. Separación mínima entre islas
         foreach (var (oPos, oRadius) in occupied)
-            if (Vector2.Distance(pos, oPos) < radius + oRadius + minIslandDistance.Value)
+            if (Vector2.Distance(pos, oPos) < radius + oRadius + worldZoneSequence.minIslandDistance)
                 return false;
 
         return true;
@@ -231,22 +223,6 @@ public class OverworldIslandPlacer : MonoBehaviour
             list.Add((new Vector2(inst.overworldPosition.x, inst.overworldPosition.z),
                       inst.overworldRadius));
         return list;
-    }
-
-    private IslandSizeCategory GetWeightedRandomSize()
-    {
-        int total = weightTiny.Value + weightSmall.Value + weightMedium.Value
-                  + weightLarge.Value + weightHuge.Value;
-        int r = _rng.Next(total);
-
-        if (r < weightTiny.Value) return IslandSizeCategory.Tiny;
-        r -= weightTiny.Value;
-        if (r < weightSmall.Value) return IslandSizeCategory.Small;
-        r -= weightSmall.Value;
-        if (r < weightMedium.Value) return IslandSizeCategory.Medium;
-        r -= weightMedium.Value;
-        if (r < weightLarge.Value) return IslandSizeCategory.Large;
-        return IslandSizeCategory.Huge;
     }
 
     private IslandInstanceData CreateInstanceData(

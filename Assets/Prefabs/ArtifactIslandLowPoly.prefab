@@ -285,6 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4191887718797877908}
   - component: {fileID: 1006458475082123002}
+  - component: {fileID: 8281797524066517811}
   m_Layer: 0
   m_Name: ArtifactIslandLowPoly
   m_TagString: Untagged
@@ -334,6 +335,19 @@ CapsuleCollider:
   m_Height: 17.395374
   m_Direction: 1
   m_Center: {x: 0, y: -1.4425888, z: 0}
+--- !u!114 &8281797524066517811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629026779674674756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512ddc1067955054ca4ec4e35391c293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigationCore: {fileID: 7063436297304291927, guid: 1687f736cdfcf564d989c96bb46c4d15, type: 3}
 --- !u!1001 &314223750339294759
 PrefabInstance:
   m_ObjectHideFlags: 0

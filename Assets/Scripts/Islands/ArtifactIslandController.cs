@@ -11,6 +11,8 @@ public class ArtifactIslandController : MonoBehaviour
     [SerializeField] private SOVariableBool islandCompleted;
     [SerializeField] private SOVariableBool coreClaimed;
 
+    public event System.Action ArtifactActivated;
+
     private readonly List<EnemyBase> _enemies = new List<EnemyBase>();
     private bool _initialized;
 
@@ -108,6 +110,8 @@ public class ArtifactIslandController : MonoBehaviour
 
         if (islandCompleted != null)
             islandCompleted.Value = true;
+
+        ArtifactActivated?.Invoke();
     }
 
     private void UpdateCoreState()

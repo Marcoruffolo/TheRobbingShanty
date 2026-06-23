@@ -3,30 +3,15 @@
 public class IslandWorldGizmos : MonoBehaviour
 {
     [SerializeField] private IslandWorldConfig config;
-    [SerializeField] private SOVariableFloat worldSizeX;
-    [SerializeField] private SOVariableFloat worldSizeY;
-    [SerializeField] private SOVariableFloat worldOriginX;
-    [SerializeField] private SOVariableFloat worldOriginY;
     [SerializeField] private bool showLabels = true;
-
-    private Vector2 WorldSize => new(worldSizeX.Value, worldSizeY.Value);
-    private Vector2 WorldOrigin => new(worldOriginX.Value, worldOriginY.Value);
 
     private void OnDrawGizmos()
     {
-        if (config == null || worldSizeX == null || worldSizeY == null
-            || worldOriginX == null || worldOriginY == null) return;
+        if (config == null) return;
 
-        DrawWorldBounds();
         DrawForbiddenZones();
         DrawAllowedZones();
         DrawManualIslands();
-    }
-
-    private void DrawWorldBounds()
-    {
-        Gizmos.color = Color.white;
-        DrawWireRect(WorldOrigin, WorldSize);
     }
 
     private void DrawForbiddenZones()
@@ -123,11 +108,9 @@ public class IslandWorldGizmos : MonoBehaviour
 
     private float GetApproxRadius(IslandSizeCategory cat) => cat switch
     {
-        IslandSizeCategory.Tiny => 30f,
         IslandSizeCategory.Small => 60f,
         IslandSizeCategory.Medium => 110f,
         IslandSizeCategory.Large => 170f,
-        IslandSizeCategory.Huge => 250f,
         _ => 60f
     };
 }

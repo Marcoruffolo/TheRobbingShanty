@@ -14,15 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forbiddenRects: []
   forbiddenCircles:
-  - label: CastleIsland
-    center: {x: -30, y: 60}
-    radius: 100
-  - label: RuinsIsland
-    center: {x: 108.1, y: 69.7}
-    radius: 100
   - label: Ship
-    center: {x: -2.3, y: -51.8}
-    radius: 100
+    center: {x: -2.3, y: -236.4}
+    radius: 72.3
   allowedRects: []
   allowedCircles: []
   manualIslands: []

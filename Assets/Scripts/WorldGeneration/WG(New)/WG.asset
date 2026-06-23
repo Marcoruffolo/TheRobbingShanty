@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5381f85c88751a342bcaa77ec3928090, type: 3}
+  m_Name: WG
+  m_EditorClassIdentifier: 
+  zones:
+  - biome: 0
+    lengthZ: 591.7
+    originX: -143.6
+    widthX: 300
+    artifactCountMin: 1
+    artifactCountMax: 1
+    minArtifactDistance: 5
+    weightSmall: 1
+    weightMedium: 0
+    weightLarge: 0
+  globalSeed: 0
+  targetIslandCount: 3
+  minIslandDistance: 10
+  worldOriginZ: -295.9
+  radiusSmallMin: 20
+  radiusSmallMax: 40
+  radiusMediumMin: 40
+  radiusMediumMax: 80
+  radiusLargeMin: 80
+  radiusLargeMax: 150
