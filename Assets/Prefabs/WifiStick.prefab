@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6a39f2c17658445aa91083bd86917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TurnedOn: 0
+  _lightMat: {fileID: 2100000, guid: c337550dc6a0026429041afb49bf989f, type: 2}
 --- !u!1001 &1885486705932380141
 PrefabInstance:
   m_ObjectHideFlags: 0
