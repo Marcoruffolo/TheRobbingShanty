@@ -53,7 +53,7 @@ public class NavigationCompass : MonoBehaviour, IInteractable
         if (Time.time >= _nextDirectionChange)
             ChooseSpeed();
 
-        needle.Rotate(Vector3.up, _currentSpeed * Time.deltaTime, Space.Self);
+        needle.Rotate(Vector3.right, _currentSpeed * Time.deltaTime, Space.Self);
     }
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
