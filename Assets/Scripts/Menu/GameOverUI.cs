@@ -12,6 +12,10 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private SceneField mainMenuScene;
     [SerializeField] private SOVariableFloat durability;
 
+    [SerializeField] private SOVariableInt installedNavigationCores;
+    [SerializeField] private SOVariableBool artifactIslandCompleted;
+    [SerializeField] private SOVariableBool artifactCoreClaimed;
+
     private bool _isGameOver;
 
     void Start()
@@ -34,6 +38,7 @@ public class GameOverUI : MonoBehaviour
     private void Restart()
     {
         ResetRun();
+
         SceneManager.LoadScene(gameScene);
     }
 
@@ -57,7 +62,9 @@ public class GameOverUI : MonoBehaviour
         Time.timeScale = 1f;
         durability.ResetValue();
 
-
+        installedNavigationCores?.ResetValue();
+        artifactIslandCompleted?.ResetValue();
+        artifactCoreClaimed?.ResetValue();
         if (PlayerInventoryHolder.Instance != null)
             PlayerInventoryHolder.Instance.ClearInventory();
     }

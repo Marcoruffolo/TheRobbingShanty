@@ -16,6 +16,12 @@ public class PauseMenuUI : MonoBehaviour
 
     [SerializeField] private OptionsUI optionsUI;
 
+
+    [SerializeField] private SOVariableInt installedNavigationCores;
+    [SerializeField] private SOVariableBool artifactIslandCompleted;
+    [SerializeField] private SOVariableBool artifactCoreClaimed;
+
+
     private void Start()
     {
         if (PauseManager.Instance != null)
@@ -59,6 +65,9 @@ public class PauseMenuUI : MonoBehaviour
     private void OnQuit()
     {
         PauseManager.Instance.GoToMainMenu();
+        installedNavigationCores?.ResetValue();
+        artifactIslandCompleted?.ResetValue();
+        artifactCoreClaimed?.ResetValue();
     }
 
     private void ShowMain()
@@ -71,5 +80,8 @@ public class PauseMenuUI : MonoBehaviour
     private void OnQuitGame()
     {
         Application.Quit();
+        installedNavigationCores?.ResetValue();
+        artifactIslandCompleted?.ResetValue();
+        artifactCoreClaimed?.ResetValue();
     }
 }
