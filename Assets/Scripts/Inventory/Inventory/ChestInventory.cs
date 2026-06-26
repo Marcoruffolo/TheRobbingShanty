@@ -1,13 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ChestInventory : InventoryHolder, IInteractable
 {
-    [Header("Loot")]
     [SerializeField] private ChestLootTable lootTable;
 
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
     public string InteractionPrompt => string.Empty;
+
+    public event Action<bool> OpenChestInventory;
 
     protected override void Awake()
     {
@@ -20,6 +22,7 @@ public class ChestInventory : InventoryHolder, IInteractable
         OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem);
         interactSuccessful = true;
         BlockPlayerMovement.Instance?.ImmobilizePlayer();
+        OpenChestInventory?.Invoke(true);
     }
 
     public void Interact()
@@ -32,6 +35,7 @@ public class ChestInventory : InventoryHolder, IInteractable
         OnDynamicInventoryCloseRequested?.Invoke();
         OnInteractionComplete?.Invoke(this);
         BlockPlayerMovement.Instance?.FreePlayer();
+        OpenChestInventory?.Invoke(false);
     }
 
     private void GenerateLoot() => LootGenerator.Generate(lootTable, primaryInventorySystem);
