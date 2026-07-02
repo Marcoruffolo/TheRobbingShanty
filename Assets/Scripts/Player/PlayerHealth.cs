@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Rendering.Universal;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamagable
 {
     [Header("SOAP - Variables")]
     [SerializeField] private SOVariableFloat playerHealth;
