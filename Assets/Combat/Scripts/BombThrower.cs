@@ -26,7 +26,7 @@ public class BombThrower : MonoBehaviour
             _bombPool = BombPool.Create(bombPrefab, poolSize, transform);
     }
 
-    public void ThrowAt(Vector3 targetPosition)
+    public void ThrowAt(Vector3 targetPosition, Transform ignoreTree = null)
     {
         if (!CanThrow || _bombPool == null || throwPoint == null) return;
         if (!_bombPool.TryGet(out Bomb bomb)) return;
@@ -34,7 +34,7 @@ public class BombThrower : MonoBehaviour
         _nextThrowTime = Time.time + fireRate;
 
         Vector3 velocity = CalculateArcVelocity(throwPoint.position, targetPosition, throwArcHeight);
-        bomb.Launch(_bombPool, throwPoint.position, velocity, damage, explosionRadius, fuseTime, damageMask);
+        bomb.Launch(_bombPool, throwPoint.position, velocity, damage, explosionRadius, fuseTime, damageMask, ignoreTree);
     }
 
     private static Vector3 CalculateArcVelocity(Vector3 origin, Vector3 target, float arcHeight)

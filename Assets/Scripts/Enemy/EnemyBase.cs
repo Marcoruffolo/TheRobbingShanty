@@ -32,7 +32,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
     protected virtual void Start()
     {
         _currentHealth = enemyHealth.Value;
-        Agent.speed = enemySpeed.Value;
+        if (Agent != null) Agent.speed = enemySpeed.Value;
     }
 
     public void TakeDamage(float damage)

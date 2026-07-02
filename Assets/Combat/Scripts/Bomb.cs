@@ -27,14 +27,17 @@ public class Bomb : MonoBehaviour
     private bool _hasLanded;
     private Rigidbody _rb;
     private Renderer _renderer;
+    private Collider _collider;
+    private Transform _ignoredTree;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _renderer = GetComponentInChildren<Renderer>();
+        _collider = GetComponent<Collider>();
     }
 
-    public void Launch(BombPool owner, Vector3 origin, Vector3 velocity, float damage, float explosionRadiusOverride, float fuseTime, LayerMask damageMask)
+    public void Launch(BombPool owner, Vector3 origin, Vector3 velocity, float damage, float explosionRadiusOverride, float fuseTime, LayerMask damageMask, Transform ignoreTree = null)
     {
         _owner = owner;
         transform.SetParent(null, true);
@@ -49,6 +52,22 @@ public class Bomb : MonoBehaviour
         _hasExploded = false;
         _hasLanded = false;
         if (_renderer != null) _renderer.enabled = true;
+        SetIgnoredTree(ignoreTree);
+    }
+
+    private void SetIgnoredTree(Transform tree)
+    {
+        if (_ignoredTree == tree) return;
+
+        if (_ignoredTree != null) SetIgnoreCollisions(_ignoredTree, false);
+        _ignoredTree = tree;
+        if (_ignoredTree != null) SetIgnoreCollisions(_ignoredTree, true);
+    }
+
+    private void SetIgnoreCollisions(Transform tree, bool ignore)
+    {
+        foreach (var col in tree.GetComponentsInChildren<Collider>())
+            Physics.IgnoreCollision(_collider, col, ignore);
     }
 
     private void Update()
