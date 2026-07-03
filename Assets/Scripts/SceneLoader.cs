@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private float minimumBlackScreenDuration = 0.15f;
 
     private Coroutine _loadRoutine;
+    private int _blackScreenLocks;
 
     private void Awake()
     {
@@ -99,6 +100,9 @@ public class SceneLoader : MonoBehaviour
         }
 
         yield return null;
+        while (_blackScreenLocks > 0)
+            yield return null;
+
         yield return FadeTo(0f, fadeInDuration);
 
         SetLoadingVisual(false);
@@ -106,6 +110,23 @@ public class SceneLoader : MonoBehaviour
         _loadRoutine = null;
     }
 
+    public void HoldBlackScreen(bool showLoadingVisual = false)
+    {
+        _blackScreenLocks++;
+        SetOverlayAlpha(1f);
+        SetOverlayInteractivity(true);
+        SetLoadingVisual(showLoadingVisual);
+    }
+
+    public void ReleaseBlackScreen()
+    {
+        _blackScreenLocks = Mathf.Max(0, _blackScreenLocks - 1);
+        if (_blackScreenLocks > 0 || _loadRoutine != null) return;
+
+        SetOverlayAlpha(0f);
+        SetOverlayInteractivity(false);
+        SetLoadingVisual(false);
+    }
     private IEnumerator FadeTo(float targetAlpha, float duration)
     {
         if (fadeCanvasGroup == null)
