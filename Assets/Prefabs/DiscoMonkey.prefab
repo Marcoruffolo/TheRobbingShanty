@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cca28df5ed72f42a681e353f11c626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 9165935899524015943, guid: 3ab82f405f942514e878230921505ed6, type: 3}
+  bombPrefab: {fileID: 9918289435185989, guid: df56d05804ac4a9408c8d010b4bdd496, type: 3}
   throwPoint: {fileID: 4662294788178699552}
   poolSize: 4
   damageMask:

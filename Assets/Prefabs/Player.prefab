@@ -187,7 +187,7 @@ MonoBehaviour:
   ApplyAfter: 2
   ChannelMask: -1
   Gain: 1
-  Use2DDistance: 1
+  Use2DDistance: 0
   UseCameraSpace: 1
   SignalCombinationMode: 0
   ReactionSettings:

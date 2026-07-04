@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -129,6 +130,7 @@ public class Bomb : MonoBehaviour
         if (explosionEffectPrefab != null)
         {
             GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            effect.gameObject.GetComponent<CinemachineImpulseSource>().GenerateImpulse(1);
             Destroy(effect, 3f);
         }
 
