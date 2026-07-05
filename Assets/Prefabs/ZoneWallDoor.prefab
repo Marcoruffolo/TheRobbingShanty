@@ -147,6 +147,7 @@ MonoBehaviour:
   - {fileID: 2777984457405133599}
   - {fileID: 4831670811773481204}
   _wifiStick: {fileID: 7828111720826442093, guid: 4970790647ea5a44284a026ea38157ac, type: 3}
+  stickScale: 1
 --- !u!1 &120931242938619199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,14 +1032,7 @@ MonoBehaviour:
   navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
   zoneIndex: 0
   blockingObject: {fileID: 5296730177510257621}
-  artifactMarkerPrefab: {fileID: 919132149155446097, guid: ae29175182f97974a98a6151fe0eaf4c, type: 3}
-  markerRoot: {fileID: 3903689314893227488}
-  markerLocalOffset: {x: 0, y: 0.12, z: -0.06}
-  markerSpacing: {x: 0.18, y: 0.22}
-  markerScale: 0.14
-  markersPerRow: 4
-  inactiveMarkerColor: {r: 0.04, g: 0.05, b: 0.08, a: 1}
-  activeMarkerColor: {r: 0.05, g: 0.9, b: 1, a: 1}
+  wifiSpawner: {fileID: 7671766376472796674}
 --- !u!1 &8788496611438652876
 GameObject:
   m_ObjectHideFlags: 0
