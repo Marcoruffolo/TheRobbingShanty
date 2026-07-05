@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -41,7 +41,9 @@ public class MouseItemData : MonoBehaviour
         var itemData = AssignedInventorySlot.ItemData;
         int amount = AssignedInventorySlot.StackSize;
 
-        if (itemData.itemPrefab != null && playerDropPoint != null)
+        if (itemData.itemPrefab == null || !itemData.CanDrop) return;
+
+        if (playerDropPoint != null)
         {
             Vector3 basePos = playerDropPoint.position + playerDropPoint.forward * 0.5f;
             for (int i = 0; i < amount; i++)
@@ -51,7 +53,7 @@ public class MouseItemData : MonoBehaviour
                 Instantiate(itemData.itemPrefab, basePos + offset, playerDropPoint.rotation);
             }
         }
-        else if (itemData.itemPrefab != null)
+        else
         {
             Debug.LogWarning("MouseItemData: playerDropPoint not assigned. Spawning at world origin.");
             for (int i = 0; i < amount; i++)
@@ -64,9 +66,8 @@ public class MouseItemData : MonoBehaviour
     public void ClearSlot()
     {
         AssignedInventorySlot.ClearSlot();
-        itemCount.text = "";
         itemSprite.color = Color.clear;
-        itemSprite.sprite = null;
+        itemCount.text = "";
     }
 
     public void UpdateMouseSlot(InventorySlot invSlot)

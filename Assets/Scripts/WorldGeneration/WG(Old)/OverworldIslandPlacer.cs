@@ -8,7 +8,13 @@ public class OverworldIslandPlacer : MonoBehaviour
     [Header("Config estructural")]
     [SerializeField] private IslandWorldConfig config;
     [SerializeField] private WorldZoneSequence worldZoneSequence;
+    [SerializeField] private NavigationRunState navigationRunState;
     [SerializeField] private List<GameObject> overworldIslandPrefabs;
+    [SerializeField] private List<GameObject> artifactIslandPrefabs;
+
+    [Header("Zona segura inicial")]
+    [SerializeField] private Vector2 startExclusionCenter = Vector2.zero;
+    [SerializeField] private float startExclusionRadius = 80f;
 
     private readonly List<IslandInstanceData> _allInstances = new();
     public IReadOnlyList<IslandInstanceData> AllInstances => _allInstances;
@@ -16,7 +22,7 @@ public class OverworldIslandPlacer : MonoBehaviour
     private System.Random _rng;
     private int _resolvedSeed;
     private IReadOnlyList<ZoneRange> _zoneRanges;
-
+    private NavigationRunState State => navigationRunState != null ? navigationRunState : NavigationRunState.Instance;
 
     private void Awake()
     {
@@ -26,25 +32,46 @@ public class OverworldIslandPlacer : MonoBehaviour
 
     private void Start() => GenerateWorld();
 
-
     public void GenerateWorld()
     {
         ClearAll();
+        State.ClearCurrentIslandContext();
 
-        _resolvedSeed = worldZoneSequence.globalSeed == 0
-            ? Random.Range(1, int.MaxValue)
-            : worldZoneSequence.globalSeed;
+        if (worldZoneSequence == null)
+        {
+            Debug.LogError("[OverworldPlacer] worldZoneSequence no esta asignado.", this);
+            return;
+        }
+
+        _resolvedSeed = State.GetOrCreateWorldSeed(worldZoneSequence.globalSeed);
         _rng = new System.Random(_resolvedSeed);
         _zoneRanges = worldZoneSequence.ResolveRanges();
 
+        InitializeNavigationZones();
         PlaceManualIslands();
-        PlaceProceduralIslands();
+        int proceduralCount = PlaceProceduralIslands();
+        var artifactStats = PlaceArtifactIslands();
 
-        Debug.Log($"[OverworldPlacer] {_allInstances.Count} islas. Seed: {_resolvedSeed}");
+        Debug.Log($"[OverworldPlacer] {_allInstances.Count} islas. Procedurales normales: {proceduralCount}/{worldZoneSequence.targetIslandCount}. Artefactos: {artifactStats.generated}/{artifactStats.expected}. Seed: {_resolvedSeed}");
+    }
+
+    private void InitializeNavigationZones()
+    {
+        System.Random zoneRng = new(_resolvedSeed ^ 0x4E415653);
+
+        for (int zoneIndex = 0; zoneIndex < _zoneRanges.Count; zoneIndex++)
+        {
+            ZoneDefinition zone = _zoneRanges[zoneIndex].definition;
+            int requiredCores = zone.RollRequiredCores(zoneRng);
+            int availableCoreIslands = requiredCores + zone.RollExtraCoreIslands(zoneRng);
+            State.StartZone(zoneIndex, requiredCores, availableCoreIslands);
+        }
     }
 
     private void PlaceManualIslands()
     {
+        if (config == null) return;
+
         foreach (var entry in config.manualIslands)
         {
             int seed = entry.seedOverride != 0
@@ -60,15 +87,22 @@ public class OverworldIslandPlacer : MonoBehaviour
                 radius, seed, entry.size, isManual: true
             );
 
-            SpawnVisual(inst);
+            SpawnIslandPrefab(PickRandomPrefab(GetRandomPrefabs()), inst, -1, string.Empty, false);
             _allInstances.Add(inst);
         }
 
-        Debug.Log($"[OverworldPlacer] {config.manualIslands.Count} islas manuales.");
+        Debug.Log($"[OverworldPlacer] {(config != null ? config.manualIslands.Count : 0)} islas manuales.");
     }
 
-    private void PlaceProceduralIslands()
+    private int PlaceProceduralIslands()
     {
+        List<GameObject> randomPrefabs = GetRandomPrefabs();
+        if (randomPrefabs.Count == 0)
+        {
+            Debug.LogWarning("[OverworldPlacer] No hay prefabs random; se omite generacion random.", this);
+            return 0;
+        }
+
         var occupied = BuildOccupiedList();
         int placed = 0;
         int attempts = 0;
@@ -84,8 +118,7 @@ public class OverworldIslandPlacer : MonoBehaviour
 
             IslandSizeCategory size = zone.GetWeightedRandomSize(_rng);
             var range = worldZoneSequence.GetSizeRange(size);
-            float radius = Mathf.Lerp(range.radiusMin, range.radiusMax,
-                                                   (float)_rng.NextDouble());
+            float radius = Mathf.Lerp(range.radiusMin, range.radiusMax, (float)_rng.NextDouble());
 
             if (!IsPositionValid(pos, radius, occupied)) continue;
 
@@ -98,18 +131,124 @@ public class OverworldIslandPlacer : MonoBehaviour
                 size, isManual: false
             );
 
-            SpawnVisual(inst);
+            SpawnIslandPrefab(PickRandomPrefab(randomPrefabs), inst, -1, string.Empty, false);
             _allInstances.Add(inst);
             placed++;
         }
 
-        Debug.Log($"[OverworldPlacer] {placed}/{worldZoneSequence.targetIslandCount} procedurales " +
-                  $"en {attempts} intentos.");
+        Debug.Log($"[OverworldPlacer] {placed}/{worldZoneSequence.targetIslandCount} procedurales en {attempts} intentos.");
+        return placed;
+    }
+
+    private (int expected, int generated) PlaceArtifactIslands()
+    {
+        int expected = GetExpectedArtifactIslandCount();
+        int generated = 0;
+        List<GameObject> artifactPrefabs = GetArtifactPrefabs();
+        if (artifactPrefabs.Count == 0)
+        {
+            Debug.LogError("[OverworldPlacer] No hay prefabs de isla de artefacto en artifactIslandPrefabs.", this);
+            return (expected, generated);
+        }
+
+        for (int zoneIndex = 0; zoneIndex < _zoneRanges.Count; zoneIndex++)
+        {
+            ZoneRange range = _zoneRanges[zoneIndex];
+            ZoneDefinition zone = range.definition;
+            int artifactCount = State.GetAvailableCoreIslandCount(zoneIndex);
+            if (artifactCount <= 0)
+            {
+                Debug.LogError($"[OverworldPlacer] Zona {zoneIndex} no inicializo islas de artefacto.", this);
+                continue;
+            }
+
+            List<(Vector2 pos, float radius)> occupied = BuildOccupiedList();
+            List<Vector2> placedArtifactPositions = new();
+            int generatedInZone = 0;
+
+            for (int i = 0; i < artifactCount; i++)
+            {
+                IslandSizeCategory size = zone.GetWeightedRandomSize(_rng);
+                IslandSizeRange sizeRange = worldZoneSequence.GetSizeRange(size);
+                float radius = Mathf.Lerp(sizeRange.radiusMin, sizeRange.radiusMax, (float)_rng.NextDouble());
+
+                if (!TryResolveArtifactPosition(range, zone, radius, i, artifactCount, occupied, placedArtifactPositions, out Vector2 pos))
+                {
+                    Debug.LogError($"[OverworldPlacer] No se encontro posicion valida para artefacto {i + 1}/{artifactCount} en zona {zoneIndex}.", this);
+                    continue;
+                }
+
+                string artifactId = $"run{_resolvedSeed}_zone{zoneIndex}_artifact{i}";
+                var inst = CreateInstanceData(
+                    artifactId, $"Isla del Artefacto {i + 1}",
+                    new Vector3(pos.x, 0f, pos.y),
+                    radius, _rng.Next(1, int.MaxValue),
+                    size, isManual: false
+                );
+
+                SpawnIslandPrefab(PickRandomPrefab(artifactPrefabs), inst, zoneIndex, artifactId, true);
+                State.RegisterArtifactIsland(zoneIndex, artifactId);
+                _allInstances.Add(inst);
+                occupied.Add((pos, radius));
+                placedArtifactPositions.Add(pos);
+                generated++;
+                generatedInZone++;
+            }
+
+            if (generatedInZone != artifactCount)
+                Debug.LogError($"[OverworldPlacer] Zona {zoneIndex} genero {generatedInZone}/{artifactCount} islas de artefacto.", this);
+        }
+
+        return (expected, generated);
+    }
+
+    private bool TryResolveArtifactPosition(
+        ZoneRange range,
+        ZoneDefinition zone,
+        float radius,
+        int artifactIndex,
+        int artifactCount,
+        List<(Vector2 pos, float radius)> occupied,
+        List<Vector2> placedArtifacts,
+        out Vector2 result)
+    {
+        float zoneLength = range.endZ - range.startZ;
+        float step = zoneLength / Mathf.Max(1, artifactCount);
+        float targetZ = range.startZ + step * (artifactIndex + 0.5f);
+        float spread = Mathf.Max(step * 0.45f, zone.minArtifactDistance);
+        int maxAttempts = Mathf.Max(500, artifactCount * 150);
+
+        for (int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            bool targeted = attempt < maxAttempts * 0.7f;
+            float x = zone.originX + (float)_rng.NextDouble() * zone.widthX;
+            float z = targeted
+                ? Mathf.Clamp(targetZ + ((float)_rng.NextDouble() * 2f - 1f) * spread, range.startZ, range.endZ)
+                : range.startZ + (float)_rng.NextDouble() * zoneLength;
+
+            Vector2 candidate = new(x, z);
+            float minArtifactDistance = Mathf.Max(zone.minArtifactDistance, worldZoneSequence.minIslandDistance);
+            if (!IsArtifactTooClose(candidate, placedArtifacts, minArtifactDistance) && IsPositionValid(candidate, radius, occupied))
+            {
+                result = candidate;
+                return true;
+            }
+        }
+
+        result = default;
+        return false;
+    }
+
+    private bool IsArtifactTooClose(Vector2 pos, List<Vector2> placedPositions, float minDistance)
+    {
+        foreach (var placed in placedPositions)
+            if (Vector2.Distance(pos, placed) < minDistance) return true;
+        return false;
     }
 
     private (Vector2 pos, ZoneDefinition zone)? SampleCandidatePosition()
     {
-        bool hasAllowed = config.allowedRects.Count > 0 || config.allowedCircles.Count > 0;
+        bool hasAllowed = config != null && (config.allowedRects.Count > 0 || config.allowedCircles.Count > 0);
         if (hasAllowed)
         {
             Vector2 pos = SampleFromAllowedZones();
@@ -187,28 +326,31 @@ public class OverworldIslandPlacer : MonoBehaviour
         return center;
     }
 
-    private bool IsPositionValid(Vector2 pos, float radius,
-                                  List<(Vector2 pos, float radius)> occupied)
+    private bool IsPositionValid(Vector2 pos, float radius, List<(Vector2 pos, float radius)> occupied)
     {
-        // 1. Fuera de zonas prohibidas
-        foreach (var fr in config.forbiddenRects)
-            if (fr.rect.Contains(pos)) return false;
-        foreach (var fc in config.forbiddenCircles)
-            if (Vector2.Distance(pos, fc.center) < fc.radius + radius) return false;
+        if (startExclusionRadius > 0f && Vector2.Distance(pos, startExclusionCenter) < startExclusionRadius + radius)
+            return false;
 
-        bool hasAllowed = config.allowedRects.Count > 0 || config.allowedCircles.Count > 0;
-        if (hasAllowed)
+        if (config != null)
         {
-            bool inside = false;
-            foreach (var ar in config.allowedRects)
-                if (ar.rect.Contains(pos)) { inside = true; break; }
-            if (!inside)
-                foreach (var ac in config.allowedCircles)
-                    if (Vector2.Distance(pos, ac.center) <= ac.radius) { inside = true; break; }
-            if (!inside) return false;
+            foreach (var fr in config.forbiddenRects)
+                if (fr.rect.Contains(pos)) return false;
+            foreach (var fc in config.forbiddenCircles)
+                if (Vector2.Distance(pos, fc.center) < fc.radius + radius) return false;
+
+            bool hasAllowed = config.allowedRects.Count > 0 || config.allowedCircles.Count > 0;
+            if (hasAllowed)
+            {
+                bool inside = false;
+                foreach (var ar in config.allowedRects)
+                    if (ar.rect.Contains(pos)) { inside = true; break; }
+                if (!inside)
+                    foreach (var ac in config.allowedCircles)
+                        if (Vector2.Distance(pos, ac.center) <= ac.radius) { inside = true; break; }
+                if (!inside) return false;
+            }
         }
 
-        // 2. Separación mínima entre islas
         foreach (var (oPos, oRadius) in occupied)
             if (Vector2.Distance(pos, oPos) < radius + oRadius + worldZoneSequence.minIslandDistance)
                 return false;
@@ -220,14 +362,11 @@ public class OverworldIslandPlacer : MonoBehaviour
     {
         var list = new List<(Vector2, float)>();
         foreach (var inst in _allInstances)
-            list.Add((new Vector2(inst.overworldPosition.x, inst.overworldPosition.z),
-                      inst.overworldRadius));
+            list.Add((new Vector2(inst.overworldPosition.x, inst.overworldPosition.z), inst.overworldRadius));
         return list;
     }
 
-    private IslandInstanceData CreateInstanceData(
-        string id, string name, Vector3 worldPos, float radius,
-        int seed, IslandSizeCategory size, bool isManual)
+    private IslandInstanceData CreateInstanceData(string id, string name, Vector3 worldPos, float radius, int seed, IslandSizeCategory size, bool isManual)
     {
         var inst = ScriptableObject.CreateInstance<IslandInstanceData>();
         inst.instanceId = id;
@@ -240,18 +379,73 @@ public class OverworldIslandPlacer : MonoBehaviour
         return inst;
     }
 
-    private void SpawnVisual(IslandInstanceData inst)
+    private void SpawnIslandPrefab(GameObject prefab, IslandInstanceData inst, int zoneIndex, string artifactId, bool isArtifact)
     {
-        if (overworldIslandPrefabs == null || overworldIslandPrefabs.Count == 0)
+        if (prefab == null)
         {
-            Debug.LogError("[OverworldPlacer] No hay prefabs de isla asignados.");
+            Debug.LogError("[OverworldPlacer] Prefab de isla nulo.", this);
             return;
         }
 
-        var prefab = overworldIslandPrefabs[_rng.Next(overworldIslandPrefabs.Count)];
         var go = Instantiate(prefab, inst.overworldPosition, Quaternion.identity, transform);
-        go.name = $"OW_{inst.instanceId}";
+        go.name = isArtifact ? $"OW_Artifact_{artifactId}" : $"OW_{inst.instanceId}";
         go.GetComponent<OverworldIslandVisual>()?.Initialize(inst);
+
+        IslandSceneData sceneData = go.GetComponentInChildren<IslandSceneData>();
+        if (sceneData != null)
+        {
+            sceneData.isArtifactIsland = isArtifact;
+            sceneData.zoneIndex = zoneIndex;
+            sceneData.artifactId = isArtifact ? artifactId : string.Empty;
+        }
+    }
+
+    private GameObject PickRandomPrefab(List<GameObject> prefabs)
+    {
+        if (prefabs == null || prefabs.Count == 0) return null;
+        return prefabs[_rng.Next(prefabs.Count)];
+    }
+
+    private List<GameObject> GetArtifactPrefabs()
+    {
+        var result = new List<GameObject>();
+        if (artifactIslandPrefabs == null) return result;
+
+        foreach (GameObject prefab in artifactIslandPrefabs)
+        {
+            if (prefab == null) continue;
+            IslandSceneData sceneData = prefab.GetComponentInChildren<IslandSceneData>();
+            if (sceneData != null && (sceneData.isArtifactIsland || sceneData.sceneName.SceneName == "ArtifactIsland"))
+                result.Add(prefab);
+        }
+        return result;
+    }
+
+    private List<GameObject> GetRandomPrefabs()
+    {
+        var result = new List<GameObject>();
+        if (overworldIslandPrefabs == null) return result;
+
+        foreach (GameObject prefab in overworldIslandPrefabs)
+        {
+            if (prefab == null) continue;
+            IslandSceneData sceneData = prefab.GetComponentInChildren<IslandSceneData>();
+            bool isArtifact = sceneData != null && (sceneData.isArtifactIsland || sceneData.sceneName.SceneName == "ArtifactIsland");
+            if (!isArtifact)
+                result.Add(prefab);
+        }
+        return result;
+    }
+
+    private int GetExpectedArtifactIslandCount()
+    {
+        int total = 0;
+        if (_zoneRanges == null) return total;
+
+        for (int zoneIndex = 0; zoneIndex < _zoneRanges.Count; zoneIndex++)
+            total += State.GetAvailableCoreIslandCount(zoneIndex);
+
+        return total;
     }
 
     private void ClearAll()
@@ -260,7 +454,6 @@ public class OverworldIslandPlacer : MonoBehaviour
         foreach (var inst in _allInstances) if (inst) Destroy(inst);
         _allInstances.Clear();
     }
-
 
 #if UNITY_EDITOR
     [UnityEditor.CustomEditor(typeof(OverworldIslandPlacer))]
@@ -271,10 +464,10 @@ public class OverworldIslandPlacer : MonoBehaviour
             base.OnInspectorGUI();
             var placer = (OverworldIslandPlacer)target;
             GUILayout.Space(10);
-            if (GUILayout.Button("▶  Regenerar Mundo", GUILayout.Height(32)))
+            if (GUILayout.Button("Regenerar Mundo", GUILayout.Height(32)))
             {
                 if (Application.isPlaying) placer.GenerateWorld();
-                else Debug.LogWarning("Entrá en Play Mode primero.");
+                else Debug.LogWarning("Entra en Play Mode primero.");
             }
         }
     }

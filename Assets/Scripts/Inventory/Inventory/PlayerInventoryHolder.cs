@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerInventoryHolder : InventoryHolder
 {
@@ -25,13 +26,18 @@ public class PlayerInventoryHolder : InventoryHolder
     [Header("Item Drop")]
     [SerializeField] private Transform dropPoint;
 
+    [Header("Run Start Items")]
+    [SerializeField] private List<InventoryItemData> runStartItems = new List<InventoryItemData>();
+
     protected override void Awake()
     {
         Instance = this;
         base.Awake();
         secondaryInventorySystem = new InventorySystem(secondaryInventorySize);
         inventorySaveData?.Restore(primaryInventorySystem, secondaryInventorySystem);
+        GrantRunStartItems();
         primaryInventorySystem.OnInventorySlotChanged += OnPrimarySlotChanged;
+        UpdateHandItem();
     }
 
     private void OnDestroy()
@@ -63,7 +69,7 @@ public class PlayerInventoryHolder : InventoryHolder
 
         HandleHotbarInput();
 
-        var currentSlotItem = primaryInventorySystem.InventorySlots[selectedHotbarIndex].ItemData;
+        var currentSlotItem = SelectedItemData;
         if (currentSlotItem != lastHandItemData)
         {
             UpdateHandItem();
@@ -120,16 +126,16 @@ public class PlayerInventoryHolder : InventoryHolder
         var slot = primaryInventorySystem.InventorySlots[selectedHotbarIndex];
         if (slot.ItemData == null) return;
 
-        DropItem(slot.ItemData, slot.StackSize);
+        if (!DropItem(slot.ItemData, slot.StackSize)) return;
 
         slot.ClearSlot();
         primaryInventorySystem.OnInventorySlotChanged?.Invoke(slot);
         UpdateHandItem();
     }
 
-    public void DropItem(InventoryItemData itemData, int amount = 1)
+    public bool DropItem(InventoryItemData itemData, int amount = 1)
     {
-        if (itemData == null || itemData.itemPrefab == null || !itemData.CanDrop) return;
+        if (itemData == null || itemData.itemPrefab == null || !itemData.CanDrop) return false;
 
         Vector3 spawnPos = dropPoint != null ? dropPoint.position : transform.position + transform.forward * 1f;
         Quaternion spawnRot = dropPoint != null ? dropPoint.rotation : Quaternion.identity;
@@ -140,6 +146,8 @@ public class PlayerInventoryHolder : InventoryHolder
             offset.y = 0f;
             Instantiate(itemData.itemPrefab, spawnPos + offset, spawnRot);
         }
+
+        return true;
     }
 
     public bool AddToInventory(InventoryItemData data, int amount)
@@ -183,9 +191,19 @@ public class PlayerInventoryHolder : InventoryHolder
 
         foreach (var slot in secondaryInventorySystem.InventorySlots)
             slot.ClearSlot();
+
+        UpdateHandItem();
     }
 
-
+    private void GrantRunStartItems()
+    {
+        foreach (InventoryItemData item in runStartItems)
+        {
+            if (item == null || GetItemCount(item) > 0) continue;
+            AddToInventory(item, 1);
+        }
+    }
 
     public int SelectedHotbarIndex => selectedHotbarIndex;
+    public InventoryItemData SelectedItemData => primaryInventorySystem.InventorySlots[selectedHotbarIndex].ItemData;
 }

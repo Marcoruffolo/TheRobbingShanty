@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 8684437939148701514}
   - component: {fileID: 1448063415218573401}
   - component: {fileID: 6238204095887302757}
+  - component: {fileID: 6624405303701109731}
   - component: {fileID: 6840463158165156368}
   - component: {fileID: 8890360678620570636}
   - component: {fileID: 8144362803780424024}
@@ -396,6 +397,33 @@ MonoBehaviour:
   inventorySaveData: {fileID: 11400000, guid: 8c952c355d565b0479ef2d6c1ce808b5, type: 2}
   handItemSpawnPoint: {fileID: 4009908901269508315}
   dropPoint: {fileID: 5795909489191037030}
+  runStartItems:
+  - {fileID: 11400000, guid: e2a50617c6f74f9a9c35f6a1cb22a101, type: 2}
+--- !u!114 &6624405303701109731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3621f20b784cd6b95fb98f4f2351fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInventory: {fileID: 6238204095887302757}
+  navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
+  navigationWatchItem: {fileID: 11400000, guid: e2a50617c6f74f9a9c35f6a1cb22a101, type: 2}
+  navigationCoreItem: {fileID: 11400000, guid: 3be4b0e07339cc34dbb6ae68b566a75b, type: 2}
+  zoneIndex: 0
+  showWatchEvent: {fileID: 11400000, guid: 093a7fb95d184904a1e62437805a812d, type: 2}
+  watchText: {fileID: 11400000, guid: 8fddbb8ad0c945b1a91c16c8fb5045cd, type: 2}
+  claimedArtifactText: "El artefacto de esta isla ya entrego su nucleo."
+  completedArtifactText: "Nucleo liberado. Recogelo antes de volver."
+  detectedArtifactText: "Nucleo detectado. Condicion: derrota a todos los enemigos."
+  carriedCoresFormat: "Tenes {0} nucleo(s) sin vincular. Vinculalos en la mesa. Mesa: {1}/{2}."
+  completedTableText: "Mesa completa. La muralla ya puede abrirse."
+  progressFormat: "Nucleos vinculados: {0}/{1}. Faltan {2}. Artefactos disponibles: {3}."
 --- !u!114 &6840463158165156368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,3 +1467,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
   m_PrefabInstance: {fileID: 8860926255077127059}
   m_PrefabAsset: {fileID: 0}
+
+
+

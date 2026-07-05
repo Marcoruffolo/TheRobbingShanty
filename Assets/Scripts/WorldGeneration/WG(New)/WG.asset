@@ -17,9 +17,11 @@ MonoBehaviour:
     lengthZ: 591.7
     originX: -143.6
     widthX: 300
-    artifactCountMin: 1
-    artifactCountMax: 1
-    minArtifactDistance: 5
+    requiredCoresMin: 5
+    requiredCoresMax: 7
+    extraCoreIslandsMin: 2
+    extraCoreIslandsMax: 3
+    minArtifactDistance: 30
     weightSmall: 1
     weightMedium: 0
     weightLarge: 0
@@ -33,3 +35,4 @@ MonoBehaviour:
   radiusMediumMax: 80
   radiusLargeMin: 80
   radiusLargeMax: 150
+

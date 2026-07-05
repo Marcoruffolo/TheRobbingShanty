@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -165,7 +165,7 @@ public class ZoneIntroCinematicController : MonoBehaviour
 
         if (tableTarget == null)
         {
-            NavigationCompass table = FindFirstObjectByType<NavigationCompass>();
+            CoreLinkingTable table = FindFirstObjectByType<CoreLinkingTable>();
             if (table != null)
                 tableTarget = table.transform;
         }

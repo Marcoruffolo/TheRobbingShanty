@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -17420,8 +17420,7 @@ MonoBehaviour:
   - {fileID: 5722605566820354630}
   lockedVisual: {fileID: 372059872}
   unlockedVisual: {fileID: 1370597322}
-  islandCompleted: {fileID: 11400000, guid: 9097b409c6c41b34caa8e7f38ab8f6cf, type: 2}
-  coreClaimed: {fileID: 11400000, guid: 56f72b382805de04fbfe841ba3c39c1d, type: 2}
+  navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
 --- !u!4 &1237772146
 Transform:
   m_ObjectHideFlags: 0
@@ -45859,3 +45858,4 @@ SceneRoots:
   - {fileID: 283889373}
   - {fileID: 933221078}
   - {fileID: 1141030652}
+

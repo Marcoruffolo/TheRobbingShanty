@@ -3,7 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class ZoneDefinition
 {
-    [Tooltip("Bioma de esta zona: determina qué islas premade pueden spawnear en ella")]
+    private const int MinRequiredCores = 5;
+    private const int MaxRequiredCores = 7;
+    private const int MinExtraCoreIslands = 2;
+    private const int MaxExtraCoreIslands = 3;
+
+    [Tooltip("Bioma de esta zona: determina que islas pueden spawnear en ella")]
     public ZoneBiome biome;
 
     [Tooltip("Largo de la zona en el eje de avance (Z) del overworld")]
@@ -13,25 +18,47 @@ public class ZoneDefinition
     public float originX = 0f;
     public float widthX = 500f;
 
-    [Header("Islas-artefacto (cantidad random por run)")]
-    public int artifactCountMin = 1;
-    public int artifactCountMax = 3;
-    [Tooltip("Distancia mínima entre islas-artefacto dentro de esta zona")]
+    [Header("Nucleos requeridos")]
+    public int requiredCoresMin = MinRequiredCores;
+    public int requiredCoresMax = MaxRequiredCores;
+    public int extraCoreIslandsMin = MinExtraCoreIslands;
+    public int extraCoreIslandsMax = MaxExtraCoreIslands;
+
+    [Tooltip("Distancia minima entre islas de artefacto dentro de esta zona")]
     public float minArtifactDistance = 30f;
 
-    [Header("Proporciones de tamaño (islas random)")]
+    [Header("Proporciones de tamano (islas random)")]
     public int weightSmall = 1;
     public int weightMedium = 1;
     public int weightLarge = 1;
 
+    public int RollRequiredCores(System.Random rng)
+    {
+        int min = Mathf.Clamp(requiredCoresMin, MinRequiredCores, MaxRequiredCores);
+        int max = Mathf.Clamp(requiredCoresMax, min, MaxRequiredCores);
+        return rng.Next(min, max + 1);
+    }
+
+    public int RollExtraCoreIslands(System.Random rng)
+    {
+        int min = Mathf.Clamp(extraCoreIslandsMin, MinExtraCoreIslands, MaxExtraCoreIslands);
+        int max = Mathf.Clamp(extraCoreIslandsMax, min, MaxExtraCoreIslands);
+        return rng.Next(min, max + 1);
+    }
+
     public IslandSizeCategory GetWeightedRandomSize(System.Random rng)
     {
-        int total = weightSmall + weightMedium + weightLarge;
+        int small = Mathf.Max(0, weightSmall);
+        int medium = Mathf.Max(0, weightMedium);
+        int large = Mathf.Max(0, weightLarge);
+        int total = small + medium + large;
+        if (total <= 0) return IslandSizeCategory.Small;
+
         int r = rng.Next(total);
 
-        if (r < weightSmall) return IslandSizeCategory.Small;
-        r -= weightSmall;
-        if (r < weightMedium) return IslandSizeCategory.Medium;
+        if (r < small) return IslandSizeCategory.Small;
+        r -= small;
+        if (r < medium) return IslandSizeCategory.Medium;
         return IslandSizeCategory.Large;
     }
 }

@@ -5,18 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NavigationRunState", menuName = "TRS/Navigation/Run State")]
 public class NavigationRunState : ScriptableObject
 {
+    private const int MinRequiredCores = 5;
+    private const int MaxRequiredCores = 7;
+
+    [Serializable]
+    public class ArtifactEntry
+    {
+        public string ArtifactId;
+        public int ZoneIndex;
+        public bool IsCompleted;
+        public bool IsClaimed;
+    }
+
     [Serializable]
     private class ZoneProgress
     {
         public int ZoneIndex = -1;
         public int RequiredCores;
         public int AvailableCoreIslands;
-        public int LinkedCores;
+        public int PlacedCores;
         public bool IntroPlayed;
-        public List<string> AvailableArtifactIds = new();
-        public List<string> CompletedArtifactIds = new();
-        public List<string> ClaimedArtifactIds = new();
-        public List<string> LinkedArtifactIds = new();
+        public List<ArtifactEntry> Artifacts = new();
     }
 
     private static NavigationRunState _runtimeInstance;
@@ -44,35 +53,85 @@ public class NavigationRunState : ScriptableObject
 
     public event Action<int, int, int> ZoneProgressChanged;
 
+    public int CurrentWorldSeed => worldSeed;
     public int CurrentZoneIndex => currentZoneIndex;
     public int CurrentArtifactZoneIndex => currentArtifactZoneIndex;
     public string CurrentArtifactIslandId => currentArtifactIslandId;
     public bool HasCurrentArtifactIsland => !string.IsNullOrWhiteSpace(currentArtifactIslandId);
 
+    private void OnEnable()
+    {
+        if (_runtimeInstance == null || !_runtimeInstance.hideFlags.HasFlag(HideFlags.HideAndDontSave))
+            _runtimeInstance = this;
+    }
+
     public int GetOrCreateWorldSeed(int configuredSeed)
     {
-        if (configuredSeed != 0)
-        {
-            worldSeed = configuredSeed;
-            return worldSeed;
-        }
-
-        if (worldSeed == 0)
-            worldSeed = UnityEngine.Random.Range(1, int.MaxValue);
-
+        worldSeed = WorldRunSeed.Resolve(configuredSeed);
         return worldSeed;
     }
 
-    public void EnsureZone(int zoneIndex, int requiredCores, int availableCoreIslands)
+    public void StartZone(int zoneIndex, int requiredCores, int availableCoreIslands)
     {
         ZoneProgress zone = GetOrCreateZone(zoneIndex);
+        currentZoneIndex = zoneIndex;
 
-        if (zone.RequiredCores <= 0)
-            zone.RequiredCores = Mathf.Max(0, requiredCores);
+        int resolvedRequiredCores = ClampRequiredCores(requiredCores);
+        int resolvedAvailableCoreIslands = Mathf.Max(resolvedRequiredCores, availableCoreIslands);
 
-        if (zone.AvailableCoreIslands <= 0)
-            zone.AvailableCoreIslands = Mathf.Max(0, availableCoreIslands);
+        if (requiredCores != resolvedRequiredCores)
+            Debug.LogError($"[NavigationRunState] Zona {zoneIndex} pidio {requiredCores} nucleos. Se fuerza a {resolvedRequiredCores}.");
+
+        if (availableCoreIslands < resolvedRequiredCores)
+            Debug.LogError($"[NavigationRunState] Zona {zoneIndex} tiene menos islas de artefacto que nucleos requeridos.");
+
+        if (zone.RequiredCores <= 0 || zone.RequiredCores < MinRequiredCores || zone.RequiredCores > MaxRequiredCores)
+            zone.RequiredCores = resolvedRequiredCores;
+
+        if (zone.AvailableCoreIslands < zone.RequiredCores)
+            zone.AvailableCoreIslands = Mathf.Max(zone.RequiredCores, resolvedAvailableCoreIslands);
+
+        zone.PlacedCores = Mathf.Clamp(zone.PlacedCores, 0, zone.RequiredCores);
         RaiseZoneProgressChanged(zone);
+    }
+
+    public void RegisterArtifactIsland(int zoneIndex, string artifactId)
+    {
+        if (string.IsNullOrWhiteSpace(artifactId)) return;
+
+        ZoneProgress zone = GetOrCreateZone(zoneIndex);
+        ArtifactEntry entry = FindArtifact(zone, artifactId);
+        if (entry != null) return;
+
+        zone.Artifacts.Add(new ArtifactEntry
+        {
+            ArtifactId = artifactId,
+            ZoneIndex = zoneIndex
+        });
+    }
+
+    public void SetCurrentArtifactIsland(int zoneIndex, string artifactId)
+    {
+        currentZoneIndex = zoneIndex;
+        currentArtifactZoneIndex = zoneIndex;
+        currentArtifactIslandId = artifactId ?? string.Empty;
+
+        if (!string.IsNullOrWhiteSpace(currentArtifactIslandId))
+            RegisterArtifactIsland(zoneIndex, currentArtifactIslandId);
+    }
+
+    public void ClearCurrentArtifactIsland(string artifactId = null)
+    {
+        if (!string.IsNullOrWhiteSpace(artifactId) && artifactId != currentArtifactIslandId)
+            return;
+
+        currentArtifactZoneIndex = -1;
+        currentArtifactIslandId = string.Empty;
+    }
+
+    public void ClearCurrentIslandContext()
+    {
+        ClearCurrentArtifactIsland();
     }
 
     public int GetRequiredCores(int zoneIndex)
@@ -87,121 +146,79 @@ public class NavigationRunState : ScriptableObject
         return zone != null ? zone.AvailableCoreIslands : 0;
     }
 
-    public int GetLinkedCores(int zoneIndex)
+    public int GetPlacedCores(int zoneIndex)
     {
         ZoneProgress zone = FindZone(zoneIndex);
-        return zone != null ? zone.LinkedCores : 0;
+        return zone != null ? zone.PlacedCores : 0;
     }
 
-    public bool HasLinkedRequiredCores(int zoneIndex)
+    public bool IsZoneReady(int zoneIndex)
     {
         ZoneProgress zone = FindZone(zoneIndex);
-        return zone != null && zone.RequiredCores > 0 && zone.LinkedCores >= zone.RequiredCores;
+        return zone != null
+            && zone.RequiredCores >= MinRequiredCores
+            && zone.RequiredCores <= MaxRequiredCores
+            && zone.AvailableCoreIslands >= zone.RequiredCores;
     }
 
-    public void RegisterArtifactIsland(int zoneIndex, string artifactId)
+    public int GetUnplacedCoreCountInInventory(PlayerInventoryHolder inventory, InventoryItemData navigationCore)
     {
-        if (string.IsNullOrWhiteSpace(artifactId)) return;
-
-        ZoneProgress zone = GetOrCreateZone(zoneIndex);
-        AddUnique(zone.AvailableArtifactIds, artifactId);
+        if (inventory == null || navigationCore == null) return 0;
+        return inventory.GetItemCount(navigationCore);
     }
 
-    public void SetCurrentArtifactIsland(int zoneIndex, string artifactId)
+    public bool CanPlaceCore(int zoneIndex)
     {
-        currentZoneIndex = zoneIndex;
-        currentArtifactZoneIndex = zoneIndex;
-        currentArtifactIslandId = artifactId ?? string.Empty;
+        ZoneProgress zone = FindZone(zoneIndex);
+        return zone != null && IsZoneReady(zoneIndex) && zone.PlacedCores < zone.RequiredCores;
+    }
 
-        if (!string.IsNullOrWhiteSpace(currentArtifactIslandId))
-            RegisterArtifactIsland(zoneIndex, currentArtifactIslandId);
+    public bool PlaceCore(int zoneIndex)
+    {
+        ZoneProgress zone = FindZone(zoneIndex);
+        if (zone == null || !IsZoneReady(zoneIndex) || zone.PlacedCores >= zone.RequiredCores)
+            return false;
+
+        zone.PlacedCores++;
+        RaiseZoneProgressChanged(zone);
+        return true;
+    }
+
+    public bool HasRequiredPlacedCores(int zoneIndex)
+    {
+        ZoneProgress zone = FindZone(zoneIndex);
+        return zone != null && IsZoneReady(zoneIndex) && zone.PlacedCores >= zone.RequiredCores;
     }
 
     public bool IsArtifactCompleted(string artifactId)
     {
-        ZoneProgress zone = FindZoneForArtifact(artifactId);
-        return zone != null && zone.CompletedArtifactIds.Contains(artifactId);
+        ArtifactEntry entry = FindArtifact(artifactId);
+        return entry != null && entry.IsCompleted;
     }
 
     public bool IsCoreClaimed(string artifactId)
     {
-        ZoneProgress zone = FindZoneForArtifact(artifactId);
-        return zone != null && zone.ClaimedArtifactIds.Contains(artifactId);
-    }
-
-    public bool IsCoreLinked(string artifactId)
-    {
-        ZoneProgress zone = FindZoneForArtifact(artifactId);
-        return zone != null && zone.LinkedArtifactIds.Contains(artifactId);
+        ArtifactEntry entry = FindArtifact(artifactId);
+        return entry != null && entry.IsClaimed;
     }
 
     public void MarkArtifactCompleted(string artifactId = null)
     {
-        string id = ResolveArtifactId(artifactId);
-        if (string.IsNullOrWhiteSpace(id)) return;
+        ArtifactEntry entry = ResolveArtifactEntry(artifactId);
+        if (entry == null) return;
 
-        ZoneProgress zone = GetOrCreateZoneForArtifact(id);
-        AddUnique(zone.CompletedArtifactIds, id);
-        RaiseZoneProgressChanged(zone);
+        entry.IsCompleted = true;
+        RaiseZoneProgressChanged(GetOrCreateZone(entry.ZoneIndex));
     }
 
     public void MarkCoreClaimed(string artifactId = null)
     {
-        string id = ResolveArtifactId(artifactId);
-        if (string.IsNullOrWhiteSpace(id)) return;
+        ArtifactEntry entry = ResolveArtifactEntry(artifactId);
+        if (entry == null) return;
 
-        ZoneProgress zone = GetOrCreateZoneForArtifact(id);
-        AddUnique(zone.CompletedArtifactIds, id);
-        AddUnique(zone.ClaimedArtifactIds, id);
-        RaiseZoneProgressChanged(zone);
-    }
-
-    public bool HasClaimedCoreReady(int zoneIndex = -1)
-    {
-        ZoneProgress zone = ResolveZone(zoneIndex);
-        if (zone == null || (zone.RequiredCores > 0 && zone.LinkedCores >= zone.RequiredCores))
-            return false;
-
-        foreach (string claimedId in zone.ClaimedArtifactIds)
-            if (!zone.LinkedArtifactIds.Contains(claimedId))
-                return true;
-
-        return false;
-    }
-
-    public int GetUnlinkedClaimedCoreCount(int zoneIndex = -1)
-    {
-        ZoneProgress zone = ResolveZone(zoneIndex);
-        if (zone == null) return 0;
-
-        int count = 0;
-        foreach (string claimedId in zone.ClaimedArtifactIds)
-            if (!zone.LinkedArtifactIds.Contains(claimedId))
-                count++;
-
-        return count;
-    }
-    public bool TryLinkNextClaimedCore(out string linkedArtifactId, int zoneIndex = -1)
-    {
-        linkedArtifactId = string.Empty;
-
-        ZoneProgress zone = ResolveZone(zoneIndex);
-        if (zone == null || (zone.RequiredCores > 0 && zone.LinkedCores >= zone.RequiredCores))
-            return false;
-
-        foreach (string claimedId in zone.ClaimedArtifactIds)
-        {
-            if (zone.LinkedArtifactIds.Contains(claimedId))
-                continue;
-
-            zone.LinkedArtifactIds.Add(claimedId);
-            zone.LinkedCores = zone.LinkedArtifactIds.Count;
-            linkedArtifactId = claimedId;
-            RaiseZoneProgressChanged(zone);
-            return true;
-        }
-
-        return false;
+        entry.IsCompleted = true;
+        entry.IsClaimed = true;
+        RaiseZoneProgressChanged(GetOrCreateZone(entry.ZoneIndex));
     }
 
     public bool HasIntroPlayed(int zoneIndex)
@@ -218,58 +235,53 @@ public class NavigationRunState : ScriptableObject
 
     public string GetProgressText(int zoneIndex = -1)
     {
-        ZoneProgress zone = ResolveZone(zoneIndex);
-        if (zone == null) return "Nucleos vinculados: 0/0";
-
-        return $"Nucleos vinculados: {zone.LinkedCores}/{zone.RequiredCores}";
+        ZoneProgress zone = zoneIndex >= 0 ? FindZone(zoneIndex) : FindZone(currentZoneIndex);
+        if (zone == null || !IsZoneReady(zone.ZoneIndex)) return string.Empty;
+        return $"Nucleos colocados: {zone.PlacedCores}/{zone.RequiredCores}";
     }
 
     public void ResetRun()
     {
+        WorldRunSeed.Reset();
         worldSeed = 0;
         currentZoneIndex = 0;
-        currentArtifactZoneIndex = -1;
-        currentArtifactIslandId = string.Empty;
+        ClearCurrentIslandContext();
         zones.Clear();
         ZoneProgressChanged?.Invoke(0, 0, 0);
     }
 
-    private string ResolveArtifactId(string artifactId)
+    private ArtifactEntry ResolveArtifactEntry(string artifactId)
     {
-        return string.IsNullOrWhiteSpace(artifactId) ? currentArtifactIslandId : artifactId;
+        string id = string.IsNullOrWhiteSpace(artifactId) ? currentArtifactIslandId : artifactId;
+        if (string.IsNullOrWhiteSpace(id)) return null;
+
+        ArtifactEntry entry = FindArtifact(id);
+        if (entry != null) return entry;
+
+        int zoneIndex = currentArtifactZoneIndex >= 0 ? currentArtifactZoneIndex : currentZoneIndex;
+        RegisterArtifactIsland(zoneIndex, id);
+        return FindArtifact(id);
     }
 
-    private ZoneProgress ResolveZone(int zoneIndex)
-    {
-        return zoneIndex >= 0 ? FindZone(zoneIndex) : FindZone(currentZoneIndex);
-    }
-
-    private ZoneProgress GetOrCreateZoneForArtifact(string artifactId)
-    {
-        ZoneProgress zone = FindZoneForArtifact(artifactId);
-        if (zone != null) return zone;
-
-        int fallbackZoneIndex = currentArtifactZoneIndex >= 0 ? currentArtifactZoneIndex : currentZoneIndex;
-        zone = GetOrCreateZone(fallbackZoneIndex);
-        AddUnique(zone.AvailableArtifactIds, artifactId);
-        return zone;
-    }
-
-    private ZoneProgress FindZoneForArtifact(string artifactId)
+    private ArtifactEntry FindArtifact(string artifactId)
     {
         if (string.IsNullOrWhiteSpace(artifactId)) return null;
 
         foreach (ZoneProgress zone in zones)
         {
-            if (zone.AvailableArtifactIds.Contains(artifactId) ||
-                zone.CompletedArtifactIds.Contains(artifactId) ||
-                zone.ClaimedArtifactIds.Contains(artifactId) ||
-                zone.LinkedArtifactIds.Contains(artifactId))
-            {
-                return zone;
-            }
+            ArtifactEntry entry = FindArtifact(zone, artifactId);
+            if (entry != null) return entry;
         }
 
+        return null;
+    }
+
+    private ArtifactEntry FindArtifact(ZoneProgress zone, string artifactId)
+    {
+        if (zone == null) return null;
+        foreach (ArtifactEntry entry in zone.Artifacts)
+            if (entry.ArtifactId == artifactId)
+                return entry;
         return null;
     }
 
@@ -288,17 +300,16 @@ public class NavigationRunState : ScriptableObject
         foreach (ZoneProgress zone in zones)
             if (zone.ZoneIndex == zoneIndex)
                 return zone;
-
         return null;
+    }
+
+    private int ClampRequiredCores(int value)
+    {
+        return Mathf.Clamp(value, MinRequiredCores, MaxRequiredCores);
     }
 
     private void RaiseZoneProgressChanged(ZoneProgress zone)
     {
-        ZoneProgressChanged?.Invoke(zone.ZoneIndex, zone.LinkedCores, zone.RequiredCores);
-    }
-    private static void AddUnique(List<string> list, string value)
-    {
-        if (!list.Contains(value))
-            list.Add(value);
+        ZoneProgressChanged?.Invoke(zone.ZoneIndex, zone.PlacedCores, zone.RequiredCores);
     }
 }
