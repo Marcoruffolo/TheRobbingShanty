@@ -70,6 +70,9 @@ MonoBehaviour:
     _sceneAsset: {fileID: 102900000, guid: 459d38e452bd89b4eae4473359af0d2a, type: 3}
     _sceneName: CastleIsland
   islandName: Castle Island
+  isArtifactIsland: 0
+  zoneIndex: 0
+  artifactId: 
 --- !u!1 &5629026779674674756
 GameObject:
   m_ObjectHideFlags: 0
