@@ -75,6 +75,14 @@ public class PlayerInventoryHolder : InventoryHolder
             UpdateHandItem();
         }
 
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            if (primaryInventorySystem.InventorySlots[selectedHotbarIndex] != null)
+            {
+                primaryInventorySystem.UseItem(primaryInventorySystem.InventorySlots[selectedHotbarIndex]);
+            }
+        }
+
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             DropHotbarItem();

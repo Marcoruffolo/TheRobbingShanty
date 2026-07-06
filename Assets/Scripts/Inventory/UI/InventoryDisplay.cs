@@ -35,6 +35,7 @@ public abstract class InventoryDisplay : MonoBehaviour
     public void SlotClicked(InventorySlot_UI clickedUISlot)
     {
         bool isShiftPressed = Keyboard.current.leftShiftKey.isPressed;
+        
 
         //splitstack
         if(clickedUISlot.AssignedInventorySlot.ItemData != null && mouseInventoryItem.AssignedInventorySlot.ItemData == null)

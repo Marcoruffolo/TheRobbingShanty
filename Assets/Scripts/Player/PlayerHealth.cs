@@ -44,6 +44,15 @@ public class PlayerHealth : MonoBehaviour, IDamagable
             Die();
     }
 
+    public void Heal(int healAmount)
+    {
+        playerHealth.Value += healAmount;
+        if (playerHealth.Value > maxHealth.Value)
+        {
+            playerHealth.Value = maxHealth.Value;
+        }
+    }
+
     private void Die()
     {
         _isDead = true;

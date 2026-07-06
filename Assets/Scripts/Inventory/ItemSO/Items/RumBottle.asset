@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c4919ae6d1e94448c1d70bb49af366, type: 3}
+  m_Script: {fileID: 11500000, guid: deacc7f8cc6a0534f91147bc659e832e, type: 3}
   m_Name: RumBottle
   m_EditorClassIdentifier: 
   ID: 0
@@ -21,3 +21,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 7074894261877200673, guid: 2e7ff155e4c1205409c83556b7ff131d, type: 3}
   handItemPrefab: {fileID: 5403586227646100371, guid: 8a1a21fd555c4d24c99b3f9c7ed5eed5, type: 3}
   itemtype: 1
+  onPlayerEffected: {fileID: 11400000, guid: 4fc95353aa64fa64cafbd9dc50c99522, type: 2}
+  EffectAmount: 30

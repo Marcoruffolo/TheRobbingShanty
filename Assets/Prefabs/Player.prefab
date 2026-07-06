@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 8819569243036130352}
   - component: {fileID: 5743962765939132968}
   - component: {fileID: -2380343913677466159}
+  - component: {fileID: 6293051952821216658}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -418,12 +419,14 @@ MonoBehaviour:
   zoneIndex: 0
   showWatchEvent: {fileID: 11400000, guid: 093a7fb95d184904a1e62437805a812d, type: 2}
   watchText: {fileID: 11400000, guid: 8fddbb8ad0c945b1a91c16c8fb5045cd, type: 2}
-  claimedArtifactText: "El artefacto de esta isla ya entrego su nucleo."
-  completedArtifactText: "Nucleo liberado. Recogelo antes de volver."
-  detectedArtifactText: "Nucleo detectado. Condicion: derrota a todos los enemigos."
-  carriedCoresFormat: "Tenes {0} nucleo(s) sin vincular. Vinculalos en la mesa. Mesa: {1}/{2}."
-  completedTableText: "Mesa completa. La muralla ya puede abrirse."
-  progressFormat: "Nucleos vinculados: {0}/{1}. Faltan {2}. Artefactos disponibles: {3}."
+  claimedArtifactText: El artefacto de esta isla ya entrego su nucleo.
+  completedArtifactText: Nucleo liberado. Recogelo antes de volver.
+  detectedArtifactText: 'Nucleo detectado. Condicion: derrota a todos los enemigos.'
+  carriedCoresFormat: 'Tenes {0} nucleo(s) sin vincular. Vinculalos en la mesa. Mesa:
+    {1}/{2}.'
+  completedTableText: Mesa completa. La muralla ya puede abrirse.
+  progressFormat: 'Nucleos vinculados: {0}/{1}. Faltan {2}. Artefactos disponibles:
+    {3}.'
 --- !u!114 &6840463158165156368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,6 +703,34 @@ MonoBehaviour:
   weaponSpawnPoint: {fileID: 9039546913278432376}
   reloadProgress: {fileID: 11400000, guid: be7d15647be4f4745b3bc8ffc159bd15, type: 2}
   fireSound: {fileID: 8300000, guid: 44d61f25df252ba41bb824a992324a0d, type: 3}
+--- !u!114 &6293051952821216658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169416703968480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58a41d3065793f4aa0ae5bc070f7d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4fc95353aa64fa64cafbd9dc50c99522, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8646056921273827266}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &3340636109574979334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1467,6 +1498,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f05d1675e28df04080d88962c5a0e0b, type: 3}
   m_PrefabInstance: {fileID: 8860926255077127059}
   m_PrefabAsset: {fileID: 0}
-
-
-

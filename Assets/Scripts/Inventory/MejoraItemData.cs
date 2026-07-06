@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ConsumibleItem", menuName = "Inventory/ConsumibleItem")]
-public class ConsumibleItemData : InventoryItemData
+[CreateAssetMenu(fileName = "MejoraItemData", menuName = "Inventory/MejoraItemData")]
+public class MejoraItemData : InventoryItemData
 {
     [SerializeField] private IntGameEvent onPlayerEffected;
     public int EffectAmount;

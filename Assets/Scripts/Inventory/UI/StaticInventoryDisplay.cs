@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class StaticInventoryDisplay : InventoryDisplay
 {
     [SerializeField] private InventoryHolder inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
-
-    int _currentIndex = 0;
 
     protected override void Start()
     {
@@ -43,7 +42,6 @@ public class StaticInventoryDisplay : InventoryDisplay
         var mouseSlot = MouseItem?.AssignedInventorySlot;
         bool usingMouse = mouseSlot?.ItemData != null;
         var source = usingMouse ? mouseSlot : clickedUISlot.AssignedInventorySlot;
-        SetIndex(System.Array.IndexOf(slots, clickedUISlot));
 
         if (source.ItemData == null) return;
 
@@ -76,17 +74,5 @@ public class StaticInventoryDisplay : InventoryDisplay
             clickedUISlot.UpdateUISlot();
             inventorySystem.OnInventorySlotChanged?.Invoke(clickedUISlot.AssignedInventorySlot);
         }
-    }
-
-    public void SetIndex(int i)
-    {
-        if(i < 0) _currentIndex = 0;
-        if(i > (slots.Length - 1)) _currentIndex = slots.Length - 1;
-        _currentIndex = i;
-    }
-
-    private void UseItem()
-    {
-        if(slots[_currentIndex].AssignedInventorySlot.ItemData != null) slots[_currentIndex].AssignedInventorySlot.ItemData.UseItem();
     }
 }

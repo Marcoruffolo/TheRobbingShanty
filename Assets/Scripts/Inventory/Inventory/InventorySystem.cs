@@ -72,6 +72,20 @@ public class InventorySystem
         return inventorySlots.Where(s => s.ItemData == item).Sum(s => s.StackSize);
     }
 
+    public bool UseItem(InventorySlot slot)
+    {
+        if(slot.ItemData != null) 
+        {
+            if(slot.ItemData.itemtype == ItemType.None || slot.ItemData.itemtype == ItemType.Arma) return false;
+            Debug.Log("Use item");
+            slot.ItemData.UseItem();
+            RemoveItem(slot.ItemData,1);
+            return true;
+        }
+
+        return false;
+    }
+
     public bool RemoveItem(InventoryItemData item, int amount)
     {
         if (GetItemCount(item) < amount) return false;

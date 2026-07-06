@@ -17,16 +17,16 @@ public class InventoryItemData : ScriptableObject
 
     public ItemType itemtype = ItemType.None;
 
-    public void UseItem()
+    public virtual void UseItem()
     {
         //la arma ya tiene su script
         if (itemtype == ItemType.Consumible)
         {
-            
+            Debug.Log("Consumido");
         }
         else if(itemtype == ItemType.Mejora)
         {
-            
+            Debug.Log("Mejorado");
         }
     }
 
