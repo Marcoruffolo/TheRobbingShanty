@@ -105,6 +105,12 @@ public class EnemyMonkey : EnemyBase
             transform.rotation = Quaternion.LookRotation(dir);
     }
 
+    protected override void Die()
+    {
+        _hopper.StopAllCoroutines();
+        base.Die();
+    }
+
     public override void OnHitFrame() { }
     public override void OnAttackEnd() { }
 }

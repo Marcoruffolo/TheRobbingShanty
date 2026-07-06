@@ -15,11 +15,13 @@ public class EnemyInventory : InventoryHolder, IInteractable
     private bool _isOpen;
     private Interactor _currentInteractor;
     private EnemyBase _enemyBase;
+    private EnemyRagdoll _ragdoll;
 
     protected override void Awake()
     {
         base.Awake();
         _enemyBase = GetComponent<EnemyBase>();
+        _ragdoll = GetComponent<EnemyRagdoll>();
         if (lootTrigger != null) lootTrigger.enabled = false;
     }
 
@@ -28,6 +30,9 @@ public class EnemyInventory : InventoryHolder, IInteractable
 
     private void OnEnemyDied()
     {
+        if (lootTrigger != null && _ragdoll != null)
+            lootTrigger.transform.SetParent(_ragdoll.RagdollAnchor, true);
+
         if (lootTable == null) return;
 
         if (primaryInventorySystem.InventorySize < lootTable.entries.Count)

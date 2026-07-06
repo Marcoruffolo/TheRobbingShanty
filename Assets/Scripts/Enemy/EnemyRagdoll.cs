@@ -11,6 +11,8 @@ public class EnemyRagdoll : MonoBehaviour
     private Collider _mainCollider;
     private SkinnedMeshRenderer[] _meshes;
 
+    public Transform RagdollAnchor => _bodies.Length > 0 ? _bodies[0].transform : transform;
+
     void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
