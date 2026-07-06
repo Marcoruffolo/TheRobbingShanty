@@ -15,8 +15,9 @@ MonoBehaviour:
   ID: 4
   DisplayName: Reloj de navegacion
   Description: 
-  Icon: {fileID: 21300000, guid: a7b203e5309c6f543b243a2c7a8d2b03, type: 3}
+  Icon: {fileID: 21300000, guid: 5f4da5bdd9b12ed4180fc6850d98ac2c, type: 3}
   maxStackSize: 1
   CanDrop: 0
   itemPrefab: {fileID: 100000, guid: f3ae35e40af144de90a0e2dcbf7c2a30, type: 3}
   handItemPrefab: {fileID: 200000, guid: f3d3586390c64656a8e57aaf94f2f4de, type: 3}
+  itemtype: 0

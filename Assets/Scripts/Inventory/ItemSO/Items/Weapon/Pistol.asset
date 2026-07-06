@@ -20,7 +20,7 @@ MonoBehaviour:
   CanDrop: 1
   itemPrefab: {fileID: 6639510309371332446, guid: 7e554edc82282e34ab6deeefc0ee5ee6, type: 3}
   handItemPrefab: {fileID: 5403586227646100371, guid: 2a78b20c538eefb419d33defaab4cf69, type: 3}
-  itemtype: 0
+  itemtype: 2
   bulletPrefab: {fileID: 170750470911926511, guid: 74c7e3758d1c80941a176ffa137a5be6, type: 3}
   poolSize: 1
   baseDamage: 10

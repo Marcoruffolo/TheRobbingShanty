@@ -20,4 +20,4 @@ MonoBehaviour:
   CanDrop: 1
   itemPrefab: {fileID: 2512704319526743929, guid: 1f1e05987297fec45bae37807f5b05c5, type: 3}
   handItemPrefab: {fileID: 5403586227646100371, guid: 3cbc891b6951d7543be6c731e876b45b, type: 3}
-  itemtype: 2
+  itemtype: 3

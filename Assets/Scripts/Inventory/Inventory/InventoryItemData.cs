@@ -24,5 +24,6 @@ public enum ItemType
 {
     None,
     Consumible,
+    Arma,
     Mejora
 }

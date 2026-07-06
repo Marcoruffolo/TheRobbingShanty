@@ -17,8 +17,10 @@ MonoBehaviour:
   Description: 
   Icon: {fileID: 21300000, guid: f002f3e63c47d4a4b9194e1d41774a93, type: 3}
   maxStackSize: 1
+  CanDrop: 1
   itemPrefab: {fileID: 3911744085340127295, guid: 3fa3c2bd1d0f7ed4db576f146f0cafb1, type: 3}
   handItemPrefab: {fileID: 5403586227646100371, guid: 2d5a196630c4ce542a0a1664defe7186, type: 3}
+  itemtype: 2
   stats:
     attackSpeed: 1
     comboDelay: 1
