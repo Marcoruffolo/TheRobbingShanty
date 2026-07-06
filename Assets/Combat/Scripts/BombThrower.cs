@@ -33,8 +33,9 @@ public class BombThrower : MonoBehaviour
 
         _nextThrowTime = Time.time + fireRate;
 
-        Vector3 velocity = CalculateArcVelocity(throwPoint.position, targetPosition, throwArcHeight);
-        bomb.Launch(_bombPool, throwPoint.position, velocity, damage, explosionRadius, fuseTime, damageMask, ignoreTree);
+        Vector3 origin = transform.position + Vector3.up * throwPoint.localPosition.y;
+        Vector3 velocity = CalculateArcVelocity(origin, targetPosition, throwArcHeight);
+        bomb.Launch(_bombPool, origin, velocity, damage, explosionRadius, fuseTime, damageMask, ignoreTree, transform);
     }
 
     private static Vector3 CalculateArcVelocity(Vector3 origin, Vector3 target, float arcHeight)

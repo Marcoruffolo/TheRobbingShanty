@@ -42,7 +42,8 @@ public class EnemyMonkey : EnemyBase
         if (_hopper.CurrentNode == null) return;
 
         bool playerInThrowRange = combatEnabled && Fov.CanSeePlayer && Fov.PlayerTransform != null &&
-            Vector3.Distance(transform.position, Fov.PlayerTransform.position) <= throwRange;
+            Vector3.Distance(transform.position, Fov.PlayerTransform.position) <= throwRange &&
+            _hopper.HasClearLineOfSight(Fov.PlayerTransform.position);
 
         if (playerInThrowRange && !_isFleeing && _bombThrower.CanThrow)
         {
@@ -65,14 +66,14 @@ public class EnemyMonkey : EnemyBase
     private void EnterThrowing()
     {
         _state = State.Throwing;
-        FacePlayer();
         Animator?.SetTrigger(HashAttack);
         Invoke(nameof(DoThrow), throwDelay);
     }
 
     private void DoThrow()
     {
-        if (IsDead || IsControlLocked || Fov.PlayerTransform == null)
+        if (IsDead || IsControlLocked || Fov.PlayerTransform == null ||
+            !_hopper.HasClearLineOfSight(Fov.PlayerTransform.position))
         {
             _state = State.OnNode;
             return;
@@ -94,15 +95,6 @@ public class EnemyMonkey : EnemyBase
         if (wasDifferentTree) _isFleeing = false;
         _state = State.OnNode;
         _nodeArrivalTime = Time.time;
-    }
-
-    private void FacePlayer()
-    {
-        if (Fov.PlayerTransform == null) return;
-        Vector3 dir = (Fov.PlayerTransform.position - transform.position).normalized;
-        dir.y = 0f;
-        if (dir != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(dir);
     }
 
     protected override void Die()

@@ -23,6 +23,7 @@ public class MonkeyTreeHopper : MonoBehaviour
 
         CurrentNode = node;
         transform.position = node.transform.position;
+        FaceOwnerTree(node);
     }
 
     public bool TryFindDirectJumpTarget(out TreeNodeAnchor target)
@@ -55,6 +56,24 @@ public class MonkeyTreeHopper : MonoBehaviour
         return true;
     }
 
+    public bool HasClearLineOfSight(Vector3 targetPosition)
+    {
+        Vector3 from = transform.position;
+        Vector3 offset = targetPosition - from;
+        float distance = offset.magnitude;
+        if (distance <= 0f) return true;
+
+        Transform ownTree = CurrentNode != null ? CurrentNode.OwnerTree : null;
+
+        foreach (var hit in Physics.RaycastAll(from, offset.normalized, distance, obstacleMask))
+        {
+            if (ownTree != null && (hit.transform == ownTree || hit.transform.IsChildOf(ownTree))) continue;
+            return false;
+        }
+
+        return true;
+    }
+
     public bool JumpTo(TreeNodeAnchor target, Action<bool> onJumpComplete)
     {
         if (IsJumping || target == null || !target.TryReserve(this)) return false;
@@ -71,6 +90,14 @@ public class MonkeyTreeHopper : MonoBehaviour
 
     private bool TryFindRandomReachable(Vector3 from, bool differentTreeOnly, Transform excludeTree, out TreeNodeAnchor target)
     {
+        if (TryFindRandomReachable(from, differentTreeOnly, excludeTree, ignoreOwnTree: false, out target))
+            return true;
+
+        return TryFindRandomReachable(from, differentTreeOnly, excludeTree, ignoreOwnTree: true, out target);
+    }
+
+    private bool TryFindRandomReachable(Vector3 from, bool differentTreeOnly, Transform excludeTree, bool ignoreOwnTree, out TreeNodeAnchor target)
+    {
         target = null;
         var candidates = new List<TreeNodeAnchor>();
 
@@ -83,7 +110,7 @@ public class MonkeyTreeHopper : MonoBehaviour
             float dist = Vector3.Distance(from, candidate.transform.position);
             if (dist > jumpRange) continue;
 
-            if (!TreeConnectivity.IsReachable(from, candidate.transform.position, CurrentNode.OwnerTree, candidate.OwnerTree, jumpRange, obstacleMask)) continue;
+            if (!TreeConnectivity.IsReachable(from, candidate.transform.position, CurrentNode.OwnerTree, candidate.OwnerTree, jumpRange, obstacleMask, ignoreOwnTree)) continue;
 
             candidates.Add(candidate);
         }
@@ -134,7 +161,19 @@ public class MonkeyTreeHopper : MonoBehaviour
         transform.position = to;
         CurrentNode = target;
         IsJumping = false;
+        FaceOwnerTree(target);
         onJumpComplete?.Invoke(wasDifferentTree);
+    }
+
+    private void FaceOwnerTree(TreeNodeAnchor node)
+    {
+        Transform ownerTree = node.OwnerTree;
+        if (ownerTree == null) return;
+
+        Vector3 dirToTrunk = ownerTree.position - transform.position;
+        dirToTrunk.y = 0f;
+        if (dirToTrunk != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(dirToTrunk);
     }
 
     private void OnDrawGizmosSelected()

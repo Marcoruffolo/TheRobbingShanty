@@ -30,6 +30,7 @@ public class Bomb : MonoBehaviour
     private Renderer _renderer;
     private Collider _collider;
     private Transform _ignoredTree;
+    private Transform _ignoredThrower;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class Bomb : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    public void Launch(BombPool owner, Vector3 origin, Vector3 velocity, float damage, float explosionRadiusOverride, float fuseTime, LayerMask damageMask, Transform ignoreTree = null)
+    public void Launch(BombPool owner, Vector3 origin, Vector3 velocity, float damage, float explosionRadiusOverride, float fuseTime, LayerMask damageMask, Transform ignoreTree = null, Transform ignoreThrower = null)
     {
         _owner = owner;
         transform.SetParent(null, true);
@@ -53,21 +54,22 @@ public class Bomb : MonoBehaviour
         _hasExploded = false;
         _hasLanded = false;
         if (_renderer != null) _renderer.enabled = true;
-        SetIgnoredTree(ignoreTree);
+        SetIgnored(ref _ignoredTree, ignoreTree);
+        SetIgnored(ref _ignoredThrower, ignoreThrower);
     }
 
-    private void SetIgnoredTree(Transform tree)
+    private void SetIgnored(ref Transform current, Transform next)
     {
-        if (_ignoredTree == tree) return;
+        if (current == next) return;
 
-        if (_ignoredTree != null) SetIgnoreCollisions(_ignoredTree, false);
-        _ignoredTree = tree;
-        if (_ignoredTree != null) SetIgnoreCollisions(_ignoredTree, true);
+        if (current != null) SetIgnoreCollisions(current, false);
+        current = next;
+        if (current != null) SetIgnoreCollisions(current, true);
     }
 
-    private void SetIgnoreCollisions(Transform tree, bool ignore)
+    private void SetIgnoreCollisions(Transform root, bool ignore)
     {
-        foreach (var col in tree.GetComponentsInChildren<Collider>())
+        foreach (var col in root.GetComponentsInChildren<Collider>())
             Physics.IgnoreCollision(_collider, col, ignore);
     }
 
