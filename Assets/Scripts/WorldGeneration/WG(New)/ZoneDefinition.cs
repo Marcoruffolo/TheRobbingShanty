@@ -3,10 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class ZoneDefinition
 {
-    private const int MinRequiredCores = 5;
-    private const int MaxRequiredCores = 7;
-    private const int MinExtraCoreIslands = 2;
-    private const int MaxExtraCoreIslands = 3;
+    private const int DefaultRequiredCoresMin = 5;
+    private const int DefaultRequiredCoresMax = 7;
+    private const int DefaultExtraCoreIslandsMin = 2;
+    private const int DefaultExtraCoreIslandsMax = 3;
 
     [Tooltip("Bioma de esta zona: determina que islas pueden spawnear en ella")]
     public ZoneBiome biome;
@@ -18,11 +18,13 @@ public class ZoneDefinition
     public float originX = 0f;
     public float widthX = 500f;
 
+    public float gateClearanceZ = 40f;
+
     [Header("Nucleos requeridos")]
-    public int requiredCoresMin = MinRequiredCores;
-    public int requiredCoresMax = MaxRequiredCores;
-    public int extraCoreIslandsMin = MinExtraCoreIslands;
-    public int extraCoreIslandsMax = MaxExtraCoreIslands;
+    public int requiredCoresMin = DefaultRequiredCoresMin;
+    public int requiredCoresMax = DefaultRequiredCoresMax;
+    public int extraCoreIslandsMin = DefaultExtraCoreIslandsMin;
+    public int extraCoreIslandsMax = DefaultExtraCoreIslandsMax;
 
     [Tooltip("Distancia minima entre islas de artefacto dentro de esta zona")]
     public float minArtifactDistance = 30f;
@@ -34,15 +36,15 @@ public class ZoneDefinition
 
     public int RollRequiredCores(System.Random rng)
     {
-        int min = Mathf.Clamp(requiredCoresMin, MinRequiredCores, MaxRequiredCores);
-        int max = Mathf.Clamp(requiredCoresMax, min, MaxRequiredCores);
+        int min = Mathf.Max(1, requiredCoresMin);
+        int max = Mathf.Max(min, requiredCoresMax);
         return rng.Next(min, max + 1);
     }
 
     public int RollExtraCoreIslands(System.Random rng)
     {
-        int min = Mathf.Clamp(extraCoreIslandsMin, MinExtraCoreIslands, MaxExtraCoreIslands);
-        int max = Mathf.Clamp(extraCoreIslandsMax, min, MaxExtraCoreIslands);
+        int min = Mathf.Max(0, extraCoreIslandsMin);
+        int max = Mathf.Max(min, extraCoreIslandsMax);
         return rng.Next(min, max + 1);
     }
 

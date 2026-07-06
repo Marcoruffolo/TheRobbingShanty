@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1700220283723105828
 GameObject:
@@ -274,7 +274,7 @@ MonoBehaviour:
   sceneName:
     _sceneAsset: {fileID: 102900000, guid: 0578582fc40e0614fb0078621522263c, type: 3}
     _sceneName: ArtifactIsland
-  islandName: Isla del Artefacto
+  islandName: Artifact Island
   isArtifactIsland: 1
   zoneIndex: 0
   artifactId: 
@@ -477,4 +477,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2048008608871452432, guid: 58488777875e9904eab03dfcd19818a5, type: 3}
   m_PrefabInstance: {fileID: 3336376825786380208}
   m_PrefabAsset: {fileID: 0}
-

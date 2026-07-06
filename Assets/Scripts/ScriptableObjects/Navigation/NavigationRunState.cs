@@ -5,9 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NavigationRunState", menuName = "TRS/Navigation/Run State")]
 public class NavigationRunState : ScriptableObject
 {
-    private const int MinRequiredCores = 5;
-    private const int MaxRequiredCores = 7;
-
     [Serializable]
     public class ArtifactEntry
     {
@@ -79,17 +76,18 @@ public class NavigationRunState : ScriptableObject
         int resolvedRequiredCores = ClampRequiredCores(requiredCores);
         int resolvedAvailableCoreIslands = Mathf.Max(resolvedRequiredCores, availableCoreIslands);
 
-        if (requiredCores != resolvedRequiredCores)
-            Debug.LogError($"[NavigationRunState] Zona {zoneIndex} pidio {requiredCores} nucleos. Se fuerza a {resolvedRequiredCores}.");
-
         if (availableCoreIslands < resolvedRequiredCores)
             Debug.LogError($"[NavigationRunState] Zona {zoneIndex} tiene menos islas de artefacto que nucleos requeridos.");
 
-        if (zone.RequiredCores <= 0 || zone.RequiredCores < MinRequiredCores || zone.RequiredCores > MaxRequiredCores)
+        if (zone.PlacedCores <= 0)
+        {
             zone.RequiredCores = resolvedRequiredCores;
-
-        if (zone.AvailableCoreIslands < zone.RequiredCores)
+            zone.AvailableCoreIslands = resolvedAvailableCoreIslands;
+        }
+        else if (zone.AvailableCoreIslands < zone.RequiredCores)
+        {
             zone.AvailableCoreIslands = Mathf.Max(zone.RequiredCores, resolvedAvailableCoreIslands);
+        }
 
         zone.PlacedCores = Mathf.Clamp(zone.PlacedCores, 0, zone.RequiredCores);
         RaiseZoneProgressChanged(zone);
@@ -156,8 +154,7 @@ public class NavigationRunState : ScriptableObject
     {
         ZoneProgress zone = FindZone(zoneIndex);
         return zone != null
-            && zone.RequiredCores >= MinRequiredCores
-            && zone.RequiredCores <= MaxRequiredCores
+            && zone.RequiredCores > 0
             && zone.AvailableCoreIslands >= zone.RequiredCores;
     }
 
@@ -305,7 +302,7 @@ public class NavigationRunState : ScriptableObject
 
     private int ClampRequiredCores(int value)
     {
-        return Mathf.Clamp(value, MinRequiredCores, MaxRequiredCores);
+        return Mathf.Max(1, value);
     }
 
     private void RaiseZoneProgressChanged(ZoneProgress zone)
