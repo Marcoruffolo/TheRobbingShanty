@@ -16,7 +16,19 @@ public class InventoryItemData : ScriptableObject
     public GameObject handItemPrefab;
 
     public ItemType itemtype = ItemType.None;
- 
+
+    public void UseItem()
+    {
+        //la arma ya tiene su script
+        if (itemtype == ItemType.Consumible)
+        {
+            
+        }
+        else if(itemtype == ItemType.Mejora)
+        {
+            
+        }
+    }
 
 }
 
