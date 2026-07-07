@@ -19,7 +19,7 @@ MonoBehaviour:
     widthX: 596.3
     gateClearanceZ: 40
     requiredCoresMin: 2
-    requiredCoresMax: 3
+    requiredCoresMax: 2
     extraCoreIslandsMin: 4
     extraCoreIslandsMax: 5
     minArtifactDistance: 30
@@ -32,14 +32,14 @@ MonoBehaviour:
     widthX: 596.3
     gateClearanceZ: 40
     requiredCoresMin: 2
-    requiredCoresMax: 3
+    requiredCoresMax: 2
     extraCoreIslandsMin: 4
     extraCoreIslandsMax: 5
     minArtifactDistance: 30
     weightSmall: 1
     weightMedium: 0
     weightLarge: 0
-  globalSeed: 0
+  globalSeed: 82086887
   targetIslandCount: 3
   minIslandDistance: 10
   worldOriginZ: -295.9

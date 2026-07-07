@@ -65,14 +65,13 @@ public class NavigationWatchGuide : MonoBehaviour
             return detectedArtifactText;
         }
 
-        int activeZoneIndex = state.IsZoneReady(state.CurrentZoneIndex) ? state.CurrentZoneIndex : zoneIndex;
-        if (!state.IsZoneReady(activeZoneIndex))
+        if (!state.IsZoneReady(zoneIndex))
             return string.Empty;
 
         int carriedCores = navigationCoreItem != null ? playerInventory.GetItemCount(navigationCoreItem) : 0;
-        int placed = state.GetPlacedCores(activeZoneIndex);
-        int required = state.GetRequiredCores(activeZoneIndex);
-        int available = state.GetAvailableCoreIslandCount(activeZoneIndex);
+        int placed = state.GetPlacedCores(zoneIndex);
+        int required = state.GetRequiredCores(zoneIndex);
+        int available = state.GetAvailableCoreIslandCount(zoneIndex);
 
         if (carriedCores > 0)
             return string.Format(carriedCoresFormat, carriedCores, placed, required);

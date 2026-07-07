@@ -15,6 +15,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private SOVariableInt installedNavigationCores;
     [SerializeField] private SOVariableBool artifactIslandCompleted;
     [SerializeField] private SOVariableBool artifactCoreClaimed;
+    [SerializeField] private NavigationRunState navigationRunState;
 
     private bool _isGameOver;
 
@@ -65,6 +66,7 @@ public class GameOverUI : MonoBehaviour
         installedNavigationCores?.ResetValue();
         artifactIslandCompleted?.ResetValue();
         artifactCoreClaimed?.ResetValue();
+        navigationRunState?.ResetRun();
         if (PlayerInventoryHolder.Instance != null)
             PlayerInventoryHolder.Instance.ClearInventory();
     }

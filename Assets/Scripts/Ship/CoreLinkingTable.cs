@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -76,12 +77,21 @@ public class CoreLinkingTable : MonoBehaviour, IInteractable
         UpdateSlots();
         interactSuccessful = true;
         OnInteractionComplete?.Invoke(this);
+
+        if (interactor != null)
+            StartCoroutine(EndInteractionNextFrame(interactor));
     }
 
     public void Interact() => Interact(null, out _);
 
     public void EndInteraction()
     {
+    }
+
+    private IEnumerator EndInteractionNextFrame(Interactor interactor)
+    {
+        yield return null;
+        interactor.RequestEndInteraction();
     }
 
     private void HandleZoneProgressChanged(int changedZoneIndex, int placedCores, int requiredCores)

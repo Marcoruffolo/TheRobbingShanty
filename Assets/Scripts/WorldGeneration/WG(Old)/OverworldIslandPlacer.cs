@@ -39,7 +39,7 @@ public class OverworldIslandPlacer : MonoBehaviour
     public void GenerateWorld()
     {
         ClearAll();
-        State.ResetRun();
+        State.ClearCurrentIslandContext();
 
         if (worldZoneSequence == null)
         {

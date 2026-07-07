@@ -28,6 +28,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private SOVariableBool artifactIslandCompleted;
     [SerializeField] private SOVariableBool artifactCoreClaimed;
     [SerializeField] private SOInventorySaveData inventorySaveData;
+    [SerializeField] private NavigationRunState navigationRunState;
 
     private void Start()
     {
@@ -51,6 +52,7 @@ public class MainMenuUI : MonoBehaviour
         artifactIslandCompleted?.ResetValue();
         artifactCoreClaimed?.ResetValue();
         inventorySaveData?.Clear();
+        navigationRunState?.ResetRun();
         SceneManager.LoadScene(gameScene);
     }
 

@@ -12,8 +12,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057c58afc64c51a4d9636f77bb00237e, type: 3}
   m_Name: NavigationRunState
   m_EditorClassIdentifier: 
-  worldSeed: 0
-  currentZoneIndex: 0
-  currentArtifactZoneIndex: -1
-  currentArtifactIslandId: 
-  zones: []
+  worldSeed: 82086887
+  currentZoneIndex: 1
+  currentArtifactZoneIndex: 0
+  currentArtifactIslandId: run82086887_zone0_artifact2
+  zones:
+  - ZoneIndex: 0
+    RequiredCores: 2
+    AvailableCoreIslands: 7
+    PlacedCores: 2
+    IntroPlayed: 1
+    Artifacts:
+    - ArtifactId: run82086887_zone0_artifact0
+      ZoneIndex: 0
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone0_artifact1
+      ZoneIndex: 0
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone0_artifact2
+      ZoneIndex: 0
+      IsCompleted: 1
+      IsClaimed: 1
+    - ArtifactId: run82086887_zone0_artifact3
+      ZoneIndex: 0
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone0_artifact4
+      ZoneIndex: 0
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone0_artifact5
+      ZoneIndex: 0
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone0_artifact6
+      ZoneIndex: 0
+      IsCompleted: 0
+      IsClaimed: 0
+  - ZoneIndex: 1
+    RequiredCores: 2
+    AvailableCoreIslands: 6
+    PlacedCores: 0
+    IntroPlayed: 0
+    Artifacts:
+    - ArtifactId: run82086887_zone1_artifact0
+      ZoneIndex: 1
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone1_artifact1
+      ZoneIndex: 1
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone1_artifact2
+      ZoneIndex: 1
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone1_artifact3
+      ZoneIndex: 1
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone1_artifact4
+      ZoneIndex: 1
+      IsCompleted: 0
+      IsClaimed: 0
+    - ArtifactId: run82086887_zone1_artifact5
+      ZoneIndex: 1
+      IsCompleted: 0
+      IsClaimed: 0

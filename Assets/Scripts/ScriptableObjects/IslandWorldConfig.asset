@@ -27,6 +27,13 @@ MonoBehaviour:
       y: -96.3
       width: 115.6
       height: 101.7
+  - label: Zona fin Demo
+    rect:
+      serializedVersion: 2
+      x: -52.1
+      y: 323.1
+      width: 115.6
+      height: 101.7
   forbiddenCircles: []
   allowedRects: []
   allowedCircles: []

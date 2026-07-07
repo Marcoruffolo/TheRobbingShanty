@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Islands/JungleArtifactIsland.unity
     guid: d5e571797fd47fc41934c0edfc09fa39
+  - enabled: 1
+    path: Assets/Scenes/EndDemo.unity
+    guid: 40431f9c85376f64ea54532aec93c822
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 35c7439e39ab7fc4eaf0c7912adc9166, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
