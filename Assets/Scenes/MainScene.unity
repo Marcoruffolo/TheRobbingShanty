@@ -15635,6 +15635,7 @@ MonoBehaviour:
   - {fileID: 1271584351}
   - {fileID: 5629026779674674756, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
   - {fileID: 5129861243703820857, guid: 757c1700f5765e54b9d1427a9cda75c8, type: 3}
+  - {fileID: 5629026779674674756, guid: 9da47af0a243bbb4f831c922556c1e5e, type: 3}
   artifactIslandPrefabs:
   - {fileID: 5629026779674674756, guid: 5c7164c8737e8264289c263ace37a90e, type: 3}
   - {fileID: 5629026779674674756, guid: 75b59cc7a8404a140a7fdcaa831d91d4, type: 3}
