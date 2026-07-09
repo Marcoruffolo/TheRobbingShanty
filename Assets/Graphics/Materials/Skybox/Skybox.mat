@@ -137,8 +137,10 @@ Material:
     - _CloudIntensity: 1
     - _CloudScale: 100
     - _CloudScatter: 0.32
+    - _Contrastnight: 374.36
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Darkness: 0.39
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -148,11 +150,14 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Hue: 0.8
+    - _Hue_1: -1791.3
     - _ImageType: 0
     - _Layout: 0
     - _Mapping: 1
     - _Metallic: 0
     - _MirrorOnBack: 0
+    - _Night: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
