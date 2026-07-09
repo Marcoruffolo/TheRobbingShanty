@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7095427215510261700}
   - component: {fileID: 8322450126231897042}
+  - component: {fileID: 3118524537807778107}
   m_Layer: 3
   m_Name: SummitMount
   m_TagString: Untagged
@@ -193,6 +194,22 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7801416cf314a6a4dbd63b06e3f242a8, type: 2}
   m_BuildHeightMesh: 0
+--- !u!208 &3118524537807778107
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452562695600378817}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 16, y: 22.5, z: 16}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 6, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7180305793717419085
 GameObject:
   m_ObjectHideFlags: 0
