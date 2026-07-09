@@ -97,6 +97,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7980878869811327980}
   m_LocalEulerAnglesHint: {x: -12.26, y: 89.697, z: 6.739}
+--- !u!1 &1030049035428104172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5342490550317897426}
+  m_Layer: 0
+  m_Name: CabinHouseSpawnpoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5342490550317897426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030049035428104172}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.021893727, y: -0.08189785, z: 0.076032214, w: 0.99349517}
+  m_LocalPosition: {x: -1.979232, y: 5.5575876, z: -3.0982368}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8236341256416534382}
+  m_LocalEulerAnglesHint: {x: 3.208, y: -9.187, z: 8.495}
 --- !u!1 &1170004815637954402
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,9 +199,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1997642099549832849}
-  - component: {fileID: 7300351032917165845}
   - component: {fileID: 813244264220171798}
   - component: {fileID: 1511190852987630725}
+  - component: {fileID: 1994575427635356397}
   m_Layer: 0
   m_Name: ProceduralGeneration
   m_TagString: Untagged
@@ -194,31 +225,9 @@ Transform:
   - {fileID: 7980878869811327980}
   - {fileID: 5535796470137566366}
   - {fileID: 7904769525661907229}
+  - {fileID: 8236341256416534382}
   m_Father: {fileID: 8909132766831453004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7300351032917165845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2391986987996341185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55efddb1859d8ab43afdddf3d7c26e53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entries:
-  - prefab: {fileID: 7990912825259680960, guid: 8481c01517b7d6c44aaea2cc03f23ce8, type: 3}
-    spawnPoints:
-    - {fileID: 890191556468708341}
-    - {fileID: 2311934622620011142}
-    - {fileID: 6401554845622132945}
-    - {fileID: 9217903562345320247}
-    - {fileID: 3236445135680967721}
-    priority: 4
-    amount: 2.5
-  _exclusionRadius: 0.5
 --- !u!114 &813244264220171798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entries:
   - prefab: {fileID: 8958303384507372380, guid: 04d5f4b81d4df184081ddf5a55e7078f, type: 3}
+    parentObject: {fileID: 0}
     spawnPoints:
     - {fileID: 3159157966072219982}
     - {fileID: 7692011342732999023}
@@ -262,8 +272,41 @@ MonoBehaviour:
     - {fileID: 4451778864319338221}
     priority: 2
     amount: 3
+  - prefab: {fileID: 7990912825259680960, guid: 8481c01517b7d6c44aaea2cc03f23ce8, type: 3}
+    spawnPoints:
+    - {fileID: 890191556468708341}
+    - {fileID: 2311934622620011142}
+    - {fileID: 6401554845622132945}
+    - {fileID: 9217903562345320247}
+    - {fileID: 3236445135680967721}
+    priority: 4
+    amount: 1.2
   _exclusionRadius: 0.5
   _navMeshSampleDistance: 2
+  _navMeshAreaMask: -1
+--- !u!114 &1994575427635356397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391986987996341185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2322db7b569f2f4ca693fa345e2fca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entries:
+  - prefab: {fileID: 5785863741811752657, guid: d6e45a3dcc7afe24dbfd3255699664d1, type: 3}
+    spawnPoints:
+    - {fileID: 6016567703178302103}
+    - {fileID: 1557627858199705998}
+    - {fileID: 5342490550317897426}
+    - {fileID: 4784837469822147128}
+    priority: 2
+    amount: 1
+  _exclusionRadius: 0.5
+  _navMeshSampleDistance: 3
   _navMeshAreaMask: -1
 --- !u!1 &2649725334185065238
 GameObject:
@@ -327,6 +370,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7980878869811327980}
   m_LocalEulerAnglesHint: {x: -7.489, y: 55.475, z: -11.362}
+--- !u!1 &4155833857075912949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8236341256416534382}
+  m_Layer: 0
+  m_Name: CabinHouseProcedural
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8236341256416534382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4155833857075912949}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6016567703178302103}
+  - {fileID: 1557627858199705998}
+  - {fileID: 5342490550317897426}
+  - {fileID: 4784837469822147128}
+  m_Father: {fileID: 1997642099549832849}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4157643357247499541
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8909132766831453004}
-  - component: {fileID: 2258224326765872272}
+  - component: {fileID: 703958369911913922}
   m_Layer: 3
   m_Name: BaseGround
   m_TagString: Untagged
@@ -485,14 +563,14 @@ Transform:
   - {fileID: 7718259436524020591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2258224326765872272
+--- !u!114 &703958369911913922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107474894220586724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -504,10 +582,10 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
-  m_GenerateLinks: 1
+  m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
@@ -515,8 +593,39 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: adefaf46cdc8af14f85a48284e997312, type: 2}
-  m_BuildHeightMesh: 1
+  m_NavMeshData: {fileID: 23800000, guid: 59f0e46ab0665f84680aef874407e45d, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!1 &5696471821560186652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1557627858199705998}
+  m_Layer: 0
+  m_Name: CabinHouseSpawnpoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1557627858199705998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696471821560186652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.49104074, z: -0, w: 0.87113667}
+  m_LocalPosition: {x: -0.5092319, y: 5.5575876, z: 0.49176311}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8236341256416534382}
+  m_LocalEulerAnglesHint: {x: 0, y: -58.818, z: 0}
 --- !u!1 &6144576372984443066
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +692,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5535796470137566366}
   m_LocalEulerAnglesHint: {x: 0, y: -46.744, z: 0}
+--- !u!1 &6844453761751317338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6016567703178302103}
+  m_Layer: 0
+  m_Name: CabinHouseSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6016567703178302103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844453761751317338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0327617, y: 0.19143455, z: -0.059714667, w: 0.97913927}
+  m_LocalPosition: {x: 1.1907681, y: 5.5575876, z: 2.1917632}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8236341256416534382}
+  m_LocalEulerAnglesHint: {x: 4.992, y: 21.863, z: -6.015}
 --- !u!1 &6982508861550698616
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +785,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5535796470137566366}
   m_LocalEulerAnglesHint: {x: 0, y: -46.744, z: 0}
+--- !u!1 &7603207827188821992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4784837469822147128}
+  m_Layer: 0
+  m_Name: CabinHouseSpawnpoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4784837469822147128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603207827188821992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.043592248, y: -0.00022844787, z: 0.043606676, w: 0.99809724}
+  m_LocalPosition: {x: -4.7492313, y: 4.9575877, z: 3.101763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8236341256416534382}
+  m_LocalEulerAnglesHint: {x: 4.993, y: 0.192, z: 5.012}
 --- !u!1 &8309997510680686644
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,48 +915,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b964312aa9eda4e4e89f201a27418c21, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5812236924943835803}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b964312aa9eda4e4e89f201a27418c21, type: 3}
---- !u!1 &6942040152141363669 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b964312aa9eda4e4e89f201a27418c21, type: 3}
-  m_PrefabInstance: {fileID: 7824579309723403396}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5812236924943835803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6942040152141363669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedVersion: 0
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: cac7f222f1330a347895c498335583ea, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!4 &7718259436524020591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b964312aa9eda4e4e89f201a27418c21, type: 3}

@@ -8,6 +8,7 @@ public class ObjectProceduralGeneration : MonoBehaviour
     private class PrefabEntry
     {
         public GameObject prefab;
+        public Transform parentObject;
         public Transform[] spawnPoints;
         public int priority;
         [Min(0f)] public float amount = 1f;
@@ -72,7 +73,9 @@ public class ObjectProceduralGeneration : MonoBehaviour
                     break;
                 }
 
-                GameObject spawnedObject = Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
+                GameObject spawnedObject = entry.parentObject != null
+                    ? Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation, entry.parentObject)
+                    : Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
                 _spawnedObjects.Add(spawnedObject);
                 usedByThisEntry.Add(spawnPoint.position);
                 occupied.Add((spawnPoint.position, entry.priority));

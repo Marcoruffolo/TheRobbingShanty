@@ -488,7 +488,7 @@ Transform:
   m_GameObject: {fileID: 182519125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.400002, y: 0, z: -18.5}
+  m_LocalPosition: {x: -19.796404, y: 2.0351894, z: -0.8339977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2170,13 +2170,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811590443}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0062147174, w: 0.9999807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 526587630}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1722461338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &811590445
 MonoBehaviour:
@@ -2192,6 +2192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entries:
   - prefab: {fileID: 2271401395342479106, guid: 218fa27a821307d44bb1c62924fcf4cd, type: 3}
+    parentObject: {fileID: 1722461338}
     spawnPoints:
     - {fileID: 1131418162}
     - {fileID: 2222743}
@@ -2200,6 +2201,7 @@ MonoBehaviour:
     priority: 2
     amount: 2
   - prefab: {fileID: 7052358421721297221, guid: f9abb6c615b76ae439b89fe94d0ceaaf, type: 3}
+    parentObject: {fileID: 1722461338}
     spawnPoints:
     - {fileID: 1652826826}
     - {fileID: 878286637}
@@ -2209,6 +2211,7 @@ MonoBehaviour:
     priority: 3
     amount: 3
   - prefab: {fileID: 1214501829109610545, guid: d632a7b623a38414985983ea0901104c, type: 3}
+    parentObject: {fileID: 1722461338}
     spawnPoints:
     - {fileID: 1507025400}
     - {fileID: 170184732}
@@ -2217,6 +2220,7 @@ MonoBehaviour:
     priority: 2
     amount: 2
   - prefab: {fileID: 5452562695600378817, guid: 41b9876f68eb39149a802130392ccd2b, type: 3}
+    parentObject: {fileID: 1722461338}
     spawnPoints:
     - {fileID: 1375395459}
     - {fileID: 182519126}
@@ -2226,6 +2230,7 @@ MonoBehaviour:
     priority: 3
     amount: 2
   - prefab: {fileID: 3626169514583973062, guid: b5e6f4289d44cf345bc54364bc38185a, type: 3}
+    parentObject: {fileID: 1722461338}
     spawnPoints:
     - {fileID: 2063153383}
     - {fileID: 1896294348}
@@ -2233,6 +2238,7 @@ MonoBehaviour:
     priority: 1
     amount: 1
   - prefab: {fileID: 5107474894220586724, guid: 29183f1a0847e374e8015498e509d693, type: 3}
+    parentObject: {fileID: 1722461338}
     spawnPoints:
     - {fileID: 511137630}
     - {fileID: 1556487367}
@@ -4886,7 +4892,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.38268274, z: -0, w: 0.9238798}
   m_LocalPosition: {x: 14.275097, y: 0, z: -51.143875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1543632061}
@@ -17257,7 +17263,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.38268694, z: -0, w: -0.92387813}
   m_LocalPosition: {x: 2.6062202, y: 0, z: -95.98683}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1543632061}
@@ -17272,6 +17278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722461338}
   - component: {fileID: 1722461339}
+  - component: {fileID: 1722461340}
   m_Layer: 3
   m_Name: Isla
   m_TagString: Untagged
@@ -17292,6 +17299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 811590444}
   - {fileID: 1037354526}
   - {fileID: 504807088}
   - {fileID: 1521231404}
@@ -17329,6 +17337,20 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 050fc948c5dc9214196f46b1583e23bd, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &1722461340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722461337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe21150b7ff1024ea51def4e0304690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshSurface: {fileID: 1722461339}
+  _proceduralGeneration: {fileID: 811590445}
 --- !u!1 &1826988542
 GameObject:
   m_ObjectHideFlags: 0
@@ -18974,7 +18996,6 @@ SceneRoots:
   - {fileID: 256713202}
   - {fileID: 713046392}
   - {fileID: 61774579}
-  - {fileID: 811590444}
   - {fileID: 1722461338}
   - {fileID: 1986698997}
   - {fileID: 1701547338}

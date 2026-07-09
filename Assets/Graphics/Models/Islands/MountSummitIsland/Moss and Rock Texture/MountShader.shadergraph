@@ -29,6 +29,9 @@
         },
         {
             "m_Id": "8d1dd97ce6b74c10a0248ebf9f9071aa"
+        },
+        {
+            "m_Id": "a2707b9a64c9461abf0e4a0c66316cb2"
         }
     ],
     "m_Keywords": [],
@@ -179,6 +182,9 @@
         },
         {
             "m_Id": "b61c4e31898448169824eeef43802d8b"
+        },
+        {
+            "m_Id": "706d7c549ebf4dc8972b6cfa2cf319af"
         }
     ],
     "m_GroupDatas": [],
@@ -420,6 +426,20 @@
                     "m_Id": "93bbe02ee90a4cefa297ecbf4f7797f9"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "706d7c549ebf4dc8972b6cfa2cf319af"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "d5978c1e35be49279acf4975b97aa089"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -953,6 +973,21 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "0562908007684d959bc36425e041ee6e",
+    "m_Id": 0,
+    "m_DisplayName": "MossScale",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -3134,6 +3169,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "706d7c549ebf4dc8972b6cfa2cf319af",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -3097.0,
+            "y": -521.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "0562908007684d959bc36425e041ee6e"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "a2707b9a64c9461abf0e4a0c66316cb2"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "714ec8d5a7c14c74af0cd520aab39e0f",
     "m_Id": 0,
@@ -3783,6 +3854,9 @@
         },
         {
             "m_Id": "8d1dd97ce6b74c10a0248ebf9f9071aa"
+        },
+        {
+            "m_Id": "a2707b9a64c9461abf0e4a0c66316cb2"
         }
     ]
 }
@@ -3956,6 +4030,34 @@
     },
     "m_Labels": [],
     "m_Channel": 0
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "a2707b9a64c9461abf0e4a0c66316cb2",
+    "m_Guid": {
+        "m_GuidSerialized": "dbfa7427-f44a-4cf7-89df-3b52117f6a30"
+    },
+    "m_Name": "MossScale",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MossScale",
+    "m_DefaultReferenceName": "_MossScale",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 142.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
@@ -4282,7 +4384,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Scale",
     "m_StageCapability": 3,
-    "m_Value": 84.19999694824219,
+    "m_Value": 142.0,
     "m_DefaultValue": 500.0,
     "m_Labels": []
 }

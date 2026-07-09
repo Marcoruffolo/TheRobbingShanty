@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyProceduralGeneration : MonoBehaviour
+public class NavMeshProceduralGeneration : MonoBehaviour
 {
     [System.Serializable]
     private class EnemyEntry

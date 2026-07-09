@@ -140,7 +140,8 @@ Material:
     - _Metallic: 0
     - _MossIntensity: 0.444
     - _MossLevel: 0.464
-    - _MossNoise: 0.291
+    - _MossNoise: 0.298
+    - _MossScale: 438.35
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
