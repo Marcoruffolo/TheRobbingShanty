@@ -138,7 +138,9 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _MossLevel: 0.823
+    - _MossIntensity: 0.444
+    - _MossLevel: 0.464
+    - _MossNoise: 0.291
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
