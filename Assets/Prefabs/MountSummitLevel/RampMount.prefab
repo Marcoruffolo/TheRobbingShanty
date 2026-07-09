@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 679445585535816450}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 19.47, z: -1.26}
+  m_LocalPosition: {x: -4, y: 21.2, z: -1.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5393865570904343303}
   - component: {fileID: 3863099085777796104}
+  - component: {fileID: 5742541835648462573}
   m_Layer: 3
   m_Name: RampMount
   m_TagString: Untagged
@@ -99,6 +100,22 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4843a723b02624f4cb98a91b05aa2609, type: 2}
   m_BuildHeightMesh: 0
+--- !u!208 &5742541835648462573
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214501829109610545}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 33.165, y: 9.46, z: 7.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -6.1, z: 0.96}
+  m_TimeToStationary: 0.5
 --- !u!1 &1826029838844029219
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 1826029838844029219}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.60876125, z: -0, w: 0.7933535}
-  m_LocalPosition: {x: 14.5764675, y: 0, z: 0.9042177}
+  m_LocalPosition: {x: 14.5764675, y: 1.2000008, z: 0.9042177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 2964605886118570685}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9238794, z: -0, w: 0.38268375}
-  m_LocalPosition: {x: -2.7849216, y: 0, z: 0.8234029}
+  m_LocalPosition: {x: -2.7849216, y: 1.2, z: 0.8234029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -170,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5607739842156907897}
-  - component: {fileID: 2745806377646116307}
+  - component: {fileID: 2236003102701425240}
   m_Layer: 0
   m_Name: ProceduralGeneration
   m_TagString: Untagged
@@ -194,7 +211,7 @@ Transform:
   - {fileID: 7871222318724200492}
   m_Father: {fileID: 5393865570904343303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2745806377646116307
+--- !u!114 &2236003102701425240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,18 +220,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7783849325095947510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55efddb1859d8ab43afdddf3d7c26e53, type: 3}
+  m_Script: {fileID: 11500000, guid: d2322db7b569f2f4ca693fa345e2fca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _entries:
   - prefab: {fileID: 7990912825259680960, guid: 8481c01517b7d6c44aaea2cc03f23ce8, type: 3}
-    parentObject: {fileID: 0}
     spawnPoints:
     - {fileID: 2992174819183949281}
     - {fileID: 3326963618181528337}
     priority: 2
     amount: 1
   _exclusionRadius: 0.5
+  _navMeshSampleDistance: 4
+  _navMeshAreaMask: -1
 --- !u!1001 &8982075822082816023
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7367143283987637379}
+  - component: {fileID: 2723694387794206496}
   m_Layer: 3
   m_Name: MiniMount_2
   m_TagString: Untagged
@@ -32,6 +33,22 @@ Transform:
   - {fileID: 1853401333364032204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &2723694387794206496
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052358421721297221}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 12, y: 2.245, z: 12}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -3.8, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2175840929521034535
 PrefabInstance:
   m_ObjectHideFlags: 0
