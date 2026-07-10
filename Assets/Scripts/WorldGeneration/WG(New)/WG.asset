@@ -20,13 +20,13 @@ MonoBehaviour:
     gateClearanceZ: 40
     requiredCoresMin: 2
     requiredCoresMax: 2
-    extraCoreIslandsMin: 4
-    extraCoreIslandsMax: 5
+    extraCoreIslandsMin: 1
+    extraCoreIslandsMax: 1
     minArtifactDistance: 30
-    weightSmall: 1
+    weightSmall: 7
     weightMedium: 0
     weightLarge: 0
-  - biome: 0
+  - biome: 1
     lengthZ: 591.7
     originX: -320.6
     widthX: 596.3
@@ -39,7 +39,7 @@ MonoBehaviour:
     weightSmall: 1
     weightMedium: 0
     weightLarge: 0
-  globalSeed: 82086887
+  globalSeed: 0
   targetIslandCount: 3
   minIslandDistance: 10
   worldOriginZ: -295.9

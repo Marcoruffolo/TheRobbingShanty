@@ -19,3 +19,4 @@ MonoBehaviour:
     randomIslandPrefabs:
     - {fileID: 5629026779674674756, guid: a0fc46a27c3a5b649a01645b1597985f, type: 3}
     - {fileID: 5629026779674674756, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
+    - {fileID: 5629026779674674756, guid: 9da47af0a243bbb4f831c922556c1e5e, type: 3}

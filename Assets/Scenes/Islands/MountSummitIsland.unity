@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 3874748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.016, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a6e64504454f44a86d2aaebba14a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surfaceHeight: -25
+  surfaceHeight: 0
   gizmoSize: {x: 600, y: 600}
   gizmoColor: {r: 1, g: 0.30295774, b: 0.14901961, a: 0.35}
 --- !u!54 &3874753
@@ -600,6 +600,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1838060866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &140077057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140077058}
+  m_Layer: 0
+  m_Name: RampSpawnpoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &140077058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140077057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 4.0745363e-10, y: 0.11227388, z: -0.000000006519258, w: -0.9936774}
+  m_LocalPosition: {x: -64.9, y: -0, z: -72.4}
+  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362400093}
+  m_LocalEulerAnglesHint: {x: 0, y: -372.893, z: 0}
 --- !u!1 &140422251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1650,37 @@ MonoBehaviour:
   m_Offset: {x: -2.2496839, y: 1.3292198, z: 213.46733}
   m_Size: {x: 8.581206, y: 9.321369, z: 700}
   m_FadeFactor: 1
+--- !u!1 &309262448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309262449}
+  m_Layer: 0
+  m_Name: RampSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &309262449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309262448}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000013969839, y: -0.7820287, z: 0.0000000020954758, w: 0.62324244}
+  m_LocalPosition: {x: -39.47515, y: -0.000010542244, z: -119.95758}
+  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362400093}
+  m_LocalEulerAnglesHint: {x: 0, y: -102.893, z: 0}
 --- !u!1 &313922134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,6 +2414,7 @@ Transform:
   - {fileID: 1172274856}
   - {fileID: 980756006}
   - {fileID: 1543632061}
+  - {fileID: 1362400093}
   - {fileID: 1838060866}
   - {fileID: 79848751}
   - {fileID: 1877706036}
@@ -3121,6 +3184,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1172274856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &704793258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 704793259}
+  m_Layer: 0
+  m_Name: RampSpawnpoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &704793259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704793258}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000018626449, y: -0.970521, z: 5.8207655e-10, w: -0.24101697}
+  m_LocalPosition: {x: 4.9, y: -0, z: -73.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362400093}
+  m_LocalEulerAnglesHint: {x: 0, y: -207.893, z: 0}
 --- !u!1 &706742779
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,15 +3760,6 @@ MonoBehaviour:
     - {fileID: 508106823}
     priority: 3
     amount: 3
-  - prefab: {fileID: 1214501829109610545, guid: d632a7b623a38414985983ea0901104c, type: 3}
-    parentObject: {fileID: 1722461338}
-    spawnPoints:
-    - {fileID: 1507025400}
-    - {fileID: 170184732}
-    - {fileID: 1044679218}
-    - {fileID: 1709410832}
-    priority: 2
-    amount: 2
   - prefab: {fileID: 5452562695600378817, guid: 41b9876f68eb39149a802130392ccd2b, type: 3}
     parentObject: {fileID: 1722461338}
     spawnPoints:
@@ -3707,6 +3792,24 @@ MonoBehaviour:
     - {fileID: 2104014714}
     priority: 2
     amount: 4
+  - prefab: {fileID: 1214501829109610545, guid: d632a7b623a38414985983ea0901104c, type: 3}
+    parentObject: {fileID: 1722461338}
+    spawnPoints:
+    - {fileID: 1507025400}
+    - {fileID: 170184732}
+    - {fileID: 1044679218}
+    - {fileID: 1709410832}
+    priority: 2
+    amount: 2
+  - prefab: {fileID: 1214501829109610545, guid: 6a73ece276465fe4886d55bc1a6a9096, type: 3}
+    parentObject: {fileID: 1722461338}
+    spawnPoints:
+    - {fileID: 309262449}
+    - {fileID: 1259997957}
+    - {fileID: 704793259}
+    - {fileID: 140077058}
+    priority: 2
+    amount: 3
   _exclusionRadius: 0.5
 --- !u!1 &858590333
 GameObject:
@@ -6647,6 +6750,37 @@ MonoBehaviour:
   m_Offset: {x: 0.31164408, y: 1.4075155, z: 190.1591}
   m_Size: {x: 9.171126, y: 10.021118, z: 700}
   m_FadeFactor: 1
+--- !u!1 &1259997956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1259997957}
+  m_Layer: 0
+  m_Name: RampSpawnpoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1259997957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259997956}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000013969839, y: -0.7820287, z: 0.0000000020954758, w: 0.62324244}
+  m_LocalPosition: {x: -48.60488, y: 0.0000007748604, z: -106.69821}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1362400093}
+  m_LocalEulerAnglesHint: {x: 0, y: -102.893, z: 0}
 --- !u!1 &1269510754
 GameObject:
   m_ObjectHideFlags: 0
@@ -6784,6 +6918,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 79848751}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!1 &1362400092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362400093}
+  m_Layer: 0
+  m_Name: MiniRamp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1362400093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362400092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 309262449}
+  - {fileID: 1259997957}
+  - {fileID: 704793259}
+  - {fileID: 140077058}
+  m_Father: {fileID: 526587630}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1366547145
 GameObject:
   m_ObjectHideFlags: 0
