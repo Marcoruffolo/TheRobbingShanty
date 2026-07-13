@@ -120,7 +120,12 @@ public class PlayerRangedCombat : MonoBehaviour
             ? hit.point
             : _cam.transform.position + _cam.transform.forward * _currentWeapon.maxDistance;
 
-        return (aimPoint - origin).normalized;
+        Vector3 toAimPoint = aimPoint - origin;
+
+        if (Vector3.Dot(toAimPoint, _cam.transform.forward) <= 0.01f)
+            return _cam.transform.forward;
+
+        return toAimPoint.normalized;
     }
 
     private float GetCurrentDamage()
