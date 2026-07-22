@@ -8,9 +8,11 @@ public abstract class InventoryDisplay : MonoBehaviour
     [SerializeField] MouseItemData mouseInventoryItem;
     protected InventorySystem inventorySystem;
     protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
+    protected static InventorySlot_UI selectedSlot;
     public InventorySystem InventorySystem => inventorySystem;
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
     public MouseItemData MouseItem => mouseInventoryItem;
+    public InventorySlot_UI SelectedSlot => selectedSlot;
 
     protected virtual void Start() 
     {
@@ -30,6 +32,17 @@ public abstract class InventoryDisplay : MonoBehaviour
                 slot.Key.UpdateUISlot(updatedSlot);
             }
         }
+    }
+
+    public virtual void SelectSlot(InventorySlot_UI clickedUISlot)
+    {
+        if (selectedSlot == clickedUISlot) return;
+
+        if (selectedSlot != null)
+            selectedSlot.SetSelected(false);
+
+        selectedSlot = clickedUISlot;
+        selectedSlot?.SetSelected(true);
     }
 
     public void SlotClicked(InventorySlot_UI clickedUISlot)

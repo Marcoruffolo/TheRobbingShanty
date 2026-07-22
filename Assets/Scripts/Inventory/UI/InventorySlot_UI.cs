@@ -7,6 +7,7 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image itemSprite;
     [SerializeField] private TextMeshProUGUI itemCount;
+    [SerializeField] private GameObject selectionSprite;
     [SerializeField] private InventorySlot assignedInventorySlot;
 
     private Button button;
@@ -63,6 +64,7 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
         itemSprite.sprite = null;
         itemSprite.color = Color.clear;
         itemCount.text = "";
+        selectionSprite.SetActive(false);
     }
 
     public void OnUISlotClick()
@@ -111,5 +113,11 @@ public class InventorySlot_UI : MonoBehaviour, IPointerClickHandler
         }
 
         ParentDisplay.SlotClicked(this);
+        ParentDisplay.SelectSlot(this);
+    }
+
+    public void SetSelected(bool isSelected)
+    {
+        selectionSprite?.SetActive(isSelected);
     }
 }

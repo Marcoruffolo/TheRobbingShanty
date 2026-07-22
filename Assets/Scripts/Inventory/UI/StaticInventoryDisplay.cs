@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,35 @@ public class StaticInventoryDisplay : InventoryDisplay
         else Debug.LogWarning("InventoryHolder is not assigned!");
 
         AssignSlot(inventorySystem);
+
+        PlayerInventoryHolder.OnHotbarIndexChanged += HighlightIndex;
+
+        // Sync to whatever index is already selected on start
+        if (inventoryHolder is PlayerInventoryHolder playerHolder)
+            HighlightIndex(playerHolder.SelectedHotbarIndex);
+    }
+
+    private void OnDestroy()
+    {
+        if (inventorySystem != null)
+            inventorySystem.OnInventorySlotChanged -= UpdateSlot;
+
+        PlayerInventoryHolder.OnHotbarIndexChanged -= HighlightIndex;
+    }
+
+    private void HighlightIndex(int index)
+    {
+        if (index < 0 || index >= slots.Length) return;
+        SelectSlot(slots[index]);
+    }
+
+    public override void SelectSlot(InventorySlot_UI clickedUISlot)
+    {
+        base.SelectSlot(clickedUISlot);
+
+        int index = Array.IndexOf(slots, clickedUISlot);
+        if (index >= 0 && PlayerInventoryHolder.Instance != null)
+            PlayerInventoryHolder.Instance.SelectHotbarIndex(index);
     }
 
     public override void AssignSlot(InventorySystem invToDisplay)

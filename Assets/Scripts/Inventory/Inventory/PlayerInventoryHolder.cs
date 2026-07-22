@@ -5,17 +5,16 @@ using System.Collections.Generic;
 
 public class PlayerInventoryHolder : InventoryHolder
 {
+    public static PlayerInventoryHolder Instance { get; private set; }
     [SerializeField] protected int secondaryInventorySize;
     [SerializeField] protected InventorySystem secondaryInventorySystem;
     [SerializeField] private SOInventorySaveData inventorySaveData;
     public bool IsBackpackOpen { get; private set; }
     public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
-
-    public static PlayerInventoryHolder Instance { get; private set; }
-
     public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
     public static UnityAction OnPlayerBackpackCloseRequested;
     public static UnityAction<InventoryItemData> OnHotbarSelectionChanged;
+    public static UnityAction<int> OnHotbarIndexChanged;
     private int selectedHotbarIndex = 0;
     private GameObject currentHandItemInstance;
     private InventoryItemData lastHandItemData;
@@ -38,6 +37,7 @@ public class PlayerInventoryHolder : InventoryHolder
         GrantRunStartItems();
         primaryInventorySystem.OnInventorySlotChanged += OnPrimarySlotChanged;
         UpdateHandItem();
+        OnHotbarIndexChanged?.Invoke(selectedHotbarIndex);
     }
 
     private void OnDestroy()
@@ -106,9 +106,18 @@ public class PlayerInventoryHolder : InventoryHolder
 
         if (newIndex >= 0 && newIndex < primaryInventorySystem.InventorySize)
         {
-            selectedHotbarIndex = newIndex;
-            UpdateHandItem();
+            SelectHotbarIndex(newIndex);
         }
+    }
+
+    public void SelectHotbarIndex(int index)
+    {
+        if (index < 0 || index >= primaryInventorySystem.InventorySize) return;
+        if (index == selectedHotbarIndex) return; // already selected, avoid redundant events/loops
+
+        selectedHotbarIndex = index;
+        UpdateHandItem();
+        OnHotbarIndexChanged?.Invoke(selectedHotbarIndex);
     }
 
     private void UpdateHandItem()
