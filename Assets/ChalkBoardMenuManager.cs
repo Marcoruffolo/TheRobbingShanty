@@ -10,8 +10,8 @@ public class ChalkBoardMenuManager : MonoBehaviour, IGameEventListener<bool>
 
     public GameObject menucamera;
 
-    public GameObject mainMenu;
-    public GameObject mapMenu;
+    //public GameObject mainMenu;
+    //public GameObject mapMenu;
 
     public GraphicRaycaster interactablemenu;
 
