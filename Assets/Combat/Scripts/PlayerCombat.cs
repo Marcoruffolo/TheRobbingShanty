@@ -108,7 +108,8 @@ public class PlayerCombat : MonoBehaviour
     public void Attack()
     {
         if (_currentWeapon == null || !readyToAttack || attacking) return;
-
+        if (BlockPlayerMovement.Instance != null && BlockPlayerMovement.Instance.IsImmobilized) return; // NUEVO
+    
         if (attackCount != 0 && Time.time - readyTime > _currentWeapon.stats.comboDelay)
             attackCount = 0;
 

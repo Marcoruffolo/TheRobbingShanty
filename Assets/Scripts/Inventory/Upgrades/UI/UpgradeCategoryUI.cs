@@ -1,37 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class UpgradeCategoryUI : MonoBehaviour
+public class UpgradeCategoryUI : MonoBehaviour, IGameEventListener<bool>
 {
+    [SerializeField] private ChalkBoardStation station;
+    [SerializeField] private BoolGameEvent onUpgradeUIOpen;
+    [SerializeField] private BoolGameEvent onItemUpgradeUIOpen;
     [SerializeField] private GameObject panel;
-
-    public static UnityAction OnWeaponUpgradesSelected;
-    public static UnityAction OnCloseRequested;
 
     private void Awake() => panel.SetActive(false);
 
-    private void OnEnable()
+    private void OnEnable() => onUpgradeUIOpen.RegisterListener(this);
+
+    private void OnDisable() => onUpgradeUIOpen.UnregisterListener(this);
+
+    // Station opened -> show category picker. Station closed -> hide it too.
+    public void OnEventRaised(bool isOpen) => panel.SetActive(isOpen);
+
+    public void OnWeaponUpgradesButtonPressed()
     {
-        ItemUpgradeStation.OnCategoryUIOpened += Open;
-        ItemUpgradeStation.OnUpgradeUIClosed += Close;
-        ItemUpgradeStation.OnUpgradeUIOpened += HandleWeaponUIOpened;
+        panel.SetActive(false);
+        onItemUpgradeUIOpen.Raise(true);
     }
 
-    private void OnDisable()
-    {
-        ItemUpgradeStation.OnCategoryUIOpened -= Open;
-        ItemUpgradeStation.OnUpgradeUIClosed -= Close;
-        ItemUpgradeStation.OnUpgradeUIOpened -= HandleWeaponUIOpened;
-    }
-
-    private void Open() => panel.SetActive(true);
-
-    private void Close() => panel.SetActive(false);
-
-    private void HandleWeaponUIOpened(List<ItemUpgradeData> _) => panel.SetActive(false);
-
-    public void OnWeaponUpgradesButtonPressed() => OnWeaponUpgradesSelected?.Invoke();
-
-    public void OnCloseButtonPressed() => OnCloseRequested?.Invoke();
+    public void OnCloseButtonPressed() => station?.EndInteraction();
 }

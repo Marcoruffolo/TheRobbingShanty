@@ -7,6 +7,7 @@ public class BlockPlayerMovement : MonoBehaviour
 
     [SerializeField] private bool blockMovement = true;
     [SerializeField] private bool blockCamera = true;
+    [SerializeField] private bool blockCombat = true; // NUEVO
 
     private PlayerMovement _movement;
     private PlayerCamera _camera;
@@ -47,5 +48,6 @@ public class BlockPlayerMovement : MonoBehaviour
     {
         if (blockMovement && _movement != null) _movement.enabled = state;
         if (blockCamera && _camera != null) _camera.IsLocked = !state;
+        // blockCombat no necesita nada acá, PlayerCombat chequea IsImmobilized directamente
     }
 }

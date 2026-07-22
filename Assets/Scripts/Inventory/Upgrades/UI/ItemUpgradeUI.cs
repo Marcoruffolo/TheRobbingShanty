@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
-public class ItemUpgradeUI : MonoBehaviour
+public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
 {
+    [Header("Events")]
+    [SerializeField] private BoolGameEvent onItemUpgradeUIOpen;
+
+    [Header("Data")]
+    [SerializeField] private List<ItemUpgradeData> availableUpgrades;
+
     [Header("Panels")]
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject detailPanel;
@@ -27,8 +32,6 @@ public class ItemUpgradeUI : MonoBehaviour
     [SerializeField] private UpgradeCostSlotUI costSlotPrefab;
     [SerializeField] private Transform costContainer;
 
-    public static UnityAction OnCloseRequested;
-
     private readonly List<ItemUpgradeEntryUI> _entries = new();
     private readonly List<UpgradeCostSlotUI> _costSlots = new();
     private ItemUpgradeEntryUI _selectedEntry;
@@ -48,20 +51,24 @@ public class ItemUpgradeUI : MonoBehaviour
 
     private void OnEnable()
     {
-        ItemUpgradeStation.OnUpgradeUIOpened += Open;
-        ItemUpgradeStation.OnUpgradeUIClosed += Close;
+        onItemUpgradeUIOpen.RegisterListener(this);
         ItemUpgradeManager.OnUpgradeApplied += HandleUpgradeApplied;
     }
 
     private void OnDisable()
     {
-        ItemUpgradeStation.OnUpgradeUIOpened -= Open;
-        ItemUpgradeStation.OnUpgradeUIClosed -= Close;
+        onItemUpgradeUIOpen.UnregisterListener(this);
         ItemUpgradeManager.OnUpgradeApplied -= HandleUpgradeApplied;
         UnsubscribeInventoryEvents();
     }
 
-    private void Open(List<ItemUpgradeData> upgrades)
+    public void OnEventRaised(bool isOpen)
+    {
+        if (isOpen) Open();
+        else Close();
+    }
+
+    private void Open()
     {
         panel.SetActive(true);
         detailPanel.SetActive(false);
@@ -69,7 +76,7 @@ public class ItemUpgradeUI : MonoBehaviour
         _selectedUpgrade = null;
 
         SubscribeInventoryEvents();
-        PopulateEntries(upgrades);
+        PopulateEntries(availableUpgrades);
     }
 
     private void Close()
@@ -80,7 +87,8 @@ public class ItemUpgradeUI : MonoBehaviour
         _selectedUpgrade = null;
     }
 
-    public void RequestClose() => OnCloseRequested?.Invoke();
+    // Called by the UI's close button
+    public void RequestClose() => onItemUpgradeUIOpen.Raise(false);
 
     private void SubscribeInventoryEvents()
     {
@@ -182,7 +190,6 @@ public class ItemUpgradeUI : MonoBehaviour
     public void OnUpgradeButtonPressed()
     {
         if (_selectedUpgrade == null) return;
-
         ItemUpgradeManager.Instance.TryUpgrade(_selectedUpgrade);
     }
 }

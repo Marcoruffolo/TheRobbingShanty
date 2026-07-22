@@ -8,6 +8,7 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
     public BoolGameEvent OnUpgradeUIOpen;
+    public BoolGameEvent OnItemUpgradeUIOpen;
 
     private void Start() 
     {
@@ -24,6 +25,7 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
 
     public void EndInteraction()
     {
+        OnItemUpgradeUIOpen?.Raise(false);
         PlayerCamera.LockCursor(true);
         BlockPlayerMovement.Instance?.FreePlayer(); 
         OnUpgradeUIOpen?.Raise(false);
