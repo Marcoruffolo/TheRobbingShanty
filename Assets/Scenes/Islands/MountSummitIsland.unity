@@ -4206,9 +4206,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: OverworldShip
       objectReference: {fileID: 0}
+    - target: {fileID: 5662212992006787275, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 6365291228928553088, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856851345547982117, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.77563
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856851345547982117, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 181.77628
       objectReference: {fileID: 0}
     - target: {fileID: 9058857243268332702, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
       propertyPath: m_AnchorMax.x
