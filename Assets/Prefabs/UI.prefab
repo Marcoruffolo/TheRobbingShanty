@@ -9277,7 +9277,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onItemUpgradeUIOpen: {fileID: 11400000, guid: 3f7acb51a0af3ba4698a9361e20d5794, type: 2}
-  availableUpgrades: []
+  availableUpgrades:
+  - {fileID: 11400000, guid: a4f3ef7207cbc3b4cbe4bef0580d9695, type: 2}
+  - {fileID: 11400000, guid: affcc0b504aeb9340a084a84815ccdcf, type: 2}
+  - {fileID: 11400000, guid: a22b19d64e59fe74bb7576dbd6856d79, type: 2}
   panel: {fileID: 1923483331571753468}
   detailPanel: {fileID: 8272640382053422382}
   entryPrefab: {fileID: 8629115997643326317, guid: d22c20a12c6ef3142b69b2fc42f52d15, type: 3}
