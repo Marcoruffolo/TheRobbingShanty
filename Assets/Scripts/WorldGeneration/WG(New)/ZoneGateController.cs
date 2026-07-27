@@ -57,6 +57,11 @@ public class ZoneGateController : MonoBehaviour
         Initialize(zoneIndex, requiredCount);
     }
 
+    public void AssignZone(int zoneIndex)
+    {
+        this.zoneIndex = zoneIndex;
+    }
+
     private void HandleZoneProgressChanged(int changedZoneIndex, int placedCores, int requiredCores)
     {
         if (changedZoneIndex != zoneIndex) return;

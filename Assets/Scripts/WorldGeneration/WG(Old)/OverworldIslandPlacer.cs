@@ -9,6 +9,7 @@ public class OverworldIslandPlacer : MonoBehaviour
     [SerializeField] private IslandWorldConfig config;
     [SerializeField] private WorldZoneSequence worldZoneSequence;
     [SerializeField] private NavigationRunState navigationRunState;
+    [SerializeField] private ZoneGateSpawner gateSpawner;
     [SerializeField] private List<GameObject> overworldIslandPrefabs;
     [SerializeField] private List<GameObject> artifactIslandPrefabs;
 
@@ -32,6 +33,9 @@ public class OverworldIslandPlacer : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
+
+        if (gateSpawner == null)
+            gateSpawner = GetComponent<ZoneGateSpawner>();
     }
 
     private void Start() => GenerateWorld();
@@ -53,6 +57,7 @@ public class OverworldIslandPlacer : MonoBehaviour
         _zoneRanges = worldZoneSequence.ResolveRanges();
 
         InitializeNavigationZones();
+        PlaceZoneGates();
         PlaceManualIslands();
         var artifactStats = PlaceArtifactIslands();
         int proceduralCount = PlaceProceduralIslands();
@@ -71,6 +76,17 @@ public class OverworldIslandPlacer : MonoBehaviour
             int availableCoreIslands = requiredCores + zone.RollExtraCoreIslands(zoneRng);
             State.StartZone(zoneIndex, requiredCores, availableCoreIslands);
         }
+    }
+
+    private void PlaceZoneGates()
+    {
+        if (gateSpawner == null)
+        {
+            Debug.LogWarning("[OverworldPlacer] No hay ZoneGateSpawner asignado; no se generaran las puertas de zona.", this);
+            return;
+        }
+
+        gateSpawner.SpawnGates(_zoneRanges, transform);
     }
 
     private void PlaceManualIslands()
