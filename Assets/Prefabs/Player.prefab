@@ -421,7 +421,7 @@ MonoBehaviour:
   watchText: {fileID: 11400000, guid: 8fddbb8ad0c945b1a91c16c8fb5045cd, type: 2}
   claimedArtifactText: El artefacto de esta isla ya entrego su nucleo.
   completedArtifactText: Nucleo liberado. Recogelo antes de volver.
-  detectedArtifactText: 'Nucleo detectado. Condicion: derrota a todos los enemigos.'
+  detectedArtifactFormat: Nucleo detectado. Te faltan {0} enemigos para liberarlo.
   carriedCoresFormat: 'Tenes {0} nucleo(s) sin vincular. Vinculalos en la mesa. Mesa:
     {1}/{2}.'
   completedTableText: Mesa completa. La muralla ya puede abrirse.
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockMovement: 1
   blockCamera: 1
+  blockCombat: 1
 --- !u!82 &8144362803780424024
 AudioSource:
   m_ObjectHideFlags: 0
