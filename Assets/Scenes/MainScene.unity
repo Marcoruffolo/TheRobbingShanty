@@ -15755,6 +15755,7 @@ GameObject:
   - component: {fileID: 2007916587}
   - component: {fileID: 2007916586}
   - component: {fileID: 2007916585}
+  - component: {fileID: 2007916588}
   m_Layer: 0
   m_Name: IslandSystem
   m_TagString: Untagged
@@ -15791,6 +15792,7 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: 5c6338b563f2e0f41bd1aab1026e3a4e, type: 2}
   worldZoneSequence: {fileID: 11400000, guid: 9d181821e98737349ab295d35ed4e03f, type: 2}
   navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
+  gateSpawner: {fileID: 2007916588}
   overworldIslandPrefabs:
   - {fileID: 1271584351}
   - {fileID: 5629026779674674756, guid: 739a1d6c0bf1fd3428ab252f8985db88, type: 3}
@@ -15816,6 +15818,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007916588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007916584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b364a24ac2b16346a38b818028301b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gatePrefab: {fileID: 3577661161210738146, guid: 480b3aedb5764cf44bc3f8a11ebb4432, type: 3}
 --- !u!1 &2010695564
 GameObject:
   m_ObjectHideFlags: 0
