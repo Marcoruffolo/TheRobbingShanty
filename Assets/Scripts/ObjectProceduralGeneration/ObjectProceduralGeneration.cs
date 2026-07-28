@@ -2,7 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectProceduralGeneration : MonoBehaviour
+public class ObjectProceduralGeneration : MonoBehaviour, IEnemySpawnSource
 {
     [System.Serializable]
     private class PrefabEntry

@@ -13,7 +13,7 @@ public class NavigationWatchGuide : MonoBehaviour
     [Header("Textos")]
     [SerializeField] private string claimedArtifactText = "El artefacto de esta isla ya entrego su nucleo.";
     [SerializeField] private string completedArtifactText = "Nucleo liberado. Recogelo antes de volver.";
-    [SerializeField] private string detectedArtifactText = "Nucleo detectado. Condicion: derrota a todos los enemigos.";
+    [SerializeField] private string detectedArtifactFormat = "Nucleo detectado. Te faltan {0} enemigos para liberarlo.";
     [SerializeField] private string carriedCoresFormat = "Tenes {0} nucleo(s) sin vincular. Vinculalos en la mesa. Mesa: {1}/{2}.";
     [SerializeField] private string completedTableText = "Mesa completa. La muralla ya puede abrirse.";
     [SerializeField] private string progressFormat = "Nucleos vinculados: {0}/{1}. Faltan {2}. Artefactos disponibles: {3}.";
@@ -62,7 +62,7 @@ public class NavigationWatchGuide : MonoBehaviour
             if (state.IsArtifactCompleted(artifactId))
                 return completedArtifactText;
 
-            return detectedArtifactText;
+            return string.Format(detectedArtifactFormat, state.GetArtifactKillsRemaining(artifactId));
         }
 
         if (!state.IsZoneReady(zoneIndex))

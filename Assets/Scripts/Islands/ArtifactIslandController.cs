@@ -4,6 +4,8 @@ using UnityEngine;
 public class ArtifactIslandController : MonoBehaviour
 {
     [SerializeField] private ObjectProceduralGeneration enemyGenerator;
+    [SerializeField] private MonoBehaviour[] extraEnemySources;
+    [SerializeField] private int requiredKills = 0;
     [SerializeField] private Item navigationCore;
     [SerializeField] private Collider[] coreColliders;
     [SerializeField] private GameObject lockedVisual;
@@ -14,27 +16,35 @@ public class ArtifactIslandController : MonoBehaviour
     [SerializeField] private int fallbackZoneIndex;
     [SerializeField] private string fallbackArtifactId = "editor_artifact_island";
 
+    private readonly List<IEnemySpawnSource> _sources = new();
     private readonly List<EnemyBase> _enemies = new();
     private bool _initialized;
     private bool _completed;
     private string _artifactId;
+    private int _requiredKills;
 
     private NavigationRunState State => navigationRunState != null ? navigationRunState : NavigationRunState.Instance;
-
-    private void OnEnable()
-    {
-        if (enemyGenerator != null)
-            enemyGenerator.GenerationCompleted += OnGenerationCompleted;
-
-        if (navigationCore != null)
-            navigationCore.PickedUp += OnCorePickedUp;
-    }
 
     private void Awake()
     {
         _artifactId = ResolveArtifactId();
         _completed = !string.IsNullOrWhiteSpace(_artifactId) && State.IsArtifactCompleted(_artifactId);
         UpdateCoreState();
+
+        if (enemyGenerator != null) _sources.Add(enemyGenerator);
+        if (extraEnemySources != null)
+            foreach (MonoBehaviour source in extraEnemySources)
+                if (source is IEnemySpawnSource enemySource)
+                    _sources.Add(enemySource);
+    }
+
+    private void OnEnable()
+    {
+        foreach (IEnemySpawnSource source in _sources)
+            source.GenerationCompleted += TryInitialize;
+
+        if (navigationCore != null)
+            navigationCore.PickedUp += OnCorePickedUp;
     }
 
     private void Start()
@@ -44,8 +54,8 @@ public class ArtifactIslandController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (enemyGenerator != null)
-            enemyGenerator.GenerationCompleted -= OnGenerationCompleted;
+        foreach (IEnemySpawnSource source in _sources)
+            source.GenerationCompleted -= TryInitialize;
 
         if (navigationCore != null)
             navigationCore.PickedUp -= OnCorePickedUp;
@@ -55,14 +65,12 @@ public class ArtifactIslandController : MonoBehaviour
                 enemy.OnDeath -= OnEnemyDeath;
     }
 
-    private void OnGenerationCompleted()
-    {
-        TryInitialize();
-    }
-
     private void TryInitialize()
     {
-        if (_initialized || enemyGenerator == null || !enemyGenerator.HasGenerated) return;
+        if (_initialized || _sources.Count == 0) return;
+        foreach (IEnemySpawnSource source in _sources)
+            if (!source.HasGenerated) return;
+
         _initialized = true;
 
         if (string.IsNullOrWhiteSpace(_artifactId))
@@ -72,14 +80,17 @@ public class ArtifactIslandController : MonoBehaviour
             return;
         }
 
-        foreach (GameObject spawnedObject in enemyGenerator.SpawnedObjects)
-        {
-            if (spawnedObject == null) continue;
+        foreach (IEnemySpawnSource source in _sources)
+            foreach (GameObject spawnedObject in source.SpawnedObjects)
+            {
+                if (spawnedObject == null) continue;
 
-            EnemyBase enemy = spawnedObject.GetComponentInChildren<EnemyBase>();
-            if (enemy != null)
-                _enemies.Add(enemy);
-        }
+                EnemyBase enemy = spawnedObject.GetComponentInChildren<EnemyBase>();
+                if (enemy != null)
+                    _enemies.Add(enemy);
+            }
+
+        _requiredKills = requiredKills > 0 ? Mathf.Min(requiredKills, _enemies.Count) : _enemies.Count;
 
         if (State.IsCoreClaimed(_artifactId))
         {
@@ -125,14 +136,24 @@ public class ArtifactIslandController : MonoBehaviour
         CheckCompletion();
     }
 
+    private int CountKilledEnemies()
+    {
+        int killed = 0;
+        foreach (EnemyBase enemy in _enemies)
+            if (enemy == null || enemy.IsDead) killed++;
+        return killed;
+    }
+
     private void CheckCompletion()
     {
         if (string.IsNullOrWhiteSpace(_artifactId) || State.IsCoreClaimed(_artifactId))
             return;
 
-        foreach (EnemyBase enemy in _enemies)
-            if (enemy != null && !enemy.IsDead)
-                return;
+        int killed = CountKilledEnemies();
+        State.SetArtifactKillProgress(killed, _requiredKills, _artifactId);
+
+        if (killed < _requiredKills)
+            return;
 
         _completed = true;
         State.MarkArtifactCompleted(_artifactId);

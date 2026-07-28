@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkeySpawner : MonoBehaviour
+public class MonkeySpawner : MonoBehaviour, IEnemySpawnSource
 {
     [SerializeField] private EnemyMonkey monkeyPrefab;
     [SerializeField] private int minCount = 3;
@@ -9,6 +9,11 @@ public class MonkeySpawner : MonoBehaviour
     [SerializeField] private ObjectProceduralGeneration[] treeGenerators;
 
     private bool _hasSpawned;
+    private readonly List<GameObject> _spawnedObjects = new();
+
+    public bool HasGenerated => _hasSpawned;
+    public IReadOnlyList<GameObject> SpawnedObjects => _spawnedObjects;
+    public event System.Action GenerationCompleted;
 
     private void OnEnable()
     {
@@ -32,6 +37,7 @@ public class MonkeySpawner : MonoBehaviour
         if (_hasSpawned || !AllGeneratorsFinished()) return;
         _hasSpawned = true;
         SpawnMonkeys();
+        GenerationCompleted?.Invoke();
     }
 
     private bool AllGeneratorsFinished()
@@ -71,6 +77,7 @@ public class MonkeySpawner : MonoBehaviour
             }
 
             hopper.SetInitialNode(node);
+            _spawnedObjects.Add(monkey.gameObject);
         }
     }
 }

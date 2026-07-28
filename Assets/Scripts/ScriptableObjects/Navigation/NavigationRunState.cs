@@ -12,6 +12,8 @@ public class NavigationRunState : ScriptableObject
         public int ZoneIndex;
         public bool IsCompleted;
         public bool IsClaimed;
+        public int RequiredKills;
+        public int CurrentKills;
     }
 
     [Serializable]
@@ -197,6 +199,21 @@ public class NavigationRunState : ScriptableObject
     {
         ArtifactEntry entry = FindArtifact(artifactId);
         return entry != null && entry.IsClaimed;
+    }
+
+    public void SetArtifactKillProgress(int currentKills, int requiredKills, string artifactId = null)
+    {
+        ArtifactEntry entry = ResolveArtifactEntry(artifactId);
+        if (entry == null) return;
+
+        entry.RequiredKills = Mathf.Max(0, requiredKills);
+        entry.CurrentKills = Mathf.Clamp(currentKills, 0, entry.RequiredKills);
+    }
+
+    public int GetArtifactKillsRemaining(string artifactId)
+    {
+        ArtifactEntry entry = FindArtifact(artifactId);
+        return entry != null ? Mathf.Max(0, entry.RequiredKills - entry.CurrentKills) : 0;
     }
 
     public void MarkArtifactCompleted(string artifactId = null)
