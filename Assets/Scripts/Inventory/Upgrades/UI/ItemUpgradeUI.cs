@@ -9,7 +9,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
     [SerializeField] private BoolGameEvent onItemUpgradeUIOpen;
 
     [Header("Data")]
-    [SerializeField] private List<ItemUpgradeData> availableUpgrades;
+    [SerializeField] private WeaponUpgradeRegistry registry;
 
     [Header("Panels")]
     [SerializeField] private GameObject panel;
@@ -24,6 +24,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text statNameText;
     [SerializeField] private TMP_Text currentValueText;
+    [SerializeField] private GameObject nextValueArrow;
     [SerializeField] private TMP_Text nextValueText;
     [SerializeField] private Button upgradeButton;
     [SerializeField] private TMP_Text upgradeButtonLabel;
@@ -76,7 +77,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
         _selectedUpgrade = null;
 
         SubscribeInventoryEvents();
-        PopulateEntries(availableUpgrades);
+        PopulateEntries(registry != null ? registry.upgrades : null);
     }
 
     private void Close()
@@ -159,6 +160,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
         bool hasNext = manager.HasNextLevel(_selectedUpgrade);
         RefreshCosts(manager, hasNext);
 
+        if (nextValueArrow != null) nextValueArrow.SetActive(hasNext);
         nextValueText.gameObject.SetActive(hasNext);
         upgradeButton.gameObject.SetActive(hasNext);
 

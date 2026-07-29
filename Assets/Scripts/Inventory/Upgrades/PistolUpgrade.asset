@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bfe2755fb571de4ea29ea50d21ba032, type: 3}
-  m_Name: SwordUpgrade
+  m_Name: PistolUpgrade
   m_EditorClassIdentifier: 
-  targetItem: {fileID: 11400000, guid: 7e692d3ee28f1ae4286f52cf0eb4be51, type: 2}
+  targetItem: {fileID: 11400000, guid: 58eb3ef47b53d3a49b6fbbced871a78c, type: 2}
   statName: Dmg
-  baseValue: 10
+  baseValue: 20
   levels:
   - statValue: 25
     costs:

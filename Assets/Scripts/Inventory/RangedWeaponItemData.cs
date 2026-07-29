@@ -11,4 +11,7 @@ public class RangedWeaponItemData : EquippableWeaponData
     public float reloadTime = 1f;
     public AudioClip reloadSound;
     public ItemUpgradeData damageUpgrade;
+
+    public override ItemUpgradeData DamageUpgrade => damageUpgrade;
+    public override float BaseDamage => baseDamage;
 }

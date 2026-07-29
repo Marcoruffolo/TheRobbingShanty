@@ -4,6 +4,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float lifetime = 3f;
+    [SerializeField] private float hitRadius = 0.15f;
+    [SerializeField] private LayerMask hitMask = ~0;
 
     private BulletPool _owner;
     private float _speed;
@@ -33,14 +35,25 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        transform.position += transform.forward * _speed * Time.deltaTime;
+        float step = _speed * Time.deltaTime;
+
+        if (Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit hit, step, hitMask, QueryTriggerInteraction.Collide))
+        {
+            transform.position = hit.point;
+            HandleHit(hit.collider);
+            return;
+        }
+
+        transform.position += transform.forward * step;
         _elapsed += Time.deltaTime;
 
         if (_elapsed >= lifetime || Vector3.Distance(_startPosition, transform.position) >= _maxDistance)
             ReturnToPool();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) => HandleHit(other);
+
+    private void HandleHit(Collider other)
     {
         if (_hasHit) return;
         _hasHit = true;

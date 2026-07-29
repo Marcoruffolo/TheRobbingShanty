@@ -1,5 +1,4 @@
 using Unity.Cinemachine;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +8,6 @@ public class ChalkBoardMenuManager : MonoBehaviour, IGameEventListener<bool>
     public BoolGameEvent OnUpgradeUIOpen;
 
     public GameObject menucamera;
-
-    //public GameObject mainMenu;
-    //public GameObject mapMenu;
 
     public GraphicRaycaster interactablemenu;
 

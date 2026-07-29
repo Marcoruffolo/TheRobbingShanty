@@ -48,9 +48,11 @@ public class PlayerRangedCombat : MonoBehaviour
         PlayerInventoryHolder.OnHotbarSelectionChanged -= OnSelectionChanged;
     }
 
+    private bool IsBlocked => BlockPlayerMovement.Instance != null && BlockPlayerMovement.Instance.IsImmobilized;
+
     void Update()
     {
-        IsAiming = _currentWeapon != null && _inputHandler != null && _inputHandler.AimHeld;
+        IsAiming = !IsBlocked && _currentWeapon != null && _inputHandler != null && _inputHandler.AimHeld;
         _playerCamera?.SetAiming(IsAiming);
         _playerMovement?.SetAiming(IsAiming);
 
@@ -93,7 +95,7 @@ public class PlayerRangedCombat : MonoBehaviour
 
     public void Fire()
     {
-        if (_currentWeapon == null || _bulletPool == null || _isReloading) return;
+        if (IsBlocked || _currentWeapon == null || _bulletPool == null || _isReloading) return;
         if (!_bulletPool.TryGet(out Bullet bullet)) return;
 
         Vector3 origin = weaponSpawnPoint != null ? weaponSpawnPoint.position : _cam.transform.position;
@@ -128,11 +130,5 @@ public class PlayerRangedCombat : MonoBehaviour
         return toAimPoint.normalized;
     }
 
-    private float GetCurrentDamage()
-    {
-        if (_currentWeapon.damageUpgrade != null && ItemUpgradeManager.Instance != null)
-            return ItemUpgradeManager.Instance.GetCurrentValue(_currentWeapon.damageUpgrade);
-
-        return _currentWeapon.baseDamage;
-    }
+    private float GetCurrentDamage() => _currentWeapon.GetCurrentDamage();
 }

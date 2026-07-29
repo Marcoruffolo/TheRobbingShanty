@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfe2755fb571de4ea29ea50d21ba032, type: 3}
   m_Name: AxeUpgrade
   m_EditorClassIdentifier: 
-  targetItem: {fileID: 11400000, guid: c1494f61c25aa054087c5a1e89b099e9, type: 2}
+  targetItem: {fileID: 11400000, guid: 3f1f1e5da254631498ab598464b93a81, type: 2}
   statName: Dmg
   baseValue: 20
   levels:

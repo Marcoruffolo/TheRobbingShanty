@@ -142,13 +142,7 @@ public class PlayerCombat : MonoBehaviour
         animator.speed = 1f;
     }
 
-    private float GetCurrentAttackDamage()
-    {
-        if (_currentWeapon.damageUpgrade != null && ItemUpgradeManager.Instance != null)
-            return ItemUpgradeManager.Instance.GetCurrentValue(_currentWeapon.damageUpgrade);
-
-        return _currentWeapon.stats.attackDamage;
-    }
+    private float GetCurrentAttackDamage() => _currentWeapon.GetCurrentDamage();
 
     void AttackRaycast()
     {

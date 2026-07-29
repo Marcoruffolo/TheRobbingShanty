@@ -23,9 +23,9 @@ MonoBehaviour:
   itemtype: 2
   bulletPrefab: {fileID: 170750470911926511, guid: 74c7e3758d1c80941a176ffa137a5be6, type: 3}
   poolSize: 1
-  baseDamage: 10
+  baseDamage: 20
   bulletSpeed: 100
   maxDistance: 60
   reloadTime: 1.5
   reloadSound: {fileID: 8300000, guid: 1e4094616309cf34c90ded55671d8fbb, type: 3}
-  damageUpgrade: {fileID: 0}
+  damageUpgrade: {fileID: 11400000, guid: ac040c0982e94924b634ce85b6917818, type: 2}
