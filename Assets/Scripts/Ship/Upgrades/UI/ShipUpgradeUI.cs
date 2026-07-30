@@ -40,6 +40,7 @@ public class ShipUpgradeUI : MonoBehaviour, IGameEventListener<bool>
     private void Open()
     {
         onItemUpgradeUIOpen?.Raise(false);
+        MapPanelUI.Instance?.Close();
         panel.SetActive(true);
         PopulateCards(registry != null ? registry.upgrades : null);
     }

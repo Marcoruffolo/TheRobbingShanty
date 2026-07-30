@@ -73,6 +73,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
     private void Open()
     {
         onShipUpgradeUIOpen?.Raise(false);
+        MapPanelUI.Instance?.Close();
         panel.SetActive(true);
         detailPanel.SetActive(false);
         _selectedEntry = null;
