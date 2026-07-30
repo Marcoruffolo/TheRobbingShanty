@@ -9,8 +9,14 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
 
     public BoolGameEvent OnUpgradeUIOpen;
     public BoolGameEvent OnItemUpgradeUIOpen;
+    public BoolGameEvent OnShipUpgradeUIOpen;
 
-    private void Start() 
+    [Header("Cosas a esconder cuando se activa el menu")]
+    [SerializeField] private GameObject hotbar;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject islandPromptText;
+
+    private void Start()
     {
         OnUpgradeUIOpen?.Raise(false);
     }
@@ -20,15 +26,25 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
         PlayerCamera.LockCursor(false);
         BlockPlayerMovement.Instance?.ImmobilizePlayer();
         OnUpgradeUIOpen?.Raise(true);
+        SetHudVisible(false);
         interactSuccessful = true;
     }
 
     public void EndInteraction()
     {
         OnItemUpgradeUIOpen?.Raise(false);
+        OnShipUpgradeUIOpen?.Raise(false);
         PlayerCamera.LockCursor(true);
-        BlockPlayerMovement.Instance?.FreePlayer(); 
+        BlockPlayerMovement.Instance?.FreePlayer();
         OnUpgradeUIOpen?.Raise(false);
+        SetHudVisible(true);
+    }
+
+    private void SetHudVisible(bool visible)
+    {
+        hotbar?.SetActive(visible);
+        healthBar?.SetActive(visible);
+        islandPromptText?.SetActive(visible);
     }
 
     public void Interact() => Interact(null, out _);

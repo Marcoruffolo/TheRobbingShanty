@@ -5,6 +5,7 @@ public class UpgradeCategoryUI : MonoBehaviour, IGameEventListener<bool>
     [SerializeField] private ChalkBoardStation station;
     [SerializeField] private BoolGameEvent onUpgradeUIOpen;
     [SerializeField] private BoolGameEvent onItemUpgradeUIOpen;
+    [SerializeField] private BoolGameEvent onShipUpgradeUIOpen;
     [SerializeField] private GameObject panel;
 
     private void Awake() => panel.SetActive(false);
@@ -20,6 +21,12 @@ public class UpgradeCategoryUI : MonoBehaviour, IGameEventListener<bool>
     {
         panel.SetActive(false);
         onItemUpgradeUIOpen.Raise(true);
+    }
+
+    public void OnShipUpgradesButtonPressed()
+    {
+        panel.SetActive(false);
+        onShipUpgradeUIOpen.Raise(true);
     }
 
     public void OnCloseButtonPressed() => station?.EndInteraction();

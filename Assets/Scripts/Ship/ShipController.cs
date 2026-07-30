@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
     [Header("Movimiento")]
-    [SerializeField] private float moveSpeed    = 8f;
+    [SerializeField] private SOVariableFloat speed;
     [SerializeField] private float turnSpeed    = 60f;
     [SerializeField] private float tiltAngle    = 5f;   // inclinación al girar
     [SerializeField] private float tiltSmooth   = 3f;
@@ -36,7 +36,7 @@ public class ShipController : MonoBehaviour
         Vector2 input = PlayerInputHandler.Instance.MoveInput;
 
         // Avance / retroceso
-        transform.Translate(Vector3.forward * input.y * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * input.y * speed.Value * Time.deltaTime);
 
         // Giro horizontal
         float turn = input.x * turnSpeed * Time.deltaTime;

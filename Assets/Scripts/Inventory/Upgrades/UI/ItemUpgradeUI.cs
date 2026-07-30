@@ -7,6 +7,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
 {
     [Header("Events")]
     [SerializeField] private BoolGameEvent onItemUpgradeUIOpen;
+    [SerializeField] private BoolGameEvent onShipUpgradeUIOpen;
 
     [Header("Data")]
     [SerializeField] private WeaponUpgradeRegistry registry;
@@ -71,6 +72,7 @@ public class ItemUpgradeUI : MonoBehaviour, IGameEventListener<bool>
 
     private void Open()
     {
+        onShipUpgradeUIOpen?.Raise(false);
         panel.SetActive(true);
         detailPanel.SetActive(false);
         _selectedEntry = null;
