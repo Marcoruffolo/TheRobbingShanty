@@ -1,9 +1,8 @@
 using UnityEngine;
-using System.Collections;
 
 public class EnemyMelee : EnemyBase
 {
-    private enum State { Idle, Chase, Attack, Recovery }
+    private enum State { Idle, Chase, Attack, Knockback }
 
     [Header("SOAP Melee")]
     [SerializeField] private SOVariableFloat enemyDamage;
@@ -18,9 +17,8 @@ public class EnemyMelee : EnemyBase
     private PlayerHealth _playerHealth;
     private State _state = State.Idle;
     private float _nextAttackTime;
-    private Coroutine _recoveryCoroutine;
-    private const string IdleStatePath = "Base Layer.Idle";
-    private static readonly int HashIdleState = Animator.StringToHash(IdleStatePath);
+    private static readonly int HashKnockback = Animator.StringToHash("Knockback");
+
     protected override void Start()
     {
         base.Start();
@@ -37,9 +35,10 @@ public class EnemyMelee : EnemyBase
         if (IsDead) return;
         switch (_state)
         {
-            case State.Idle:  UpdateIdle();  break;
+            case State.Idle: UpdateIdle(); break;
             case State.Chase: UpdateChase(); break;
             case State.Attack: UpdateAttack(); break;
+            case State.Knockback: UpdateKnockback(); break;
         }
     }
 
@@ -77,6 +76,12 @@ public class EnemyMelee : EnemyBase
         if (Time.time >= _nextAttackTime) DoAttack();
     }
 
+    private void UpdateKnockback()
+    {
+        if (Animator != null)
+            Animator.SetFloat(HashSpeed, 0f);
+    }
+
     private void EnterChase()
     {
         if (!Agent.enabled || !Agent.isOnNavMesh || Fov.PlayerTransform == null) return;
@@ -111,7 +116,7 @@ public class EnemyMelee : EnemyBase
             _playerHealth.TakeDamage(enemyDamage.Value);
     }
 
-    public override void OnHitFrame()  { }
+    public override void OnHitFrame() { }
     public override void OnAttackEnd() { }
 
     private void FacePlayer()
@@ -136,61 +141,36 @@ public class EnemyMelee : EnemyBase
         Agent.ResetPath();
     }
 
-
-    public override void BeginKnockbackRecovery(float duration)
+    public override void BeginKnockback()
     {
         if (IsDead) return;
-
-        if (_recoveryCoroutine != null)
-            StopCoroutine(_recoveryCoroutine);
 
         CancelInvoke(nameof(TryDealDamage));
         ScheduleNextAttack();
+        _state = State.Knockback;
+        base.BeginKnockback();
 
-        _state = State.Recovery;
-        SetControlLocked(true);
-        StopAgent();
+        if (Animator == null) return;
 
-        if (Animator != null)
-        {
-            Animator.ResetTrigger(HashAttack);
-            Animator.SetFloat(HashSpeed, 0f);
-
-            if (Animator.HasState(0, HashIdleState))
-                Animator.CrossFade(HashIdleState, 0.05f, 0, 0f);
-        }
-
-        _recoveryCoroutine = StartCoroutine(KnockbackRecovery(duration));
+        Animator.ResetTrigger(HashAttack);
+        Animator.SetFloat(HashSpeed, 0f);
+        Animator.SetBool(HashKnockback, true);
     }
 
-    public override void EndKnockbackRecovery()
-    {
-        if (_recoveryCoroutine != null)
-        {
-            StopCoroutine(_recoveryCoroutine);
-            _recoveryCoroutine = null;
-        }
-
-        if (_state == State.Recovery)
-            FinishRecovery();
-    }
-
-    private IEnumerator KnockbackRecovery(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        _recoveryCoroutine = null;
-        FinishRecovery();
-    }
-
-    private void FinishRecovery()
+    public override void EndKnockback()
     {
         if (IsDead) return;
 
-        SetControlLocked(false);
+        if (Animator != null)
+        {
+            Animator.SetBool(HashKnockback, false);
+            Animator.SetFloat(HashSpeed, 0f);
+        }
 
-        if (Agent.enabled && Agent.isOnNavMesh)
-            Agent.isStopped = false;
+        _state = State.Idle;
+        base.EndKnockback();
 
-        _state = Fov.CanSeePlayer && Fov.PlayerTransform != null ? State.Chase : State.Idle;
+        if (Fov.CanSeePlayer && Fov.PlayerTransform != null)
+            EnterChase();
     }
 }

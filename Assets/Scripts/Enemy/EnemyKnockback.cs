@@ -1,136 +1,147 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
-
-public class EnemyKnockback : MonoBehaviour,IKnockbackable
+public class EnemyKnockback : MonoBehaviour, IKnockbackable
 {
-    [SerializeField] private Collider physicsCollider;
-    [SerializeField] private ForceMode forceMode = ForceMode.VelocityChange;
-    [SerializeField] private float recoveryDelay = 1f;
-    [SerializeField] private float maxKnockbackTime = 0.35f;
-    [SerializeField] private float navMeshSampleRadius = 2f;
-
     private NavMeshAgent _agent;
-    private Rigidbody _rigidbody;
     private EnemyBase _enemy;
     private Coroutine _knockbackCoroutine;
-    private bool _physicsColliderDefaultEnabled;
-    private bool _initialUseGravity;
-    private bool _initialIsKinematic;
-    private RigidbodyConstraints _initialConstraints;
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _rigidbody = GetComponent<Rigidbody>();
         _enemy = GetComponent<EnemyBase>();
-
-        if (physicsCollider != null)
-            _physicsColliderDefaultEnabled = physicsCollider.enabled;
-
-        _initialUseGravity = _rigidbody.useGravity;
-        _initialIsKinematic = _rigidbody.isKinematic;
-        _initialConstraints = _rigidbody.constraints;
-
-        SetRigidbodyControlledByAgent();
     }
 
-    public void GetKnockedBack(Vector3 force)
+    private void OnEnable()
     {
-        if ((_enemy != null && _enemy.IsDead) || force.sqrMagnitude <= 0.0001f) return;
+        if (_enemy != null)
+            _enemy.OnDeath += HandleDeath;
+    }
+
+    private void OnDisable()
+    {
+        if (_enemy != null)
+            _enemy.OnDeath -= HandleDeath;
+
+        if (_knockbackCoroutine == null) return;
+
+        StopCoroutine(_knockbackCoroutine);
+        _knockbackCoroutine = null;
+
+        if (_enemy != null && !_enemy.IsDead)
+            _enemy.EndKnockback();
+    }
+
+    public bool TryApplyKnockback(KnockbackRequest request)
+    {
+        if (_enemy == null || _enemy.IsDead ||
+            _agent == null || !_agent.enabled || !_agent.isOnNavMesh ||
+            request.Direction == Vector3.zero)
+            return false;
 
         if (_knockbackCoroutine != null)
         {
             StopCoroutine(_knockbackCoroutine);
-            _enemy?.EndKnockbackRecovery();
+            _knockbackCoroutine = null;
         }
 
-        _knockbackCoroutine = StartCoroutine(ApplyKnockback(force));
+        _enemy.BeginKnockback();
+        _knockbackCoroutine = StartCoroutine(ApplyKnockback(request));
+        return true;
     }
 
-    public void StopForDeath()
+    private IEnumerator ApplyKnockback(KnockbackRequest request)
     {
-        if (_knockbackCoroutine != null)
-            StopCoroutine(_knockbackCoroutine);
+        Vector3 direction = request.Direction;
+        Vector3 startPosition = transform.position;
+        float allowedDistance = request.Distance;
+
+        _agent.isStopped = true;
+        _agent.ResetPath();
+
+        if (_agent.Raycast(startPosition + direction * allowedDistance, out NavMeshHit navMeshHit))
+        {
+            float distanceToBoundary = Vector3.Dot(navMeshHit.position - startPosition, direction);
+            allowedDistance = Mathf.Min(allowedDistance, Mathf.Max(0f, distanceToBoundary));
+        }
+
+        if (request.DisplacementDuration > 0f)
+        {
+            float elapsed = 0f;
+            float movedDistance = 0f;
+
+            while (elapsed < request.DisplacementDuration && movedDistance < allowedDistance)
+            {
+                elapsed = Mathf.Min(elapsed + Time.deltaTime, request.DisplacementDuration);
+                float targetDistance = allowedDistance *
+                    request.EvaluateMovement(elapsed / request.DisplacementDuration);
+                float stepDistance = Mathf.Max(0f, targetDistance - movedDistance);
+
+                bool blocked = TryMove(direction, stepDistance, request.ObstacleMask, out float appliedDistance);
+                movedDistance += appliedDistance;
+
+                if (blocked)
+                    break;
+
+                yield return null;
+            }
+        }
+        else
+        {
+            TryMove(direction, allowedDistance, request.ObstacleMask, out _);
+        }
+
+        if (request.RecoveryDuration > 0f)
+            yield return new WaitForSeconds(request.RecoveryDuration);
 
         _knockbackCoroutine = null;
-        _enemy?.EndKnockbackRecovery();
-        SetRigidbodyControlledByAgent();
+
+        if (_enemy != null && !_enemy.IsDead)
+            _enemy.EndKnockback();
     }
 
-    private IEnumerator ApplyKnockback(Vector3 force)
+    private bool TryMove(
+        Vector3 direction,
+        float distance,
+        LayerMask obstacleMask,
+        out float appliedDistance)
     {
-        yield return null;
+        appliedDistance = distance;
+        if (distance <= 0f)
+            return false;
 
-        if (IsEnemyDead())
-        {
-            _knockbackCoroutine = null;
-            yield break;
-        }
+        Vector3 center = transform.position +
+            Vector3.up * (_agent.baseOffset + _agent.height * 0.5f);
+        float capsuleOffset = Mathf.Max(0f, _agent.height * 0.5f - _agent.radius);
+        Vector3 top = center + Vector3.up * capsuleOffset;
+        Vector3 bottom = center - Vector3.up * capsuleOffset;
 
-        _enemy?.BeginKnockbackRecovery(recoveryDelay);
+        bool blocked = Physics.CapsuleCast(
+            top,
+            bottom,
+            _agent.radius,
+            direction,
+            out RaycastHit hit,
+            distance,
+            obstacleMask,
+            QueryTriggerInteraction.Ignore);
 
-        if (_agent.enabled && _agent.isOnNavMesh)
-            _agent.ResetPath();
+        if (blocked)
+            appliedDistance = Mathf.Min(distance, hit.distance);
 
-        _agent.enabled = false;
+        if (appliedDistance > 0f)
+            _agent.Move(direction * appliedDistance);
 
-        if (physicsCollider != null)
-            physicsCollider.enabled = true;
+        return blocked;
+    }
 
-        _rigidbody.useGravity = true;
-        _rigidbody.isKinematic = false;
-        _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
-        _rigidbody.AddForce(force, forceMode);
+    private void HandleDeath()
+    {
+        if (_knockbackCoroutine == null) return;
 
-        yield return new WaitForSeconds(maxKnockbackTime);
-
-        if (IsEnemyDead())
-        {
-            _knockbackCoroutine = null;
-            yield break;
-        }
-
-        SetRigidbodyControlledByAgent();
-
-        Vector3 agentPosition = transform.position;
-        if (NavMesh.SamplePosition(agentPosition, out NavMeshHit hit, navMeshSampleRadius, NavMesh.AllAreas))
-        {
-            agentPosition = hit.position;
-            transform.position = agentPosition;
-        }
-
-        _agent.enabled = true;
-        if (_agent.isOnNavMesh)
-        {
-            _agent.Warp(agentPosition);
-            _agent.ResetPath();
-            _agent.isStopped = true;
-        }
-
+        StopCoroutine(_knockbackCoroutine);
         _knockbackCoroutine = null;
-    }
-
-    private void SetRigidbodyControlledByAgent()
-    {
-        if (!_rigidbody.isKinematic)
-        {
-            _rigidbody.linearVelocity = Vector3.zero;
-            _rigidbody.angularVelocity = Vector3.zero;
-        }
-
-        _rigidbody.useGravity = _initialUseGravity;
-        _rigidbody.isKinematic = _initialIsKinematic;
-        _rigidbody.constraints = _initialConstraints;
-
-        if (physicsCollider != null)
-            physicsCollider.enabled = _physicsColliderDefaultEnabled;
-    }
-
-    private bool IsEnemyDead()
-    {
-        return _enemy != null && _enemy.IsDead;
     }
 }

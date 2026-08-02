@@ -1,33 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPushAbility : MonoBehaviour
 {
-    [Header("Knockback")]
     [SerializeField] private KnockbackConfigScriptableObject knockbackConfig;
     [SerializeField] private LayerMask enemyLayer;
-
-    [Header("Targeting")]
     [SerializeField] private float range = 2f;
     [Range(0f, 180f)]
     [SerializeField] private float coneAngle = 70f;
     [SerializeField] private Vector3 originOffset = new Vector3(0f, 1f, 0f);
     [SerializeField] private bool useCameraForward = true;
-    [Min(1)]
-    [SerializeField] private int maxTargets = 16;
-
-    [Header("Timing")]
     [SerializeField] private float cooldown = 1f;
 
     private PlayerInputHandler _input;
-    private Collider[] _hits;
     private Camera _camera;
+    private readonly HashSet<EnemyBase> _candidates = new();
     private bool _subscribed;
     private float _nextPushTime;
-
-    private void Awake()
-    {
-        _hits = new Collider[Mathf.Max(1, maxTargets)];
-    }
 
     private void OnEnable()
     {
@@ -70,11 +59,12 @@ public class PlayerPushAbility : MonoBehaviour
         Vector3 origin = transform.position + originOffset;
         Vector3 forward = GetPushForward();
 
-        if (!TryGetBestTarget(origin, forward, out IKnockbackable knockbackable, out Vector3 direction, out float distance))
+        if (!TryGetBestTarget(origin, forward, out IKnockbackable knockbackable, out Vector3 direction))
             return;
 
-        Vector3 force = knockbackConfig.GetKnockbackStrength(direction, distance);
-        knockbackable.GetKnockedBack(force);
+        if (!knockbackable.TryApplyKnockback(knockbackConfig.CreateRequest(direction)))
+            return;
+
         _nextPushTime = Time.time + cooldown;
     }
 
@@ -100,28 +90,35 @@ public class PlayerPushAbility : MonoBehaviour
         return forward.sqrMagnitude > 0.0001f ? forward.normalized : Vector3.forward;
     }
 
-    private bool TryGetBestTarget(Vector3 origin, Vector3 forward, out IKnockbackable bestKnockbackable, out Vector3 bestDirection, out float bestDistance)
+    private bool TryGetBestTarget(
+        Vector3 origin,
+        Vector3 forward,
+        out IKnockbackable bestKnockbackable,
+        out Vector3 bestDirection)
     {
         bestKnockbackable = null;
         bestDirection = Vector3.zero;
-        bestDistance = 0f;
 
         float halfAngle = coneAngle * 0.5f;
         float bestScore = float.MaxValue;
 
-        int hitCount = Physics.OverlapSphereNonAlloc(origin, range, _hits, enemyLayer, QueryTriggerInteraction.Collide);
-        for (int i = 0; i < hitCount; i++)
+        _candidates.Clear();
+        Collider[] hits = Physics.OverlapSphere(origin, range, enemyLayer, QueryTriggerInteraction.Collide);
+        foreach (Collider hit in hits)
         {
-            Collider hit = _hits[i];
             if (hit == null) continue;
 
             EnemyBase enemy = hit.GetComponentInParent<EnemyBase>();
-            TrySetBestTarget(enemy, forward, halfAngle, ref bestScore, ref bestKnockbackable, ref bestDirection, ref bestDistance);
-        }
+            if (enemy == null || !_candidates.Add(enemy)) continue;
 
-        foreach (EnemyBase enemy in FindObjectsByType<EnemyBase>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
-        {
-            TrySetBestTarget(enemy, forward, halfAngle, ref bestScore, ref bestKnockbackable, ref bestDirection, ref bestDistance);
+            TrySetBestTarget(
+                enemy,
+                origin,
+                forward,
+                halfAngle,
+                ref bestScore,
+                ref bestKnockbackable,
+                ref bestDirection);
         }
 
         return bestKnockbackable != null;
@@ -129,39 +126,97 @@ public class PlayerPushAbility : MonoBehaviour
 
     private void TrySetBestTarget(
         EnemyBase enemy,
+        Vector3 origin,
         Vector3 forward,
         float halfAngle,
         ref float bestScore,
         ref IKnockbackable bestKnockbackable,
-        ref Vector3 bestDirection,
-        ref float bestDistance)
+        ref Vector3 bestDirection)
     {
         if (enemy == null || enemy.IsDead) return;
 
         IKnockbackable knockbackable = enemy.GetComponent<IKnockbackable>();
         if (knockbackable == null) return;
 
-        Vector3 direction = enemy.transform.position - transform.position;
-        direction.y = 0f;
-        float sqrDistance = direction.sqrMagnitude;
-        if (sqrDistance <= 0.0001f) return;
+        Collider targetCollider = enemy.GetComponent<Collider>();
+        if (targetCollider == null) return;
 
-        float distance = Mathf.Sqrt(sqrDistance);
-        if (distance > range) return;
+        Vector3 rangePoint = targetCollider.ClosestPoint(origin);
+        Vector3 rangeOffset = rangePoint - origin;
+        rangeOffset.y = 0f;
+        float rangeDistance = rangeOffset.magnitude;
+        if (rangeDistance > range) return;
 
-        Vector3 normalizedDirection = direction / distance;
-        float angle = Vector3.Angle(forward, normalizedDirection);
-        if (angle > halfAngle) return;
+        Vector3 colliderCenter = targetCollider.bounds.center;
+        colliderCenter.y = origin.y;
+        float axisDistance = Mathf.Clamp(
+            Vector3.Dot(colliderCenter - origin, forward),
+            0f,
+            range);
+        Vector3 targetPoint =
+            targetCollider.ClosestPoint(origin + forward * axisDistance);
+        Vector3 targetOffset = targetPoint - origin;
+        targetOffset.y = 0f;
+        float targetDistance = targetOffset.magnitude;
+        if (targetDistance > range) return;
+
+        float angle = 0f;
+
+        if (targetDistance > 0.0001f)
+        {
+            Vector3 targetDirection = targetOffset / targetDistance;
+            angle = Vector3.Angle(forward, targetDirection);
+            if (angle > halfAngle) return;
+        }
+
+        if (!HasClearLineOfEffect(origin, targetPoint, enemy)) return;
+
+        Vector3 knockbackDirection = enemy.transform.position - transform.position;
+        knockbackDirection.y = 0f;
+        float knockbackSqrDistance = knockbackDirection.sqrMagnitude;
+        if (knockbackSqrDistance <= 0.0001f) return;
+
+        Vector3 normalizedKnockbackDirection =
+            knockbackDirection / Mathf.Sqrt(knockbackSqrDistance);
 
         float angleScore = halfAngle > 0f ? angle / halfAngle : 0f;
-        float distanceScore = range > 0f ? distance / range : 0f;
+        float distanceScore = range > 0f ? rangeDistance / range : 0f;
         float score = angleScore + distanceScore;
 
         if (score >= bestScore) return;
 
         bestScore = score;
         bestKnockbackable = knockbackable;
-        bestDirection = normalizedDirection;
-        bestDistance = distance;
+        bestDirection = normalizedKnockbackDirection;
+    }
+
+    private bool HasClearLineOfEffect(
+        Vector3 origin,
+        Vector3 targetPoint,
+        EnemyBase target)
+    {
+        Vector3 direction = targetPoint - origin;
+        float distance = direction.magnitude;
+        if (distance <= 0.0001f) return true;
+
+        RaycastHit[] hits = Physics.RaycastAll(
+            origin,
+            direction / distance,
+            distance,
+            knockbackConfig.ObstacleMask,
+            QueryTriggerInteraction.Ignore);
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider == null || hit.collider.transform.IsChildOf(transform))
+                continue;
+
+            EnemyBase hitEnemy = hit.collider.GetComponentInParent<EnemyBase>();
+            if (hitEnemy == target) continue;
+
+            return false;
+        }
+
+        return true;
     }
 }

@@ -597,7 +597,6 @@ MonoBehaviour:
   coneAngle: 70
   originOffset: {x: 0, y: 1, z: 0}
   useCameraForward: 1
-  maxTargets: 16
   cooldown: 1
 --- !u!114 &2271225838413399132
 MonoBehaviour:

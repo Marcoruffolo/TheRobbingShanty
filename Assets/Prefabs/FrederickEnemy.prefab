@@ -142,11 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1359914b5eb0044b092af42d461bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  physicsCollider: {fileID: -7521212059582829750}
-  forceMode: 2
-  recoveryDelay: 1
-  maxKnockbackTime: 0.15
-  navMeshSampleRadius: 2
 --- !u!54 &-494694866345324663
 Rigidbody:
   m_ObjectHideFlags: 0

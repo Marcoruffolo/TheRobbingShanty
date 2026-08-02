@@ -63,12 +63,12 @@ public abstract class EnemyBase : MonoBehaviour, IDamagable
             Animator.SetFloat(HashSpeed, 0f);
     }
 
-    public virtual void BeginKnockbackRecovery(float duration)
+    public virtual void BeginKnockback()
     {
         SetControlLocked(true);
     }
 
-    public virtual void EndKnockbackRecovery()
+    public virtual void EndKnockback()
     {
         SetControlLocked(false);
     }
