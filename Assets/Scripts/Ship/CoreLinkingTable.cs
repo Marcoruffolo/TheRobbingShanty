@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class CoreLinkingTable : MonoBehaviour, IInteractable
 {
     [SerializeField] private NavigationRunState navigationRunState;
-    [SerializeField] private int zoneIndex;
     [SerializeField] private InventoryItemData navigationCore;
     [SerializeField] private GameObject[] coreSlots;
 
@@ -18,12 +17,17 @@ public class CoreLinkingTable : MonoBehaviour, IInteractable
 
     private NavigationRunState State => navigationRunState != null ? navigationRunState : NavigationRunState.Instance;
 
+    private int _lastKnownZoneIndex = int.MinValue;
+
     public string InteractionPrompt
     {
         get
         {
             NavigationRunState state = State;
-            if (state == null || navigationCore == null || !state.IsZoneReady(zoneIndex)) return string.Empty;
+            if (state == null || navigationCore == null) return string.Empty;
+
+            int zoneIndex = state.CurrentZoneIndex;
+            if (!state.IsZoneReady(zoneIndex)) return string.Empty;
 
             int placed = state.GetPlacedCores(zoneIndex);
             int required = state.GetRequiredCores(zoneIndex);
@@ -50,12 +54,25 @@ public class CoreLinkingTable : MonoBehaviour, IInteractable
             state.ZoneProgressChanged -= HandleZoneProgressChanged;
     }
 
+    private void Update()
+    {
+        NavigationRunState state = State;
+        if (state == null || state.CurrentZoneIndex == _lastKnownZoneIndex) return;
+
+        _lastKnownZoneIndex = state.CurrentZoneIndex;
+        UpdateSlots();
+    }
+
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
         interactSuccessful = false;
 
         NavigationRunState state = State;
-        if (state == null || navigationCore == null || !state.CanPlaceCore(zoneIndex))
+        if (state == null || navigationCore == null)
+            return;
+
+        int zoneIndex = state.CurrentZoneIndex;
+        if (!state.CanPlaceCore(zoneIndex))
             return;
 
         PlayerInventoryHolder inventory = interactor != null
@@ -96,7 +113,8 @@ public class CoreLinkingTable : MonoBehaviour, IInteractable
 
     private void HandleZoneProgressChanged(int changedZoneIndex, int placedCores, int requiredCores)
     {
-        if (changedZoneIndex == zoneIndex)
+        NavigationRunState state = State;
+        if (state != null && changedZoneIndex == state.CurrentZoneIndex)
             UpdateSlots();
     }
 
@@ -105,6 +123,7 @@ public class CoreLinkingTable : MonoBehaviour, IInteractable
         if (coreSlots == null) return;
 
         NavigationRunState state = State;
+        int zoneIndex = state != null ? state.CurrentZoneIndex : -1;
         int placed = state != null ? state.GetPlacedCores(zoneIndex) : 0;
         int required = state != null && state.IsZoneReady(zoneIndex) ? state.GetRequiredCores(zoneIndex) : 0;
 

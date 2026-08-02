@@ -29,6 +29,9 @@ public class ZoneDefinition
     [Tooltip("Distancia minima entre islas de artefacto dentro de esta zona")]
     public float minArtifactDistance = 30f;
 
+    [Header("Debug")]
+    public bool debugAutoComplete;
+
     [Header("Proporciones de tamano (islas random)")]
     public int weightSmall = 1;
     public int weightMedium = 1;

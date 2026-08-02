@@ -8,6 +8,9 @@ public class WorldZoneSequence : ScriptableObject
     [Tooltip("Orden de avance (Z) de las zonas, de inicio a fin del mundo")]
     public List<ZoneDefinition> zones = new();
 
+    [Header("Debug")]
+    [SerializeField] private NavigationRunState navigationRunState;
+
     [Header("Mundo")]
     public int globalSeed = 0;
     public int targetIslandCount = 20;
@@ -43,6 +46,32 @@ public class WorldZoneSequence : ScriptableObject
         }
         return ranges;
     }
+
+#if UNITY_EDITOR
+    private void OnEnable()
+    {
+        UnityEditor.EditorApplication.update += ProcessDebugAutoComplete;
+    }
+
+    private void OnDisable()
+    {
+        UnityEditor.EditorApplication.update -= ProcessDebugAutoComplete;
+    }
+
+    private void ProcessDebugAutoComplete()
+    {
+        if (!Application.isPlaying || navigationRunState == null) return;
+
+        for (int i = 0; i < zones.Count; i++)
+        {
+            ZoneDefinition zone = zones[i];
+            if (!zone.debugAutoComplete) continue;
+
+            zone.debugAutoComplete = false;
+            navigationRunState.DebugCompleteZone(i, zone.requiredCoresMax);
+        }
+    }
+#endif
 
     public IslandSizeRange GetSizeRange(IslandSizeCategory category) => category switch
     {

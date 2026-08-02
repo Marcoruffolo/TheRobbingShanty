@@ -8,6 +8,9 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
     [SerializeField] private ShipRepairData repairData;
     [SerializeField] private SOVariableInt shipRepairLevel;
     [SerializeField] private SceneField mainScene;
+    [SerializeField] private NavigationRunState navigationRunState;
+
+    private NavigationRunState State => navigationRunState != null ? navigationRunState : NavigationRunState.Instance;
 
     [Header("Prompts")]
     [SerializeField] private string repairPrompt = "Repair Ship";
@@ -48,6 +51,8 @@ public class ShipRepairInteractable : MonoBehaviour, IInteractable
 
     private void LoadMainScene()
     {
+        State?.ClearCurrentIslandContext();
+
         if (SceneLoader.Instance != null)
             SceneLoader.Instance.TryLoadScene(mainScene);
         else

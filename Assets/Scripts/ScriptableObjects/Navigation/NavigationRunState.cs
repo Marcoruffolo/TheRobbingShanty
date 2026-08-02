@@ -70,6 +70,11 @@ public class NavigationRunState : ScriptableObject
         return worldSeed;
     }
 
+    public void SetCurrentZone(int zoneIndex)
+    {
+        currentZoneIndex = zoneIndex;
+    }
+
     public void StartZone(int zoneIndex, int requiredCores, int availableCoreIslands)
     {
         ZoneProgress zone = GetOrCreateZone(zoneIndex);
@@ -181,6 +186,25 @@ public class NavigationRunState : ScriptableObject
         zone.PlacedCores++;
         RaiseZoneProgressChanged(zone);
         return true;
+    }
+
+    public void DebugCompleteZone(int zoneIndex, int requiredCores)
+    {
+        ZoneProgress zone = GetOrCreateZone(zoneIndex);
+        int resolvedRequiredCores = ClampRequiredCores(requiredCores);
+
+        zone.RequiredCores = resolvedRequiredCores;
+        zone.AvailableCoreIslands = Mathf.Max(zone.AvailableCoreIslands, resolvedRequiredCores);
+        zone.PlacedCores = resolvedRequiredCores;
+
+        foreach (ArtifactEntry entry in zone.Artifacts)
+        {
+            entry.IsCompleted = true;
+            entry.IsClaimed = true;
+            entry.CurrentKills = entry.RequiredKills;
+        }
+
+        RaiseZoneProgressChanged(zone);
     }
 
     public bool HasRequiredPlacedCores(int zoneIndex)

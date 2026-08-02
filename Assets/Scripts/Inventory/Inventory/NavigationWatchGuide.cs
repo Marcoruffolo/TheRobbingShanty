@@ -6,7 +6,6 @@ public class NavigationWatchGuide : MonoBehaviour
     [SerializeField] private NavigationRunState navigationRunState;
     [SerializeField] private InventoryItemData navigationWatchItem;
     [SerializeField] private InventoryItemData navigationCoreItem;
-    [SerializeField] private int zoneIndex;
     [SerializeField] private BoolGameEvent showWatchEvent;
     [SerializeField] private SOVariableString watchText;
 
@@ -65,6 +64,7 @@ public class NavigationWatchGuide : MonoBehaviour
             return string.Format(detectedArtifactFormat, state.GetArtifactKillsRemaining(artifactId));
         }
 
+        int zoneIndex = state.CurrentZoneIndex;
         if (!state.IsZoneReady(zoneIndex))
             return string.Empty;
 

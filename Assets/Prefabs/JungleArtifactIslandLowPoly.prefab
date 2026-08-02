@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 4191887718797877908}
   - component: {fileID: 1006458475082123002}
   m_Layer: 0
-  m_Name: ArtifactIslandLowPoly 1
+  m_Name: JungleArtifactIslandLowPoly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

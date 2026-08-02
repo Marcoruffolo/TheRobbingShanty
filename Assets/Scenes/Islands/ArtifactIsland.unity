@@ -10432,20 +10432,6 @@ MonoBehaviour:
     - {fileID: 225352012}
     priority: 4
     amount: 3.5
-  - prefab: {fileID: 4568512523534562660, guid: 5f75af6048c9a1648b7fa05355d55564, type: 3}
-    parentObject: {fileID: 0}
-    spawnPoints:
-    - {fileID: 1353080895}
-    - {fileID: 569846909}
-    - {fileID: 460595011}
-    - {fileID: 1013800441}
-    - {fileID: 1576193562}
-    - {fileID: 1737773189}
-    - {fileID: 383456177}
-    - {fileID: 114526857}
-    - {fileID: 1894340274}
-    priority: 5
-    amount: 7
   _exclusionRadius: 0.5
 --- !u!114 &811590446
 MonoBehaviour:

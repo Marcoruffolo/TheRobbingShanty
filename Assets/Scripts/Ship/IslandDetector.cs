@@ -56,9 +56,6 @@ public class IslandDetector : MonoBehaviour
         _isNearIsland = true;
         IsTransitionAvailable = true;
 
-        if (islandData.isArtifactIsland)
-            State.SetCurrentArtifactIsland(islandData.zoneIndex, ResolveArtifactId(islandData));
-
         OnIslandProximityChanged?.Invoke(true, BuildPrompt(islandData));
     }
 

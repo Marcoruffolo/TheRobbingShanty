@@ -20,9 +20,10 @@ MonoBehaviour:
     gateClearanceZ: 40
     requiredCoresMin: 2
     requiredCoresMax: 2
-    extraCoreIslandsMin: 1
-    extraCoreIslandsMax: 1
+    extraCoreIslandsMin: 3
+    extraCoreIslandsMax: 4
     minArtifactDistance: 30
+    debugAutoComplete: 0
     weightSmall: 7
     weightMedium: 0
     weightLarge: 0
@@ -36,9 +37,11 @@ MonoBehaviour:
     extraCoreIslandsMin: 4
     extraCoreIslandsMax: 5
     minArtifactDistance: 30
+    debugAutoComplete: 0
     weightSmall: 1
     weightMedium: 0
     weightLarge: 0
+  navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
   globalSeed: 0
   targetIslandCount: 3
   minIslandDistance: 10

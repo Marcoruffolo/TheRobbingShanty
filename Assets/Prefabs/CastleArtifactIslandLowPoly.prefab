@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 4191887718797877908}
   - component: {fileID: 1006458475082123002}
   m_Layer: 0
-  m_Name: ArtifactIslandLowPoly
+  m_Name: CastleArtifactIslandLowPoly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

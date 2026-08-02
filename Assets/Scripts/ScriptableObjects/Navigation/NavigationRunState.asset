@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057c58afc64c51a4d9636f77bb00237e, type: 3}
   m_Name: NavigationRunState
   m_EditorClassIdentifier: 
-  worldSeed: 810441897
+  worldSeed: 1389147198
   currentZoneIndex: 1
   currentArtifactZoneIndex: -1
   currentArtifactIslandId: 
@@ -23,285 +23,357 @@ MonoBehaviour:
     PlacedCores: 0
     IntroPlayed: 1
     Artifacts:
-    - ArtifactId: run82086887_zone0_artifact0
+    - ArtifactId: run1822372299_zone0_artifact0
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone0_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone0_artifact1
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone0_artifact2
-      ZoneIndex: 0
-      IsCompleted: 1
-      IsClaimed: 1
-    - ArtifactId: run82086887_zone0_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone0_artifact2
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone0_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone0_artifact0
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone0_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone0_artifact1
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone0_artifact6
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone0_artifact2
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone0_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone0_artifact0
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone0_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone0_artifact1
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone0_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone0_artifact2
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone0_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone0_artifact0
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone0_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone0_artifact1
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone0_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone0_artifact2
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone0_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone0_artifact0
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone0_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone0_artifact1
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone0_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone0_artifact2
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone0_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone0_artifact0
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone0_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone0_artifact1
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone0_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone0_artifact2
       ZoneIndex: 0
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone0_artifact0
-      ZoneIndex: 0
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run430670622_zone0_artifact1
-      ZoneIndex: 0
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run430670622_zone0_artifact2
-      ZoneIndex: 0
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run810441897_zone0_artifact0
-      ZoneIndex: 0
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run810441897_zone0_artifact1
-      ZoneIndex: 0
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run810441897_zone0_artifact2
-      ZoneIndex: 0
-      IsCompleted: 0
-      IsClaimed: 0
+      RequiredKills: 0
+      CurrentKills: 0
   - ZoneIndex: 1
     RequiredCores: 2
-    AvailableCoreIslands: 6
+    AvailableCoreIslands: 7
     PlacedCores: 0
     IntroPlayed: 0
     Artifacts:
-    - ArtifactId: run82086887_zone1_artifact0
+    - ArtifactId: run1822372299_zone1_artifact0
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone1_artifact1
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone1_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone1_artifact2
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone1_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone1_artifact3
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone1_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone1_artifact4
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run82086887_zone1_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone1_artifact5
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone1_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1822372299_zone1_artifact6
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone1_artifact0
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone1_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone1_artifact1
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone1_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone1_artifact2
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone1_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone1_artifact3
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run1548884145_zone1_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone1_artifact4
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone1_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1125297402_zone1_artifact5
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact0
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone1_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact1
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone1_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact2
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone1_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact3
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run270255724_zone1_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact4
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact5
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1998122367_zone1_artifact6
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone1_artifact0
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone1_artifact1
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone1_artifact2
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone1_artifact3
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run552771248_zone1_artifact6
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone1_artifact4
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone1_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1285525101_zone1_artifact5
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact0
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone1_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact1
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone1_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact2
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone1_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact3
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run236095732_zone1_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact4
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact5
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1250811792_zone1_artifact6
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact2
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact0
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact3
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact1
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact4
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact2
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact5
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact3
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run430670622_zone1_artifact6
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact4
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run810441897_zone1_artifact0
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact5
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run810441897_zone1_artifact1
+      RequiredKills: 0
+      CurrentKills: 0
+    - ArtifactId: run1389147198_zone1_artifact6
       ZoneIndex: 1
       IsCompleted: 0
       IsClaimed: 0
-    - ArtifactId: run810441897_zone1_artifact2
-      ZoneIndex: 1
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run810441897_zone1_artifact3
-      ZoneIndex: 1
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run810441897_zone1_artifact4
-      ZoneIndex: 1
-      IsCompleted: 0
-      IsClaimed: 0
-    - ArtifactId: run810441897_zone1_artifact5
-      ZoneIndex: 1
-      IsCompleted: 0
-      IsClaimed: 0
+      RequiredKills: 0
+      CurrentKills: 0

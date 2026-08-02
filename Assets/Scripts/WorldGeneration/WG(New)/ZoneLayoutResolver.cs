@@ -32,6 +32,13 @@ public class ZoneLayoutResolver : MonoBehaviour
         return null;
     }
 
+    public int GetZoneIndexAt(float z)
+    {
+        for (int i = 0; i < _ranges.Count; i++)
+            if (_ranges[i].Contains(z)) return i;
+        return -1;
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
