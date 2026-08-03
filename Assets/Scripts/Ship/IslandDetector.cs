@@ -77,6 +77,8 @@ public class IslandDetector : MonoBehaviour
 
         if (_currentIsland.isArtifactIsland)
             State.SetCurrentArtifactIsland(_currentIsland.zoneIndex, ResolveArtifactId(_currentIsland));
+        else
+            State.ClearCurrentArtifactIsland();
 
         string targetSceneName = _currentIsland.sceneName;
         if (!SceneLoader.Instance.TryLoadScene(targetSceneName))

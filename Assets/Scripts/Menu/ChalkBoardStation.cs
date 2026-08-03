@@ -33,7 +33,6 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
         BlockPlayerMovement.Instance?.ImmobilizePlayer();
         OnUpgradeUIOpen?.Raise(true);
         SetHudVisible(false);
-        interactSuccessful = true;
     }
 
     public void EndInteraction()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NavigationWatchGuide : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class NavigationWatchGuide : MonoBehaviour
     [SerializeField] private string carriedCoresFormat = "Tenes {0} nucleo(s) sin vincular. Vinculalos en la mesa. Mesa: {1}/{2}.";
     [SerializeField] private string completedTableText = "Mesa completa. La muralla ya puede abrirse.";
     [SerializeField] private string progressFormat = "Nucleos vinculados: {0}/{1}. Faltan {2}. Artefactos disponibles: {3}.";
+    [SerializeField] private string noArtifactIslandText = "No se encuentran artefactos en la isla.";
 
     private bool _isShowing;
     private NavigationRunState State => navigationRunState != null ? navigationRunState : NavigationRunState.Instance;
@@ -52,9 +54,10 @@ public class NavigationWatchGuide : MonoBehaviour
         NavigationRunState state = State;
         if (state == null) return string.Empty;
 
-        string artifactId = state.CurrentArtifactIslandId;
-        if (!string.IsNullOrWhiteSpace(artifactId))
+        if (FindFirstObjectByType<ArtifactIslandController>() != null)
         {
+            string artifactId = state.CurrentArtifactIslandId;
+
             if (state.IsCoreClaimed(artifactId))
                 return claimedArtifactText;
 
@@ -63,6 +66,9 @@ public class NavigationWatchGuide : MonoBehaviour
 
             return string.Format(detectedArtifactFormat, state.GetArtifactKillsRemaining(artifactId));
         }
+
+        if (SceneManager.GetActiveScene().name != "MainScene")
+            return noArtifactIslandText;
 
         int zoneIndex = state.CurrentZoneIndex;
         if (!state.IsZoneReady(zoneIndex))
