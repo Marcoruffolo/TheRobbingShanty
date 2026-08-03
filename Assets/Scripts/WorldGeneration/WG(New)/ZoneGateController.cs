@@ -10,6 +10,8 @@ public class ZoneGateController : MonoBehaviour
     private int _requiredCount;
     private bool _missingSpawnerLogged;
 
+    public int ZoneIndex => zoneIndex;
+
     private NavigationRunState State => navigationRunState != null ? navigationRunState : NavigationRunState.Instance;
 
     private void Awake()

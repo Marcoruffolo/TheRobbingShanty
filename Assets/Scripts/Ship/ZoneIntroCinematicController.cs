@@ -158,7 +158,7 @@ public class ZoneIntroCinematicController : MonoBehaviour
     {
         if (doorTarget == null)
         {
-            ZoneGateController gate = FindFirstObjectByType<ZoneGateController>();
+            ZoneGateController gate = FindGateForZone();
             if (gate != null)
                 doorTarget = gate.transform;
         }
@@ -172,6 +172,18 @@ public class ZoneIntroCinematicController : MonoBehaviour
 
         if (shakeTarget == null && tableTarget != null)
             shakeTarget = tableTarget;
+    }
+
+    private ZoneGateController FindGateForZone()
+    {
+        ZoneGateController[] gates = FindObjectsByType<ZoneGateController>(FindObjectsSortMode.None);
+        foreach (ZoneGateController gate in gates)
+        {
+            if (gate.ZoneIndex == zoneIndex)
+                return gate;
+        }
+
+        return null;
     }
 
     private IEnumerator WaitForTargets()
