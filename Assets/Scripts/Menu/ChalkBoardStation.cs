@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ChalkBoardStation : MonoBehaviour, IInteractable
 {
     [SerializeField] private string interactionPrompt = "Mejorar Items";
-    public string InteractionPrompt => interactionPrompt;
+    public string InteractionPrompt => MenuEnabled ? interactionPrompt : string.Empty;
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
     public BoolGameEvent OnUpgradeUIOpen;
@@ -16,6 +17,8 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject islandPromptText;
 
+    private static bool MenuEnabled => SceneManager.GetActiveScene().name == "MainScene";
+
     private void Start()
     {
         OnUpgradeUIOpen?.Raise(false);
@@ -23,6 +26,9 @@ public class ChalkBoardStation : MonoBehaviour, IInteractable
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
+        interactSuccessful = MenuEnabled;
+        if (!interactSuccessful) return;
+
         PlayerCamera.LockCursor(false);
         BlockPlayerMovement.Instance?.ImmobilizePlayer();
         OnUpgradeUIOpen?.Raise(true);
