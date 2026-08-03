@@ -272,15 +272,6 @@ MonoBehaviour:
     - {fileID: 4451778864319338221}
     priority: 2
     amount: 3
-  - prefab: {fileID: 7990912825259680960, guid: 8481c01517b7d6c44aaea2cc03f23ce8, type: 3}
-    spawnPoints:
-    - {fileID: 890191556468708341}
-    - {fileID: 2311934622620011142}
-    - {fileID: 6401554845622132945}
-    - {fileID: 9217903562345320247}
-    - {fileID: 3236445135680967721}
-    priority: 4
-    amount: 1.2
   _exclusionRadius: 0.5
   _navMeshSampleDistance: 2
   _navMeshAreaMask: -1
