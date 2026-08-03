@@ -5,19 +5,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ResizeOnMouseWheel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    #region Inspector fields
+
     [SerializeField] float startSize = 1;
-    [SerializeField] float minSize = 0.5f;
+    [SerializeField] float minSize = 0.25f;
     [SerializeField] float maxSize = 1;
 
     [SerializeField] private float zoomRate = 5;
-    #endregion
 
-    #region Private Variables
     private bool onObj = false;
-    #endregion
 
-    #region Unity Methods
+    private void Start() {
+        SetZoom(0.25f);
+    }
+
     private void Update() {
         float scrollWheel = -Mouse.current.scroll.ReadValue().y;
 
@@ -37,9 +37,7 @@ public class ResizeOnMouseWheel : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnDisable() {
         onObj = false;
     }
-    #endregion
 
-    #region Private Methods
     private void ChangeZoom(float scrollWheel) {
         float rate = 1 + zoomRate * Time.unscaledDeltaTime;
         if (scrollWheel > 0) {
@@ -52,5 +50,4 @@ public class ResizeOnMouseWheel : MonoBehaviour, IPointerEnterHandler, IPointerE
     private void SetZoom(float targetSize) {
         transform.localScale = new Vector3(targetSize, targetSize, 1);
     }
-    #endregion
 }
