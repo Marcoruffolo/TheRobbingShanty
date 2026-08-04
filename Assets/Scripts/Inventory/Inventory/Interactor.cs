@@ -101,7 +101,19 @@ public class Interactor : MonoBehaviour
             }
         }
 
+        if (IsHoldingUsableItem())
+        {
+            SetPrompt("Press F to use", true);
+            return;
+        }
+
         SetPrompt("", false);
+    }
+
+    private bool IsHoldingUsableItem()
+    {
+        InventoryItemData selected = _playerInventory != null ? _playerInventory.SelectedItemData : null;
+        return selected != null && (selected.itemtype == ItemType.Consumible || selected.itemtype == ItemType.Mejora);
     }
 
     private void HandleInput()
