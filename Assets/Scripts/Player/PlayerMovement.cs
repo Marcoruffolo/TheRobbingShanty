@@ -94,12 +94,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckGround()
     {
-        _isGrounded = Physics.CheckSphere(
-            groundCheck.position,
+        bool hitSomething = Physics.SphereCast(
+            groundCheck.position + Vector3.up * groundRadius,
             groundRadius,
+            Vector3.down,
+            out RaycastHit hit,
+            groundRadius + 0.05f,
             groundMask,
             QueryTriggerInteraction.Ignore
         );
+
+        _isGrounded = hitSomething && Vector3.Angle(hit.normal, Vector3.up) <= _controller.slopeLimit;
 
         if (_isGrounded && _velocity.y < 0f)
             _velocity.y = -2f;

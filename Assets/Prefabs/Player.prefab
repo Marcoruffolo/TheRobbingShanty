@@ -416,7 +416,6 @@ MonoBehaviour:
   navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
   navigationWatchItem: {fileID: 11400000, guid: e2a50617c6f74f9a9c35f6a1cb22a101, type: 2}
   navigationCoreItem: {fileID: 11400000, guid: 3be4b0e07339cc34dbb6ae68b566a75b, type: 2}
-  zoneIndex: 0
   showWatchEvent: {fileID: 11400000, guid: 093a7fb95d184904a1e62437805a812d, type: 2}
   watchText: {fileID: 11400000, guid: 8fddbb8ad0c945b1a91c16c8fb5045cd, type: 2}
   claimedArtifactText: El artefacto de esta isla ya entrego su nucleo.
@@ -427,6 +426,7 @@ MonoBehaviour:
   completedTableText: Mesa completa. La muralla ya puede abrirse.
   progressFormat: 'Nucleos vinculados: {0}/{1}. Faltan {2}. Artefactos disponibles:
     {3}.'
+  noArtifactIslandText: No se encuentran artefactos en la isla.
 --- !u!114 &6840463158165156368
 MonoBehaviour:
   m_ObjectHideFlags: 0
