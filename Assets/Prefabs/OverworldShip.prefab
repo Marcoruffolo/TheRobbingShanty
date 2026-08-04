@@ -2455,7 +2455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactKey: 101
-  navigationRunState: {fileID: 0}
+  navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
 --- !u!54 &5204649651961735439
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -13519,7 +13519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01401dc2dbaf3e4c99d6a314585583a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navigationRunState: {fileID: 0}
+  navigationRunState: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
 --- !u!1 &1140158546 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2582750917635864600, guid: ac159d46bd3516a44afb93a99b6655ed, type: 3}
@@ -15232,7 +15232,7 @@ PrefabInstance:
     - target: {fileID: 2359661814222748871, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
       propertyPath: navigationRunState
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 00481025e6845154abbc0aaca738912d, type: 2}
     - target: {fileID: 3763622638021155001, guid: e52190b50d8e86946810d66ae17311cf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 4

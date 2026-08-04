@@ -710,7 +710,7 @@ MonoBehaviour:
     _sceneAsset: {fileID: 102900000, guid: d5e571797fd47fc41934c0edfc09fa39, type: 3}
     _sceneName: JungleArtifactIsland
   islandName: Artifact Island
-  isArtifactIsland: 0
+  isArtifactIsland: 1
   zoneIndex: 0
   artifactId: 
 --- !u!1 &7768944189900022663
