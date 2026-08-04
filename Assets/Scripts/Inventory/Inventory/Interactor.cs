@@ -147,6 +147,7 @@ public class Interactor : MonoBehaviour
         _currentInteractable = interactable;
         IsInteracting = true;
         SetPrompt("", false);
+        interactable.OnInteractionComplete = HandleInteractionComplete;
 
         if (interactable is MonoBehaviour mb)
         {
@@ -158,7 +159,18 @@ public class Interactor : MonoBehaviour
     private void EndInteraction(IInteractable interactable)
     {
         interactable.EndInteraction();
+        ClearInteractionState();
+    }
 
+    private void HandleInteractionComplete(IInteractable interactable)
+    {
+        if (_currentInteractable != interactable) return;
+
+        ClearInteractionState();
+    }
+
+    private void ClearInteractionState()
+    {
         _currentLabel?.SetInUse(false);
         _currentLabel = null;
         _currentInteractable = null;
